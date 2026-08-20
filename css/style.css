@@ -75,6 +75,8 @@
             color: var(--bx-text);
             font-family: 'Tajawal', sans-serif;
             direction: rtl;
+            scroll-behavior: smooth;
+            scroll-padding-top: 6.5rem; /* مسافة أمان لمنع تغطية الهيدر للأقسام */
         }
 
         body {
@@ -86,6 +88,27 @@
             width: 100%;
             overflow-x: clip;
             transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* ================= SMOOTH SECTION NAVIGATION & HIGHLIGHT TRANSITION ================= */
+        @keyframes sectionTargetPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(91, 60, 230, 0.4);
+                transform: scale(1);
+            }
+            40% {
+                box-shadow: 0 0 0 8px rgba(91, 60, 230, 0.15);
+                transform: scale(1.004);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(91, 60, 230, 0);
+                transform: scale(1);
+            }
+        }
+
+        .section-target-highlight {
+            animation: sectionTargetPulse 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            border-color: var(--bx-primary) !important;
         }
 
         main {
