@@ -1,48 +1,75 @@
 # ==============================================================================
-# Project Technology Stack Specifications
+# TAQNIYA STACK CONFIGURATION (stack.yaml)
 # ==============================================================================
-# وظيفته: تحديد التقنيات المستخدمة فعلياً في المشروع لضمان التزام الذكاء الاصطناعي بها
-# دون افتراض مكتبات أو تقنيات خارجية خارجة عن النطاق.
-# ملاحظة: يجب تحديد تقنية واحدة صريحة لكل بند عند تخصيص المشروع.
+# هذا الملف يمثل الإعلان الرسمي لتقنيات وأدوات المشروع عبر 13 بُعداً معمارياً مستقلاً.
+# يقرأ الذكاء الاصطناعي هذا الملف لتحديد الـ Technology Profiles بدقة دون افتراضات.
 # ==============================================================================
 
 project:
   name: "My Application"
-  type: "Web Application"
-  environment: "development"
+  description: "Reference implementation for Taqniya AI Development Framework"
+  type: "web"
+  repository: "https://github.com/ofifice-alalem/taqniya-framework-project-md"
 
 frontend:
-  framework: "React 18"
+  name: "React"
+  version: "18.3"
   language: "TypeScript"
-  styling: "TailwindCSS"
-  state_management: "Zustand"
-  component_library: "Custom UI Components"
+  package_manager: "npm"
+
+styling:
+  name: "Tailwind CSS"
+  version: "3.4"
+
+state:
+  name: "Zustand"
+  version: "4.5"
 
 backend:
-  framework: "Laravel 11"
-  language: "PHP 8.3"
-  architecture: "Repository Pattern"
+  name: "Laravel"
+  version: "11.x"
+  language: "PHP"
+  package_manager: "Composer"
 
 database:
-  main: "PostgreSQL 16"
-  orm: "Eloquent"
+  name: "PostgreSQL"
+  version: "16.x"
+  orm_or_query_builder: "Eloquent"
+  migration_tool: "Framework Native"
+  primary_key_strategy: "BigInt Auto-increment"
 
 cache:
-  driver: "Redis"
+  name: "Redis"
+  version: "7.x"
 
 api:
-  type: "RESTful API"
-  format: "JSON"
+  name: "REST"
+  style: "RESTful"
+  documentation: "OpenAPI 3.1 / Swagger"
 
 authentication:
-  type: "Sanctum Token Authentication"
-  library: "Laravel Sanctum"
+  name: "Sanctum"
+  strategy: "API Tokens"
+  rbac: "Custom Policies"
 
 testing:
-  unit: "Pest PHP"
-  e2e: "Playwright"
+  name: "Pest"
+  unit_runner: "Pest"
+  integration_runner: "Pest"
+  e2e_runner: "Playwright"
+  mocking: "Mockery"
 
-build_and_deployment:
-  container: "Docker"
+build:
+  name: "Vite"
+  bundler: "Vite"
+  transpiler: "TypeScript (tsc)"
+
+deployment:
+  name: "Docker"
+  platform: "Docker / VPS"
+  container_runtime: "Docker"
   ci_cd: "GitHub Actions"
-  hosting: "VPS / Docker Engine"
+
+infrastructure:
+  name: "Self-Hosted"
+  provider: "Self-Hosted"

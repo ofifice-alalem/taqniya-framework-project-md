@@ -64,10 +64,10 @@ Is it required for the current task?
 
 | Active Task Domain | Required Technology Dimensions | Technology Profiles Loaded | Project MD Specs Loaded | Ignored / Excluded (Do NOT Load or Ask) |
 | :--- | :--- | :--- | :--- | :--- |
-| **Frontend UI Component** | `frontend.framework`<br>`frontend.styling` | Frontend Profile *(e.g., react/)*<br>Styling Profile *(e.g., tailwind/)* | `PROJECT/MD/design_rules.md`<br>`phases/<phase>/frontend.md` | Database engine, Backend framework, Queue workers |
-| **Database Schema / Migration** | `database.main`<br>`database.orm` | Database Profile *(e.g., postgresql/)*<br>Backend Profile *(if ORM-based)* | `PROJECT/MD/data.md`<br>`phases/<phase>/data.md` | Frontend UI framework, Design tokens, CSS rules |
-| **Backend API / Service** | `backend.framework`<br>`backend.language` | Backend Profile *(e.g., laravel/, fastapi/)* | `PROJECT/MD/business_rules.md`<br>`phases/<phase>/backend.md`<br>`phases/<phase>/routes.md` | Frontend component trees, UI styling libraries |
-| **Automated Testing** | `testing.unit`<br>`testing.e2e` | Testing Profile *(e.g., pest/, vitest/)* | `PROJECT/MD/stack.yaml`<br>`phases/<phase>/README.md` | Unrelated deployment / cloud configurations |
+| **Frontend UI Component** | `frontend.name`<br>`styling.name` | Frontend Profile *(e.g., react/)*<br>Styling Profile *(e.g., tailwind/)* | `PROJECT/MD/design_rules.md`<br>`phases/<phase>/frontend.md` | Database engine, Backend framework, Queue workers |
+| **Database Schema / Migration** | `database.name`<br>`database.orm_or_query_builder` | Database Profile *(e.g., postgresql/)*<br>Backend Profile *(if ORM-based)* | `PROJECT/MD/data.md`<br>`phases/<phase>/data.md` | Frontend UI framework, Design tokens, CSS rules |
+| **Backend API / Service** | `backend.name`<br>`backend.language` | Backend Profile *(e.g., laravel/, fastapi/)* | `PROJECT/MD/business_rules.md`<br>`phases/<phase>/backend.md`<br>`phases/<phase>/routes.md` | Frontend component trees, UI styling libraries |
+| **Automated Testing** | `testing.name`<br>`testing.unit_runner` | Testing Profile *(e.g., pest/, vitest/)* | `PROJECT/MD/stack.yaml`<br>`phases/<phase>/README.md` | Unrelated deployment / cloud configurations |
 | **Bug Fix / Debugging** | Targeted runtime/framework | Targeted Technology Profile | `PROJECT/MD/business_rules.md`<br>`PROJECT/MD/prompts/Module_Review.md` | Unrelated feature specs and phase roadmaps |
 | **Architecture Decision** | High-level stack architecture | Relevant Technology Profiles | `PROJECT/MD/stack.yaml`<br>`PROJECT/MD/business_rules.md` | Component CSS files and individual view templates |
 
