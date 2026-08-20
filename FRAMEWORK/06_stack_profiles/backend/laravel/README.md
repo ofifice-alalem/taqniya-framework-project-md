@@ -4,7 +4,7 @@
 This profile establishes the technology-specific architectural, coding, database, security, and testing standards for applications built on the **Laravel** ecosystem. It specializes the global Taqniya Framework standards for modern Laravel development.
 
 # Scope
-Applies to all repositories where `PROJECT/MD/00_project/project_context.md` declares Laravel as the primary backend framework.
+Applies to all repositories where `PROJECT/MD/stack.yaml` declares Laravel as the primary backend framework.
 
 ---
 
@@ -40,15 +40,9 @@ Applies to all repositories where `PROJECT/MD/00_project/project_context.md` dec
 ---
 
 ## 3. How to Activate This Profile
-In the project's `PROJECT/stack.yaml`, specify:
+In the project's `PROJECT/MD/stack.yaml`, specify:
 ```yaml
 backend:
-  framework:
-    name: "Laravel"
-    version: "11.x"
-```
-Or in `PROJECT/MD/00_project/project_context.md`, specify:
-```markdown
-- **Active Backend Profile:** `06_stack_profiles/backend/laravel/`
+  framework: "Laravel 11"
 ```
 When this profile is declared, AI agents and engineers MUST respect both the global Taqniya core rules and the specialized rules in this profile.

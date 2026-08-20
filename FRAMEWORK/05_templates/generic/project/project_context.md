@@ -11,9 +11,9 @@
 ---
 
 ## 2. Technology Stack & Profile Declaration (Reference stack.yaml)
-*Note: Authoritative technology, framework, and tooling declarations are maintained in `PROJECT/stack.yaml`.*
+*Note: Authoritative technology, framework, and tooling declarations are maintained in `PROJECT/MD/stack.yaml`.*
 
-- **Stack Configuration File:** `[PROJECT/stack.yaml]`
+- **Stack Configuration File:** `[PROJECT/MD/stack.yaml]`
 - **Active Technology Profile(s):** `[e.g., 06_stack_profiles/backend/laravel/ | 06_stack_profiles/backend/fastapi/ | None (Core Only)]`
 - **Primary Runtime & Framework:** `[Summary from stack.yaml]`
 - **Storage / Data Engine:** `[Summary from stack.yaml (if applicable)]`

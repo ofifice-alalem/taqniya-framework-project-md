@@ -20,7 +20,7 @@ Step 2: Inspect Global Core Principles (00_core/architecture.md)
 Step 3: Inspect Active Technology Profiles (06_stack_profiles/*)
    │
    ▼
-Step 4: Inspect Project Overrides & ADRs (PROJECT/MD/00_project/ & 06_decisions/ADR/)
+Step 4: Inspect Project Business Rules & Stack Specs (PROJECT/MD/business_rules.md & stack.yaml)
    │
    ▼
 Step 5: Detect Violations & Remediate / Document

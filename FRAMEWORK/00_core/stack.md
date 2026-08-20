@@ -1,7 +1,7 @@
 # Stack Configuration & Technology Resolution Governance
 
 # Purpose
-This document defines the universal protocol for declaring, validating, and resolving technology stacks within any software repository. It establishes the **User-Provided Stack Configuration (`stack.yaml`)** as the dynamic entry point for all technology-specific AI behavior, while keeping Taqniya Core completely technology-agnostic.
+This document defines the universal protocol for declaring, validating, and resolving technology stacks within any software repository. It establishes the **User-Provided Stack Configuration (`PROJECT/MD/stack.yaml`)** as the dynamic entry point for all technology-specific AI behavior, while keeping Taqniya Core completely technology-agnostic.
 
 # Scope
 Applies to all projects adopting the Taqniya Framework. Governs how technology choices are declared, validated, and translated into AI reasoning context.
@@ -18,7 +18,7 @@ Applies to all projects adopting the Taqniya Framework. Governs how technology c
 │ governance, security, data integrity, testing & DoD.   │
 │ DOES NOT KNOW which technologies the project uses.     │
 ├────────────────────────────────────────────────────────┤
-│ STACK CONFIGURATION (stack.yaml)                       │
+│ STACK CONFIGURATION (PROJECT/MD/stack.yaml)            │
 │ Answers: "WHAT TECHNOLOGIES IS THIS PROJECT USING?"   │
 │ Declares frontend, backend, database, test tools, etc. │
 ├────────────────────────────────────────────────────────┤
@@ -28,7 +28,7 @@ Applies to all projects adopting the Taqniya Framework. Governs how technology c
 ├────────────────────────────────────────────────────────┤
 │ PROJECT MD (PROJECT/MD/*)                              │
 │ Answers: "WHAT ARE WE BUILDING & SPECIFIC SPECS?"      │
-│ Contains domain rules, entities, routes, and roadmaps. │
+│ Contains stack, business rules, data, design & phases. │
 └────────────────────────────────────────────────────────┘
 ```
 
@@ -40,9 +40,9 @@ When an AI agent or engineer begins work on a project, the technology stack is r
 
 ```
 [ USER ]
-   │ Provides stack.yaml
+   │ Provides PROJECT/MD/stack.yaml
    ▼
-[ STACK CONFIGURATION (PROJECT/stack.yaml) ]
+[ STACK CONFIGURATION (PROJECT/MD/stack.yaml) ]
    │ Parsed & Validated
    ▼
 [ STACK RESOLUTION PROTOCOL ]
@@ -64,11 +64,11 @@ When an AI agent or engineer begins work on a project, the technology stack is r
 
 ## 3. The Mandatory Invariant: "NO TECHNOLOGY = NO ASSUMPTION"
 
-- **MUST NOT:** If a technology dimension is omitted from `stack.yaml`, Taqniya **MUST NOT invent or assume a default technology**.
+- **MUST NOT:** If a technology dimension is omitted from `PROJECT/MD/stack.yaml`, Taqniya **MUST NOT invent or assume a default technology**.
 - **Task-Relevant Clarification Protocol:** A missing technology dimension requires user clarification **ONLY IF IT IS REQUIRED FOR THE CURRENT TASK**:
 
 ```
-Missing Technology in stack.yaml
+Missing Technology in PROJECT/MD/stack.yaml
         │
         ▼
 Is it required for the current task?
@@ -82,9 +82,9 @@ Is it required for the current task?
 1. **Task: Create a database migration:**
    - If `frontend.framework` is omitted ➔ **Do NOT ask about frontend.** Proceed with the database migration.
 2. **Task: Create a frontend UI component:**
-   - If `frontend.framework` is omitted ➔ **Ask user:** *"Frontend framework is not specified in stack.yaml. Please provide the target framework (e.g., React, Vue, Svelte, or Vanilla JS)."*
+   - If `frontend.framework` is omitted ➔ **Ask user:** *"Frontend framework is not specified in PROJECT/MD/stack.yaml. Please provide the target framework (e.g., React, Vue, Svelte, or Vanilla JS)."*
 3. **Task: Implement backend authentication:**
-   - If `authentication.provider_or_library` is omitted ➔ **Ask user** if a specific auth provider/library is required or if standard framework mechanisms should be used.
+   - If `authentication.library` is omitted ➔ **Ask user** if a specific auth provider/library is required or if standard framework mechanisms should be used.
 
 ---
 
@@ -106,9 +106,9 @@ Taqniya Core makes zero assumptions about framework couplings (e.g., Laravel doe
 
 ## 5. Stack Configuration Validation Protocol
 
-Before executing tasks, the AI agent MUST validate `stack.yaml` against these rules:
+Before executing tasks, the AI agent MUST validate `PROJECT/MD/stack.yaml` against these rules:
 
-1. **Syntax & Schema Check:** Verify valid YAML structure conforming to `05_templates/generic/project/stack.yaml`.
+1. **Syntax & Schema Check:** Verify valid YAML structure with single canonical values.
 2. **Conflict Detection:** Check for mutually incompatible declarations (e.g., specifying both a headless REST API backend and an incompatible fullstack template without clarification).
 3. **Missing Runtime Information:** If a declared framework requires a specific runtime version (e.g., PHP 8.3 or Node 20), verify that the runtime version is specified.
 4. **No Silent Correction:** If a configuration conflict is detected, the AI agent MUST report the issue transparently and request user guidance rather than silently changing the user's technology choices.
@@ -127,16 +127,16 @@ Technology profiles are **NOT mandatory** for Taqniya to function. If the user d
 2. **Report Missing Profile:** Inform the user:
    > *"Notice: No specialized profile found for '[Technology Name]'. Applying universal Taqniya Core engineering principles."*
 3. **Do Not Invent Rules:** Do not invent speculative rules or hallucinate fake conventions for the unknown technology.
-4. **Adhere to Project MD:** Follow any project-specific guidelines documented in `PROJECT/MD/00_project/architecture_overrides.md`.
+4. **Adhere to Project MD:** Follow any project-specific guidelines documented in `PROJECT/MD/business_rules.md`.
 
 ---
 
 ## 7. Version Support & Custom Technologies
-- **Version Support:** `stack.yaml` supports explicit version constraints (e.g., `version: "19.x"`, `version: "^8.3"`). The AI agent must respect version-specific language features and avoid using features deprecated or unavailable in the declared version.
+- **Version Support:** `PROJECT/MD/stack.yaml` supports explicit version constraints (e.g., `version: "19.x"`, `version: "^8.3"`). The AI agent must respect version-specific language features and avoid using features deprecated or unavailable in the declared version.
 - **Custom Technologies:** Custom or internal frameworks (e.g., `name: "MyCompanyFramework"`, `version: "2.1"`) are fully valid. Taqniya operates at the Core governance level and adapts seamlessly.
 
 # Verification
-1. Verify that `stack.yaml` exists at the project root (`PROJECT/stack.yaml`).
-2. Confirm that all technologies used in code match the declarations in `stack.yaml`.
+1. Verify that `stack.yaml` exists at `PROJECT/MD/stack.yaml`.
+2. Confirm that all technologies used in code match the declarations in `PROJECT/MD/stack.yaml`.
 3. Verify that no unspecified technology was assumed without explicit user confirmation.
 4. Verify that missing profiles trigger the Unknown Technology Protocol gracefully.

@@ -25,7 +25,7 @@ User Prompt
     │
     ├─► Load Union of Core Rules (architecture + storage + security + testing)
     ├─► Load Union of Active Profiles (e.g., backend/{tech} + database/{tech} + testing/{tech})
-    └─► Load Union of Target MD Specs (business_rules.md + data.md + acceptance_criteria.md)
+    └─► Load Union of Target MD Specs (business_rules.md + data.md + phases/<target_phase>/*)
 ```
 
 ---
@@ -36,18 +36,16 @@ A task may touch a single focused area or span multiple dimensions. Antigravity 
 
 | Task Dimension | Trigger Criteria | Core Rules to Include | Profile Files to Include | Project MD Specs to Include |
 | :--- | :--- | :--- | :--- | :--- |
-| **UI & Styling** | Modifying visual views, styles, or interactive UI components. | `00_core/coding_rules.md`<br>`01_design_system/*` | `frontend/{tech}/*`<br>`styling/{tech}/*` | `01_project_design/theme.md`<br>Feature `interfaces.md` |
-| **Domain Logic** | Modifying business formulas, invariants, state transitions. | `00_core/coding_rules.md`<br>`00_core/architecture.md` | `backend/{tech}/architecture.md`<br>`backend/{tech}/coding_rules.md` | `00_project/business_rules.md`<br>Feature `business_rules.md` |
-| **Data & Storage** | Adding/modifying entities, collections, migrations, or queries. | `00_core/database_rules.md`<br>`00_core/coding_rules.md` | `backend/{tech}/database.md`<br>`database/{tech}/*` | `00_project/database.md`<br>Feature `data.md` |
-| **Security & Auth** | Modifying permissions, policies, auth guards, or access checks. | `00_core/security_rules.md`<br>`00_core/coding_rules.md` | `backend/{tech}/security.md` | `02_project_structure/permissions.md`<br>Feature `acceptance_criteria.md` |
-| **Testing & QA** | Authoring or updating automated test suites or regression tests. | `02_testing/*` | `testing/{tech}/*`<br>`backend/{tech}/testing.md` | Feature `acceptance_criteria.md`<br>`05_testing/test_cases.md` |
-| **Architecture** | Changing module boundaries, adopting packages, or refactoring. | `00_core/architecture.md`<br>`00_core/package_policy.md` | `backend/{tech}/architecture.md` | `00_project/architecture_overrides.md`<br>`06_decisions/ADR/*` |
+| **UI & Styling** | Modifying visual views, styles, or interactive UI components. | `00_core/coding_rules.md`<br>`01_design_system/*` | `frontend/{tech}/*`<br>`styling/{tech}/*` | `PROJECT/MD/design_rules.md`<br>`phases/<phase>/frontend.md` |
+| **Domain Logic** | Modifying business formulas, invariants, state transitions. | `00_core/coding_rules.md`<br>`00_core/architecture.md` | `backend/{tech}/architecture.md`<br>`backend/{tech}/coding_rules.md` | `PROJECT/MD/business_rules.md`<br>`phases/<phase>/backend.md` |
+| **Data & Storage** | Adding/modifying entities, collections, migrations, or queries. | `00_core/database_rules.md`<br>`00_core/coding_rules.md` | `backend/{tech}/database.md`<br>`database/{tech}/*` | `PROJECT/MD/data.md`<br>`phases/<phase>/data.md` |
+| **Security & Auth** | Modifying permissions, policies, auth guards, or access checks. | `00_core/security_rules.md`<br>`00_core/coding_rules.md` | `backend/{tech}/security.md` | `PROJECT/MD/business_rules.md`<br>`phases/<phase>/routes.md` |
+| **Testing & QA** | Authoring or updating automated test suites or regression tests. | `02_testing/*` | `testing/{tech}/*`<br>`backend/{tech}/testing.md` | `PROJECT/MD/stack.yaml`<br>`phases/<phase>/README.md` |
+| **Architecture** | Changing module boundaries, adopting packages, or refactoring. | `00_core/architecture.md`<br>`00_core/package_policy.md` | `backend/{tech}/architecture.md` | `PROJECT/MD/stack.yaml`<br>`PROJECT/MD/business_rules.md` |
 
 ---
 
 ## 3. Non-Binding Illustrative Example: Multi-Dimensional Task
-
-> **Note:** The scenario and technology names below are purely illustrative examples demonstrating how the union of authorities is computed.
 
 ### Example Scenario: *"Add invoice creation and calculation feature"*
 *(Assuming a project declared with a backend service and relational storage)*
@@ -58,7 +56,7 @@ A task may touch a single focused area or span multiple dimensions. Antigravity 
 2. **Context Resolution (Union of Required Authorities):**
    - **Core Rules:** `00_core/architecture.md`, `00_core/database_rules.md`, `00_core/security_rules.md`, `02_testing/*`
    - **Active Profiles:** `06_stack_profiles/backend/{declared_backend}/`, `06_stack_profiles/database/{declared_database}/`
-   - **Project MD:** `PROJECT/MD/00_project/business_rules.md`, `database.md`, and feature `requirements.md` / `data.md` / `acceptance_criteria.md`
+   - **Project MD:** `PROJECT/MD/stack.yaml`, `PROJECT/MD/business_rules.md`, `PROJECT/MD/data.md`, and target `phases/<phase_name>/{backend.md, data.md}`
    - **Explicitly Excluded (Omitted):** `01_design_system/*` (No UI involved in backend calculation engine), frontend styling profiles.
 
 ---

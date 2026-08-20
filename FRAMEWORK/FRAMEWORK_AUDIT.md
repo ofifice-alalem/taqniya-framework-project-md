@@ -7,7 +7,7 @@
 - **Review Cycle:** Final Engineering Closure Pass
 - **Auditor:** Senior AI Systems Architect (Final Comprehensive Verification)
 - **Audit Status:** **`FINAL`**
-- **Core Governance Stance:** *Taqniya Core is 100% technology-agnostic at the rule level, with zero technology-specific mandatory requirements in Core, Generic Templates, and Runtime Protocols. Technology-specific behavior is dynamically determined by User-Provided Stack Configuration (`PROJECT/stack.yaml`) and optional modular Technology Profiles (`06_stack_profiles/`).*
+- **Core Governance Stance:** *Taqniya Core is 100% technology-agnostic at the rule level, with zero technology-specific mandatory requirements in Core, Generic Templates, and Runtime Protocols. Technology-specific behavior is dynamically determined by User-Provided Stack Configuration (`PROJECT/MD/stack.yaml`) and optional modular Technology Profiles (`06_stack_profiles/`).*
 
 ---
 

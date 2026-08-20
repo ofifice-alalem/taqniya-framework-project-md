@@ -14,8 +14,8 @@ When an AI agent receives a task or starts a conversation, it performs a lightwe
              │
              ▼
 Check Workspace Root for:
-1. PROJECT/stack.yaml ?
-2. PROJECT/MD/ or MD/ ?
+1. PROJECT/MD/stack.yaml ?
+2. PROJECT/MD/ ?
 3. FRAMEWORK/ or global Taqniya installation ?
              │
              ├─► ALL PRESENT ────────► State A: ACTIVE TAQNIYA PROJECT
@@ -33,24 +33,24 @@ Check Workspace Root for:
 ## 2. Project State Handlers
 
 ### State A: Active Taqniya Project (Normal Execution)
-- **Condition:** `PROJECT/stack.yaml` and `PROJECT/MD/` exist.
+- **Condition:** `PROJECT/MD/stack.yaml` and `PROJECT/MD/` exist.
 - **Action:**
-  1. Load `PROJECT/stack.yaml` into runtime cache.
+  1. Load `PROJECT/MD/stack.yaml` into runtime cache.
   2. Proceed immediately to **Stack & Profile Resolution**.
   3. Classify user prompt and load minimal task context.
 
 ### State B: Brownfield Project Adoption
-- **Condition:** Source code exists, but `PROJECT/stack.yaml` or `PROJECT/MD/` is missing.
+- **Condition:** Source code exists, but `PROJECT/MD/stack.yaml` or `PROJECT/MD/` is missing.
 - **Action:**
   1. Inspect repository manifest (e.g., `composer.json`, `package.json`, `pyproject.toml`, `go.mod`, `Cargo.toml`).
-  2. Draft initial `PROJECT/stack.yaml` based on detected manifest.
+  2. Draft initial `PROJECT/MD/stack.yaml` based on detected manifest.
   3. Present to user for verification before applying strict governance rules.
 
 ### State C: Greenfield Project Initialization
 - **Condition:** New or empty directory.
 - **Action:**
   1. Prompt user for project name, purpose, and technology preferences (or read user prompt).
-  2. Follow `04_workflows/project_initialization.md` to scaffold `PROJECT/stack.yaml` and `PROJECT/MD/` from `05_templates/generic/`.
+  2. Follow `04_workflows/project_initialization.md` to scaffold `PROJECT/MD/stack.yaml` and `PROJECT/MD/`.
 
 ---
 
@@ -59,9 +59,9 @@ Check Workspace Root for:
 Before executing user tasks in an Active Project (State A), the AI agent confirms:
 
 ```
-[ ] 1. stack.yaml is valid YAML and declares project name & type.
-[ ] 2. PROJECT/MD/00_project/project_context.md exists and is readable.
-[ ] 3. Project architecture style is documented in project_context.md or ADRs.
+[ ] 1. PROJECT/MD/stack.yaml is valid YAML and declares project name & type.
+[ ] 2. PROJECT/MD/README.md exists and is readable.
+[ ] 3. Global business rules and data architecture are documented in business_rules.md & data.md.
 [ ] 4. Any required Technology Profiles are mapped or Unknown Protocol primed.
 ```
 

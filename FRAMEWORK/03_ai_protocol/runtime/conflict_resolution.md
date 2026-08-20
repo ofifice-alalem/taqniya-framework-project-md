@@ -21,12 +21,13 @@ When two rules or instructions appear in conflict, the rule at the higher author
 │ Level 3 │ Taqniya Core Mandatory Invariants (MUST / Non-Negotiable)    │
 │         │ (03_ai_protocol/mandatory_rules.md, Security Invariants)     │
 ├─────────┼──────────────────────────────────────────────────────────────┤
-│ Level 4 │ Approved Project Decisions & Architecture Decision Records   │
-│         │ (PROJECT/MD/06_decisions/ADR/, architecture_overrides.md)    │
+│ Level 4 │ Project Global Specifications & Business Rules               │
+│         │ (PROJECT/MD/stack.yaml, business_rules.md, data.md)          │
 ├─────────┼──────────────────────────────────────────────────────────────┤
 │ Level 5 │ Active Technology Profiles (06_stack_profiles/*)             │
 ├─────────┼──────────────────────────────────────────────────────────────┤
-│ Level 6 │ Project MD Specifications (00_project/, 03_features/*)       │
+│ Level 6 │ Functional Phase Specifications                             │
+│         │ (PROJECT/MD/phases/<phase_name>/*)                           │
 ├─────────┼──────────────────────────────────────────────────────────────┤
 │ Level 7 │ Taqniya Core Recommended Guidelines (SHOULD / Best Practice) │
 │         │ (Recommended token baselines, default naming conventions)    │
@@ -56,13 +57,13 @@ To prevent duplication and clarify override boundaries, Taqniya Core distinguish
   - Test isolation (zero mutable state leakage between tests).
   - No secret credentials in version control.
   - SSoT verification before completion (DoD).
-  *➔ **Operational Rule:** An ADR (Level 4) CANNOT override or disable a Level 3 Core Mandatory Invariant. If an ADR specifies X but Taqniya Core MUST mandates NOT X, **Taqniya Level 3 MUST wins**.*
+  *➔ **Operational Rule:** A project specification (Level 4) CANNOT override or disable a Level 3 Core Mandatory Invariant. If a specification requires X but Taqniya Core MUST mandates NOT X, **Taqniya Level 3 MUST wins**.*
 
 - **Level 7: Core Recommended Guidelines (SHOULD):**
   - Recommended spacing scales (`4px / 8px / 16px`) and default breakpoints (`640px / 768px`).
   - Suggested layer naming idioms.
   - Default test naming conventions.
-  *➔ CAN be customized or overridden by Project ADRs (Level 4) or Stack Profiles (Level 5).*
+  *➔ CAN be customized or overridden by Project specifications (Level 4) or Stack Profiles (Level 5).*
 
 ---
 
@@ -72,13 +73,13 @@ To prevent duplication and clarify override boundaries, Taqniya Core distinguish
 * **Conflict:** Active framework docs permit raw query string concatenation, but `00_core/security_rules.md` strictly forbids dynamic string injection.
 * **Resolution:** **Taqniya Core (Level 3) overrides.** All dynamic parameters MUST be passed through parameterized bindings regardless of framework convenience.
 
-### Scenario B: Project ADR vs Technology Profile Default
-* **Conflict:** Technology Profile defaults to an Action-Repository pattern, but `PROJECT/MD/06_decisions/ADR/ADR-004.md` explicitly adopts a Direct-Service pattern without repositories.
-* **Resolution:** **Project ADR (Level 4) overrides Technology Profile (Level 5).** Implement the Direct-Service pattern as decided in the approved ADR.
+### Scenario B: Project Business Rule vs Technology Profile Default
+* **Conflict:** Technology Profile defaults to an Action-Repository pattern, but `PROJECT/MD/business_rules.md` explicitly adopts a Direct-Service pattern without repositories.
+* **Resolution:** **Project Specification (Level 4) overrides Technology Profile (Level 5).** Implement the Direct-Service pattern as decided in the project specifications.
 
-### Scenario C: Project Specification vs Core Security Invariant
-* **Conflict:** A feature specification in `PROJECT/MD/03_features/` requests storing unhashed user passwords in plaintext.
-* **Resolution:** **Core Invariant (Level 3) overrides Project MD (Level 6).** Refuse plaintext storage, notify the user of the security violation, and hash passwords using standard algorithms.
+### Scenario C: Phase Specification vs Core Security Invariant
+* **Conflict:** A phase specification in `PROJECT/MD/phases/` requests storing unhashed user passwords in plaintext.
+* **Resolution:** **Core Invariant (Level 3) overrides Phase MD (Level 6).** Refuse plaintext storage, notify the user of the security violation, and hash passwords using standard algorithms.
 
 ---
 
@@ -90,13 +91,13 @@ When source code implementation contradicts `PROJECT/MD/` documentation:
 Divergence Detected (Code does B, Documentation says A)
                          │
                          ▼
-           Step 1: Check ADR & Git Commit History
+           Step 1: Check Prompts & Git Commit History
                          │
-                         ├─► ADR exists approving B ──► Update Documentation to B
+                         ├─► Intentional change approved ──► Update Documentation to B
                          │
-                         ├─► Defect / Accidental Bug ─► Refactor Code to match Spec A
+                         ├─► Defect / Accidental Bug ──────► Refactor Code to match Spec A
                          │
-                         └─► Unclear Intent ──────────► Pause & Prompt User for Confirmation
+                         └─► Unclear Intent ───────────────► Pause & Prompt User for Confirmation
 ```
 
 ### The SSoT Reconciliation Invariant:

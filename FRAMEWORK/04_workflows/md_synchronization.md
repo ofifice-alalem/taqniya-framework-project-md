@@ -31,19 +31,18 @@ business calculations, authorization rules, or architectural decisions?
 
 | Semantic Impact Area | Trigger Condition | Target Documentation Authority |
 | :--- | :--- | :--- |
-| **Data Architecture Changes** | Added or modified entities, attributes, collections, relationships, constraints, or indexes. | `PROJECT/MD/00_project/database.md`<br>Feature `data.md` / `database.md` |
-| **API & Transport Contracts** | Added or modified endpoints, commands, payload schemas, response structures, or status codes. | `PROJECT/MD/02_project_structure/routes.md`<br>Feature `interfaces.md` / `routes.md` |
-| **Business Rules & Logic** | Altered domain formulas, discounts, tax rates, validation bounds, or state transitions. | `PROJECT/MD/00_project/business_rules.md`<br>Feature `business_rules.md` |
-| **UI & Theme Tokens** | Changed color tokens, spacing scale, component styles, or accessibility states. | `PROJECT/MD/01_project_design/theme.md`<br>Feature `interfaces.md` / `frontend.md` |
-| **Dependencies & Libraries** | Added or updated a third-party dependency in project manifests. | `PROJECT/MD/00_project/package_policy.md`<br>`06_decisions/ADR/` |
-| **Architecture Decisions** | Altered module boundaries, dependency flow, or system patterns. | `PROJECT/MD/00_project/architecture_overrides.md`<br>`06_decisions/ADR/` |
-| **Phase / Task Completed** | Completed an operational task or milestone. | Active `checklist.md`<br>`PROJECT/MD/07_change_log/changes.md` |
+| **Data Architecture Changes** | Added or modified entities, attributes, collections, relationships, constraints, or indexes. | `PROJECT/MD/data.md`<br>`PROJECT/MD/phases/<phase>/data.md` |
+| **API & Transport Contracts** | Added or modified endpoints, commands, payload schemas, response structures, or status codes. | `PROJECT/MD/phases/<phase>/routes.md` |
+| **Business Rules & Logic** | Altered domain formulas, discounts, tax rates, validation bounds, or state transitions. | `PROJECT/MD/business_rules.md`<br>`PROJECT/MD/phases/<phase>/backend.md` |
+| **UI & Theme Tokens** | Changed color tokens, spacing scale, font sizes, or component styling rules. | `PROJECT/MD/design_rules.md`<br>`PROJECT/MD/phases/<phase>/frontend.md` |
+| **Dependencies & Stack** | Added or updated third-party frameworks, engines, or stack libraries. | `PROJECT/MD/stack.yaml`<br>`PROJECT/MD/business_rules.md` |
+| **Phase / Task Completed** | Completed an operational phase deliverable or milestone. | `PROJECT/MD/phases/<phase>/README.md`<br>`PROJECT/MD/README.md` |
 
 ---
 
 ## 3. Storage Paradigm Data Representation
 
-When updating Data Architecture documentation, the exact representation reflects the project's active storage technology:
+When updating Data Architecture documentation in `PROJECT/MD/data.md` or `PROJECT/MD/phases/<phase>/data.md`, the exact representation reflects the project's active storage technology:
 
 - **Relational / SQL:** Tables, columns, data types, primary keys, foreign constraints, indexes, and migrations.
 - **Document / NoSQL:** Collections, document structures, embedded schemas, validation rules, and collection indexes.
@@ -56,19 +55,12 @@ When updating Data Architecture documentation, the exact representation reflects
 ## 4. Step-by-Step Synchronization Procedure
 
 1. **Inspect Semantic Delta:** Review your git diff to identify any changes that alter specifications.
-2. **Apply Structured Updates:** Update the target markdown files with exact signatures, schemas, types, and constraints.
-3. **Check Off Checklist Items:** In the active `phase_*/checklist.md`, mark completed deliverables as `[x]` (or `[N/A]` for non-applicable streams).
-4. **Log Structured Change Entry:** Add an entry at the top of `PROJECT/MD/07_change_log/changes.md`:
-   ```markdown
-   ## [YYYY-MM-DD] - [Task / Feature Title]
-   - **Type:** [Feature | Bugfix | Refactor | Security | Data Architecture | Configuration]
-   - **Semantic Changes:** [Brief summary of behavior/schema/endpoint changes]
-   - **Updated MD Specs:** [List of updated markdown files]
-   - **Verification Status:** Passed (Tests: [X] passed, Static Analysis: 0 errors)
-   ```
-5. **Atomic Commit:** Commit source code and documentation updates in the same commit.
+2. **Apply Structured Updates:** Update the target markdown files under `PROJECT/MD/` with exact signatures, schemas, types, and constraints.
+3. **Update Phase Status:** In the active `PROJECT/MD/phases/phase_*/README.md`, update status and deliverables.
+4. **Consult AI Prompts:** Use `PROJECT/MD/prompts/Module_Review.md` or `Phase_Review.md` to audit project state consistency.
+5. **Atomic Commit:** Commit source code and documentation updates in the same git commit.
 
 # Verification
 1. Confirm that all semantic specification changes are reflected in `PROJECT/MD/`.
 2. Confirm that routine internal refactors without behavioral changes did not trigger redundant documentation edits.
-3. Confirm that `changes.md` contains the newest entry at the top.
+3. Confirm that phase files in `PROJECT/MD/phases/` reflect the exact updated state.

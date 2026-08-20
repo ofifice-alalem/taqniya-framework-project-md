@@ -16,7 +16,7 @@ This document defines the complete end-to-end execution lifecycle followed by An
             │
             ▼
    2. READ STACK CONFIGURATION
-   (Parse PROJECT/stack.yaml)
+   (Parse PROJECT/MD/stack.yaml)
             │
             ▼
    3. RESOLVE PROFILES
@@ -50,7 +50,7 @@ This document defines the complete end-to-end execution lifecycle followed by An
             │
             ▼
    9. SEMANTIC DOCUMENTATION SYNCHRONIZATION
-   (Update affected Project MD specs + log changes.md)
+   (Update affected PROJECT/MD/ specs + phase files)
             │
             ▼
    10. COMPLETION SIGN-OFF
@@ -62,7 +62,7 @@ This document defines the complete end-to-end execution lifecycle followed by An
 ## 2. Step-by-Step Operational Detail
 
 ### Step 1: Bootstrap Check
-Verify that the workspace is an active Taqniya project (`PROJECT/stack.yaml` and `PROJECT/MD/` present).
+Verify that the workspace is an active Taqniya project (`PROJECT/MD/stack.yaml` and `PROJECT/MD/` present).
 
 ### Step 2: Read Stack Configuration
 Extract declared technologies across all dimensions without unverified assumptions following the 7-step resolution protocol.
@@ -100,7 +100,7 @@ Execute the 8-stage verification suite evaluating only applicable gates:
 - [ ] Security rules and injection defenses verified.
 
 ### Step 9: Semantic Documentation Synchronization
-Apply the Semantic Impact Flow: If system behavior, data structures, or routes changed, update the authoritative files in `PROJECT/MD/` and record the change in `PROJECT/MD/07_change_log/changes.md`.
+Apply the Semantic Impact Flow: If system behavior, data structures, or routes changed, update the authoritative files in `PROJECT/MD/` and phase files in `PROJECT/MD/phases/`.
 
 ### Step 10: Completion Sign-Off
 Confirm the 10-point Definition of Done is fully satisfied, then deliver a concise, evidence-based verification summary to the user.

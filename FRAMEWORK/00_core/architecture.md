@@ -4,7 +4,7 @@
 This document defines the universal architectural principles, boundary rules, and coupling constraints governing all applications under the Taqniya Framework. It enforces maintainability, high cohesion, low coupling, and clear separation of concerns across any chosen architectural style.
 
 # Scope
-Applies to backend, frontend, CLI, distributed, serverless, and cloud architectures across all programming languages. The specific architectural style for a project is a **Project Decision**, documented in `PROJECT/MD/00_project/project_context.md` and approved ADRs.
+Applies to backend, frontend, CLI, distributed, serverless, and cloud architectures across all programming languages. The specific architectural style for a project is a **Project Decision**, documented in `PROJECT/MD/README.md` and `PROJECT/MD/business_rules.md`.
 
 ---
 

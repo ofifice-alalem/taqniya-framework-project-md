@@ -25,7 +25,7 @@ Did system behavior, data structures, contracts, or specifications change?
                              (e.g., cosmetic refactor, internal variable rename)
                  │
                  ▼
-[ Update Active Phase Checklist & Log Entry in changes.md ]
+[ Update Active Phase Documentation in PROJECT/MD/phases/<phase>/ ]
 ```
 
 ---
@@ -34,37 +34,23 @@ Did system behavior, data structures, contracts, or specifications change?
 
 | Affected Area | Potential Trigger Conditions | Target Documentation to Update |
 | :--- | :--- | :--- |
-| **Business Rules** | Altered domain invariants, calculation formulas, validation limits, state machines. | `PROJECT/MD/00_project/business_rules.md`<br>Feature `business_rules.md` |
-| **Data Architecture** | Added/modified entities, collections, tables, fields, schemas, or indexes. | `PROJECT/MD/00_project/database.md`<br>Feature `data.md` / `database.md` |
-| **API & Transport Contracts** | Added/modified endpoints, commands, payload schemas, response structures. | `PROJECT/MD/02_project_structure/routes.md`<br>Feature `interfaces.md` / `routes.md` |
-| **UI & Theme** | Altered design tokens, styling rules, interactive components, responsive behaviors. | `PROJECT/MD/01_project_design/theme.md`<br>Feature `interfaces.md` / `frontend.md` |
-| **Architecture & Structure** | Modified module boundaries, dependency flow, new component categories. | `PROJECT/MD/00_project/architecture_overrides.md`<br>`02_project_structure/*` |
-| **Security & Permissions** | Changed auth strategies, role permissions, token lifespans, sanitization rules. | `PROJECT/MD/02_project_structure/permissions.md` |
-| **Configuration & Infra** | Changed environment parameters, deployment definitions, container settings. | `PROJECT/MD/00_project/project_context.md`<br>`PROJECT/stack.yaml` |
-| **Technical Decisions** | Adopted a new library, altered fundamental architectural design. | `PROJECT/MD/06_decisions/ADR/` |
+| **Business Rules** | Altered domain invariants, calculation formulas, validation limits, state machines. | `PROJECT/MD/business_rules.md`<br>`PROJECT/MD/phases/<phase>/backend.md` |
+| **Data Architecture** | Added/modified entities, collections, tables, fields, schemas, or indexes. | `PROJECT/MD/data.md`<br>`PROJECT/MD/phases/<phase>/data.md` |
+| **API & Transport Contracts** | Added/modified endpoints, commands, payload schemas, response structures. | `PROJECT/MD/phases/<phase>/routes.md` |
+| **UI & Theme** | Altered design tokens, styling rules, interactive components, responsive behaviors. | `PROJECT/MD/design_rules.md`<br>`PROJECT/MD/phases/<phase>/frontend.md` |
+| **Architecture & Stack** | Modified stack dependencies, frameworks, libraries or hosting configuration. | `PROJECT/MD/stack.yaml`<br>`PROJECT/MD/business_rules.md` |
+| **Phase Scope & Status** | Completed phase goals, updated phase requirements or deliverables. | `PROJECT/MD/phases/<phase>/README.md`<br>`PROJECT/MD/README.md` |
 
 ---
 
 ## 3. Step-by-Step Update Procedure
 
 1. **Evaluate Semantic Impact:** Inspect the git diff to identify which specifications (if any) changed.
-2. **Update Targeted Authorities:** Apply precise updates directly to the affected markdown files. Do not modify unrelated files.
-3. **Update Feature Acceptance Criteria (If Feature Task):** Mark completed scenarios as verified with references to the passing test suite.
-4. **Update Phase Checklist (If Phase Task):** Mark completed items from `[ ]` to `[x]` in `04_implementation_phases/phase_{N}/checklist.md`.
-5. **Log Structured Change Entry:** Add an entry at the top of `PROJECT/MD/07_change_log/changes.md`:
-
-```markdown
-## [YYYY-MM-DD] - [Feature / Task / Bugfix Title]
-- **Type:** [Feature | Bugfix | Refactor | Security | Data Architecture | Configuration]
-- **Scope:** [Affected domain, module, or package]
-- **Summary of Changes:**
-  - [Concise description of code and behavior change]
-- **Testing & Verification:**
-  - [Summary of passing test suites and quality gates]
-- **Documentation Updated:** [List of modified Project MD files]
-```
+2. **Update Targeted Authorities:** Apply precise updates directly to the affected markdown files in `PROJECT/MD/`. Do not modify unrelated files.
+3. **Update Phase Deliverables (If Phase Task):** Update status and completed items in `PROJECT/MD/phases/<phase_name>/README.md`.
+4. **Use Review Prompts (If Needed):** Execute `PROJECT/MD/prompts/Phase_Review.md` or `Module_Review.md` to verify documentation completeness.
 
 # Verification
 1. Confirm that all semantic specification changes are reflected in their respective Project MD authorities.
 2. Confirm that unrelated documentation files were NOT modified.
-3. Confirm that `changes.md` has the newest entry recorded at the top.
+3. Confirm that phase documentation in `PROJECT/MD/phases/` is updated.

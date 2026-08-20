@@ -2,7 +2,7 @@
 
 # 1. Phase Test Strategy
 - **Quality Objective:** Verify all phase deliverables with 100% passing tests on task-relevant suites.
-- **Testing Tools:** Configured in `PROJECT/stack.yaml`.
+- **Testing Tools:** Configured in `PROJECT/MD/stack.yaml`.
 
 ---
 

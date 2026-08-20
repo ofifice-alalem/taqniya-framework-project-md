@@ -1,7 +1,7 @@
 # Runtime Specification: Technology Profile Resolution
 
 # Purpose
-This document specifies how Antigravity resolves declared technologies in `PROJECT/stack.yaml` into specialized **Technology Profiles** under `06_stack_profiles/`, defines deterministic resolution cases (A through E), and establishes the **Unknown Technology Protocol**.
+This document specifies how Antigravity resolves declared technologies in `PROJECT/MD/stack.yaml` into specialized **Technology Profiles** under `06_stack_profiles/`, defines deterministic resolution cases (A through E), and establishes the **Unknown Technology Protocol**.
 
 ---
 

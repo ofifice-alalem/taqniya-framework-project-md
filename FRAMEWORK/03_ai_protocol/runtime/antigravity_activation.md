@@ -1,7 +1,7 @@
 # Runtime Specification: Antigravity Activation & Entry Point
 
 # Purpose
-This document defines the activation specification for operating the **Taqniya AI Development Framework** within **Antigravity** (and compatible AI IDEs). It outlines the configuration models and hooks that enable an AI agent to discover `PROJECT/stack.yaml`, resolve Technology Profiles, and execute the 10-step Task Lifecycle.
+This document defines the activation specification for operating the **Taqniya AI Development Framework** within **Antigravity** (and compatible AI IDEs). It outlines the configuration models and hooks that enable an AI agent to discover `PROJECT/MD/stack.yaml`, resolve Technology Profiles, and execute the 10-step Task Lifecycle.
 
 ---
 
@@ -36,20 +36,20 @@ When supported by the host, place a `GEMINI.md` or `AGENTS.md` file in the works
 
 This project is governed by the **Taqniya AI Development Framework v1.0**.
 
-- **Stack Configuration:** `PROJECT/stack.yaml`
+- **Stack Configuration:** `PROJECT/MD/stack.yaml`
 - **Project Specifications (SSoT):** `PROJECT/MD/`
-- **Taqniya Framework Root:** `C:\Users\alale\.gemini\antigravity-ide\scratch\FRAMEWORK` (or relative `FRAMEWORK/`)
+- **Taqniya Framework Root:** `FRAMEWORK/`
 
 ## Operating Directives for AI Agents:
-1. Read `PROJECT/stack.yaml` before proposing or generating code.
+1. Read `PROJECT/MD/stack.yaml` before proposing or generating code.
 2. Perform Task Impact Analysis to load only relevant `PROJECT/MD/` and `06_stack_profiles/` files.
-3. Obey the 9-level conflict hierarchy: Platform Safety > User Direction > Core Mandatory > ADRs > Profiles > Project MD.
+3. Obey the 9-level conflict hierarchy: Platform Safety > User Direction > Core Mandatory > Stack Specs > Profiles > Functional Phases.
 4. Run task-relevant tests and static analysis before reporting completion.
-5. Record completed deliverables in `PROJECT/MD/07_change_log/changes.md`.
+5. Record completed deliverables in `PROJECT/MD/phases/<phase_name>/README.md`.
 ```
 
 ### Model B: Global Host Rule (For Machine-Wide Auto-Discovery)
-If the host supports global rule injection (e.g., `~/.gemini/config/rules/taqniya.md`), install a global rule that detects `PROJECT/stack.yaml` in opened workspaces and delegates execution to Taqniya runtime protocols.
+If the host supports global rule injection (e.g., `~/.gemini/config/rules/taqniya.md`), install a global rule that detects `PROJECT/MD/stack.yaml` in opened workspaces and delegates execution to Taqniya runtime protocols.
 
 ### Model C: Custom IDE Skill (`taqniya`)
 If the host utilizes on-demand skill discovery (e.g., `~/.gemini/config/skills/taqniya/SKILL.md`), wrap Taqniya runtime protocols as an invocable skill.
@@ -59,7 +59,7 @@ If the host utilizes on-demand skill discovery (e.g., `~/.gemini/config/skills/t
 ## 3. Verification Checklist for Activation
 
 When testing activation in a target workspace:
-1. [ ] The AI agent inspects `PROJECT/stack.yaml` upon initial task prompt.
+1. [ ] The AI agent inspects `PROJECT/MD/stack.yaml` upon initial task prompt.
 2. [ ] The AI agent identifies declared technologies without assuming omitted dimensions.
 3. [ ] The AI agent loads only task-relevant `PROJECT/MD/` files via Task Impact Analysis.
-4. [ ] The AI agent executes the 8-stage verification gatekeeper before declaring completion.
+4. [ ] The AI agent executes the verification gatekeeper before declaring completion.

@@ -34,7 +34,7 @@ Before introducing any new third-party dependency, engineers and AI agents MUST 
 ## 3. Technology & Stack-Specific Package Catalogs
 - **Global Core Policy:** Governs the *evaluation criteria, licensing rules, and security benchmarks*.
 - **Stack Profile Policy:** Vetted packages for specific technology ecosystems are documented under `06_stack_profiles/{stack}/package_policy.md`.
-- **Project-Specific Policy:** The exact list of approved packages for an individual repository is maintained in `PROJECT/MD/00_project/package_policy.md`.
+- **Project-Specific Policy:** The exact list of approved packages for an individual repository is maintained in `PROJECT/MD/stack.yaml` and `PROJECT/MD/business_rules.md`.
 
 # Allowed
 - Installing officially maintained packages from trusted framework ecosystems.
@@ -49,4 +49,4 @@ Before introducing any new third-party dependency, engineers and AI agents MUST 
 1. Run automated package audit commands with zero critical vulnerabilities.
 2. Confirm the lockfile is committed and synchronized with manifest files.
 3. Verify that development tools are placed under development dependencies.
-4. Verify that newly added packages are documented in `PROJECT/MD/00_project/package_policy.md`.
+4. Verify that newly added packages are documented in `PROJECT/MD/stack.yaml`.

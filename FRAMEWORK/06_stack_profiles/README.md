@@ -30,7 +30,7 @@ The Taqniya resolver evaluates technologies across independent architectural dim
 
 ## 2. Dynamic Profile Discovery & Resolution Matrix
 
-The resolver matches declarations in `PROJECT/stack.yaml` against available profiles using:
+The resolver matches declarations in `PROJECT/MD/stack.yaml` against available profiles using:
 
 $$\text{Profile Key} = \text{Category} + \text{Technology Name} + \text{Version}$$
 
@@ -53,7 +53,7 @@ Every architectural dimension is independently resolvable. Taqniya Core assumes 
 
 ## 4. Unknown Profile & Graceful Fallback Protocol
 
-If a declared technology in `PROJECT/stack.yaml` lacks a specialized profile under `06_stack_profiles/`:
+If a declared technology in `PROJECT/MD/stack.yaml` lacks a specialized profile under `06_stack_profiles/`:
 
 1. **Apply Taqniya Core:** Ingest universal principles (clean code, layered architecture, data integrity, security, verification).
 2. **Issue Explicit Notice:** Transparently inform the user:

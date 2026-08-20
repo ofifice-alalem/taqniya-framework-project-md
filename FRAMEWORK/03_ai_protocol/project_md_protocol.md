@@ -14,7 +14,7 @@ Applies to all project-level documentation reading, writing, and conflict reconc
 ┌────────────────────────────────────────────────────────┐
 │ 1. PROJECT MD (PROJECT/MD/*)                           │
 │    Authoritative specification for requirements,       │
-│    business rules, architectural intent, and schemas.   │
+│    business rules, design tokens, stack & phases.       │
 ├────────────────────────────────────────────────────────┤
 │ 2. SOURCE CODE                                         │
 │    Authoritative implementation of runtime behavior.   │
@@ -41,13 +41,13 @@ When instructions, standards, or specifications conflict, the AI agent MUST reso
 │ 3. Taqniya Core Mandatory Invariants (MUST / MUST NOT)                 │
 │    (03_ai_protocol/mandatory_rules.md, Security & Data Safety)         │
 ├────────────────────────────────────────────────────────────────────────┤
-│ 4. Project Architecture Decisions / Approved ADRs                      │
-│    (PROJECT/MD/06_decisions/ADR/, architecture_overrides.md)           │
+│ 4. Project Global Business Rules & Stack Specifications                │
+│    (PROJECT/MD/stack.yaml, business_rules.md, data.md, design_rules.md)│
 ├────────────────────────────────────────────────────────────────────────┤
 │ 5. Technology / Stack Profiles (06_stack_profiles/*)                   │
 ├────────────────────────────────────────────────────────────────────────┤
-│ 6. Project MD Specifications                                           │
-│    (00_project/, 03_features/*/acceptance_criteria, data.md)           │
+│ 6. Functional Phase Specifications                                     │
+│    (PROJECT/MD/phases/<phase_name>/{backend,frontend,routes,data}.md)  │
 ├────────────────────────────────────────────────────────────────────────┤
 │ 7. Taqniya Recommended Guidelines (SHOULD / SHOULD NOT)                │
 │    (00_core/*, 01_design_system/*, 02_testing/* baselines)              │
@@ -61,20 +61,20 @@ When instructions, standards, or specifications conflict, the AI agent MUST reso
 ---
 
 ## 3. Legitimate Customization vs Silent Overrides
-- **Customization Is Permitted:** A project MAY customize or override generic framework defaults (e.g., choosing GraphQL over REST, or using a specific ORM) by documenting it in `PROJECT/MD/00_project/architecture_overrides.md` or an approved ADR.
-- **No Silent Violations (Level 3 Precedence):** A project MUST NOT silently violate Level 1 Safety or Level 3 Mandatory Invariants (e.g., an ADR cannot secretly disable parameterized SQL queries or security perimeter checks). If an ADR specifies X but Taqniya Core MUST mandates NOT X, **Taqniya Level 3 MUST wins**.
-- **Explicit Rationale:** Any architectural customization within valid boundaries must state the reason and impact clearly in an ADR.
+- **Customization Is Permitted:** A project MAY customize or override generic framework defaults (e.g., choosing GraphQL over REST, or using a specific ORM) by documenting it in `PROJECT/MD/stack.yaml` and `PROJECT/MD/business_rules.md`.
+- **No Silent Violations (Level 3 Precedence):** A project MUST NOT silently violate Level 1 Safety or Level 3 Mandatory Invariants. If a project rule specifies X but Taqniya Core MUST mandates NOT X, **Taqniya Level 3 MUST wins**.
+- **Explicit Rationale:** Any architectural customization within valid boundaries must state the reason and impact clearly in `PROJECT/MD/business_rules.md` or the corresponding phase documentation.
 
 ---
 
 ## 4. Discrepancy Resolution Protocol
 When code and `PROJECT/MD/` diverge:
 1. **Identify the Divergence:** Isolate the exact mismatch.
-2. **Check History & ADRs:** Determine if the code was intentionally updated.
+2. **Check History & Prompts:** Determine if the code was intentionally updated (use `PROJECT/MD/prompts/Project_Recovery.md` if needed).
 3. **Reconcile:** Fix the code if it was a bug; update `PROJECT/MD/` if the specification evolved.
 4. **Clarify When Ambiguous:** If intent cannot be confirmed from git history, prompt the user for clarification before applying breaking edits.
 
 # Verification
 1. Verify that `PROJECT/MD/` was consulted prior to modifying source code.
-2. Confirm that any documented project override follows the ADR / override format.
-3. Verify that semantic changes are synchronized back to `PROJECT/MD/`.
+2. Confirm that project stack settings in `PROJECT/MD/stack.yaml` are followed.
+3. Verify that semantic changes are synchronized back to `PROJECT/MD/phases/`.

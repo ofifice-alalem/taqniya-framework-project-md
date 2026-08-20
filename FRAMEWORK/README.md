@@ -8,7 +8,7 @@
 
 The **Taqniya AI Development Framework** is an enterprise-grade, spec-driven software engineering framework designed for AI coding agents (such as Antigravity, Claude, and Gemini) and engineering teams. 
 
-Taqniya Core is **100% technology-agnostic at the rule level**. It makes zero assumptions about your programming language, web framework, architectural style, database engine, or testing tools. Instead, technology-specific behavior is dynamically determined by a **User-Provided Stack Configuration (`PROJECT/stack.yaml`)** and optional modular **Technology Profiles** (`06_stack_profiles/`).
+Taqniya Core is **100% technology-agnostic at the rule level**. It makes zero assumptions about your programming language, web framework, architectural style, database engine, or testing tools. Instead, technology-specific behavior is dynamically determined by a **User-Provided Stack Configuration (`PROJECT/MD/stack.yaml`)** and optional modular **Technology Profiles** (`06_stack_profiles/`).
 
 ---
 
@@ -23,7 +23,7 @@ Taqniya Core is **100% technology-agnostic at the rule level**. It makes zero as
                                  │
                                  ▼
                 ┌─────────────────────────────────┐
-                │       STACK CONFIGURATION       │  ◄── User-Provided (PROJECT/stack.yaml)
+                │       STACK CONFIGURATION       │  ◄── User-Provided (PROJECT/MD/stack.yaml)
                 │         (Project-Owned)         │      Declares frontend, backend, database,
                 │                                 │      testing tools, runtime versions & tooling.
                 └────────────────┬────────────────┘
@@ -43,8 +43,8 @@ Taqniya Core is **100% technology-agnostic at the rule level**. It makes zero as
                                  ▼
                 ┌─────────────────────────────────┐
                 │           PROJECT MD            │  ◄── Project Knowledge (PROJECT/MD/*)
-                │    (PROJECT-SPECIFIC SPECS)     │      Domain glossary, business rules, data schema,
-                │                                 │      feature acceptance criteria, and ADRs.
+                │    (PROJECT-SPECIFIC SPECS)     │      stack.yaml, business rules, global data,
+                │                                 │      design tokens, AI prompts, and functional phases.
                 └────────────────┬────────────────┘
                                  │
                                  ▼
@@ -65,9 +65,9 @@ Taqniya Core is **100% technology-agnostic at the rule level**. It makes zero as
 | Artifact | Responsibility | Question It Answers |
 | :--- | :--- | :--- |
 | **`Taqniya Core`** | Universal engineering principles, data integrity, security, and AI protocols. | *"How should an AI engineer reason safely and consistently?"* |
-| **`stack.yaml`** | Authoritative declaration of runtimes, frameworks, databases, and tooling. | *"What technologies are we using in this project?"* |
+| **`PROJECT/MD/stack.yaml`** | Authoritative declaration of runtimes, frameworks, databases, and tooling. | *"What technologies are we using in this project?"* |
 | **`Technology Profiles`** | Ecosystem-specific syntax, idioms, lint rules, and vetted package policies. | *"How do we work correctly with those specific tools?"* |
-| **`PROJECT/MD/`** | Business domain invariants, data architecture, API endpoints, feature criteria. | *"What are we building and what are our project specifications?"* |
+| **`PROJECT/MD/`** | Business domain invariants, data architecture, design tokens, AI prompts, functional phases. | *"What are we building and what are our project specifications?"* |
 | **`Source Code`** | Production software implementation. | *"The running system."* |
 
 ---
@@ -91,7 +91,7 @@ Core data principles govern data integrity, consistency, non-destructive evoluti
 - **Graph & Cloud-Native Stores** (Neo4j, Spanner, Bigtable)
 
 ### C. Task-Relevant Clarification Model
-If a technology dimension is omitted from `stack.yaml`, Taqniya **never assumes or guesses a default**. It prompts for clarification **only if that omitted technology is required for the active task**:
+If a technology dimension is omitted from `PROJECT/MD/stack.yaml`, Taqniya **never assumes or guesses a default**. It prompts for clarification **only if that omitted technology is required for the active task**:
 - Creating a database migration while frontend is omitted ➔ **Proceeds safely without asking about frontend.**
 - Creating a UI component while frontend is omitted ➔ **Prompts user for the frontend framework.**
 
@@ -150,30 +150,13 @@ FRAMEWORK/
 │   └── documentation_update.md        # Post-implementation change logging routine
 │
 ├── 05_templates/                      # Universal Project & Feature Blueprints
-│   ├── generic/                       # Technology-agnostic blueprints
-│   │   ├── project/                   # stack.yaml, README, context, business rules, data arch
-│   │   ├── feature/                   # Feature requirements, schemas, backend, routes, criteria
-│   │   ├── phase/                     # Implementation phase blueprints & checklists
-│   │   ├── adr/                       # Architecture Decision Record (ADR)
-│   │   └── reports/                   # Implementation, code review & phase reports
-│   └── stacks/                        # Stack-specialized blueprints
-│       └── laravel/                   # Laravel-specific templates
-│           ├── project/
-│           ├── feature/
-│           └── phase/
+│   └── generic/                       # Technology-agnostic blueprints
+│       └── project/                   # PROJECT/MD/ blueprints
 │
 └── 06_stack_profiles/                 # Modular Technology Profiles (Optional Extensions)
     ├── README.md                      # Dimensional profile architecture & discovery matrix
     └── backend/                       # Backend Profiles
         └── laravel/                   # Laravel Stack Profile (PHP 8.2+ / Laravel 11.x)
-            ├── README.md              # Profile overview & supported versions
-            ├── stack.md               # PHP 8.3 / Laravel 11 runtime specs
-            ├── architecture.md        # Thin controllers, FormRequests, Actions, Repos
-            ├── coding_rules.md        # Strict types, Pint, Larastan Level 8
-            ├── database.md            # Eloquent, migrations, MoneyPHP storage
-            ├── security.md            # Sanctum auth, policies, tenant scoping
-            ├── testing.md             # Pest PHP testing suite & conventions
-            └── package_policy.md      # Approved Laravel ecosystem packages
 ```
 
 ---
@@ -185,9 +168,9 @@ When executing any task, AI agents and developers MUST evaluate instructions aga
 1. **Level 1: Platform / System Safety Constraints** (Non-negotiable platform, system, and safety constraints).
 2. **Level 2: Explicit Current User Direction** (Controls project choices and preferences; subject to Levels 1 & 3).
 3. **Level 3: Taqniya Core Mandatory Invariants** (MUST / MUST NOT engineering rules: security, data safety, input protection, boundary integrity).
-4. **Level 4: Project Architecture Decisions / Approved ADRs** (`PROJECT/MD/06_decisions/ADR/`, `architecture_overrides.md`). *(An ADR CANNOT override or disable Level 3 Mandatory Invariants; if an ADR specifies X but Level 3 mandates NOT X, Level 3 MUST wins).*
+4. **Level 4: Project Global Specifications & Stack Configuration** (`PROJECT/MD/stack.yaml`, `business_rules.md`, `data.md`, `design_rules.md`).
 5. **Level 5: Technology / Stack Profiles** (`06_stack_profiles/*`).
-6. **Level 6: Project MD Specifications** (Domain rules, feature specs, data architecture, UI specs, business rules).
+6. **Level 6: Functional Phase Specifications** (`PROJECT/MD/phases/<phase_name>/*`).
 7. **Level 7: Taqniya Recommended Guidelines** (SHOULD / SHOULD NOT guidance; `00_core/*`, `01_design_system/*`, `02_testing/*` baselines).
 8. **Level 8: Existing Source Code / Implementation Evidence** (Executable ground truth; does not silently override approved specifications).
 9. **Level 9: General Community Conventions & AI Preferences** (Lowest priority).
@@ -196,9 +179,14 @@ When executing any task, AI agents and developers MUST evaluate instructions aga
 
 ## 7. How to Adopt Taqniya in a Project
 
-1. Create a `PROJECT/` folder with:
-   - `stack.yaml` (copied from `05_templates/generic/project/stack.yaml`).
-   - `MD/` (scaffolded from `05_templates/generic/` or `05_templates/stacks/{stack}/`).
+1. Create a `PROJECT/MD/` folder with:
+   - `README.md` (Project scope & phase index)
+   - `stack.yaml` (Technology stack configuration)
+   - `business_rules.md` (Global business logic)
+   - `data.md` (Global data architecture)
+   - `design_rules.md` (Visual design tokens)
+   - `prompts/` (AI management prompts)
+   - `phases/` (Functional implementation phases)
 2. Populate `stack.yaml` with your exact technologies and versions.
 3. Follow the 8-step initialization routine in [`04_workflows/project_initialization.md`](04_workflows/project_initialization.md).
 4. Point your AI IDE (Antigravity / Cursor / Claude) rules to this framework root.

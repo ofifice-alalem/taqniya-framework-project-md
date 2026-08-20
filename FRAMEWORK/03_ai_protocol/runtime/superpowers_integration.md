@@ -63,7 +63,7 @@ Taqniya is 100% self-sufficient. If Superpowers is not installed, Taqniya contin
 When executing complex tasks under both systems:
 
 1. **Taqniya Primes Governance & Constraints:**
-   - Reads `PROJECT/stack.yaml` and extracts declared technology dimensions.
+   - Reads `PROJECT/MD/stack.yaml` and extracts declared technology dimensions.
    - Resolves applicable Technology Profiles from `06_stack_profiles/*`.
    - Loads authoritative project specifications from `PROJECT/MD/` (domain rules, data structures, interface contracts).
    - Enforces non-negotiable security boundaries (parameterized queries, perimeter validation, access controls).

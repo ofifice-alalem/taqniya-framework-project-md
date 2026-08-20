@@ -10,7 +10,7 @@ Applies to all source code written across backend, frontend, CLI scripts, and ut
 
 ## 1. Naming Conventions & Domain Ubiquity
 - **MUST:** Use expressive, intention-revealing names. Avoid single-letter variables except for standard short iteration indexes (`i`, `j`) in small loops.
-- **MUST:** Use exact ubiquitous domain terms from `PROJECT/MD/00_project/business_rules.md` (e.g., maintain consistency between `Invoice`, `Customer`, `Order`; do not mix synonyms arbitrarily).
+- **MUST:** Use exact ubiquitous domain terms from `PROJECT/MD/business_rules.md` (e.g., maintain consistency between `Invoice`, `Customer`, `Order`; do not mix synonyms arbitrarily).
 - **SHOULD:** Prefix boolean variables and functions with explicit predicates: `is_active`, `has_permission`, `can_edit`, `should_retry`.
 - **SHOULD:** Name functions and methods with active verb-noun phrases: `calculateTaxAmount()`, `dispatchNotification()`, `findActiveSubscriptions()`.
 
