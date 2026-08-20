@@ -1,0 +1,47 @@
+# ==============================================================================
+# Project Technology Stack Specifications
+# ==============================================================================
+# وظيفته: تحديد التقنيات المستخدمة فعلياً في المشروع لضمان التزام الذكاء الاصطناعي بها
+# دون افتراض مكتبات أو تقنيات خارجية خارجة عن النطاق.
+# ==============================================================================
+
+project:
+  name: "My Project"
+  type: "Web Application"
+  environment: "production"
+
+frontend:
+  framework: "React 18 / Next.js 14"
+  language: "TypeScript"
+  styling: "Vanilla CSS / TailwindCSS"
+  state_management: "Zustand / Redux Toolkit"
+  component_library: "Custom UI Components"
+
+backend:
+  framework: "Laravel 11 / Node.js Express"
+  language: "PHP 8.3 / TypeScript"
+  architecture: "Repository Pattern / Clean Architecture"
+
+database:
+  main: "PostgreSQL 16 / MySQL 8.0"
+  orm: "Eloquent / Prisma"
+
+cache:
+  driver: "Redis"
+
+api:
+  type: "RESTful API / GraphQL"
+  format: "JSON"
+
+authentication:
+  type: "JWT / Session-based / OAuth2"
+  library: "Laravel Sanctum / NextAuth"
+
+testing:
+  unit: "Pest PHP / Jest"
+  e2e: "Playwright"
+
+build_and_deployment:
+  container: "Docker"
+  ci_cd: "GitHub Actions"
+  hosting: "Vercel / AWS / VPS"

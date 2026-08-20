@@ -1,0 +1,101 @@
+# ==============================================================================
+# TAQNIYA STACK CONFIGURATION SCHEMA (stack.yaml)
+# ==============================================================================
+# This configuration file is the authoritative declaration of technologies,
+# runtimes, frameworks, and tools used by this project.
+#
+# Taqniya Core reads this file to dynamically resolve applicable Technology
+# Profiles and configure AI reasoning boundaries.
+#
+# RULE: "NO TECHNOLOGY = NO ASSUMPTION"
+# If a technology dimension is omitted or null, Taqniya will NOT assume a default.
+# Missing dimensions ONLY trigger user clarification if strictly required by
+# the active task.
+#
+# NOTE: All technology names, versions, and sections below are ILLUSTRATIVE EXAMPLES.
+# Omit any dimensions irrelevant to your project.
+# ==============================================================================
+
+# Project Metadata (Required)
+project:
+  name: "[PROJECT_NAME]"
+  description: "[Brief description of the project]"
+  type: "web" # e.g., web | api | cli | mobile | fullstack | microservice | library | headless
+  repository: "[GIT_REPOSITORY_URL]"
+
+# Frontend Dimension (Optional - Omit if headless/backend-only/CLI)
+frontend:
+  name: "[e.g., React | Vue | Svelte | Angular | Blade | Next.js | Custom]"
+  version: "[e.g., 19.x | 3.x | 5.x]"
+  language: "[e.g., TypeScript | JavaScript | Dart]"
+  package_manager: "[e.g., pnpm | npm | yarn | bun]"
+
+# Styling Dimension (Optional - Omit if headless/CLI/backend-only)
+styling:
+  name: "[e.g., Tailwind CSS | CSS Modules | Styled Components | Sass | Vanilla CSS]"
+  version: "[e.g., 4.x]"
+
+# State Management Dimension (Optional)
+state:
+  name: "[e.g., Zustand | Redux Toolkit | Pinia | Signals | Context API]"
+  version: "[e.g., 5.x]"
+
+# Backend Dimension (Optional - Omit if static/frontend-only)
+backend:
+  name: "[e.g., Laravel | FastAPI | Django | NestJS | Express | Go-Fiber | Spring Boot]"
+  version: "[e.g., 11.x | 0.110.x | 5.x | 10.x]"
+  language: "[e.g., PHP | Python | TypeScript | Go | Java | C# | Rust]"
+  package_manager: "[e.g., Composer | Poetry | Pip | pnpm | Go Modules | Cargo | Maven]"
+  # Note: Architectural style (Layered, Clean, Hexagonal, Modular, etc.) is documented
+  # authoritatively in PROJECT/MD/00_project/project_context.md and ADRs.
+
+# Database & Storage Dimension (Optional - Omit if stateless)
+database:
+  name: "[e.g., PostgreSQL | MySQL | SQLite | MariaDB | MongoDB | DynamoDB | SQL Server]"
+  version: "[e.g., 16.x | 8.0 | 3.x]"
+  orm_or_query_builder: "[e.g., Eloquent | Prisma | SQLAlchemy | Drizzle | TypeORM | GORM | Hibernate | Raw SQL]"
+  migration_tool: "[e.g., Framework Native | Alembic | Flyway | Golang-Migrate | Knex]"
+  primary_key_strategy: "[e.g., BigInt Auto-increment | UUIDv7 | UUIDv4 | ULID]"
+
+# Caching & Key-Value Storage Dimension (Optional)
+cache:
+  name: "[e.g., Redis | Memcached | In-Memory | Cloudflare KV]"
+  version: "[e.g., 7.x]"
+
+# API & Transport Dimension (Optional)
+api:
+  name: "[e.g., REST | GraphQL | gRPC | JSON:API | tRPC | WebSockets]"
+  style: "[e.g., RESTful | Schema-First GraphQL | Protocol Buffers]"
+  documentation: "[e.g., OpenAPI 3.1 / Swagger | Scalar | GraphQL Schema | Postman]"
+
+# Authentication & Security Dimension (Optional)
+authentication:
+  name: "[e.g., Sanctum | NextAuth/Auth.js | Passport | Keycloak | Custom]"
+  strategy: "[e.g., Session-Based | JWT | OAuth2 / OIDC | API Tokens | Passkeys]"
+  rbac: "[e.g., Spatie Permissions | CASL | Casbin | Custom Policies]"
+
+# Automated Testing Dimension (Optional but Recommended)
+testing:
+  name: "[e.g., Pest | Vitest | Pytest | Jest | Go Test | JUnit]"
+  unit_runner: "[e.g., Pest | Vitest | Pytest | Jest]"
+  integration_runner: "[e.g., Pest | Vitest | Pytest | Supertest]"
+  e2e_runner: "[e.g., Playwright | Cypress | Puppeteer]"
+  mocking: "[e.g., Mockery | Vi Mocks | Unittest.mock | Testify]"
+
+# Build & Asset Bundling Dimension (Optional)
+build:
+  name: "[e.g., Vite | Webpack | Rollup | esbuild | Turbopack | Cargo]"
+  bundler: "[e.g., Vite | Webpack | Rollup | esbuild]"
+  transpiler: "[e.g., TypeScript (tsc) | Babel | SWC | None]"
+
+# Deployment Dimension (Optional)
+deployment:
+  name: "[e.g., Docker / Kubernetes | AWS | GCP | Vercel | Forge | Bare Metal]"
+  platform: "[e.g., Docker / Kubernetes | AWS ECS | GCP Cloud Run | Vercel]"
+  container_runtime: "[e.g., Docker | Podman | None]"
+  ci_cd: "[e.g., GitHub Actions | GitLab CI | Bitbucket Pipelines]"
+
+# Infrastructure Dimension (Optional)
+infrastructure:
+  name: "[e.g., Terraform | Pulumi | AWS CDK | CloudFormation | None]"
+  provider: "[e.g., AWS | GCP | Azure | Cloudflare | Self-Hosted]"
