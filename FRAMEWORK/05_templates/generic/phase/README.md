@@ -1,27 +1,39 @@
-# Implementation Phase [PHASE_NUMBER]: [PHASE_TITLE]
+# Phase [PHASE_NUMBER]: [PHASE_TITLE]
 
-# 1. Phase Overview
-- **Phase Number:** `[PHASE_NUMBER]`
+> **Executive Scope, Deliverables, and Roadmap Status for Phase [PHASE_NUMBER]**
+
+---
+
+## 1. Phase Metadata
+- **Phase ID:** `phase_[PHASE_NUMBER]_[slug]`
 - **Title:** `[PHASE_TITLE]`
+- **Goal:** `[Clear high-level business and functional goal of this phase]`
 - **Status:** `[PLANNED | IN_PROGRESS | COMPLETED]`
-- **Target Project:** `[PROJECT_NAME]`
-- **Goal:** `[Summary of functional and technical capabilities unlocked in this phase]`
 
 ---
 
-## 2. Included Features & Work Items
+## 2. Scope of Work
 
-1. **`[FEATURE_001]`:** `[Feature Title and Summary]`
-2. **`[FEATURE_002]`:** `[Feature Title and Summary]`
+### 🟢 In Scope
+- `[Deliverable / Feature 1]`
+- `[Deliverable / Feature 2]`
+- `[Deliverable / Feature 3]`
+
+### 🔴 Out of Scope
+- `[Deferred or excluded capability 1]`
+- `[Deferred or excluded capability 2]`
 
 ---
 
-## 3. Phase Navigation
+## 3. Dependencies & Prerequisites
+- **Preceding Phases Required:** `[e.g., phase_00_auth, None]`
+- **Required Stack Declarations:** `[Relevant declarations from stack.yaml]`
 
-| Document | Purpose |
-| :--- | :--- |
-| **[Checklist](checklist.md)** | Step-by-step deliverable progress tracking (10 universal workstreams) |
-| **[Implementation](implementation.md)** | Core domain logic, workflows, components, and module deliverables |
-| **[Interfaces](interfaces.md)** | Ingress points, APIs, CLI commands, or UI routes *(if applicable)* |
-| **[Data](data.md)** | Data structures, persistence schemas, collections, or migrations *(if applicable)* |
-| **[Testing Plan](testing.md)** | Phase test execution plan, coverage expectations, and quality gates |
+---
+
+## 4. Phase Deliverables Checklist
+- [ ] Backend logic and services documented in `backend.md`
+- [ ] Frontend screens and UI states documented in `frontend.md`
+- [ ] API endpoints and routes documented in `routes.md`
+- [ ] Schema changes and phase entities documented in `data.md`
+- [ ] Task-relevant tests pass 100%
