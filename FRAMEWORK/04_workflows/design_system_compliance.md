@@ -11,7 +11,7 @@ Executed during all frontend development, page creation, component authoring, an
 ## 1. UI Compliance Audit Routine
 
 ```
-Step 1: Inspect Project Theme & Token Definitions (PROJECT/MD/01_project_design/theme.md)
+Step 1: Inspect Project Theme & Token Definitions (PROJECT/MD/design_rules.md)
    │
    ▼
 Step 2: Component Reuse Audit (Scan for existing primitives before writing new HTML)

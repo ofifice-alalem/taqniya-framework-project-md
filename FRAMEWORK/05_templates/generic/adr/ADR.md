@@ -48,5 +48,5 @@
 ---
 
 ## 7. Related Documentation & References
-- **Updated Specifications:** `[e.g., PROJECT/MD/00_project/architecture_overrides.md]`
-- **Affected Features:** `[e.g., feature_001_..., feature_002_...]`
+- **Updated Specifications:** `[e.g., PROJECT/MD/business_rules.md]`
+- **Affected Phases:** `[e.g., phase_00_..., phase_01_...]`

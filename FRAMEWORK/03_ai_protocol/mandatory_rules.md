@@ -34,9 +34,9 @@ Applies to every prompt, task execution, tool call, and file modification perfor
 - **MUST NOT:** The AI MUST NOT take shortcuts that violate established architectural boundaries or bypass defined module interfaces.
 - **MUST:** The AI MUST respect the boundaries and dependency direction defined by the active project architecture (whether Layered, Clean, Hexagonal, Modular Monolith, Event-Driven, CQRS, Serverless, Functional, or Custom), or author a formal ADR if an exception is justified.
 
-### 7. No Silent Overwriting of Project Decisions
-- **MUST NOT:** The AI MUST NOT revert or override decisions recorded in `PROJECT/MD/06_decisions/ADR/` or `architecture_overrides.md`.
-- **MUST:** If an instruction appears to contradict an established ADR, point out the conflict and request confirmation.
+### 7. No Silent Overwriting of Project Decisions & Business Rules
+- **MUST NOT:** The AI MUST NOT revert or override decisions recorded in `PROJECT/MD/business_rules.md` or `PROJECT/MD/stack.yaml`.
+- **MUST:** If an instruction appears to contradict an established rule, point out the conflict and request confirmation.
 
 ### 8. Strict Anti-Overengineering Discipline
 - **MUST NOT:** Add abstraction layers (factories, custom adapters, micro-frameworks) without demonstrated requirement.

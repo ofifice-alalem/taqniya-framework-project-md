@@ -49,9 +49,9 @@ Step 5: Detect Violations & Remediate / Document
 
 ## 3. Conflict Reconciliation Protocol
 When code or requirements appear to conflict with standard architecture:
-1. **Check for Approved ADRs:** Check `PROJECT/MD/06_decisions/ADR/` to see if an intentional architectural decision was made.
+1. **Check Project Specifications:** Check `PROJECT/MD/business_rules.md` and `stack.yaml` to see if an intentional architectural decision was made.
 2. **Apply Precedence Hierarchy:** Follow the 9-level rule hierarchy in `03_ai_protocol/project_md_protocol.md`.
-3. **Remediate or Author ADR:** If the deviation is accidental, refactor to proper boundaries. If the exception is necessary and justified, author a formal ADR before proceeding.
+3. **Remediate or Document:** If the deviation is accidental, refactor to proper boundaries. If the exception is necessary and justified, document it in `PROJECT/MD/business_rules.md` before proceeding.
 
 # Verification
 1. Walk through the Boundary Audit Checklist for every modified component.

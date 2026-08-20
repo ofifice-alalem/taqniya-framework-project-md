@@ -1,7 +1,7 @@
 # Universal Design System Rules & UI Governance
 
 # Purpose
-This document establishes universal design principles, accessibility benchmarks, component reuse policies, and interactive state standards. It provides a consistent UX foundation while allowing each individual project to define its unique visual brand, tokens, and theme in `PROJECT/MD/01_project_design/theme.md`.
+This document establishes universal design principles, accessibility benchmarks, component reuse policies, and interactive state standards. It provides a consistent UX foundation while allowing each individual project to define its unique visual brand, tokens, and theme in `PROJECT/MD/design_rules.md`.
 
 # Scope
 Applies to all projects containing a user interface (Web, Mobile, Desktop, CLI). For headless services, libraries, SDKs, serverless functions, background workers, or backend-only APIs without a user interface, this design system module is **NOT APPLICABLE**. Web-specific references (HTML, ARIA, CSS) serve as illustrative examples and do not constrain non-web interfaces.
@@ -14,7 +14,7 @@ Applies to all projects containing a user interface (Web, Mobile, Desktop, CLI).
     Taqniya Design System (01_design_system/*)
           │  (Universal principles: accessibility, states, token taxonomy, component contracts)
           ▼
-    Project Theme & Brand (PROJECT/MD/01_project_design/theme.md)
+    Project Design Rules (PROJECT/MD/design_rules.md)
           │  (Project brand colors, typography values, spacing scale, visual theme)
           ▼
     UI Implementation (Client Components & Stylesheets)

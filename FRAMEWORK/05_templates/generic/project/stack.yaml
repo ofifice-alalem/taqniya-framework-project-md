@@ -47,7 +47,7 @@ backend:
   language: "[e.g., PHP | Python | TypeScript | Go | Java | C# | Rust]"
   package_manager: "[e.g., Composer | Poetry | Pip | pnpm | Go Modules | Cargo | Maven]"
   # Note: Architectural style (Layered, Clean, Hexagonal, Modular, etc.) is documented
-  # authoritatively in PROJECT/MD/00_project/project_context.md and ADRs.
+  # authoritatively in PROJECT/MD/README.md and PROJECT/MD/business_rules.md.
 
 # Database & Storage Dimension (Optional - Omit if stateless)
 database:

@@ -14,7 +14,6 @@
 ---
 
 ## 3. UI Views & Screens *(If Applicable)*
-- **Screen / View:** `[Screen Name]`
-- **Design Tokens:** Follows project theme in `PROJECT/MD/01_project_design/theme.md`.
+- **Design Tokens:** Follows project theme in `PROJECT/MD/design_rules.md`.
 - **States Handled:** Hover, Focus, Disabled, Loading, Error, Empty.
 - **Accessibility:** WCAG 2.1 AA compliant keyboard navigation and contrast.

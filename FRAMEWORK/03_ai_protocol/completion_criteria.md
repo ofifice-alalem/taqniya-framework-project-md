@@ -42,10 +42,10 @@ An AI agent or engineer may declare a development task "COMPLETE" only when all 
     - Relevant data integrity, consistency, constraints, indexing, persistence safety, and migration requirements are satisfied according to the active storage technology and project specification (where applicable).
 
 [ ] 9. Semantic Documentation Synchronized:
-    - Relevant specification updates reflected in Project MD (e.g., business rules, data architecture, routes, or phase checklists where applicable).
+    - Relevant specification updates reflected in Project MD (e.g., business_rules.md, data.md, routes.md, or phase READMEs where applicable).
 
-[ ] 10. Change Log Recorded & Pre-Existing Debt Reported:
-    - Task summary, modified files, and verification results logged in PROJECT/MD/07_change_log/changes.md.
+[ ] 10. Phase Documentation Updated & Pre-Existing Debt Reported:
+    - Task summary, modified files, and verification results updated in active PROJECT/MD/phases/<phase_name>/README.md.
     - Any pre-existing unrelated test failures or repo debt transparently reported.
 ```
 

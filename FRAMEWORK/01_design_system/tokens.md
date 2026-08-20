@@ -1,7 +1,7 @@
 # Universal Design Token Architecture & Guidelines
 
 # Purpose
-This document defines the recommended taxonomy, naming conventions, and structural architecture for design tokens. It provides a standard baseline that bridges design intent and code implementation, while allowing each project to define its specific theme values in `PROJECT/MD/01_project_design/theme.md`.
+This document defines the recommended taxonomy, naming conventions, and structural architecture for design tokens. It provides a standard baseline that bridges design intent and code implementation, while allowing each project to define its specific theme values in `PROJECT/MD/design_rules.md`.
 
 # Scope
 Applies to design systems, CSS variables, style dictionaries, and UI theme configurations across all client platforms.
@@ -26,7 +26,7 @@ The framework recommends structuring tokens into three distinct tiers:
 
 ## 2. Recommended Semantic Token Taxonomy & Default Baselines
 
-> **IMPORTANT:** All numeric values, breakpoints, and scale steps below are **RECOMMENDED DEFAULTS** for guidance. They are NOT mandatory universal constants. Each individual project defines its authoritative values in `PROJECT/MD/01_project_design/theme.md`.
+> **IMPORTANT:** All numeric values, breakpoints, and scale steps below are **RECOMMENDED DEFAULTS** for guidance. They are NOT mandatory universal constants. Each individual project defines its authoritative values in `PROJECT/MD/design_rules.md`.
 
 ### A. Semantic Color Tokens
 - **Surfaces:** `color-bg-canvas`, `color-bg-surface`, `color-bg-surface-raised`, `color-bg-surface-sunken`, `color-bg-overlay`.
@@ -58,9 +58,9 @@ The framework recommends structuring tokens into three distinct tiers:
 
 ## 3. Project-Specific Customization Protocol
 - **HOW:** The global framework defines the token taxonomy and naming structure.
-- **WHICH:** The project defines its exact brand colors, font families, and radius values in `PROJECT/MD/01_project_design/theme.md`.
+- **WHICH:** The project defines its exact brand colors, font families, and radius values in `PROJECT/MD/design_rules.md`.
 - **RFC 2119 Rule:** Projects SHOULD establish and adhere to design tokens, avoiding arbitrary unjustified values in feature stylesheets.
 
 # Verification
 1. Confirm that project stylesheets and utility configurations map to semantic token names.
-2. Verify that spacing and sizing values follow a consistent grid defined in `PROJECT/MD/01_project_design/theme.md`.
+2. Verify that spacing and sizing values follow a consistent grid defined in `PROJECT/MD/design_rules.md`.

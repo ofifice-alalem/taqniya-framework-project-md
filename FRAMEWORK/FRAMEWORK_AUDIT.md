@@ -109,13 +109,13 @@ Every concept and term across the repository was audited and classified:
 │ Level 3 │ Taqniya Core Mandatory Invariants (MUST / MUST NOT)          │
 │         │ (03_ai_protocol/mandatory_rules.md, Security & Data Safety)  │
 ├─────────┼──────────────────────────────────────────────────────────────┤
-│ Level 4 │ Project Architecture Decisions / Approved ADRs               │
-│         │ (PROJECT/MD/06_decisions/ADR/, architecture_overrides.md)    │
+│ Level 4 │ Project Global Specifications & Business Rules               │
+│         │ (PROJECT/MD/stack.yaml, business_rules.md, data.md)          │
 ├─────────┼──────────────────────────────────────────────────────────────┤
 │ Level 5 │ Technology / Stack Profiles (06_stack_profiles/*)            │
 ├─────────┼──────────────────────────────────────────────────────────────┤
-│ Level 6 │ Project MD Specifications                                    │
-│         │ (00_project/, 03_features/*/acceptance_criteria, data.md)    │
+│ Level 6 │ Functional Phase Specifications                             │
+│         │ (PROJECT/MD/phases/<phase_name>/*)                           │
 ├─────────┼──────────────────────────────────────────────────────────────┤
 │ Level 7 │ Taqniya Recommended Guidelines (SHOULD / SHOULD NOT)         │
 │         │ (00_core/*, 01_design_system/*, 02_testing/* baselines)       │

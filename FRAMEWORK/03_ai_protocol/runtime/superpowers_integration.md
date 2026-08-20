@@ -77,7 +77,7 @@ When executing complex tasks under both systems:
 3. **Taqniya Enforces Verification & SSoT Synchronization:**
    - Audits code changes against project architecture boundaries and active profile idioms.
    - Executes the 8-Stage Verification Gatekeeper.
-   - Synchronizes semantic specifications in `PROJECT/MD/` and logs `PROJECT/MD/07_change_log/changes.md`.
+   - Synchronizes semantic specifications in `PROJECT/MD/` and updates active phase documentation in `PROJECT/MD/phases/`.
    - Validates the 10-point Definition of Done before declaring completion.
 
 ---

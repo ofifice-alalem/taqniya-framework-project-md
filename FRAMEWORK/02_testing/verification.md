@@ -77,14 +77,14 @@ To prevent forcing irrelevant gates while guaranteeing absolute rigor on applica
 
 ### Gate 6: Design System & Token Compliance (Where a UI Exists)
 - **Status:** `REQUIRED` for UI tasks; `N/A` for headless APIs, backend services, CLIs, libraries, or data pipelines.
-- **Requirement:** Audit modified UI components against `01_design_system/*` and `PROJECT/MD/01_project_design/`:
+- **Requirement:** Audit modified UI components against `01_design_system/*` and `PROJECT/MD/design_rules.md`:
   - Styles leverage semantic tokens; arbitrary magic numbers are avoided.
   - Interactive states (Hover, Focus, Disabled, Loading, Error, Empty) are handled where applicable.
   - Accessibility and interaction controls are verified.
 
 ### Gate 7: Semantic Documentation Synchronization
 - **Status:** `REQUIRED` when system behavior, data schemas, API contracts, or business rules change; `N/A` for non-semantic internal refactors.
-- **Requirement:** Update the corresponding files in `PROJECT/MD/` and log the change in `PROJECT/MD/07_change_log/changes.md`.
+- **Requirement:** Update the corresponding files in `PROJECT/MD/` and active phase documentation in `PROJECT/MD/phases/`.
 
 ### Gate 8: Zero Debug Artifacts & Clean Diff
 - **Status:** `REQUIRED` for all tasks.

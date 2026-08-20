@@ -3,7 +3,7 @@
 # 1. Database & Migrations
 - [ ] Write migration files with `$table->foreignId()->constrained()`.
 - [ ] Verify `php artisan migrate` and `php artisan migrate:rollback`.
-- [ ] Synchronize `00_project/database.md`.
+- [ ] Synchronize `PROJECT/MD/data.md` and `PROJECT/MD/phases/<phase_name>/data.md`.
 
 ---
 
@@ -12,13 +12,13 @@
 - [ ] Create single-purpose Actions (`app/Actions/*`).
 - [ ] Implement Repository interfaces (`app/Repositories/*`).
 - [ ] Implement Thin Controller.
-- [ ] Register routes in `routes/api.php` or `routes/web.php`.
+- [ ] Register routes in `routes/api.php` or `routes/web.php` and document in `PROJECT/MD/phases/<phase_name>/routes.md`.
 
 ---
 
 ## 3. Frontend & Inertia
 - [ ] Create Inertia Views in `resources/js/Pages/*`.
-- [ ] Apply design tokens and verify 8 interactive states.
+- [ ] Apply design tokens from `PROJECT/MD/design_rules.md` and verify interactive states.
 
 ---
 
@@ -27,4 +27,4 @@
 - [ ] `php artisan test` passes 100%.
 - [ ] `vendor/bin/phpstan analyse` passes at Level 8.
 - [ ] `vendor/bin/pint --test` passes.
-- [ ] Update `07_change_log/changes.md`.
+- [ ] Update `PROJECT/MD/phases/<phase_name>/README.md`.

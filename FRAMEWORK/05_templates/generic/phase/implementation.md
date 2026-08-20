@@ -2,7 +2,7 @@
 
 # 1. Scope & Component Architecture
 - **Phase Objective:** `[Overview of functional code deliverables]`
-- **Architectural Alignment:** Respects project architecture boundaries defined in `PROJECT/MD/00_project/project_context.md`.
+- **Architectural Alignment:** Respects project architecture boundaries defined in `PROJECT/MD/README.md`.
 
 ---
 

@@ -21,7 +21,7 @@
 
 ### B. Documentation Synchronized
 - `[Relevant Project MD Files (e.g., database.md, routes.md, business_rules.md, etc.)]`
-- `[PROJECT/MD/07_change_log/changes.md]`
+- `[PROJECT/MD/phases/<phase_name>/README.md]`
 
 ---
 
