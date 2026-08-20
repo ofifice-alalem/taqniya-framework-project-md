@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="bright-mode">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taqniya Design System — Braxton Modern UI System</title>
+    <!-- Google Fonts: Syne (Display & Headings) + Tajawal (Arabic Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Syne', 'Tajawal', 'sans-serif'],
+                        sans: ['Tajawal', 'Syne', 'sans-serif'],
+                        mono: ['SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace']
+                    },
+                    colors: {
+                        brand: {
+                            DEFAULT: '#0D6EFD',
+                            hover: '#0B5ED7',
+                            dark: '#111111',
+                            lavender: '#CEC4EF',
+                            accent: '#D63384',
+                            sun: '#FFB703',
+                            surface: '#FFFFFF',
+                            cardDark: '#18181B',
+                            bgDark: '#0E0E10'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* ===== Braxton Design System Tokens ===== */
+        :root {
+            --font-display: 'Syne', 'Tajawal', sans-serif;
+            --font-body: 'Tajawal', 'Syne', sans-serif;
+            --radius-s: 1.25rem;   /* 20px */
+            --radius-m: 1.75rem;   /* 28px */
+            --radius-l: 2.25rem;   /* 36px */
+            --radius-xl: 3rem;     /* 48px */
+            --anim-elastic: cubic-bezier(0.23, 0.65, 0.74, 1.09);
+            --anim-speed: 0.3s;
+        }
+
+        /* الثيم المشرق (Braxton Bright Solid Canvas) */
+        .bright-mode {
+            --bg-canvas: #CEC4EF;
+            --card-bg: #FFFFFF;
+            --text-primary: #111111;
+            --text-muted: #717586;
+            --border-color: rgba(17, 17, 17, 0.08);
+            --pill-dark: #111111;
+            --pill-dark-text: #FFFFFF;
+        }
+
+        /* الثيم الداكن (Braxton Dark Solid Carbon) */
+        .dark {
+            --bg-canvas: #0E0E10;
+            --card-bg: #18181B;
+            --text-primary: #F4F4F5;
+            --text-muted: #A1A1AA;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --pill-dark: #27272A;
+            --pill-dark-text: #F4F4F5;
+        }
+
+        body {
+            background-color: var(--bg-canvas);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            direction: rtl;
+            min-height: 100vh;
+            transition: background-color 0.4s var(--anim-elastic), color 0.4s ease;
+        }
+
+        /* بطاقات Braxton المنحنية الفاخرة (Hyper-Rounded Surface Cards) */
+        .bx-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius-l);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 45px -15px rgba(17, 17, 17, 0.07);
+            transition: transform var(--anim-speed) var(--anim-elastic), box-shadow var(--anim-speed) ease, border-color var(--anim-speed) ease;
+        }
+        .bx-card:hover {
+            transform: scale3d(1.015, 1.015, 1.015);
+            box-shadow: 0 30px 60px -15px rgba(17, 17, 17, 0.12);
+        }
+
+        /* كبسولات وأزرار Braxton (Pill Buttons with Elastic Pop) */
+        .bx-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            font-family: var(--font-display);
+            font-weight: 700;
+            border-radius: 9999px;
+            padding: 0.85rem 1.8rem;
+            cursor: pointer;
+            transition: all var(--anim-speed) var(--anim-elastic);
+            border: 2px solid transparent;
+            text-decoration: none;
+            user-select: none;
+        }
+        .bx-btn:hover {
+            transform: scale3d(1.04, 1.04, 1.04);
+        }
+        .bx-btn:active {
+            transform: scale3d(0.97, 0.97, 0.97);
+        }
+
+        .bx-btn-dark {
+            background-color: var(--pill-dark);
+            color: var(--pill-dark-text);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        .bx-btn-dark:hover {
+            background-color: #000000;
+            color: #FFFFFF;
+        }
+
+        .bx-btn-brand {
+            background-color: #0D6EFD;
+            color: #FFFFFF;
+            box-shadow: 0 10px 25px rgba(13, 110, 253, 0.3);
+        }
+        .bx-btn-brand:hover {
+            background-color: #0B5ED7;
+        }
+
+        .bx-btn-outline {
+            background-color: transparent;
+            border-color: var(--border-color);
+            color: var(--text-primary);
+        }
+        .bx-btn-outline:hover {
+            background-color: rgba(17, 17, 17, 0.05);
+            border-color: var(--text-primary);
+        }
+
+        /* حقول الإدخال البيضاوية (Smooth Squircle Inputs) */
+        .bx-input {
+            width: 100%;
+            height: 3.5rem; /* 56px */
+            background-color: rgba(0, 0, 0, 0.03);
+            border: 1.5px solid var(--border-color);
+            border-radius: var(--radius-m);
+            padding: 0 1.4rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            outline: none;
+            transition: all var(--anim-speed) ease;
+        }
+        .dark .bx-input {
+            background-color: rgba(255, 255, 255, 0.04);
+        }
+        .bx-input:focus {
+            border-color: var(--text-primary);
+            background-color: var(--card-bg);
+            box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15);
+            transform: translateY(-1px);
+        }
+        .bx-input.error {
+            border-color: #DC2626 !important;
+            background-color: rgba(220, 38, 38, 0.05) !important;
+        }
+        .bx-input.success {
+            border-color: #10B981 !important;
+            background-color: rgba(16, 185, 129, 0.05) !important;
+        }
+
+        /* القوائم المنسدلة الفاخرة (Braxton Interactive Single Select) */
+        .bx-dropdown-trigger {
+            height: 3.5rem;
+            border-radius: var(--radius-m);
+            padding: 0 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(0, 0, 0, 0.03);
+            border: 1.5px solid var(--border-color);
+            cursor: pointer;
+            font-weight: 700;
+            transition: all var(--anim-speed) var(--anim-elastic);
+        }
+        .dark .bx-dropdown-trigger {
+            background-color: rgba(255, 255, 255, 0.04);
+        }
+        .bx-dropdown-trigger:hover {
+            border-color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+        .bx-dropdown-menu {
+            position: absolute;
+            z-index: 50;
+            width: 100%;
+            margin-top: 0.6rem;
+            background-color: var(--card-bg);
+            border-radius: var(--radius-m);
+            border: 1.5px solid var(--border-color);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            padding: 0.5rem;
+        }
+        .bx-dropdown-item {
+            padding: 0.75rem 1.2rem;
+            border-radius: var(--radius-s);
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+        }
+        .bx-dropdown-item:hover {
+            background-color: #111111;
+            color: #FFFFFF;
+            transform: translateX(-4px);
+        }
+        .dark .bx-dropdown-item:hover {
+            background-color: #FFFFFF;
+            color: #111111;
+        }
+
+        /* بطاقات الاختيار التفاعلية (Choice Cards) */
+        .bx-choice-card {
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-m);
+            padding: 1.25rem;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.02);
+            transition: all var(--anim-speed) var(--anim-elastic);
+        }
+        .dark .bx-choice-card {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+        .bx-choice-card:hover {
+            border-color: #111111;
+            transform: translateY(-3px);
+        }
+        .dark .bx-choice-card:hover {
+            border-color: #FFFFFF;
+        }
+        .bx-choice-card.active {
+            border-color: #111111 !important;
+            background-color: #111111 !important;
+            color: #FFFFFF !important;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        .dark .bx-choice-card.active {
+            border-color: #FFFFFF !important;
+            background-color: #FFFFFF !important;
+            color: #111111 !important;
+        }
+        .bx-choice-card.active p {
+            color: rgba(255, 255, 255, 0.75) !important;
+        }
+        .dark .bx-choice-card.active p {
+            color: rgba(17, 17, 17, 0.75) !important;
+        }
+
+        /* وسوم الحالة المصمتة (Status Badges) */
+        .bx-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.35rem 0.9rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            font-family: var(--font-display);
+        }
+        .bx-badge-success { background-color: #DCFCE7; color: #15803D; }
+        .bx-badge-warning { background-color: #FEF3C7; color: #B45309; }
+        .bx-badge-danger { background-color: #FEE2E2; color: #B91C1C; }
+        .bx-badge-info { background-color: #DBEAFE; color: #1D4ED8; }
+        .bx-badge-dark { background-color: #111111; color: #FFFFFF; }
+
+        /* منطقة رفع الصور بالسحب والإفلات (Braxton Dropzone) */
+        .bx-dropzone {
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius-l);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--anim-speed) var(--anim-elastic);
+            background-color: rgba(0, 0, 0, 0.015);
+        }
+        .bx-dropzone:hover {
+            border-color: #111111;
+            background-color: rgba(0, 0, 0, 0.04);
+            transform: scale3d(1.01, 1.01, 1.01);
+        }
+        .dark .bx-dropzone:hover {
+            border-color: #FFFFFF;
+            background-color: rgba(255, 255, 255, 0.04);
+        }
+
+        /* شريط العمليات المجمعة العائم (Floating Bulk Bar) */
+        #bulkBarFloating {
+            position: fixed;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(140px);
+            opacity: 0;
+            transition: all 0.4s var(--anim-elastic);
+            z-index: 999;
+            pointer-events: none;
+        }
+        #bulkBarFloating.active {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* علامات التبويب السلسة (Pill Tabs) */
+        .bx-tab-btn {
+            border-radius: 9999px;
+            padding: 0.6rem 1.4rem;
+            font-weight: 700;
+            font-size: 0.875rem;
+            transition: all var(--anim-speed) var(--anim-elastic);
+            cursor: pointer;
+        }
+        .bx-tab-btn.active {
+            background-color: var(--pill-dark);
+            color: var(--pill-dark-text);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        /* السكرولبار الأنيق */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(17, 17, 17, 0.2); border-radius: 9999px; }
+        .dark ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); }
+    </style>
+</head>
+<body class="p-4 sm:p-8 lg:p-12">
+
+    <!-- ===== TOAST CONTAINER ===== -->
+    <div id="toastContainer" class="fixed top-6 left-6 z-[9999] flex flex-col gap-3 max-w-sm w-full"></div>
+
+    <!-- ===== FLOATING BULK BAR ===== -->
+    <div id="bulkBarFloating" class="bg-[#111111] text-white rounded-full px-6 py-3.5 shadow-2xl flex items-center gap-5 border border-white/10">
+        <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span id="bulkText" class="text-xs font-black px-3 py-1 rounded-full bg-white/10">تم تحديد 0 عناصر</span>
+        </div>
+        <div class="h-5 w-px bg-white/20"></div>
+        <div class="flex items-center gap-2">
+            <button onclick="showToast('success', 'تم تصدير السجلات المحددة بنجاح 📥')" class="bx-btn bx-btn-brand text-xs py-2 px-4 h-9">تصدير</button>
+            <button onclick="openModal('deleteModal')" class="bx-btn bg-red-500 hover:bg-red-600 text-white text-xs py-2 px-4 h-9">حذف مجمع</button>
+        </div>
+        <button onclick="unselectAll()" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-xs">✕</button>
+    </div>
+
+    <!-- ===== SIDE DRAWER ===== -->
+    <div id="drawerOverlay" onclick="closeDrawer()" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[998] hidden transition-all"></div>
+    <div id="drawerContent" class="fixed top-0 left-0 h-full w-[440px] max-w-[90vw] bg-[var(--card-bg)] z-[999] shadow-2xl translate-x-[-100%] transition-transform duration-300 p-8 flex flex-col justify-between overflow-y-auto">
+        <div class="space-y-6">
+            <div class="flex items-center justify-between border-b border-black/10 dark:border-white/10 pb-4">
+                <h3 class="font-display font-extrabold text-xl">تعديل بيانات العنصر</h3>
+                <button onclick="closeDrawer()" class="w-9 h-9 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center font-bold">✕</button>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="text-xs font-black uppercase text-[var(--text-muted)] block mb-1.5">عنوان السجل</label>
+                    <input type="text" class="bx-input" value="مشروع تطوير واجهة المستخدم">
+                </div>
+                <div>
+                    <label class="text-xs font-black uppercase text-[var(--text-muted)] block mb-1.5">الحالة التشغيلية</label>
+                    <div class="relative">
+                        <div onclick="toggleDropdown('drawerMenu')" class="bx-dropdown-trigger">
+                            <span id="drawerValue">مكتمل ونشط</span>
+                            <span class="text-xs">▼</span>
+                        </div>
+                        <div id="drawerMenu" class="hidden bx-dropdown-menu">
+                            <div onclick="selectDropdown('drawerValue', 'drawerMenu', 'مكتمل ونشط')" class="bx-dropdown-item">مكتمل ونشط ✓</div>
+                            <div onclick="selectDropdown('drawerValue', 'drawerMenu', 'قيد التنفيذ')" class="bx-dropdown-item">قيد التنفيذ</div>
+                            <div onclick="selectDropdown('drawerValue', 'drawerMenu', 'معلق')" class="bx-dropdown-item">معلق</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label class="text-xs font-black uppercase text-[var(--text-muted)] block mb-1.5">ملاحظات إضافية</label>
+                    <textarea class="bx-input h-28 py-3 rounded-2xl" placeholder="أدخل تفاصيل التحديث..."></textarea>
+                </div>
+            </div>
+        </div>
+        <button onclick="showToast('success', 'تم حفظ التعديلات!'); closeDrawer();" class="bx-btn bx-btn-dark w-full mt-6 py-4">حفظ التغييرات</button>
+    </div>
+
+    <!-- ===== CONTAINER & NAVIGATION ===== -->
+    <div class="max-w-7xl mx-auto space-y-12">
+
+        <!-- HEADER HERO (Braxton Bold Header) -->
+        <header class="bx-card p-8 sm:p-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden">
+            <div class="space-y-3 z-10">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#111111] text-white text-xs font-black font-display">
+                    <span class="w-2 h-2 rounded-full bg-[#CEC4EF] animate-ping"></span> TAQNIYA UI SYSTEM v1.0
+                </div>
+                <h1 class="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-[var(--text-primary)]">
+                    دليل التصميم الموحد<br>
+                    <span class="text-xl sm:text-2xl font-medium text-[var(--text-muted)]">هوية بصرية معاصرة مستوحاة من نمط Braxton Solid Color</span>
+                </h1>
+            </div>
+            <div class="flex flex-wrap items-center gap-3 z-10">
+                <button onclick="toggleTheme()" class="bx-btn bx-btn-dark">
+                    <span id="themeBtnText">🌙 الوضع الليلي</span>
+                </button>
+                <button onclick="openDrawer()" class="bx-btn bx-btn-outline">
+                    📂 اللوحة الجانبية
+                </button>
+            </div>
+        </header>
+
+        <!-- NAVIGATION PILL BAR -->
+        <nav class="bx-card p-3 flex flex-wrap items-center justify-center gap-2 sticky top-4 z-40 backdrop-blur-md">
+            <a href="#colors" class="bx-tab-btn active" onclick="setTabActive(this)">1. الألوان والخطوط</a>
+            <a href="#kpi" class="bx-tab-btn" onclick="setTabActive(this)">2. مؤشرات الأداء والبطاقات</a>
+            <a href="#tables" class="bx-tab-btn" onclick="setTabActive(this)">3. جداول البيانات</a>
+            <a href="#forms" class="bx-tab-btn" onclick="setTabActive(this)">4. النماذج والإدخال</a>
+            <a href="#tasks" class="bx-tab-btn" onclick="setTabActive(this)">5. مكونات المهام والاختيار</a>
+            <a href="#dropdowns" class="bx-tab-btn" onclick="setTabActive(this)">6. القوائم المنسدلة</a>
+            <a href="#modals" class="bx-tab-btn" onclick="setTabActive(this)">7. النوافذ المنبثقة</a>
+            <a href="#feedback" class="bx-tab-btn" onclick="setTabActive(this)">8. الإشعارات والحالات</a>
+        </nav>
+
+        <!-- ==================== SECTION 1: COLORS & TYPOGRAPHY ==================== -->
+        <section id="colors" class="space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="w-3 h-8 rounded-full bg-[#111111] dark:bg-white"></span>
+                <h2 class="text-2xl font-extrabold font-display">1. لوحة الألوان والتايبوغرافي (Tokens & Typography)</h2>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                <div class="bx-card p-4 space-y-3">
+                    <div class="h-20 rounded-2xl bg-[#CEC4EF] border border-black/10 flex items-center justify-center font-black text-xs text-[#111111]">Solid Lavender</div>
+                    <div class="text-xs font-mono font-bold text-center">#CEC4EF</div>
+                </div>
+                <div class="bx-card p-4 space-y-3">
+                    <div class="h-20 rounded-2xl bg-[#111111] text-white flex items-center justify-center font-black text-xs">Solid Dark</div>
+                    <div class="text-xs font-mono font-bold text-center">#111111</div>
+                </div>
+                <div class="bx-card p-4 space-y-3">
+                    <div class="h-20 rounded-2xl bg-[#0D6EFD] text-white flex items-center justify-center font-black text-xs">Electric Blue</div>
+                    <div class="text-xs font-mono font-bold text-center">#0D6EFD</div>
+                </div>
+                <div class="bx-card p-4 space-y-3">
+                    <div class="h-20 rounded-2xl bg-[#10B981] text-white flex items-center justify-center font-black text-xs">Emerald Green</div>
+                    <div class="text-xs font-mono font-bold text-center">#10B981</div>
+                </div>
+                <div class="bx-card p-4 space-y-3">
+                    <div class="h-20 rounded-2xl bg-[#FFB703] text-[#111111] flex items-center justify-center font-black text-xs">Warm Amber</div>
+                    <div class="text-xs font-mono font-bold text-center">#FFB703</div>
+                </div>
+                <div class="bx-card p-4 space-y-3">
+                    <div class="h-20 rounded-2xl bg-[#D63384] text-white flex items-center justify-center font-black text-xs">Vivid Pink</div>
+                    <div class="text-xs font-mono font-bold text-center">#D63384</div>
+                </div>
+            </div>
+
+            <!-- Typography Interactive Lab -->
+            <div class="bx-card p-8 space-y-6">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-black/10 dark:border-white/10 pb-4">
+                    <div>
+                        <h3 class="text-lg font-bold font-display">مختبر الخطوط التفاعلي (Display & Sans Lab)</h3>
+                        <p class="text-xs text-[var(--text-muted)]">استعراض الخطوط الهندسية Syne + Tajawal</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="text-xs font-bold">الحجم:</span>
+                        <input type="range" min="16" max="44" value="26" oninput="updateFont(this.value)" class="w-32 accent-[#111111] dark:accent-white">
+                        <span id="fontSizeDisplay" class="text-xs font-mono font-bold px-3 py-1 rounded-full bg-[#111111] text-white">26px</span>
+                    </div>
+                </div>
+                <input type="text" id="fontTextInput" oninput="updateFontText(this.value)" value="إطار عمل تقنية لبناء النظم البرمجية الذكية" class="bx-input font-bold">
+                <div class="p-8 rounded-3xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5">
+                    <p id="fontPreview" class="font-extrabold font-display leading-tight" style="font-size: 26px;">إطار عمل تقنية لبناء النظم البرمجية الذكية</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 2: KPI & CARDS ==================== -->
+        <section id="kpi" class="space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="w-3 h-8 rounded-full bg-[#111111] dark:bg-white"></span>
+                <h2 class="text-2xl font-extrabold font-display">2. مؤشرات الأداء والبطاقات (KPI & Metrics)</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bx-card p-6 flex flex-col justify-between space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="w-12 h-12 rounded-2xl bg-[#0D6EFD]/15 text-[#0D6EFD] flex items-center justify-center font-bold text-xl">⚡</span>
+                        <span class="bx-badge bx-badge-success">+18% ↗</span>
+                    </div>
+                    <div>
+                        <span class="text-xs font-black uppercase text-[var(--text-muted)] tracking-wider">إجمالي العمليات</span>
+                        <h3 class="text-3xl font-extrabold font-display mt-1">1,284</h3>
+                    </div>
+                    <div class="w-full bg-black/5 dark:bg-white/10 h-2 rounded-full overflow-hidden">
+                        <div class="bg-[#0D6EFD] h-full rounded-full" style="width: 82%"></div>
+                    </div>
+                </div>
+
+                <div class="bx-card p-6 flex flex-col justify-between space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="w-12 h-12 rounded-2xl bg-[#10B981]/15 text-[#10B981] flex items-center justify-center font-bold text-xl">✓</span>
+                        <span class="bx-badge bx-badge-success">+94%</span>
+                    </div>
+                    <div>
+                        <span class="text-xs font-black uppercase text-[var(--text-muted)] tracking-wider">نسبة الإنجاز</span>
+                        <h3 class="text-3xl font-extrabold font-display mt-1">94.8%</h3>
+                    </div>
+                    <div class="w-full bg-black/5 dark:bg-white/10 h-2 rounded-full overflow-hidden">
+                        <div class="bg-[#10B981] h-full rounded-full" style="width: 94%"></div>
+                    </div>
+                </div>
+
+                <div class="bx-card p-6 flex flex-col justify-between space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="w-12 h-12 rounded-2xl bg-[#FFB703]/15 text-[#FFB703] flex items-center justify-center font-bold text-xl">⏱</span>
+                        <span class="bx-badge bx-badge-warning">قيد المراجعة</span>
+                    </div>
+                    <div>
+                        <span class="text-xs font-black uppercase text-[var(--text-muted)] tracking-wider">المهام النشطة</span>
+                        <h3 class="text-3xl font-extrabold font-display mt-1">42</h3>
+                    </div>
+                    <div class="w-full bg-black/5 dark:bg-white/10 h-2 rounded-full overflow-hidden">
+                        <div class="bg-[#FFB703] h-full rounded-full" style="width: 55%"></div>
+                    </div>
+                </div>
+
+                <div class="bx-card p-6 flex flex-col justify-between space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="w-12 h-12 rounded-2xl bg-[#D63384]/15 text-[#D63384] flex items-center justify-center font-bold text-xl">★</span>
+                        <span class="bx-badge bx-badge-dark">ممتاز</span>
+                    </div>
+                    <div>
+                        <span class="text-xs font-black uppercase text-[var(--text-muted)] tracking-wider">مؤشر الجودة</span>
+                        <h3 class="text-3xl font-extrabold font-display mt-1">9.9/10</h3>
+                    </div>
+                    <div class="w-full bg-black/5 dark:bg-white/10 h-2 rounded-full overflow-hidden">
+                        <div class="bg-[#D63384] h-full rounded-full" style="width: 98%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 3: DATA TABLES ==================== -->
+        <section id="tables" class="space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="w-3 h-8 rounded-full bg-[#111111] dark:bg-white"></span>
+                <h2 class="text-2xl font-extrabold font-display">3. جداول البيانات التفاعلية (Data Tables)</h2>
+            </div>
+
+            <div class="bx-card overflow-hidden">
+                <!-- Table Header Controls -->
+                <div class="p-6 border-b border-black/10 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <h3 class="font-display font-extrabold text-lg">سجلات النظام</h3>
+                    <div class="flex flex-wrap items-center gap-3">
+                        <input type="text" id="tableSearch" onkeyup="searchTable(this.value)" placeholder="بحث سريع..." class="bx-input h-11 w-48 text-xs font-bold">
+                        <button onclick="toggleTableFilter('all')" class="bx-btn bx-btn-dark text-xs py-2 px-4 h-11">الكل</button>
+                        <button onclick="toggleTableFilter('active')" class="bx-btn bx-btn-outline text-xs py-2 px-4 h-11">نشط</button>
+                        <button onclick="toggleTableFilter('pending')" class="bx-btn bx-btn-outline text-xs py-2 px-4 h-11">معلق</button>
+                    </div>
+                </div>
+
+                <!-- Table Content -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-right text-sm">
+                        <thead class="bg-black/5 dark:bg-white/5 text-[var(--text-muted)] font-black text-xs uppercase tracking-wider">
+                            <tr>
+                                <th class="p-4 text-center w-12"><input type="checkbox" onchange="toggleSelectAll(this)" class="w-4 h-4 rounded-md accent-[#111111]"></th>
+                                <th class="p-4">الرمز</th>
+                                <th class="p-4">العنصر</th>
+                                <th class="p-4">القسم / التصنيف</th>
+                                <th class="p-4">التقدم</th>
+                                <th class="p-4">الحالة</th>
+                                <th class="p-4 text-center">إجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableRows" class="divide-y divide-black/5 dark:divide-white/5 font-bold">
+                            <tr data-status="active" class="hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+                                <td class="p-4 text-center"><input type="checkbox" class="table-row-check w-4 h-4 rounded-md accent-[#111111]" onchange="updateBulkState()"></td>
+                                <td class="p-4 font-mono text-xs text-[var(--text-muted)]">#TK-801</td>
+                                <td class="p-4 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-[#111111] text-white flex items-center justify-center text-xs font-extrabold font-display">A</div>
+                                    <span>محرك المصادقة والحماية</span>
+                                </td>
+                                <td class="p-4 text-[var(--text-muted)]">Core Security</td>
+                                <td class="p-4">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-xs font-mono">100%</span>
+                                        <div class="w-16 bg-black/10 dark:bg-white/10 h-1.5 rounded-full overflow-hidden"><div class="bg-[#10B981] h-full" style="width:100%"></div></div>
+                                    </div>
+                                </td>
+                                <td class="p-4"><span class="bx-badge bx-badge-success">مكتمل</span></td>
+                                <td class="p-4 text-center">
+                                    <button onclick="openModal('detailModal')" class="bx-btn bx-btn-outline py-1.5 px-3 text-xs">عرض</button>
+                                </td>
+                            </tr>
+                            <tr data-status="active" class="hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+                                <td class="p-4 text-center"><input type="checkbox" class="table-row-check w-4 h-4 rounded-md accent-[#111111]" onchange="updateBulkState()"></td>
+                                <td class="p-4 font-mono text-xs text-[var(--text-muted)]">#TK-802</td>
+                                <td class="p-4 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-[#0D6EFD] text-white flex items-center justify-center text-xs font-extrabold font-display">B</div>
+                                    <span>مكتبة الأصول البصرية</span>
+                                </td>
+                                <td class="p-4 text-[var(--text-muted)]">UI Components</td>
+                                <td class="p-4">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-xs font-mono">75%</span>
+                                        <div class="w-16 bg-black/10 dark:bg-white/10 h-1.5 rounded-full overflow-hidden"><div class="bg-[#0D6EFD] h-full" style="width:75%"></div></div>
+                                    </div>
+                                </td>
+                                <td class="p-4"><span class="bx-badge bx-badge-info">قيد التنفيذ</span></td>
+                                <td class="p-4 text-center">
+                                    <button onclick="openModal('detailModal')" class="bx-btn bx-btn-outline py-1.5 px-3 text-xs">عرض</button>
+                                </td>
+                            </tr>
+                            <tr data-status="pending" class="hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+                                <td class="p-4 text-center"><input type="checkbox" class="table-row-check w-4 h-4 rounded-md accent-[#111111]" onchange="updateBulkState()"></td>
+                                <td class="p-4 font-mono text-xs text-[var(--text-muted)]">#TK-803</td>
+                                <td class="p-4 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-[#FFB703] text-[#111111] flex items-center justify-center text-xs font-extrabold font-display">C</div>
+                                    <span>توثيق مسارات الـ API</span>
+                                </td>
+                                <td class="p-4 text-[var(--text-muted)]">Documentation</td>
+                                <td class="p-4">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-xs font-mono">40%</span>
+                                        <div class="w-16 bg-black/10 dark:bg-white/10 h-1.5 rounded-full overflow-hidden"><div class="bg-[#FFB703] h-full" style="width:40%"></div></div>
+                                    </div>
+                                </td>
+                                <td class="p-4"><span class="bx-badge bx-badge-warning">معلق</span></td>
+                                <td class="p-4 text-center">
+                                    <button onclick="openModal('detailModal')" class="bx-btn bx-btn-outline py-1.5 px-3 text-xs">عرض</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Table Footer -->
+                <div class="p-4 border-t border-black/10 dark:border-white/10 flex items-center justify-between text-xs text-[var(--text-muted)]">
+                    <span>عرض 1 إلى 3 من 3 سجلات</span>
+                    <div class="flex gap-2">
+                        <button class="bx-btn bx-btn-outline py-1 px-3 text-xs">السابق</button>
+                        <button class="bx-btn bx-btn-dark py-1 px-3 text-xs">1</button>
+                        <button class="bx-btn bx-btn-outline py-1 px-3 text-xs">التالي</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 4: FORMS & INPUTS ==================== -->
+        <section id="forms" class="space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="w-3 h-8 rounded-full bg-[#111111] dark:bg-white"></span>
+                <h2 class="text-2xl font-extrabold font-display">4. النماذج وحقول الإدخال (Forms & Validation)</h2>
+            </div>
+
+            <div class="bx-card p-8 space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-black uppercase text-[var(--text-muted)]">اسم الحقل الافتراضي</label>
+                        <input type="text" class="bx-input success" value="مدخل معتمد تم التحقق منه">
+                        <span class="text-xs font-bold text-[#10B981]">✓ تم التحقق بنجاح</span>
+                    </div>
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-black uppercase text-[var(--text-muted)]">البريد الإلكتروني</label>
+                        <input type="email" class="bx-input error" value="invalid-email-format">
+                        <span class="text-xs font-bold text-[#DC2626]">✗ صيغة البريد الإلكتروني غير صالحة</span>
+                    </div>
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-black uppercase text-[var(--text-muted)]">القائمة المنسدلة الموحدة</label>
+                        <div class="relative">
+                            <div onclick="toggleDropdown('formDemoMenu')" class="bx-dropdown-trigger">
+                                <span id="formDemoValue">الخيار الأول</span>
+                                <span class="text-xs">▼</span>
+                            </div>
+                            <div id="formDemoMenu" class="hidden bx-dropdown-menu">
+                                <div onclick="selectDropdown('formDemoValue', 'formDemoMenu', 'الخيار الأول')" class="bx-dropdown-item">الخيار الأول ✓</div>
+                                <div onclick="selectDropdown('formDemoValue', 'formDemoMenu', 'الخيار الثاني')" class="bx-dropdown-item">الخيار الثاني</div>
+                                <div onclick="selectDropdown('formDemoValue', 'formDemoMenu', 'الخيار الثالث')" class="bx-dropdown-item">الخيار الثالث</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-black uppercase text-[var(--text-muted)]">التاريخ والوقت</label>
+                        <input type="date" class="bx-input" value="2026-08-20">
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-black/10 dark:border-white/10">
+                    <button onclick="showToast('success', 'تم حفظ الاستمارة بنجاح!')" class="bx-btn bx-btn-dark">حفظ البيانات</button>
+                    <button onclick="showToast('info', 'تم الإرسال للمراجعة')" class="bx-btn bx-btn-brand">إرسال واعتماد</button>
+                    <button onclick="openModal('deleteModal')" class="bx-btn bg-red-500 hover:bg-red-600 text-white">حذف</button>
+                    <button onclick="showToast('warning', 'تم إلغاء الأمر')" class="bx-btn bx-btn-outline">إلغاء</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 5: CHOICE CARDS & TASKS ==================== -->
+        <section id="tasks" class="space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="w-3 h-8 rounded-full bg-[#111111] dark:bg-white"></span>
+                <h2 class="text-2xl font-extrabold font-display">5. مكونات المهام وبطاقات الاختيار (Choice & Checklist)</h2>
+            </div>
+
+            <div class="bx-card p-8 space-y-8">
+                <!-- 5.1 Choice Cards -->
+                <div class="space-y-4">
+                    <h3 class="font-display font-extrabold text-base">بطاقات الاختيار الفردي التفاعلية (Single Choice Cards)</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4" id="choiceGroup">
+                        <div onclick="selectChoice(this)" class="bx-choice-card active space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xl">🚀</span>
+                                <span class="bx-badge bx-badge-success">سريع</span>
+                            </div>
+                            <h4 class="font-extrabold font-display">النشر المباشر</h4>
+                            <p class="text-xs text-[var(--text-muted)]">إتاحة الميزات للمستخدمين فور اكتمال الاختبارات</p>
+                        </div>
+                        <div onclick="selectChoice(this)" class="bx-choice-card space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xl">🛡️</span>
+                                <span class="bx-badge bx-badge-info">آمن</span>
+                            </div>
+                            <h4 class="font-extrabold font-display">النشر المرحلي</h4>
+                            <p class="text-xs text-[var(--text-muted)]">تفعيل الميزة لنسبة 10% من البيئة التجريبية</p>
+                        </div>
+                        <div onclick="selectChoice(this)" class="bx-choice-card space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xl">⏸️</span>
+                                <span class="bx-badge bx-badge-warning">مؤجل</span>
+                            </div>
+                            <h4 class="font-extrabold font-display">جدولة لاحقة</h4>
+                            <p class="text-xs text-[var(--text-muted)]">الاحتفاظ بالتغييرات حتى نافذة الصيانة القادمة</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5.2 Interactive Checklist -->
+                <div class="space-y-4 pt-6 border-t border-black/10 dark:border-white/10">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-display font-extrabold text-base">قائمة التحقق مع شريط التقدم (Checklist)</h3>
+                        <span id="checklistScore" class="bx-badge bx-badge-dark font-mono">الإنجاز: 75%</span>
+                    </div>
+                    <div class="w-full bg-black/5 dark:bg-white/10 h-2 rounded-full overflow-hidden">
+                        <div id="checkProgress" class="bg-[#10B981] h-full rounded-full transition-all duration-300" style="width: 75%"></div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <label class="flex items-center justify-between p-4 rounded-2xl bg-black/5 dark:bg-white/5 cursor-pointer hover:bg-black/10 transition-colors">
+                            <span class="flex items-center gap-3 font-bold text-sm">
+                                <input type="checkbox" checked onchange="updateChecklist()" class="checklist-box w-4 h-4 rounded-md accent-[#111111]">
+                                مراجعة التوافق المعماري
+                            </span>
+                            <span class="text-xs font-bold text-[#10B981]">تم ✓</span>
+                        </label>
+                        <label class="flex items-center justify-between p-4 rounded-2xl bg-black/5 dark:bg-white/5 cursor-pointer hover:bg-black/10 transition-colors">
+                            <span class="flex items-center gap-3 font-bold text-sm">
+                                <input type="checkbox" checked onchange="updateChecklist()" class="checklist-box w-4 h-4 rounded-md accent-[#111111]">
+                                اجتياز اختبارات الأداء 100%
+                            </span>
+                            <span class="text-xs font-bold text-[#10B981]">تم ✓</span>
+                        </label>
+                        <label class="flex items-center justify-between p-4 rounded-2xl bg-black/5 dark:bg-white/5 cursor-pointer hover:bg-black/10 transition-colors">
+                            <span class="flex items-center gap-3 font-bold text-sm">
+                                <input type="checkbox" checked onchange="updateChecklist()" class="checklist-box w-4 h-4 rounded-md accent-[#111111]">
+                                توثيق الـ SSoT في ملفات المرحلة
+                            </span>
+                            <span class="text-xs font-bold text-[#10B981]">تم ✓</span>
+                        </label>
+                        <label class="flex items-center justify-between p-4 rounded-2xl bg-black/5 dark:bg-white/5 cursor-pointer hover:bg-black/10 transition-colors">
+                            <span class="flex items-center gap-3 font-bold text-sm">
+                                <input type="checkbox" onchange="updateChecklist()" class="checklist-box w-4 h-4 rounded-md accent-[#111111]">
+                                اعتماد المخرجات من المشرف
+                            </span>
+                            <span class="text-xs font-bold text-[#FFB703]">قيد الانتظار ⏱</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 5.3 Image Upload Dropzone -->
+                <div class="space-y-4 pt-6 border-t border-black/10 dark:border-white/10">
+                    <h3 class="font-display font-extrabold text-base">منطقة رفع المرفقات (Dropzone Area)</h3>
+                    <div class="bx-dropzone" onclick="document.getElementById('fileInput').click()">
+                        <div class="text-3xl mb-2">📁</div>
+                        <h4 class="font-extrabold font-display text-sm">انقر لرفع ملف أو اسحب وأفلت هنا</h4>
+                        <p class="text-xs text-[var(--text-muted)] mt-1">صيغ مدعومة: JPG, PNG, PDF, WEBP — الحد الأقصى 25MB</p>
+                        <input type="file" id="fileInput" class="hidden" onchange="handleFileUpload(this)">
+                        <div id="fileUploadNotice" class="hidden mt-3 text-xs font-black text-[#10B981]">✓ تم استلام الملف وجاهز للرفع!</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 6: DROPDOWNS ==================== -->
+        <section id="dropdowns" class="space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="w-3 h-8 rounded-full bg-[#111111] dark:bg-white"></span>
+                <h2 class="text-2xl font-extrabold font-display">6. القوائم المنسدلة التفاعلية (Dropdowns)</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bx-card p-6 space-y-4">
+                    <h3 class="font-display font-extrabold text-base">1. اختيار تصنيف النظام</h3>
+                    <div class="relative">
+                        <div onclick="toggleDropdown('drop1')" class="bx-dropdown-trigger">
+                            <span id="dropVal1">لوحة التحكم الرئيسية</span>
+                            <span class="text-xs">▼</span>
+                        </div>
+                        <div id="drop1" class="hidden bx-dropdown-menu">
+                            <div onclick="selectDropdown('dropVal1', 'drop1', 'لوحة التحكم الرئيسية')" class="bx-dropdown-item">لوحة التحكم الرئيسية ✓</div>
+                            <div onclick="selectDropdown('dropVal1', 'drop1', 'إدارة المستخدمين والصلاحيات')" class="bx-dropdown-item">إدارة المستخدمين والصلاحيات</div>
+                            <div onclick="selectDropdown('dropVal1', 'drop1', 'التقارير والمؤشرات')" class="bx-dropdown-item">التقارير والمؤشرات</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bx-card p-6 space-y-4">
+                    <h3 class="font-display font-extrabold text-base">2. اختيار الأولوية</h3>
+                    <div class="relative">
+                        <div onclick="toggleDropdown('drop2')" class="bx-dropdown-trigger">
+                            <span id="dropVal2">أولوية قصوى 🔴</span>
+                            <span class="text-xs">▼</span>
+                        </div>
+                        <div id="drop2" class="hidden bx-dropdown-menu">
+                            <div onclick="selectDropdown('dropVal2', 'drop2', 'أولوية قصوى 🔴')" class="bx-dropdown-item">أولوية قصوى 🔴</div>
+                            <div onclick="selectDropdown('dropVal2', 'drop2', 'أولوية متوسطة 🟡')" class="bx-dropdown-item">أولوية متوسطة 🟡</div>
+                            <div onclick="selectDropdown('dropVal2', 'drop2', 'أولوية منخفضة 🟢')" class="bx-dropdown-item">أولوية منخفضة 🟢</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bx-card p-6 space-y-4">
+                    <h3 class="font-display font-extrabold text-base">3. اختيار حالة البيئة</h3>
+                    <div class="relative">
+                        <div onclick="toggleDropdown('drop3')" class="bx-dropdown-trigger">
+                            <span id="dropVal3">بيئة الإنتاج (Production)</span>
+                            <span class="text-xs">▼</span>
+                        </div>
+                        <div id="drop3" class="hidden bx-dropdown-menu">
+                            <div onclick="selectDropdown('dropVal3', 'drop3', 'بيئة الإنتاج (Production)')" class="bx-dropdown-item">بيئة الإنتاج (Production)</div>
+                            <div onclick="selectDropdown('dropVal3', 'drop3', 'البيئة التجريبية (Staging)')" class="bx-dropdown-item">البيئة التجريبية (Staging)</div>
+                            <div onclick="selectDropdown('dropVal3', 'drop3', 'بيئة التطوير (Local)')" class="bx-dropdown-item">بيئة التطوير (Local)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 7: MODALS & DIALOGS ==================== -->
+        <section id="modals" class="space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="w-3 h-8 rounded-full bg-[#111111] dark:bg-white"></span>
+                <h2 class="text-2xl font-extrabold font-display">7. النوافذ المنبثقة والحوارية (Modals)</h2>
+            </div>
+
+            <div class="bx-card p-8 flex flex-wrap items-center gap-4">
+                <button onclick="openModal('detailModal')" class="bx-btn bx-btn-dark">🪟 نافذة عرض التفاصيل</button>
+                <button onclick="openModal('deleteModal')" class="bx-btn bg-red-500 hover:bg-red-600 text-white">⚠️ نافذة تأكيد الحذف</button>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 8: FEEDBACK & TOASTS ==================== -->
+        <section id="feedback" class="space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="w-3 h-8 rounded-full bg-[#111111] dark:bg-white"></span>
+                <h2 class="text-2xl font-extrabold font-display">8. التغذية الراجعة والإشعارات (Feedback & Badges)</h2>
+            </div>
+
+            <div class="bx-card p-8 space-y-6">
+                <div class="flex flex-wrap items-center gap-3">
+                    <button onclick="showToast('success', 'تم تنفيذ العملية بنجاح! 🎉')" class="bx-btn bg-[#10B981] text-white">إشعار نجاح</button>
+                    <button onclick="showToast('error', 'حدث خطأ غير متوقع، يرجى المحاولة ثانية! ❌')" class="bx-btn bg-[#DC2626] text-white">إشعار خطأ</button>
+                    <button onclick="showToast('warning', 'يرجى مراجعة الصلاحيات قبل المتابعة! ⚠️')" class="bx-btn bg-[#FFB703] text-[#111111]">إشعار تحذير</button>
+                    <button onclick="showToast('info', 'تم تحديث التوثيق تلقائياً ℹ️')" class="bx-btn bg-[#0D6EFD] text-white">إشعار معلومة</button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ===== MODAL 1: DETAIL MODAL ===== -->
+    <div id="detailModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] hidden items-center justify-center p-4">
+        <div class="bx-card max-w-lg w-full p-8 space-y-6 animate-scaleIn">
+            <div class="flex items-center justify-between border-b border-black/10 dark:border-white/10 pb-4">
+                <h3 class="font-display font-extrabold text-xl">تفاصيل السجل المختار</h3>
+                <button onclick="closeModal('detailModal')" class="w-8 h-8 rounded-full bg-black/5 dark:bg-white/10 flex items-center justify-center font-bold">✕</button>
+            </div>
+            <div class="space-y-3 text-sm">
+                <div class="flex justify-between py-2 border-b border-black/5 dark:border-white/5"><span class="text-[var(--text-muted)]">معرف السجل:</span><span class="font-mono font-bold">#TK-801</span></div>
+                <div class="flex justify-between py-2 border-b border-black/5 dark:border-white/5"><span class="text-[var(--text-muted)]">الحالة:</span><span class="bx-badge bx-badge-success">نشط ومكتمل</span></div>
+                <div class="flex justify-between py-2 border-b border-black/5 dark:border-white/5"><span class="text-[var(--text-muted)]">تاريخ الإنشاء:</span><span class="font-bold">2026-08-20</span></div>
+            </div>
+            <button onclick="closeModal('detailModal')" class="bx-btn bx-btn-dark w-full py-3.5">إغلاق النافذة</button>
+        </div>
+    </div>
+
+    <!-- ===== MODAL 2: DELETE CONFIRMATION ===== -->
+    <div id="deleteModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] hidden items-center justify-center p-4">
+        <div class="bx-card max-w-md w-full p-8 space-y-6 text-center animate-scaleIn">
+            <div class="w-16 h-16 rounded-full bg-red-100 dark:bg-red-900/30 text-red-500 flex items-center justify-center text-3xl mx-auto">⚠️</div>
+            <div class="space-y-2">
+                <h3 class="font-display font-extrabold text-xl">هل أنت متأكد من الحذف؟</h3>
+                <p class="text-xs text-[var(--text-muted)]">لا يمكن التراجع عن هذا الإجراء وسيتم حذف جميع البيانات المرتبطة.</p>
+            </div>
+            <div class="flex gap-3 justify-center">
+                <button onclick="showToast('error', 'تم حذف السجل نهائياً'); closeModal('deleteModal')" class="bx-btn bg-red-600 hover:bg-red-700 text-white flex-1">نعم، حذف</button>
+                <button onclick="closeModal('deleteModal')" class="bx-btn bx-btn-outline flex-1">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== JAVASCRIPT LOGIC ===== -->
+    <script>
+        // Theme Switcher (Bright Solid vs Dark Carbon)
+        function toggleTheme() {
+            const html = document.documentElement;
+            const btnText = document.getElementById('themeBtnText');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                html.classList.add('bright-mode');
+                btnText.textContent = '🌙 الوضع الليلي';
+            } else {
+                html.classList.remove('bright-mode');
+                html.classList.add('dark');
+                btnText.textContent = '☀️ الوضع المشرق';
+            }
+        }
+
+        // Font Lab
+        function updateFont(val) {
+            document.getElementById('fontSizeDisplay').textContent = val + 'px';
+            document.getElementById('fontPreview').style.fontSize = val + 'px';
+        }
+        function updateFontText(val) {
+            document.getElementById('fontPreview').textContent = val || 'نظام تقنية';
+        }
+
+        // Dropdowns
+        function toggleDropdown(id) {
+            const menu = document.getElementById(id);
+            const isHidden = menu.classList.contains('hidden');
+            document.querySelectorAll('.bx-dropdown-menu').forEach(m => m.classList.add('hidden'));
+            if (isHidden) menu.classList.remove('hidden');
+        }
+        function selectDropdown(valId, menuId, text) {
+            document.getElementById(valId).textContent = text;
+            document.getElementById(menuId).classList.add('hidden');
+        }
+        window.addEventListener('click', function(e) {
+            if (!e.target.closest('.relative')) {
+                document.querySelectorAll('.bx-dropdown-menu').forEach(m => m.classList.add('hidden'));
+            }
+        });
+
+        // Choice Cards
+        function selectChoice(el) {
+            const cards = el.parentElement.querySelectorAll('.bx-choice-card');
+            cards.forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        // Checklist Progress
+        function updateChecklist() {
+            const total = document.querySelectorAll('.checklist-box').length;
+            const checked = document.querySelectorAll('.checklist-box:checked').length;
+            const pct = Math.round((checked / total) * 100);
+            document.getElementById('checklistScore').textContent = 'الإنجاز: ' + pct + '%';
+            document.getElementById('checkProgress').style.width = pct + '%';
+        }
+
+        // Toast Notifications
+        function showToast(type, message) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'p-4 rounded-2xl shadow-xl flex items-center justify-between gap-3 text-white font-bold text-xs transition-all transform translate-y-2';
+            
+            if (type === 'success') toast.style.backgroundColor = '#10B981';
+            else if (type === 'error') toast.style.backgroundColor = '#DC2626';
+            else if (type === 'warning') { toast.style.backgroundColor = '#FFB703'; toast.style.color = '#111111'; }
+            else toast.style.backgroundColor = '#0D6EFD';
+
+            toast.innerHTML = `<span>${message}</span><button onclick="this.parentElement.remove()" class="text-sm font-bold opacity-80 hover:opacity-100">✕</button>`;
+            container.appendChild(toast);
+            setTimeout(() => { toast.remove(); }, 4000);
+        }
+
+        // Modals & Drawer
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+        function openDrawer() {
+            document.getElementById('drawerOverlay').classList.remove('hidden');
+            document.getElementById('drawerContent').style.transform = 'translateX(0)';
+        }
+        function closeDrawer() {
+            document.getElementById('drawerOverlay').classList.add('hidden');
+            document.getElementById('drawerContent').style.transform = 'translateX(-100%)';
+        }
+
+        // Table Bulk Actions
+        function toggleSelectAll(master) {
+            document.querySelectorAll('.table-row-check').forEach(cb => cb.checked = master.checked);
+            updateBulkState();
+        }
+        function updateBulkState() {
+            const count = document.querySelectorAll('.table-row-check:checked').length;
+            const bar = document.getElementById('bulkBarFloating');
+            const text = document.getElementById('bulkText');
+            if (count > 0) {
+                text.textContent = `تم تحديد ${count} عناصر`;
+                bar.classList.add('active');
+            } else {
+                bar.classList.remove('active');
+            }
+        }
+        function unselectAll() {
+            document.querySelectorAll('.table-row-check').forEach(cb => cb.checked = false);
+            const selectAll = document.querySelector('thead input[type="checkbox"]');
+            if (selectAll) selectAll.checked = false;
+            updateBulkState();
+        }
+
+        // Table Search & Filter
+        function searchTable(query) {
+            const rows = document.querySelectorAll('#tableRows tr');
+            rows.forEach(r => {
+                const text = r.textContent.toLowerCase();
+                r.style.display = text.includes(query.toLowerCase()) ? '' : 'none';
+            });
+        }
+        function toggleTableFilter(status) {
+            const rows = document.querySelectorAll('#tableRows tr');
+            rows.forEach(r => {
+                if (status === 'all' || r.dataset.status === status) r.style.display = '';
+                else r.style.display = 'none';
+            });
+        }
+
+        // Tabs Navigation
+        function setTabActive(el) {
+            document.querySelectorAll('.bx-tab-btn').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        function handleFileUpload(input) {
+            if (input.files && input.files[0]) {
+                document.getElementById('fileUploadNotice').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
