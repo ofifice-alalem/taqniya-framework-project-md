@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض مكونات منظومة تقنية المعمارية — Taqniya Framework Design System</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Syne:wght@700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Local Offline JS Libraries -->
+    <script src="js/lucide.min.js"></script>
+    <script src="js/tailwind.min.js"></script>
+    <script src="js/tailwind.config.js"></script>
+    <!-- Global Design System Styles -->
+    <link rel="stylesheet" href="css/taqniya.css">
+</head>
+<body class="min-h-screen bg-[var(--bx-canvas)] text-bx-text font-sans antialiased selection:bg-bx-primary selection:text-white">
+
+    <!-- Floating Global Toast Stack -->
+    <div id="toastContainer" class="fixed top-4 left-4 z-[99999] flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
+
+    <!-- Main Navigation Header Bar -->
+    <header class="sticky top-0 z-40 bg-[var(--bx-surface-solid)]/85 backdrop-blur-xl border-b border-bx-border">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-bx-primary to-purple-400 text-white flex items-center justify-center font-black text-lg shadow-md shadow-bx-primary/20">
+                    <i data-lucide="layers" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h1 class="font-display font-black text-base sm:text-lg text-bx-title leading-tight">منظومة تقنية المعمارية</h1>
+                    <p class="text-[11px] text-bx-muted font-bold">Taqniya Framework Design System v3.0</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--bx-table-header)] border border-bx-border text-xs">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="font-bold text-bx-title">23 مكوناً معمارياً معتمداً</span>
+                </div>
+                <button type="button" onclick="toggleTheme()" class="bx-tag text-xs font-bold hover:border-bx-primary cursor-pointer flex items-center gap-2 py-2 px-3.5">
+                    <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+                    <span class="hidden sm:inline">تبديل السمة</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 py-8 space-y-10">
+
+        <!-- Hero Showcase Banner -->
+        <div class="relative rounded-3xl p-6 sm:p-10 lg:p-12 border-2 border-bx-border bg-gradient-to-br from-bx-pill via-[var(--bx-surface-solid)] to-[var(--bx-table-header)] shadow-2xl overflow-hidden">
+            <div class="relative z-10 max-w-3xl space-y-4">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-bx-primary/10 border border-bx-primary/30 text-bx-primary text-xs font-black">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                    <span>نظام التصميم المعماري الموحد — الإصدار 3.0</span>
+                </div>
+                <h2 class="font-display font-black text-2xl sm:text-4xl text-bx-title leading-tight">
+                    معرض المكونات التفاعلية والهوية البصرية Spatial UI
+                </h2>
+                <p class="text-xs sm:text-sm text-bx-muted leading-relaxed max-w-2xl">
+                    مكتبة معمارية شاملة مكونة من 23 عنصراً برمجياً مستقلاً، مبنية وفق أحدث معايير VisionOS الزجاجية مع دعم RTL أصيل، مكتبات محلية سريعة بنسبة 100%، وتوافق تام مع ملف المصدر الموحد (SSoT).
+                </p>
+
+                <!-- 4 Quick Stats Badges -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3">
+                    <div class="p-3.5 rounded-2xl bg-[var(--bx-surface-solid)] border border-bx-border text-center space-y-0.5">
+                        <div class="font-display font-black text-xl text-bx-primary">23</div>
+                        <div class="text-[10px] text-bx-muted font-bold">مكوناً مستقلاً</div>
+                    </div>
+                    <div class="p-3.5 rounded-2xl bg-[var(--bx-surface-solid)] border border-bx-border text-center space-y-0.5">
+                        <div class="font-display font-black text-xl text-emerald-500">100%</div>
+                        <div class="text-[10px] text-bx-muted font-bold">مطابقة SSoT</div>
+                    </div>
+                    <div class="p-3.5 rounded-2xl bg-[var(--bx-surface-solid)] border border-bx-border text-center space-y-0.5">
+                        <div class="font-display font-black text-xl text-bx-title">0 Net</div>
+                        <div class="text-[10px] text-bx-muted font-bold">اعتماديات أوفلاين</div>
+                    </div>
+                    <div class="p-3.5 rounded-2xl bg-[var(--bx-surface-solid)] border border-bx-border text-center space-y-0.5">
+                        <div class="font-display font-black text-xl text-purple-500">VisionOS</div>
+                        <div class="text-[10px] text-bx-muted font-bold">Spatial Glass UI</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter & Search Studio Toolbar -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 p-4 rounded-2xl bg-[var(--bx-surface-solid)] border border-bx-border shadow-sm">
+            <!-- Filter Categories -->
+            <div class="flex flex-wrap items-center gap-2 w-full md:w-auto" id="filterTabs">
+                <button type="button" onclick="filterGallery('all', this)" class="filter-btn active bx-tag text-xs font-bold cursor-pointer py-2 px-3.5 hover:border-bx-primary">
+                    <span>جميع المكونات (23)</span>
+                </button>
+                <button type="button" onclick="filterGallery('layout', this)" class="filter-btn bx-tag text-xs font-bold cursor-pointer py-2 px-3.5 hover:border-bx-primary">
+                    <i data-lucide="layout" class="w-3.5 h-3.5"></i>
+                    <span>الهيكل والتنقل (5)</span>
+                </button>
+                <button type="button" onclick="filterGallery('visuals', this)" class="filter-btn bx-tag text-xs font-bold cursor-pointer py-2 px-3.5 hover:border-bx-primary">
+                    <i data-lucide="palette" class="w-3.5 h-3.5"></i>
+                    <span>العناصر البصرية (7)</span>
+                </button>
+                <button type="button" onclick="filterGallery('interactive', this)" class="filter-btn bx-tag text-xs font-bold cursor-pointer py-2 px-3.5 hover:border-bx-primary">
+                    <i data-lucide="sliders" class="w-3.5 h-3.5"></i>
+                    <span>النماذج والجداول (8)</span>
+                </button>
+                <button type="button" onclick="filterGallery('overlays', this)" class="filter-btn bx-tag text-xs font-bold cursor-pointer py-2 px-3.5 hover:border-bx-primary">
+                    <i data-lucide="bell" class="w-3.5 h-3.5"></i>
+                    <span>التنبيهات والطبقات (3)</span>
+                </button>
+            </div>
+
+            <!-- Search Input -->
+            <div class="relative w-full md:w-80">
+                <input type="text" id="gallerySearchInput" oninput="searchGallery(this.value)" placeholder="ابحث باسم المكون أو الوظيفة..."
+                    class="bx-input text-xs pr-9 h-10 w-full">
+                <i data-lucide="search" class="w-4 h-4 text-bx-muted absolute top-3 right-3 pointer-events-none"></i>
+            </div>
+        </div>
+
+        <!-- Component Gallery Grid (23 Components) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="componentsGrid">
+            
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="layout" data-search="محددات الشاشات التجاوبية (breakpoints) 5 مستويات قياس تبدأ من sm: 640px إلى 2xl: 1536px لتوافق تام عبر كافة الشاشات والأجهزة. 01-breakpoints">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="monitor" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">01</span>
+                        <span class="text-xs text-bx-muted block">الهيكل والتنقل</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">Core Layout</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                محددات الشاشات التجاوبية (Breakpoints)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                5 مستويات قياس تبدأ من sm: 640px إلى 2xl: 1536px لتوافق تام عبر كافة الشاشات والأجهزة.
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">5 Breakpoints</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">RTL Ready</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Zero Jitter</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/01-breakpoints/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="layout" data-search="الشبكة المعمارية والتخطيط (grid system) شبكة أعمدة مرنة من 1 إلى 12 عموداً مع حساب الفواصل الدقيقة بنظام flexbox & css grid. 02-grid">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="grid" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">02</span>
+                        <span class="text-xs text-bx-muted block">الهيكل والتنقل</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">Structure</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                الشبكة المعمارية والتخطيط (Grid System)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                شبكة أعمدة مرنة من 1 إلى 12 عموداً مع حساب الفواصل الدقيقة بنظام Flexbox & CSS Grid.
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">12 Columns</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Auto Gap</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Subgrid Support</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/02-grid/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="layout" data-search="المحاذاة والتموضع (alignment & spacing) محاذاة العناصر وتوزيع المسافات الرأسية والأفقية وقواعد التموضع الهندسي الدقيق. 03-alignment">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="align-right" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">03</span>
+                        <span class="text-xs text-bx-muted block">الهيكل والتنقل</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">Spacing</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                المحاذاة والتموضع (Alignment & Spacing)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                محاذاة العناصر وتوزيع المسافات الرأسية والأفقية وقواعد التموضع الهندسي الدقيق.
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">RTL Alignment</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Center Stacks</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Flex Stretch</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/03-alignment/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="visuals" data-search="الخطوط والطباعة (typography hierarchy) هرمية متكاملة لخطوط alexandria و tajawal و jetbrains mono للعناوين والنصوص والأكواد. 04-typography">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="type" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">04</span>
+                        <span class="text-xs text-bx-muted block">العناصر البصرية</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">Design Tokens</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                الخطوط والطباعة (Typography Hierarchy)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                هرمية متكاملة لخطوط Alexandria و Tajawal و JetBrains Mono للعناوين والنصوص والأكواد.
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Alexandria</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Tajawal</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">JetBrains Mono</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/04-typography/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="visuals" data-search="الوسائط والصور ثلاثية الأبعاد (media & avatars) أشكال الصور الرمزية المجسمة، تراكب المجموعات، وأغلفة المشاريع بنسب أبعاد 16:9 و 4:3 و 1:1. 05-media">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="image" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">05</span>
+                        <span class="text-xs text-bx-muted block">العناصر البصرية</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">Spatial 3D</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                الوسائط والصور ثلاثية الأبعاد (Media & Avatars)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                أشكال الصور الرمزية المجسمة، تراكب المجموعات، وأغلفة المشاريع بنسب أبعاد 16:9 و 4:3 و 1:1.
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">3D Avatars</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Avatar Stacks</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Aspect Ratios</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/05-media/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="interactive" data-search="جداول البيانات والسجلات (data tables) جداول متقدمة مع تحديد متعدد، شريط إجراءات عائم، تصفية لحظية حسب الحالة، وبحث فوري. 06-table">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="table-2" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">06</span>
+                        <span class="text-xs text-bx-muted block">التفاعلات والجداول</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">Data Grid</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                جداول البيانات والسجلات (Data Tables)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                جداول متقدمة مع تحديد متعدد، شريط إجراءات عائم، تصفية لحظية حسب الحالة، وبحث فوري.
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Floating Actions</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Filter Engine</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Row Selection</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/06-table/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="visuals" data-search="لوحة الألوان والتوكنز (color tokens & palette) توكنز الألوان المعمارية الأساسية وحالات الخطر والنجاح والتحذير واختبار التباين الفاتح والداكن. 07-color-palette">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="palette" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">07</span>
+                        <span class="text-xs text-bx-muted block">العناصر البصرية</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">SSoT Tokens</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                لوحة الألوان والتوكنز (Color Tokens & Palette)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                توكنز الألوان المعمارية الأساسية وحالات الخطر والنجاح والتحذير واختبار التباين الفاتح والداكن.
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Brand Violet</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Status Palettes</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Contrast Checked</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/07-color-palette/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="visuals" data-search="بطاقات المؤشرات والإحصائيات (kpi & stats) بطاقات الإحصائيات الفائقة مع إشارات نسب النمو والتراجع والرسوم البيانية المصغرة (sparklines). 08-kpi-stat">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="trending-up" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">08</span>
+                        <span class="text-xs text-bx-muted block">العناصر البصرية</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">Metrics</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                بطاقات المؤشرات والإحصائيات (KPI & Stats)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                بطاقات الإحصائيات الفائقة مع إشارات نسب النمو والتراجع والرسوم البيانية المصغرة (Sparklines).
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Trend Badges</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Sparklines</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Delta Percent</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/08-kpi-stat/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="visuals" data-search="الأزرار التفاعلية (interactive buttons) أزرار الأساسية (primary)، المفرغة (outline)، الشبحية (ghost)، وحالات التحميل والتعطيل. 09-button">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="mouse-pointer-click" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">09</span>
+                        <span class="text-xs text-bx-muted block">العناصر البصرية</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">Core Action</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                الأزرار التفاعلية (Interactive Buttons)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                أزرار الأساسية (Primary)، المفرغة (Outline)، الشبحية (Ghost)، وحالات التحميل والتعطيل.
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Button Variants</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Loading Spinners</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Icon Triggers</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/09-button/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="visuals" data-search="مجموعات الأزرار وأشرطة الأدوات (button groups) أشرطة الأدوات المترابطة، أزرار التبديل المجزأة (segmented controls)، والمحددات المتعددة. 10-button-group">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="layers" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">10</span>
+                        <span class="text-xs text-bx-muted block">العناصر البصرية</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">Toolbars</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                مجموعات الأزرار وأشرطة الأدوات (Button Groups)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                أشرطة الأدوات المترابطة، أزرار التبديل المجزأة (Segmented Controls)، والمحددات المتعددة.
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Segmented Controls</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Multi-Toggle</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Toolbar Strips</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/10-button-group/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="visuals" data-search="البطاقات المعمارية الزجاجية (spatial cards) بطاقات visionos الزجاجية، بطاقات التكديس المعماري، وبطاقات الإجراءات المتفاعلة مع الإضاءة. 11-card">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="credit-card" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">11</span>
+                        <span class="text-xs text-bx-muted block">العناصر البصرية</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">VisionOS UI</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                البطاقات المعمارية الزجاجية (Spatial Cards)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                بطاقات VisionOS الزجاجية، بطاقات التكديس المعماري، وبطاقات الإجراءات المتفاعلة مع الإضاءة.
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Glassmorphism</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Elevation Borders</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Interactive Glow</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/11-card/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="interactive" data-search="حقول الإدخال والنماذج الذكية (inputs & forms) حقول نصية مع تحقق فوري، قوائم منسدلة ذكية، اختيار متعدد مع رقائق قابلة للحذف، ومربعات اختيار مخصصة. 12-form">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="file-input" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">12</span>
+                        <span class="text-xs text-bx-muted block">التفاعلات والجداول</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">Form Studio</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                حقول الإدخال والنماذج الذكية (Inputs & Forms)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                حقول نصية مع تحقق فوري، قوائم منسدلة ذكية، اختيار متعدد مع رقائق قابلة للحذف، ومربعات اختيار مخصصة.
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Fuzzy Search</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Multi Chips</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Live Validation</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/12-form/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="overlays" data-search="النوافذ المنبثقة ومعالج التدشين (modals & wizard) 8 نوافذ حوارية تشمل معالج تهيئة متعدد الخطوات (wizard)، تأكيد الحذف، الصلاحيات، واستطلاع الرأي. 13-modal">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="sparkles" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">13</span>
+                        <span class="text-xs text-bx-muted block">التنبيهات والطبقات</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">Dialog Engine</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                النوافذ المنبثقة ومعالج التدشين (Modals & Wizard)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                8 نوافذ حوارية تشمل معالج تهيئة متعدد الخطوات (Wizard)، تأكيد الحذف، الصلاحيات، واستطلاع الرأي.
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">3-Step Wizard</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Destructive Confirm</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Star Rating</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/13-modal/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="interactive" data-search="أشرطة ومؤشرات التقدم (progress & meters) أشرطة التقدم الخطية المتدرجة، العدادات الدائرية النبضية، ومؤشرات مسار الخطوات التفاعلية. 14-progress">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="loader-2" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">14</span>
+                        <span class="text-xs text-bx-muted block">التفاعلات والجداول</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">Feedback</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                أشرطة ومؤشرات التقدم (Progress & Meters)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                أشرطة التقدم الخطية المتدرجة، العدادات الدائرية النبضية، ومؤشرات مسار الخطوات التفاعلية.
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Gradient Bars</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Radial Meters</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Step Wizard Tracker</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/14-progress/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="overlays" data-search="التنبيهات والإشعارات العائمة (toasts & alerts) تنبيهات مؤطرة ثابتة ونظام إشعارات عائمة لحظي مع شريط تقدم متناقص وحركة الـ spring pop. 15-feedback">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="bell-ring" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">15</span>
+                        <span class="text-xs text-bx-muted block">التنبيهات والطبقات</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">Toast System</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                التنبيهات والإشعارات العائمة (Toasts & Alerts)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                تنبيهات مؤطرة ثابتة ونظام إشعارات عائمة لحظي مع شريط تقدم متناقص وحركة الـ Spring Pop.
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Floating Toasts</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Live Progress Bar</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Status Banners</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/15-feedback/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="visuals" data-search="الشارات والكبسولات الحية (badges & chips) شارات الحالات المعمارية، كبسولات العدادات، الرقائق التفاعلية القابلة للحذف، ونقاط النبض الحية. 16-badge">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="tag" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">16</span>
+                        <span class="text-xs text-bx-muted block">العناصر البصرية</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">Status Tags</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                الشارات والكبسولات الحية (Badges & Chips)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                شارات الحالات المعمارية، كبسولات العدادات، الرقائق التفاعلية القابلة للحذف، ونقاط النبض الحية.
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Dismissible Chips</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Pulse Dots</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Counter Pills</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/16-badge/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="layout" data-search="مسار التنقل الهرمي (breadcrumb trail) مسارات تنقل واضحة تدعم الأيقونات والحالات النشطة وعلامات الفصل الهندسية المتوافقة مع rtl. 17-breadcrumb">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="chevrons-right" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">17</span>
+                        <span class="text-xs text-bx-muted block">الهيكل والتنقل</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">Navigation</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                مسار التنقل الهرمي (Breadcrumb Trail)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                مسارات تنقل واضحة تدعم الأيقونات والحالات النشطة وعلامات الفصل الهندسية المتوافقة مع RTL.
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Hierarchical Path</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Active Indicators</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">RTL Arrows</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/17-breadcrumb/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="interactive" data-search="القوائم المطوية الانسيابية (system accordions) قوائم مطوية فائقة الانسيابية بحركة css grid الناعمة، مع أزرار توسيع وطي الكل ودوران الأسهم. 18-accordion">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="fold-vertical" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">18</span>
+                        <span class="text-xs text-bx-muted block">التفاعلات والجداول</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">Collapsible List</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                القوائم المطوية الانسيابية (System Accordions)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                قوائم مطوية فائقة الانسيابية بحركة CSS Grid الناعمة، مع أزرار توسيع وطي الكل ودوران الأسهم.
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Smooth Grid Transition</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Expand All</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Chevron Rotation</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/18-accordion/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="interactive" data-search="الإخفاء والإظهار الانسيابي (smooth collapse) كتل استعراض المخطط البرمجي ولوحات الفلاتر المتقدمة القابلة للطي بنقرة واحدة بدون وميض. 19-collapse">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="code-2" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">19</span>
+                        <span class="text-xs text-bx-muted block">التفاعلات والجداول</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">Code & Filters</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                الإخفاء والإظهار الانسيابي (Smooth Collapse)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                كتل استعراض المخطط البرمجي ولوحات الفلاتر المتقدمة القابلة للطي بنقرة واحدة بدون وميض.
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Code Schema Drawer</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Filter Panel</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Zero Jitter</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/19-collapse/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="interactive" data-search="معرض الشرائح التفاعلي (interactive carousel) معرض شرائح rtl مع مؤشر ترقيم ديناميكي (1 من 4)، نقاط تحكم، وأسهم تنقل انسيابية. 20-carousel">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="gallery-horizontal" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">20</span>
+                        <span class="text-xs text-bx-muted block">التفاعلات والجداول</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">RTL Slider</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                معرض الشرائح التفاعلي (Interactive Carousel)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                معرض شرائح RTL مع مؤشر ترقيم ديناميكي (1 من 4)، نقاط تحكم، وأسهم تنقل انسيابية.
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Dynamic Counter</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Dot Pagination</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Touch / Click Swipes</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/20-carousel/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="interactive" data-search="الألسنة والمبدلات المتعددة (tabs switcher) 4 أنماط ألسنة: الخط السفلي (underline)، الكبسولات (pills)، الصندوقية (boxed)، ومع الأيقونات. 21-tabs">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="layout-grid" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">21</span>
+                        <span class="text-xs text-bx-muted block">التفاعلات والجداول</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">Tab Navigation</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                الألسنة والمبدلات المتعددة (Tabs Switcher)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                4 أنماط ألسنة: الخط السفلي (Underline)، الكبسولات (Pills)، الصندوقية (Boxed)، ومع الأيقونات.
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">4 Visual Styles</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Instant Pane Switch</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Aria Accessible</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/21-tabs/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="layout" data-search="شريط التنقل العلوي الزجاجي (spatial navbar) شريط علوي زجاجي مثبت مع روابط سريعة، مؤشر النظام الحي، وقائمة منسدلة للمستخدم. 22-navbar">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">22-navbar</span>
+                        <span class="text-xs text-bx-muted block">الهيكل والتنقل</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">Header Bar</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                شريط التنقل العلوي الزجاجي (Spatial Navbar)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                شريط علوي زجاجي مثبت مع روابط سريعة، مؤشر النظام الحي، وقائمة منسدلة للمستخدم.
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Sticky Glass</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">System Health Indicator</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">User Dropdown</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/22-navbar/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="component-card bx-card p-6 flex flex-col justify-between space-y-5 hover:border-bx-primary hover:shadow-2xl transition-all group"
+        data-category="overlays" data-search="الأدراج والألواح المنزلقة (offcanvas & drawers) أدراج انزلاقية من اليمين واليسار وألواح سفلية (bottom sheets) مع إغلاق بمفتاح esc وحماية الخلفية. 23-offcanvas">
+        <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg group-hover:scale-110 group-hover:bg-bx-primary group-hover:text-white transition-all shadow-sm">
+                        <i data-lucide="panel-right-open" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[11px] font-bold text-bx-primary uppercase tracking-wider">23</span>
+                        <span class="text-xs text-bx-muted block">التنبيهات والطبقات</span>
+                    </div>
+                </div>
+                <span class="bx-tag text-[10px] font-mono">Slide Sheets</span>
+            </div>
+            
+            <h3 class="font-display font-extrabold text-base text-bx-title group-hover:text-bx-primary transition-colors leading-snug">
+                الأدراج والألواح المنزلقة (Offcanvas & Drawers)
+            </h3>
+            <p class="text-xs text-bx-muted leading-relaxed line-clamp-2">
+                أدراج انزلاقية من اليمين واليسار وألواح سفلية (Bottom Sheets) مع إغلاق بمفتاح ESC وحماية الخلفية.
+            </p>
+        </div>
+
+        <div class="space-y-3 pt-3 border-t border-bx-divider">
+            <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Right & Left Drawers</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Bottom Sheet Console</span><span class="text-[10px] px-2 py-0.5 rounded-lg bg-[var(--bx-table-header)] border border-bx-border font-bold text-bx-muted">Zero Peek Hide</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+                <a href="components/23-offcanvas/index.html" class="bx-btn bx-btn-primary w-full text-xs py-2.5 flex items-center justify-center gap-2 group-hover:shadow-lg transition-all">
+                    <span>فتح واستعراض المكون</span>
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+        </div>
+
+        <!-- No Results Fallback -->
+        <div id="noResultsState" class="hidden p-12 text-center rounded-3xl border border-bx-border bg-[var(--bx-surface-solid)] space-y-3">
+            <div class="w-12 h-12 rounded-2xl bg-bx-pill text-bx-muted flex items-center justify-center mx-auto">
+                <i data-lucide="search-x" class="w-6 h-6"></i>
+            </div>
+            <h4 class="font-bold text-base text-bx-title">لم يتم العثور على مكون مطابق للبحث</h4>
+            <p class="text-xs text-bx-muted">جرب البحث بكلمات أخرى أو اختر تصنيفاً مختلفاً من الأعلى.</p>
+        </div>
+    </div>
+
+    <!-- Global Footer -->
+    <footer class="mt-16 border-t border-bx-border py-8 text-center text-xs text-bx-muted space-y-2">
+        <div class="flex items-center justify-center gap-2 font-bold text-bx-title">
+            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-500"></i>
+            <span>Taqniya Architectural Design System — Strict Single Source of Truth (SSoT)</span>
+        </div>
+        <p class="text-[11px]">تم بناء وتوثيق كافة المكونات بالاعتماد على الهوية الإطارية الموحدة بنسبة 100%.</p>
+    </footer>
+
+    <!-- Global JS Scripts -->
+    <script src="js/taqniya.js"></script>
+    <script>
+        function renderIcons() {
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+        }
+        renderIcons();
+        document.addEventListener('DOMContentLoaded', renderIcons);
+        window.addEventListener('load', renderIcons);
+
+        let activeCategory = 'all';
+
+        function filterGallery(category, btn) {
+            activeCategory = category;
+            document.querySelectorAll('#filterTabs .filter-btn').forEach(b => {
+                b.classList.remove('active', 'border-bx-primary', 'bg-bx-primary', 'text-white');
+            });
+            if (btn) {
+                btn.classList.add('active', 'border-bx-primary', 'bg-bx-primary', 'text-white');
+            }
+            applyFilters();
+        }
+
+        function searchGallery(query) {
+            applyFilters(query);
+        }
+
+        function applyFilters(query) {
+            const searchVal = (query !== undefined ? query : document.getElementById('gallerySearchInput').value || '').toLowerCase().trim();
+            const cards = document.querySelectorAll('#componentsGrid .component-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                const cardSearch = card.getAttribute('data-search') || '';
+                
+                const matchesCat = (activeCategory === 'all' || cardCat === activeCategory);
+                const matchesSearch = !searchVal || cardSearch.includes(searchVal);
+
+                if (matchesCat && matchesSearch) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            const noResults = document.getElementById('noResultsState');
+            if (noResults) {
+                if (visibleCount === 0) noResults.classList.remove('hidden');
+                else noResults.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
