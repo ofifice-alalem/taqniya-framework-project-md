@@ -1,0 +1,40 @@
+/* ==========================================================================
+   BREADCRUMBS COMPONENT STYLES
+   ========================================================================== */
+
+.bx-breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+    background: var(--bx-table-header);
+    border: 1px solid var(--bx-border);
+    font-size: 0.8125rem;
+    font-weight: 700;
+}
+
+.bx-breadcrumb-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    color: var(--bx-muted);
+    transition: color 0.2s ease;
+}
+
+.bx-breadcrumb-item:hover {
+    color: var(--bx-primary);
+}
+
+.bx-breadcrumb-item.active {
+    color: var(--bx-title);
+    font-weight: 800;
+    pointer-events: none;
+}
+
+.bx-breadcrumb-separator {
+    color: var(--bx-border-strong);
+    opacity: 0.6;
+    display: inline-flex;
+    align-items: center;
+}

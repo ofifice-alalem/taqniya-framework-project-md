@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1. نقاط التوقف (Breakpoints) — Taqniya Design System</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Syne:wght@700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Local Fast Offline Icons & Tailwind -->
+    <script src="../../js/lucide.min.js"></script>
+    <script src="../../js/tailwind.min.js"></script>
+    <script src="../../js/tailwind.config.js"></script>
+    <!-- Global Core Styles -->
+    <link rel="stylesheet" href="../../css/taqniya.css">
+</head>
+<body class="min-h-screen bg-[var(--bx-canvas)] text-bx-text font-sans antialiased">
+
+    <!-- Global Floating Toast Stack Container -->
+    <div id="toastContainer" class="fixed top-4 left-4 z-[99999] flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
+
+    <!-- Extra Top Overlays (e.g. Drawers, Mount Points) -->
+    
+
+    <div class="max-w-[1600px] mx-auto p-4 sm:p-8 lg:p-12 space-y-8">
+        <!-- Component Header Navigation -->
+        <header class="flex items-center justify-between border-b border-bx-border pb-4">
+            <div class="flex items-center gap-3">
+                <a href="../../index.html" class="bx-tag hover:border-bx-primary transition-all">← المعرض العام</a>
+                <span class="text-bx-muted text-xs">/</span>
+                <span class="text-xs font-black text-bx-title">1. نقاط التوقف (Breakpoints)</span>
+            </div>
+            <button type="button" onclick="toggleTheme()" class="bx-tag text-xs font-bold hover:border-bx-primary cursor-pointer flex items-center gap-2">
+                <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+                <span>تبديل السمة (Light / Dark)</span>
+            </button>
+        </header>
+
+        <!-- Main Section Content -->
+        <main class="space-y-8">
+            <section id="breakpoints" class="space-y-6">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <span class="w-2.5 h-7 rounded-full bg-bx-primary"></span>
+                        <h2 class="text-xl sm:text-2xl font-bold bx-title">1. نقاط التوقف وتجاوب الشاشات (Breakpoints)
+                        </h2>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <!-- Live Viewport Width Reader Badge -->
+                        <div
+                            class="flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-bx-border text-xs font-medium">
+                            <i data-lucide="scan" class="w-3.5 h-3.5 text-bx-primary"></i>
+                            <span class="text-bx-muted">عرض الشاشة الحالي:</span>
+                            <span id="liveViewportWidth" class="font-mono text-bx-title font-bold dir-ltr">---</span>
+                            <span id="activeBreakpointBadge"
+                                class="bx-tag text-[11px] py-0.5 px-2.5 font-mono font-bold">---</span>
+                        </div>
+                        <!-- Section Collapse Button -->
+                        <button onclick="toggleSection('sec-breakpoints-body', 'sec-breakpoints-btn')"
+                            id="sec-breakpoints-btn"
+                            class="w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all cursor-pointer"
+                            title="طي / توسيع القسم">
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron-toggle"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Collapsible Body for Section 1 -->
+                <div id="sec-breakpoints-body" class="accordion-content space-y-6">
+                    <!-- Breakpoints Standard Table Card -->
+                    <div class="bx-card overflow-hidden">
+                        <div
+                            class="p-6 border-b border-bx-border flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div>
+                                <h3 class="bx-title text-base font-bold">جدول نقاط التوقف القياسي (Bootstrap-Compatible
+                                    Grid)</h3>
+                                <p class="text-xs text-bx-muted mt-0.5">تحدد هذه الأبعاد نقاط التحول الأساسية للشبكة
+                                    وعناصر الواجهة المتجاوبة</p>
+                            </div>
+                            <span class="bx-tag font-mono text-xs">6 Breakpoint Tiers</span>
+                        </div>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-right text-sm">
+                                <thead
+                                    class="text-bx-muted font-bold text-xs uppercase tracking-wider border-b border-[var(--bx-divider)] bg-[var(--bx-table-header)]">
+                                    <tr>
+                                        <th class="p-4">نقطة التوقف (Breakpoint)</th>
+                                        <th class="p-4 text-center">رمز الـ Class</th>
+                                        <th class="p-4 font-mono text-center">الأبعاد (Dimensions)</th>
+                                        <th class="p-4">الأجهزة المستهدفة</th>
+                                        <th class="p-4 text-center">الحالة الحالية</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-[var(--bx-divider)] font-medium text-sm">
+                                    <tr id="bp-xs" class="bx-table-row">
+                                        <td class="p-4 flex items-center gap-2.5">
+                                            <i data-lucide="smartphone" class="w-4 h-4 text-bx-primary"></i>
+                                            <span class="font-bold text-bx-title">Extra small</span>
+                                        </td>
+                                        <td class="p-4 text-center"><span
+                                                class="px-2.5 py-1 rounded-md border border-bx-border font-mono text-xs font-bold text-bx-text">None</span>
+                                        </td>
+                                        <td dir="ltr" class="p-4 text-center font-mono font-bold text-bx-text">&lt;
+                                            576px</td>
+                                        <td class="p-4 text-xs text-bx-muted">الهواتف الذكية في الوضع الرأسي (Portrait
+                                            Mobile)</td>
+                                        <td class="p-4 text-center bp-status"><span
+                                                class="text-xs text-bx-muted opacity-30 font-mono">—</span></td>
+                                    </tr>
+                                    <tr id="bp-sm" class="bx-table-row">
+                                        <td class="p-4 flex items-center gap-2.5">
+                                            <i data-lucide="smartphone" class="w-4 h-4 text-bx-primary"></i>
+                                            <span class="font-bold text-bx-title">Small</span>
+                                        </td>
+                                        <td class="p-4 text-center"><span
+                                                class="px-2.5 py-1 rounded-md border border-bx-border font-mono text-xs font-bold text-bx-primary">sm</span>
+                                        </td>
+                                        <td dir="ltr" class="p-4 text-center font-mono font-bold text-bx-text">≥ 576px
+                                        </td>
+                                        <td class="p-4 text-xs text-bx-muted">الهواتف في الوضع الأفقي والأجهزة الكفية
+                                            الصغيرة</td>
+                                        <td class="p-4 text-center bp-status"><span
+                                                class="text-xs text-bx-muted opacity-30 font-mono">—</span></td>
+                                    </tr>
+                                    <tr id="bp-md" class="bx-table-row">
+                                        <td class="p-4 flex items-center gap-2.5">
+                                            <i data-lucide="tablet" class="w-4 h-4 text-bx-primary"></i>
+                                            <span class="font-bold text-bx-title">Medium</span>
+                                        </td>
+                                        <td class="p-4 text-center"><span
+                                                class="px-2.5 py-1 rounded-md border border-bx-border font-mono text-xs font-bold text-bx-primary">md</span>
+                                        </td>
+                                        <td dir="ltr" class="p-4 text-center font-mono font-bold text-bx-text">≥ 768px
+                                        </td>
+                                        <td class="p-4 text-xs text-bx-muted">الأجهزة اللوحية (Tablets & iPads)</td>
+                                        <td class="p-4 text-center bp-status"><span
+                                                class="text-xs text-bx-muted opacity-30 font-mono">—</span></td>
+                                    </tr>
+                                    <tr id="bp-lg" class="bx-table-row">
+                                        <td class="p-4 flex items-center gap-2.5">
+                                            <i data-lucide="laptop" class="w-4 h-4 text-bx-primary"></i>
+                                            <span class="font-bold text-bx-title">Large</span>
+                                        </td>
+                                        <td class="p-4 text-center"><span
+                                                class="px-2.5 py-1 rounded-md border border-bx-border font-mono text-xs font-bold text-bx-primary">lg</span>
+                                        </td>
+                                        <td dir="ltr" class="p-4 text-center font-mono font-bold text-bx-text">≥ 992px
+                                        </td>
+                                        <td class="p-4 text-xs text-bx-muted">شاشات الحواسيب المحمولة والشاشات القياسية
+                                            (Laptops)</td>
+                                        <td class="p-4 text-center bp-status"><span
+                                                class="text-xs text-bx-muted opacity-30 font-mono">—</span></td>
+                                    </tr>
+                                    <tr id="bp-xl" class="bx-table-row">
+                                        <td class="p-4 flex items-center gap-2.5">
+                                            <i data-lucide="monitor" class="w-4 h-4 text-bx-primary"></i>
+                                            <span class="font-bold text-bx-title">Extra large</span>
+                                        </td>
+                                        <td class="p-4 text-center"><span
+                                                class="px-2.5 py-1 rounded-md border border-bx-border font-mono text-xs font-bold text-bx-primary">xl</span>
+                                        </td>
+                                        <td dir="ltr" class="p-4 text-center font-mono font-bold text-bx-text">≥ 1200px
+                                        </td>
+                                        <td class="p-4 text-xs text-bx-muted">شاشات سطح المكتب عالية الدقة (Desktop
+                                            Monitors)</td>
+                                        <td class="p-4 text-center bp-status"><span
+                                                class="text-xs text-bx-muted opacity-30 font-mono">—</span></td>
+                                    </tr>
+                                    <tr id="bp-xxl" class="bx-table-row">
+                                        <td class="p-4 flex items-center gap-2.5">
+                                            <i data-lucide="tv" class="w-4 h-4 text-bx-primary"></i>
+                                            <span class="font-bold text-bx-title">Extra extra large</span>
+                                        </td>
+                                        <td class="p-4 text-center"><span
+                                                class="px-2.5 py-1 rounded-md border border-bx-border font-mono text-xs font-bold text-bx-primary">xxl</span>
+                                        </td>
+                                        <td dir="ltr" class="p-4 text-center font-mono font-bold text-bx-text">≥ 1400px
+                                        </td>
+                                        <td class="p-4 text-xs text-bx-muted">الشاشات العريضة جداً وشاشات 2K/4K
+                                            (Ultra-wide Displays)</td>
+                                        <td class="p-4 text-center bp-status"><span
+                                                class="text-xs text-bx-muted opacity-30 font-mono">—</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== 2. GRID SYSTEM (نظام الشبكة والتوزيع القياسي) ==================== -->
+        </main>
+    </div>
+
+    <!-- Global & Component JS -->
+    <script src="../../js/taqniya.js"></script>
+    <script src="component.js"></script>
+    <script>
+        // Guaranteed icon rendering
+        function renderIcons() {
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+        }
+        renderIcons();
+        document.addEventListener('DOMContentLoaded', renderIcons);
+        window.addEventListener('load', renderIcons);
+    </script>
+</body>
+</html>

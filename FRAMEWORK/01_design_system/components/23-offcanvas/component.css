@@ -1,0 +1,75 @@
+/* ==========================================================================
+   OFFCANVAS COMPONENT STYLES
+   ========================================================================== */
+
+.bx-offcanvas-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 9998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.bx-offcanvas-backdrop.bx-backdrop-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.bx-offcanvas {
+    position: fixed;
+    z-index: 9999;
+    background: var(--bx-surface-solid);
+    box-shadow: var(--bx-shadow-modal);
+    transition: transform 0.35s cubic-bezier(0.23, 0.65, 0.74, 1.09);
+    overflow-y: auto;
+}
+
+/* 4 Directions */
+.bx-offcanvas-right {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 440px;
+    max-width: 90vw;
+    border-left: 2px solid var(--bx-border);
+    transform: translateX(100%);
+}
+
+.bx-offcanvas-left {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 440px;
+    max-width: 90vw;
+    border-right: 2px solid var(--bx-border);
+    transform: translateX(-100%);
+}
+
+.bx-offcanvas-top {
+    top: 0;
+    left: 0;
+    right: 0;
+    max-height: 85vh;
+    border-bottom: 2px solid var(--bx-border);
+    transform: translateY(-100%);
+}
+
+.bx-offcanvas-bottom {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 85vh;
+    border-top: 2px solid var(--bx-border);
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    transform: translateY(100%);
+}
+
+/* Open State */
+.bx-offcanvas.bx-offcanvas-open {
+    transform: translate(0, 0) !important;
+}

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2. نظام الشبكة (Grid System) — Taqniya Design System</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Syne:wght@700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Local Fast Offline Icons & Tailwind -->
+    <script src="../../js/lucide.min.js"></script>
+    <script src="../../js/tailwind.min.js"></script>
+    <script src="../../js/tailwind.config.js"></script>
+    <!-- Global Core Styles -->
+    <link rel="stylesheet" href="../../css/taqniya.css">
+</head>
+<body class="min-h-screen bg-[var(--bx-canvas)] text-bx-text font-sans antialiased">
+
+    <!-- Global Floating Toast Stack Container -->
+    <div id="toastContainer" class="fixed top-4 left-4 z-[99999] flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
+
+    <!-- Extra Top Overlays (e.g. Drawers, Mount Points) -->
+    
+
+    <div class="max-w-[1600px] mx-auto p-4 sm:p-8 lg:p-12 space-y-8">
+        <!-- Component Header Navigation -->
+        <header class="flex items-center justify-between border-b border-bx-border pb-4">
+            <div class="flex items-center gap-3">
+                <a href="../../index.html" class="bx-tag hover:border-bx-primary transition-all">← المعرض العام</a>
+                <span class="text-bx-muted text-xs">/</span>
+                <span class="text-xs font-black text-bx-title">2. نظام الشبكة (Grid System)</span>
+            </div>
+            <button type="button" onclick="toggleTheme()" class="bx-tag text-xs font-bold hover:border-bx-primary cursor-pointer flex items-center gap-2">
+                <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+                <span>تبديل السمة (Light / Dark)</span>
+            </button>
+        </header>
+
+        <!-- Main Section Content -->
+        <main class="space-y-8">
+            <section id="grid" class="space-y-6">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <span class="w-2.5 h-7 rounded-full bg-bx-primary"></span>
+                        <h2 class="text-xl sm:text-2xl font-bold bx-title">2. نظام الشبكة والأعمدة (Grid System)</h2>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="bx-tag font-mono text-xs">12-Column Responsive Grid</span>
+                        <!-- Section Collapse Button -->
+                        <button onclick="toggleSection('sec-grid-body', 'sec-grid-btn')" id="sec-grid-btn"
+                            class="w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all cursor-pointer"
+                            title="طي / توسيع القسم">
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron-toggle"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Collapsible Body for Section 2 -->
+                <div id="sec-grid-body" class="accordion-content space-y-6">
+                    <!-- Container Card for Grid System -->
+                    <div class="bx-card p-6 space-y-8">
+
+                        <!-- Part A: 12-Column Base Representation -->
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-sm font-bold text-bx-title flex items-center gap-2">
+                                    <i data-lucide="grid" class="w-4 h-4 text-bx-primary"></i>
+                                    توزيع الأعمدة الأساسي القياسي (12 Columns Base)
+                                </h3>
+                                <span class="text-xs font-mono text-bx-muted">.col-1 (1/12)</span>
+                            </div>
+                            <!-- Visual 12 columns grid -->
+                            <div class="grid grid-cols-12 gap-2 text-center text-[11px] font-mono font-bold">
+                                <div
+                                    class="py-2.5 rounded-lg border border-[var(--bx-divider)] bg-[var(--bx-pill)] text-bx-primary">
+                                    1</div>
+                                <div
+                                    class="py-2.5 rounded-lg border border-[var(--bx-divider)] bg-[var(--bx-pill)] text-bx-primary">
+                                    2</div>
+                                <div
+                                    class="py-2.5 rounded-lg border border-[var(--bx-divider)] bg-[var(--bx-pill)] text-bx-primary">
+                                    3</div>
+                                <div
+                                    class="py-2.5 rounded-lg border border-[var(--bx-divider)] bg-[var(--bx-pill)] text-bx-primary">
+                                    4</div>
+                                <div
+                                    class="py-2.5 rounded-lg border border-[var(--bx-divider)] bg-[var(--bx-pill)] text-bx-primary">
+                                    5</div>
+                                <div
+                                    class="py-2.5 rounded-lg border border-[var(--bx-divider)] bg-[var(--bx-pill)] text-bx-primary">
+                                    6</div>
+                                <div
+                                    class="py-2.5 rounded-lg border border-[var(--bx-divider)] bg-[var(--bx-pill)] text-bx-primary">
+                                    7</div>
+                                <div
+                                    class="py-2.5 rounded-lg border border-[var(--bx-divider)] bg-[var(--bx-pill)] text-bx-primary">
+                                    8</div>
+                                <div
+                                    class="py-2.5 rounded-lg border border-[var(--bx-divider)] bg-[var(--bx-pill)] text-bx-primary">
+                                    9</div>
+                                <div
+                                    class="py-2.5 rounded-lg border border-[var(--bx-divider)] bg-[var(--bx-pill)] text-bx-primary">
+                                    10</div>
+                                <div
+                                    class="py-2.5 rounded-lg border border-[var(--bx-divider)] bg-[var(--bx-pill)] text-bx-primary">
+                                    11</div>
+                                <div
+                                    class="py-2.5 rounded-lg border border-[var(--bx-divider)] bg-[var(--bx-pill)] text-bx-primary">
+                                    12</div>
+                            </div>
+                        </div>
+
+                        <!-- Part B: Fractional Combinations (Bootstrap Style) -->
+                        <div class="space-y-4 pt-5 border-t border-[var(--bx-divider)]">
+                            <h3 class="text-sm font-bold text-bx-title flex items-center gap-2">
+                                <i data-lucide="layout" class="w-4 h-4 text-bx-primary"></i>
+                                النماذج التخطيطية الشائعة (Standard Fractional Layouts)
+                            </h3>
+
+                            <div class="space-y-3 text-xs font-mono font-bold">
+                                <!-- Half / Half (6 + 6) -->
+                                <div class="grid grid-cols-12 gap-3">
+                                    <div
+                                        class="col-span-12 sm:col-span-6 p-3.5 rounded-xl bg-[var(--bx-pill)] flex items-center justify-between transition-all hover:bg-[var(--bx-row-hover)]">
+                                        <span class="font-sans text-xs text-bx-title font-bold">نصف العرض (50%)</span>
+                                        <code class="text-bx-primary font-mono font-bold">col-6</code>
+                                    </div>
+                                    <div
+                                        class="col-span-12 sm:col-span-6 p-3.5 rounded-xl bg-[var(--bx-pill)] flex items-center justify-between transition-all hover:bg-[var(--bx-row-hover)]">
+                                        <span class="font-sans text-xs text-bx-title font-bold">نصف العرض (50%)</span>
+                                        <code class="text-bx-primary font-mono font-bold">col-6</code>
+                                    </div>
+                                </div>
+
+                                <!-- Thirds (4 + 4 + 4) -->
+                                <div class="grid grid-cols-12 gap-3">
+                                    <div
+                                        class="col-span-12 sm:col-span-4 p-3.5 rounded-xl bg-[var(--bx-pill)] flex items-center justify-between transition-all hover:bg-[var(--bx-row-hover)]">
+                                        <span class="font-sans text-xs text-bx-title font-bold">ثلث العرض (33.3%)</span>
+                                        <code class="text-bx-primary font-mono font-bold">col-4</code>
+                                    </div>
+                                    <div
+                                        class="col-span-12 sm:col-span-4 p-3.5 rounded-xl bg-[var(--bx-pill)] flex items-center justify-between transition-all hover:bg-[var(--bx-row-hover)]">
+                                        <span class="font-sans text-xs text-bx-title font-bold">ثلث العرض (33.3%)</span>
+                                        <code class="text-bx-primary font-mono font-bold">col-4</code>
+                                    </div>
+                                    <div
+                                        class="col-span-12 sm:col-span-4 p-3.5 rounded-xl bg-[var(--bx-pill)] flex items-center justify-between transition-all hover:bg-[var(--bx-row-hover)]">
+                                        <span class="font-sans text-xs text-bx-title font-bold">ثلث العرض (33.3%)</span>
+                                        <code class="text-bx-primary font-mono font-bold">col-4</code>
+                                    </div>
+                                </div>
+
+                                <!-- Main Content + Sidebar (8 + 4) -->
+                                <div class="grid grid-cols-12 gap-3">
+                                    <div
+                                        class="col-span-12 sm:col-span-8 p-3.5 rounded-xl bg-[var(--bx-pill)] flex items-center justify-between transition-all hover:bg-[var(--bx-row-hover)]">
+                                        <span class="font-sans text-xs text-bx-title font-bold">المحتوى الرئيسي
+                                            (66.6%)</span>
+                                        <code class="text-bx-primary font-mono font-bold">col-8</code>
+                                    </div>
+                                    <div
+                                        class="col-span-12 sm:col-span-4 p-3.5 rounded-xl bg-[var(--bx-pill)] flex items-center justify-between transition-all hover:bg-[var(--bx-row-hover)]">
+                                        <span class="font-sans text-xs text-bx-title font-bold">الشريط الجانبي
+                                            (33.3%)</span>
+                                        <code class="text-bx-primary font-mono font-bold">col-4</code>
+                                    </div>
+                                </div>
+
+                                <!-- Quarters (3 + 3 + 3 + 3) -->
+                                <div class="grid grid-cols-12 gap-3">
+                                    <div
+                                        class="col-span-6 sm:col-span-3 p-3.5 rounded-xl bg-[var(--bx-pill)] flex items-center justify-between transition-all hover:bg-[var(--bx-row-hover)]">
+                                        <span class="font-sans text-xs text-bx-title font-bold">ربع (25%)</span>
+                                        <code class="text-bx-primary font-mono font-bold">col-3</code>
+                                    </div>
+                                    <div
+                                        class="col-span-6 sm:col-span-3 p-3.5 rounded-xl bg-[var(--bx-pill)] flex items-center justify-between transition-all hover:bg-[var(--bx-row-hover)]">
+                                        <span class="font-sans text-xs text-bx-title font-bold">ربع (25%)</span>
+                                        <code class="text-bx-primary font-mono font-bold">col-3</code>
+                                    </div>
+                                    <div
+                                        class="col-span-6 sm:col-span-3 p-3.5 rounded-xl bg-[var(--bx-pill)] flex items-center justify-between transition-all hover:bg-[var(--bx-row-hover)]">
+                                        <span class="font-sans text-xs text-bx-title font-bold">ربع (25%)</span>
+                                        <code class="text-bx-primary font-mono font-bold">col-3</code>
+                                    </div>
+                                    <div
+                                        class="col-span-6 sm:col-span-3 p-3.5 rounded-xl bg-[var(--bx-pill)] flex items-center justify-between transition-all hover:bg-[var(--bx-row-hover)]">
+                                        <span class="font-sans text-xs text-bx-title font-bold">ربع (25%)</span>
+                                        <code class="text-bx-primary font-mono font-bold">col-3</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Part C: Interactive Responsive Grid Tester & Gutters -->
+                        <div class="space-y-4 pt-5 border-t border-[var(--bx-divider)]">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                                <div>
+                                    <h3 class="text-sm font-bold text-bx-title flex items-center gap-2">
+                                        <i data-lucide="columns" class="w-4 h-4 text-bx-primary"></i>
+                                        التباعد التفاعلي بين الأعمدة (Grid Gap / Gutters)
+                                    </h3>
+                                    <p class="text-xs text-bx-muted mt-0.5">تحكم حي في فواصل الأعمدة للتجربة الفورية</p>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <button onclick="setGridGap('gap-2', this)" class="grid-gap-btn">gap-2
+                                        (8px)</button>
+                                    <button onclick="setGridGap('gap-4', this)" class="grid-gap-btn active">gap-4
+                                        (16px)</button>
+                                    <button onclick="setGridGap('gap-6', this)" class="grid-gap-btn">gap-6
+                                        (24px)</button>
+                                </div>
+                            </div>
+
+                            <!-- Live Grid Container for Tester -->
+                            <div id="liveGridContainer"
+                                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 transition-all duration-300">
+                                <div class="p-4 rounded-xl bg-[var(--bx-pill)] text-center">
+                                    <span class="font-mono text-xs font-bold text-bx-primary">col-12 col-md-6
+                                        col-lg-3</span>
+                                </div>
+                                <div class="p-4 rounded-xl bg-[var(--bx-pill)] text-center">
+                                    <span class="font-mono text-xs font-bold text-bx-primary">col-12 col-md-6
+                                        col-lg-3</span>
+                                </div>
+                                <div class="p-4 rounded-xl bg-[var(--bx-pill)] text-center">
+                                    <span class="font-mono text-xs font-bold text-bx-primary">col-12 col-md-6
+                                        col-lg-3</span>
+                                </div>
+                                <div class="p-4 rounded-xl bg-[var(--bx-pill)] text-center">
+                                    <span class="font-mono text-xs font-bold text-bx-primary">col-12 col-md-6
+                                        col-lg-3</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== 3. ALIGNMENT & POSITIONING (المحاذاة والتموضع) ==================== -->
+        </main>
+    </div>
+
+    <!-- Global & Component JS -->
+    <script src="../../js/taqniya.js"></script>
+    <script src="component.js"></script>
+    <script>
+        // Guaranteed icon rendering
+        function renderIcons() {
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+        }
+        renderIcons();
+        document.addEventListener('DOMContentLoaded', renderIcons);
+        window.addEventListener('load', renderIcons);
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+/* ==========================================================================
+   NAVBAR COMPONENT STYLES
+   ========================================================================== */
+
+.bx-navbar {
+    width: 100%;
+    border-radius: var(--radius-l);
+    border: 1px solid var(--bx-border);
+    background: var(--bx-surface-solid);
+    padding: 0.875rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+}
+
+.bx-nav-action-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-m);
+    border: 1px solid var(--bx-border);
+    background: var(--bx-table-header);
+    color: var(--bx-muted);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.bx-nav-action-btn:hover {
+    color: var(--bx-primary);
+    border-color: var(--bx-primary);
+    background: var(--bx-pill);
+}

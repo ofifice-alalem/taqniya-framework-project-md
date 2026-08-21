@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3. المحاذاة والتموضع (Alignment) — Taqniya Design System</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Syne:wght@700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Local Fast Offline Icons & Tailwind -->
+    <script src="../../js/lucide.min.js"></script>
+    <script src="../../js/tailwind.min.js"></script>
+    <script src="../../js/tailwind.config.js"></script>
+    <!-- Global Core Styles -->
+    <link rel="stylesheet" href="../../css/taqniya.css">
+</head>
+<body class="min-h-screen bg-[var(--bx-canvas)] text-bx-text font-sans antialiased">
+
+    <!-- Global Floating Toast Stack Container -->
+    <div id="toastContainer" class="fixed top-4 left-4 z-[99999] flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
+
+    <!-- Extra Top Overlays (e.g. Drawers, Mount Points) -->
+    
+
+    <div class="max-w-[1600px] mx-auto p-4 sm:p-8 lg:p-12 space-y-8">
+        <!-- Component Header Navigation -->
+        <header class="flex items-center justify-between border-b border-bx-border pb-4">
+            <div class="flex items-center gap-3">
+                <a href="../../index.html" class="bx-tag hover:border-bx-primary transition-all">← المعرض العام</a>
+                <span class="text-bx-muted text-xs">/</span>
+                <span class="text-xs font-black text-bx-title">3. المحاذاة والتموضع (Alignment)</span>
+            </div>
+            <button type="button" onclick="toggleTheme()" class="bx-tag text-xs font-bold hover:border-bx-primary cursor-pointer flex items-center gap-2">
+                <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+                <span>تبديل السمة (Light / Dark)</span>
+            </button>
+        </header>
+
+        <!-- Main Section Content -->
+        <main class="space-y-8">
+            <section id="alignment" class="space-y-6">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <span class="w-2.5 h-7 rounded-full bg-bx-primary"></span>
+                        <h2 class="text-xl sm:text-2xl font-bold bx-title">3. المحاذاة والتموضع (Alignment &
+                            Positioning)</h2>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="bx-tag font-mono text-xs">Flexbox · Grid · Sticky · Fixed</span>
+                        <!-- Section Collapse Button -->
+                        <button onclick="toggleSection('sec-alignment-body', 'sec-alignment-btn')"
+                            id="sec-alignment-btn"
+                            class="w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all cursor-pointer"
+                            title="طي / توسيع القسم">
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron-toggle"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Collapsible Body for Section 3 -->
+                <div id="sec-alignment-body" class="accordion-content space-y-6">
+                    <!-- Container Card for Alignment & Positioning -->
+                    <div class="bx-card p-6 space-y-8">
+
+                        <!-- Part A: Interactive Centering & Alignment Lab -->
+                        <div class="space-y-5">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+                                <div>
+                                    <h3 class="text-sm font-bold text-bx-title flex items-center gap-2">
+                                        <i data-lucide="move" class="w-4 h-4 text-bx-primary"></i>
+                                        مختبر التوسيط والتوزيع الأفقي والطولي (Centering & Flow Lab)
+                                    </h3>
+                                    <p class="text-xs text-bx-muted mt-0.5">تحكم كامل في الاتجاهين: العرضي (Row) والطولي
+                                        (Column)</p>
+                                </div>
+                            </div>
+
+                            <!-- 2 Distinct Control Rows for Horizontal & Vertical Flow -->
+                            <div class="p-4 rounded-2xl bg-[var(--bx-pill)] space-y-3">
+                                <!-- Row 1: Horizontal Controls -->
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <span
+                                        class="text-xs font-bold text-bx-title min-w-[70px] flex items-center gap-1.5">
+                                        <i data-lucide="arrow-left-right" class="w-3.5 h-3.5 text-bx-primary"></i>
+                                        <span>عرضي:</span>
+                                    </span>
+                                    <div class="flex flex-wrap items-center gap-1.5">
+                                        <button onclick="setAlignmentMode('row-center', this)"
+                                            class="align-mode-btn grid-gap-btn active">توسيط عرضي</button>
+                                        <button onclick="setAlignmentMode('row-between', this)"
+                                            class="align-mode-btn grid-gap-btn">توزيع أطراف</button>
+                                        <button onclick="setAlignmentMode('row-around', this)"
+                                            class="align-mode-btn grid-gap-btn">توزيع متوازن</button>
+                                    </div>
+                                </div>
+
+                                <!-- Row 2: Vertical Controls -->
+                                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-[var(--bx-divider)]">
+                                    <span
+                                        class="text-xs font-bold text-bx-title min-w-[70px] flex items-center gap-1.5">
+                                        <i data-lucide="arrow-up-down" class="w-3.5 h-3.5 text-bx-primary"></i>
+                                        <span>طولي:</span>
+                                    </span>
+                                    <div class="flex flex-wrap items-center gap-1.5">
+                                        <button onclick="setAlignmentMode('col-center', this)"
+                                            class="align-mode-btn grid-gap-btn">توسيط طولي</button>
+                                        <button onclick="setAlignmentMode('col-between', this)"
+                                            class="align-mode-btn grid-gap-btn">توزيع طولي أطراف</button>
+                                        <button onclick="setAlignmentMode('col-around', this)"
+                                            class="align-mode-btn grid-gap-btn">توزيع طولي متوازن</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Live 2D Alignment Playground Box (Height 420px for studio-grade vertical clarity) -->
+                            <div id="alignPlayground"
+                                class="h-[420px] rounded-2xl border border-[var(--bx-divider)] bg-[var(--bx-table-header)] flex items-center justify-center gap-4 p-6 transition-all duration-300 relative overflow-hidden">
+                                <!-- Visual Axis Guidelines (واضحة ومحددة بدقة) -->
+                                <div
+                                    class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-60">
+                                    <div class="w-full h-px border-b-2 border-dashed border-[var(--bx-border-strong)]">
+                                    </div>
+                                    <div
+                                        class="h-full w-px border-r-2 border-dashed border-[var(--bx-border-strong)] absolute">
+                                    </div>
+                                </div>
+
+                                <!-- 3 Distinct Centered Target Elements -->
+                                <div
+                                    class="px-4 py-2.5 rounded-xl border border-bx-primary/40 bg-[var(--bx-pill)] text-center space-y-0.5 shadow-sm relative z-10 transition-all duration-300">
+                                    <span class="text-xs font-bold text-bx-title block">عنصر 01</span>
+                                    <span class="text-[10px] font-mono text-bx-muted">Start / Top</span>
+                                </div>
+
+                                <div
+                                    class="px-5 py-3 rounded-xl border-2 border-bx-primary bg-[var(--bx-surface-solid)] text-center space-y-0.5 shadow-md relative z-10 transition-all duration-300">
+                                    <div class="flex items-center gap-1.5 justify-center">
+                                        <i data-lucide="crosshair"
+                                            class="w-3.5 h-3.5 text-bx-primary animate-pulse"></i>
+                                        <span class="text-xs font-bold text-bx-title">عنصر 02 (المركز)</span>
+                                    </div>
+                                    <span class="text-[10px] font-mono text-bx-primary font-bold">Center Anchor</span>
+                                </div>
+
+                                <div
+                                    class="px-4 py-2.5 rounded-xl border border-bx-primary/40 bg-[var(--bx-pill)] text-center space-y-0.5 shadow-sm relative z-10 transition-all duration-300">
+                                    <span class="text-xs font-bold text-bx-title block">عنصر 03</span>
+                                    <span class="text-[10px] font-mono text-bx-muted">End / Bottom</span>
+                                </div>
+                            </div>
+
+                            <!-- Active Flex Utility Code Badge Display -->
+                            <div
+                                class="flex items-center justify-between px-4 py-2.5 rounded-xl bg-[var(--bx-pill)] text-xs font-mono">
+                                <span class="text-bx-muted font-bold font-sans">فئات المحاذاة الحالية (Active
+                                    Classes):</span>
+                                <code id="alignCodeLabel"
+                                    class="text-bx-primary font-bold">flex-row justify-center items-center gap-4</code>
+                            </div>
+                        </div>
+
+                        <!-- Part B: Sticky Stacking Demonstrations (Header & Sidebar) -->
+                        <div class="space-y-6 pt-5 border-t border-[var(--bx-divider)]">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                                <div>
+                                    <h3 class="text-sm font-bold text-bx-title flex items-center gap-2">
+                                        <i data-lucide="pin" class="w-4 h-4 text-bx-primary"></i>
+                                        العناصر الثابتة أثناء التمرير (Sticky Stacking Patterns)
+                                    </h3>
+                                    <p class="text-xs text-bx-muted mt-0.5">تثبيت شريط الرأس وتثبيت الأعمدة الجانبية
+                                        بالنسبة للمحتوى الأطول</p>
+                                </div>
+                                <span class="bx-tag text-[10px] font-mono">position: sticky;</span>
+                            </div>
+
+                            <!-- Sticky Demo 1: Sticky Header Bar -->
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <h4 class="text-xs font-bold text-bx-title flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-bx-primary"></span>
+                                        1. شريط الرأس الثابت في أعلى الحاوية (Sticky Header Bar)
+                                    </h4>
+                                    <code
+                                        class="text-[10px] font-mono text-bx-primary font-bold">sticky top-0 z-20</code>
+                                </div>
+
+                                <!-- Embedded Scrollable Box (Clear Border, Zero Shadow) -->
+                                <div
+                                    class="h-52 rounded-2xl border border-[var(--bx-border)] overflow-y-auto sidebar-scroll relative bg-[var(--bx-surface-solid)]">
+                                    <!-- Live Sticky Header (Distinctive Colored Surface + Primary Accent Border) -->
+                                    <div
+                                        class="sticky top-0 z-20 px-5 py-3.5 bx-sticky-bar flex items-center justify-between">
+                                        <div class="flex items-center gap-2">
+                                            <span class="w-2 h-2 rounded-full bg-bx-primary animate-ping"></span>
+                                            <span class="text-xs font-bold text-bx-title">شريط الرأس الثابت (Sticky
+                                                Bar)</span>
+                                        </div>
+                                        <span class="grid-gap-btn active cursor-default pointer-events-none">ثابت أثناء
+                                            السكرول</span>
+                                    </div>
+
+                                    <!-- Continuous divided rows like Section 1 Table -->
+                                    <div class="text-xs font-medium">
+                                        <div class="bx-list-row">
+                                            <span class="font-bold text-bx-title">سجل المعالجة المعمارية رقم #01</span>
+                                            <span class="bx-tag text-[11px] text-bx-muted">تمت المزامنة</span>
+                                        </div>
+                                        <div class="bx-list-row">
+                                            <span class="font-bold text-bx-title">سجل المعالجة المعمارية رقم #02</span>
+                                            <span class="bx-tag text-[11px] text-bx-muted">تمت المزامنة</span>
+                                        </div>
+                                        <div class="bx-list-row">
+                                            <span class="font-bold text-bx-title">سجل المعالجة المعمارية رقم #03</span>
+                                            <span class="bx-tag text-[11px] text-bx-muted">تمت المزامنة</span>
+                                        </div>
+                                        <div class="bx-list-row">
+                                            <span class="font-bold text-bx-title">سجل المعالجة المعمارية رقم #04</span>
+                                            <span class="bx-tag text-[11px] text-bx-muted">تمت المزامنة</span>
+                                        </div>
+                                        <div class="bx-list-row">
+                                            <span class="font-bold text-bx-title">سجل المعالجة المعمارية رقم #05</span>
+                                            <span class="bx-tag text-[11px] text-bx-muted">تمت المزامنة</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sticky Demo 2: Sticky Sidebar in Asymmetric Columns -->
+                            <div class="space-y-2 pt-3 border-t border-[var(--bx-divider)]">
+                                <div class="flex items-center justify-between">
+                                    <h4 class="text-xs font-bold text-bx-title flex items-center gap-2">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-bx-primary"></span>
+                                        2. تثبيت العمود القصير أثناء تمرير المحتوى الأطول (Sticky Sidebar Pattern)
+                                    </h4>
+                                    <code
+                                        class="text-[10px] font-mono text-bx-primary font-bold">sticky top-0 self-start</code>
+                                </div>
+
+                                <!-- Embedded Scrollable Box with 2 Asymmetric Columns (Clear Border, Zero Shadow) -->
+                                <div
+                                    class="h-64 rounded-2xl border border-[var(--bx-border)] overflow-y-auto sidebar-scroll relative p-4 bg-[var(--bx-surface-solid)]">
+                                    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-start relative">
+
+                                        <!-- Column 1: Short Sticky Column (العمود القصير الثابت بلون مميز) -->
+                                        <div
+                                            class="md:col-span-4 sticky top-0 self-start p-4 rounded-xl bx-sticky-sidebar-card space-y-3">
+                                            <div class="flex items-center justify-between">
+                                                <div class="flex items-center gap-2">
+                                                    <span
+                                                        class="w-2 h-2 rounded-full bg-bx-primary animate-ping"></span>
+                                                    <span class="text-xs font-black text-bx-title">بطاقة ثابتة
+                                                        (Sticky)</span>
+                                                </div>
+                                                <span
+                                                    class="grid-gap-btn active cursor-default pointer-events-none">ثابت
+                                                    مع السكرول</span>
+                                            </div>
+                                            <p class="text-[11px] text-bx-muted">هذا العمود قصير ويحتفظ بموضعه في الأعلى
+                                                أثناء تمرير العمود الطويل المجاور.</p>
+                                            <div
+                                                class="p-2.5 rounded-lg border border-[var(--bx-divider)] flex items-center justify-between text-xs font-bold text-bx-title">
+                                                <span>إجمالي المعاملات:</span>
+                                                <span class="font-mono text-bx-primary">6 سجلات</span>
+                                            </div>
+                                            <button
+                                                class="bx-btn bx-btn-primary w-full text-xs !py-2.5 !px-4 !rounded-xl shadow-md">
+                                                <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+                                                <span>تطبيق الإجراء</span>
+                                            </button>
+                                        </div>
+
+                                        <!-- Column 2: Long Content Column (Continuous divided list like Section 1 Table) -->
+                                        <div
+                                            class="md:col-span-8 rounded-xl border border-[var(--bx-border)] overflow-hidden bg-[var(--bx-canvas)]">
+                                            <div class="bx-list-row">
+                                                <div>
+                                                    <span class="font-bold text-bx-title block">السجل المعماري الموثق
+                                                        #01</span>
+                                                    <span class="text-[10px] text-bx-muted">مزامنة مصفوفة المكونات
+                                                        القياسية</span>
+                                                </div>
+                                                <span
+                                                    class="bx-tag text-[10px] text-emerald-500 border-emerald-500/40 font-mono font-bold">مكتمل
+                                                    100%</span>
+                                            </div>
+                                            <div class="bx-list-row">
+                                                <div>
+                                                    <span class="font-bold text-bx-title block">السجل المعماري الموثق
+                                                        #02</span>
+                                                    <span class="text-[10px] text-bx-muted">تطبيق نظام الشبكة المتجاوب
+                                                        12 عمود</span>
+                                                </div>
+                                                <span
+                                                    class="bx-tag text-[10px] text-emerald-500 border-emerald-500/40 font-mono font-bold">مكتمل
+                                                    100%</span>
+                                            </div>
+                                            <div class="bx-list-row">
+                                                <div>
+                                                    <span class="font-bold text-bx-title block">السجل المعماري الموثق
+                                                        #03</span>
+                                                    <span class="text-[10px] text-bx-muted">توثيق ألوان المتغيرات النقية
+                                                        Pure CSS Tokens</span>
+                                                </div>
+                                                <span
+                                                    class="bx-tag text-[10px] text-emerald-500 border-emerald-500/40 font-mono font-bold">مكتمل
+                                                    100%</span>
+                                            </div>
+                                            <div class="bx-list-row">
+                                                <div>
+                                                    <span class="font-bold text-bx-title block">السجل المعماري الموثق
+                                                        #04</span>
+                                                    <span class="text-[10px] text-bx-muted">إعداد مؤشرات KPI واستقلالية
+                                                        الـ Typography</span>
+                                                </div>
+                                                <span
+                                                    class="bx-tag text-[10px] text-emerald-500 border-emerald-500/40 font-mono font-bold">مكتمل
+                                                    100%</span>
+                                            </div>
+                                            <div class="bx-list-row">
+                                                <div>
+                                                    <span class="font-bold text-bx-title block">السجل المعماري الموثق
+                                                        #05</span>
+                                                    <span class="text-[10px] text-bx-muted">بناء قواعد التحقق في النماذج
+                                                        والجداول</span>
+                                                </div>
+                                                <span
+                                                    class="bx-tag text-[10px] text-emerald-500 border-emerald-500/40 font-mono font-bold">مكتمل
+                                                    100%</span>
+                                            </div>
+                                            <div class="bx-list-row">
+                                                <div>
+                                                    <span class="font-bold text-bx-title block">السجل المعماري الموثق
+                                                        #06</span>
+                                                    <span class="text-[10px] text-bx-muted">الاعتماد النهائي للتسليم
+                                                        المعماري</span>
+                                                </div>
+                                                <span
+                                                    class="bx-tag text-[10px] text-emerald-500 border-emerald-500/40 font-mono font-bold">مكتمل
+                                                    100%</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Part C: Real-World Absolute & Floating UI Patterns -->
+                        <div class="space-y-4 pt-5 border-t border-[var(--bx-divider)]">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-sm font-bold text-bx-title flex items-center gap-2">
+                                    <i data-lucide="layers" class="w-4 h-4 text-bx-primary"></i>
+                                    أمثلة تطبيقية للتموضع المطلق والعائم (Real-World Absolute & Floating Patterns)
+                                </h3>
+                                <span class="bx-tag text-[10px] font-mono">position: absolute;</span>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                                <!-- Pattern 1: Notification Badge on Icon -->
+                                <div
+                                    class="p-5 rounded-2xl border border-[var(--bx-border)] bg-[var(--bx-surface-solid)] space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xs font-bold text-bx-title flex items-center gap-2">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-bx-primary"></span>
+                                            1. عداد التنبيهات على الأيقونة
+                                        </span>
+                                        <code
+                                            class="text-[10px] font-mono text-bx-primary font-bold px-2 py-0.5 rounded-md border border-[var(--bx-border)]">top-0 / left-0</code>
+                                    </div>
+                                    <div
+                                        class="h-24 rounded-xl border border-[var(--bx-divider)] bg-[var(--bx-table-header)] flex items-center justify-center">
+                                        <!-- Icon with Absolute Counter -->
+                                        <div class="relative">
+                                            <div
+                                                class="w-12 h-12 rounded-xl border border-[var(--bx-border)] bg-[var(--bx-surface-solid)] flex items-center justify-center text-bx-title">
+                                                <i data-lucide="bell" class="w-5 h-5 text-bx-primary"></i>
+                                            </div>
+                                            <!-- Absolute Badge -->
+                                            <span
+                                                class="absolute -top-1.5 -left-1.5 w-5 h-5 rounded-full bg-red-500 text-white font-mono text-[10px] font-bold flex items-center justify-center ring-2 ring-[var(--bx-surface-solid)] animate-pulse">
+                                                3
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <p class="text-[11px] text-bx-muted">تثبيت وسام العداد في زاوية الأيقونة عبر التموضع
+                                        المطلق.</p>
+                                </div>
+
+                                <!-- Pattern 2: Online Status Indicator on Avatar -->
+                                <div
+                                    class="p-5 rounded-2xl border border-[var(--bx-border)] bg-[var(--bx-surface-solid)] space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xs font-bold text-bx-title flex items-center gap-2">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-bx-primary"></span>
+                                            2. حالة اتصال المستخدم
+                                        </span>
+                                        <code
+                                            class="text-[10px] font-mono text-bx-primary font-bold px-2 py-0.5 rounded-md border border-[var(--bx-border)]">bottom-0 / left-0</code>
+                                    </div>
+                                    <div
+                                        class="h-24 rounded-xl border border-[var(--bx-divider)] bg-[var(--bx-table-header)] flex items-center justify-center">
+                                        <!-- Avatar with Absolute Status Dot -->
+                                        <div class="relative">
+                                            <div
+                                                class="w-12 h-12 rounded-full border-2 border-bx-primary/40 bg-[var(--bx-surface-solid)] flex items-center justify-center font-bold text-bx-primary text-xs">
+                                                ع.م
+                                            </div>
+                                            <!-- Absolute Status Dot -->
+                                            <span
+                                                class="absolute bottom-0 left-0 w-3.5 h-3.5 rounded-full bg-emerald-500 ring-2 ring-[var(--bx-surface-solid)] flex items-center justify-center">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <p class="text-[11px] text-bx-muted">نقطة حالة نشطة نابضة في أسفل زاوية الصورة
+                                        الرمزية.</p>
+                                </div>
+
+                                <!-- Pattern 3: Corner Ribbon / Badge on Card -->
+                                <div
+                                    class="p-5 rounded-2xl border border-[var(--bx-border)] bg-[var(--bx-surface-solid)] space-y-3 relative overflow-hidden">
+                                    <!-- Absolute Corner Pill -->
+                                    <span
+                                        class="absolute top-4 left-4 grid-gap-btn active text-[10px] !py-0.5 !px-2.5 pointer-events-none">
+                                        PRO
+                                    </span>
+                                    <div class="space-y-1">
+                                        <span class="text-xs font-bold text-bx-title flex items-center gap-2">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-bx-primary"></span>
+                                            3. شارة تمييز البطاقة
+                                        </span>
+                                        <code
+                                            class="text-[10px] font-mono text-bx-primary font-bold inline-block px-2 py-0.5 rounded-md border border-[var(--bx-border)]">absolute top-4 left-4</code>
+                                    </div>
+                                    <div
+                                        class="p-3.5 rounded-xl border border-[var(--bx-divider)] bg-[var(--bx-table-header)] space-y-1">
+                                        <span class="text-xs font-bold text-bx-title block">خطة المعمار المتقدم</span>
+                                        <span class="text-[11px] font-mono text-bx-primary font-bold">99$ /
+                                            شهرياً</span>
+                                    </div>
+                                    <p class="text-[11px] text-bx-muted">تثبيت أوسمة العضوية أو الخصومات في زاوية
+                                        البطاقة.</p>
+                                </div>
+
+                                <!-- Pattern 4: Floating Action Bar in Container -->
+                                <div
+                                    class="p-5 rounded-2xl border border-[var(--bx-border)] bg-[var(--bx-surface-solid)] space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xs font-bold text-bx-title flex items-center gap-2">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-bx-primary"></span>
+                                            4. شريط الإجراءات العائم
+                                        </span>
+                                        <code
+                                            class="text-[10px] font-mono text-bx-primary font-bold px-2 py-0.5 rounded-md border border-[var(--bx-border)]">bottom-2 / center</code>
+                                    </div>
+                                    <div
+                                        class="h-24 rounded-xl border border-[var(--bx-divider)] bg-[var(--bx-table-header)] relative flex items-center justify-center p-2">
+                                        <span class="text-[10px] text-bx-muted opacity-40 font-mono">منطقة محتوى
+                                            الحاوية</span>
+                                        <!-- Absolute Floating Bar -->
+                                        <div
+                                            class="absolute bottom-2.5 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full border border-[var(--bx-border)] bg-[var(--bx-surface-solid)] flex items-center gap-3 text-[11px] font-bold">
+                                            <button class="text-bx-primary hover:underline flex items-center gap-1">
+                                                <i data-lucide="check" class="w-3.5 h-3.5"></i> حفظ
+                                            </button>
+                                            <span class="w-px h-3.5 bg-[var(--bx-divider)]"></span>
+                                            <button class="text-red-500 hover:underline flex items-center gap-1">
+                                                <i data-lucide="x" class="w-3.5 h-3.5"></i> إلغاء
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <p class="text-[11px] text-bx-muted">كبسولة إجراءات سريعة عائمة في أسفل الحاوية.</p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== 4. TYPOGRAPHY & FONTS (الخطوط والتايبوغرافي) ==================== -->
+        </main>
+    </div>
+
+    <!-- Global & Component JS -->
+    <script src="../../js/taqniya.js"></script>
+    <script src="component.js"></script>
+    <script>
+        // Guaranteed icon rendering
+        function renderIcons() {
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+        }
+        renderIcons();
+        document.addEventListener('DOMContentLoaded', renderIcons);
+        window.addEventListener('load', renderIcons);
+    </script>
+</body>
+</html>

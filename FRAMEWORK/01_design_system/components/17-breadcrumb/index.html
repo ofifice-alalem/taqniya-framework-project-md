@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>17. مسارات التنقل (Breadcrumbs) — Taqniya Design System</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Syne:wght@700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Local Fast Offline Icons & Tailwind -->
+    <script src="../../js/lucide.min.js"></script>
+    <script src="../../js/tailwind.min.js"></script>
+    <script src="../../js/tailwind.config.js"></script>
+    <!-- Global Core Styles -->
+    <link rel="stylesheet" href="../../css/taqniya.css">
+</head>
+<body class="min-h-screen bg-[var(--bx-canvas)] text-bx-text font-sans antialiased">
+
+    <!-- Global Floating Toast Stack Container -->
+    <div id="toastContainer" class="fixed top-4 left-4 z-[99999] flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
+
+    <!-- Extra Top Overlays (e.g. Drawers, Mount Points) -->
+    
+
+    <div class="max-w-[1600px] mx-auto p-4 sm:p-8 lg:p-12 space-y-8">
+        <!-- Component Header Navigation -->
+        <header class="flex items-center justify-between border-b border-bx-border pb-4">
+            <div class="flex items-center gap-3">
+                <a href="../../index.html" class="bx-tag hover:border-bx-primary transition-all">← المعرض العام</a>
+                <span class="text-bx-muted text-xs">/</span>
+                <span class="text-xs font-black text-bx-title">17. مسارات التنقل (Breadcrumbs)</span>
+            </div>
+            <button type="button" onclick="toggleTheme()" class="bx-tag text-xs font-bold hover:border-bx-primary cursor-pointer flex items-center gap-2">
+                <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+                <span>تبديل السمة (Light / Dark)</span>
+            </button>
+        </header>
+
+        <!-- Main Section Content -->
+        <main class="space-y-8">
+            <section id="breadcrumb" class="space-y-6">
+                <div class="flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <span class="w-2.5 h-7 rounded-full bg-bx-primary"></span>
+                        <h2 class="text-xl sm:text-2xl font-bold bx-title">17. مسارات التنقل الهرمي (Breadcrumbs)</h2>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="bx-tag font-mono text-xs">Hierarchy · Slash · Chevron · Glass</span>
+                        <button onclick="toggleSection('sec-breadcrumb-body', 'sec-breadcrumb-btn')"
+                            id="sec-breadcrumb-btn"
+                            class="w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all cursor-pointer"
+                            title="طي / توسيع القسم">
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron-toggle"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="sec-breadcrumb-body" class="accordion-content space-y-6">
+                    <div class="bx-card p-6 sm:p-8 space-y-6">
+                        <!-- 17.1 Slash Breadcrumb -->
+                        <div class="space-y-2.5 pb-5 border-b border-bx-divider">
+                            <div class="text-xs font-bold text-bx-muted">17.1 المسار القياسي بالشرطة المائلة (Classic
+                                Slash Navigation):</div>
+                            <nav class="flex items-center gap-2 text-xs font-bold flex-wrap" aria-label="Breadcrumb">
+                                <a href="#breakpoints"
+                                    class="flex items-center gap-1.5 text-bx-muted hover:text-bx-primary transition-colors">
+                                    <i data-lucide="home" class="w-3.5 h-3.5"></i>
+                                    <span>الرئيسية</span>
+                                </a>
+                                <span class="text-bx-muted">/</span>
+                                <a href="#cards" class="text-bx-muted hover:text-bx-primary transition-colors">المكونات
+                                    المعمارية</a>
+                                <span class="text-bx-muted">/</span>
+                                <a href="#forms" class="text-bx-muted hover:text-bx-primary transition-colors">النماذج
+                                    وحقول الإدخال</a>
+                                <span class="text-bx-muted">/</span>
+                                <span class="text-bx-primary font-black">توثيق الحقول المتقدمة</span>
+                            </nav>
+                        </div>
+
+                        <!-- 17.2 Chevron Arrow Breadcrumb -->
+                        <div class="space-y-2.5 pb-5 border-b border-bx-divider">
+                            <div class="text-xs font-bold text-bx-muted">17.2 مسار الأسهم التفاعلي بالكبسولات (Chevron
+                                Arrows):</div>
+                            <nav class="flex items-center gap-1.5 text-xs font-bold flex-wrap">
+                                <a href="#colors"
+                                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-bx-border bg-[var(--bx-surface-solid)] text-bx-muted hover:text-bx-primary hover:border-bx-primary transition-all">
+                                    <i data-lucide="layers" class="w-3.5 h-3.5 text-bx-primary"></i>
+                                    <span>لوحة التحكم</span>
+                                </a>
+                                <i data-lucide="chevron-left" class="w-4 h-4 text-bx-muted"></i>
+                                <a href="#tables"
+                                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-bx-border bg-[var(--bx-surface-solid)] text-bx-muted hover:text-bx-primary hover:border-bx-primary transition-all">
+                                    <span>قواعد البيانات</span>
+                                </a>
+                                <i data-lucide="chevron-left" class="w-4 h-4 text-bx-muted"></i>
+                                <a href="#tasks"
+                                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-bx-border bg-[var(--bx-surface-solid)] text-bx-muted hover:text-bx-primary hover:border-bx-primary transition-all">
+                                    <span>PostgreSQL 16</span>
+                                </a>
+                                <i data-lucide="chevron-left" class="w-4 h-4 text-bx-muted"></i>
+                                <span
+                                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-bx-pill border border-bx-primary text-bx-primary font-black">
+                                    <i data-lucide="table" class="w-3.5 h-3.5"></i>
+                                    <span>جداول الربط المعماري SSoT</span>
+                                </span>
+                            </nav>
+                        </div>
+
+                        <!-- 17.3 Modern Glassmorphic Floating Bar with Actions -->
+                        <div class="space-y-2.5">
+                            <div class="text-xs font-bold text-bx-muted">17.3 مسار الكبسولة الزجاجية العائم مع زر النسخ
+                                السريع (Glassmorphic Bar):</div>
+                            <div
+                                class="p-3 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-inner">
+                                <div class="flex items-center gap-2 text-xs font-bold overflow-x-auto">
+                                    <a href="#breakpoints"
+                                        class="w-8 h-8 rounded-xl bg-[var(--bx-surface-solid)] border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-primary shrink-0 transition-all">
+                                        <i data-lucide="home" class="w-4 h-4"></i>
+                                    </a>
+                                    <i data-lucide="slash" class="w-3.5 h-3.5 text-bx-muted"></i>
+                                    <span
+                                        class="px-2.5 py-1 rounded-lg bg-[var(--bx-surface-solid)] border border-bx-border text-bx-muted">منظومة
+                                        تقنية 3.0</span>
+                                    <i data-lucide="slash" class="w-3.5 h-3.5 text-bx-muted"></i>
+                                    <span
+                                        class="px-2.5 py-1 rounded-lg bg-[var(--bx-surface-solid)] border border-bx-border text-bx-muted">Architectural
+                                        Core</span>
+                                    <i data-lucide="slash" class="w-3.5 h-3.5 text-bx-muted"></i>
+                                    <span
+                                        class="px-3 py-1 rounded-lg bg-bx-primary text-white font-black text-xs shadow-sm">
+                                        Security 2FA Module
+                                    </span>
+                                </div>
+
+                                <button
+                                    onclick="showToast('info', 'تم نسخ المسار', 'تم نسخ مسار التنقل المعماري إلى الحافظة بنجاح')"
+                                    class="bx-btn bx-btn-outline text-xs px-3.5 shrink-0">
+                                    <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                                    <span>نسخ المسار</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== 18. ACCORDION ==================== -->
+        </main>
+    </div>
+
+    <!-- Global & Component JS -->
+    <script src="../../js/taqniya.js"></script>
+    <script src="component.js"></script>
+    <script>
+        // Guaranteed icon rendering
+        function renderIcons() {
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+        }
+        renderIcons();
+        document.addEventListener('DOMContentLoaded', renderIcons);
+        window.addEventListener('load', renderIcons);
+    </script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4. الخطوط والتايبوغرافي (Typography) — Taqniya Design System</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Syne:wght@700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Local Fast Offline Icons & Tailwind -->
+    <script src="../../js/lucide.min.js"></script>
+    <script src="../../js/tailwind.min.js"></script>
+    <script src="../../js/tailwind.config.js"></script>
+    <!-- Global Core Styles -->
+    <link rel="stylesheet" href="../../css/taqniya.css">
+</head>
+<body class="min-h-screen bg-[var(--bx-canvas)] text-bx-text font-sans antialiased">
+
+    <!-- Global Floating Toast Stack Container -->
+    <div id="toastContainer" class="fixed top-4 left-4 z-[99999] flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
+
+    <!-- Extra Top Overlays (e.g. Drawers, Mount Points) -->
+    
+
+    <div class="max-w-[1600px] mx-auto p-4 sm:p-8 lg:p-12 space-y-8">
+        <!-- Component Header Navigation -->
+        <header class="flex items-center justify-between border-b border-bx-border pb-4">
+            <div class="flex items-center gap-3">
+                <a href="../../index.html" class="bx-tag hover:border-bx-primary transition-all">← المعرض العام</a>
+                <span class="text-bx-muted text-xs">/</span>
+                <span class="text-xs font-black text-bx-title">4. الخطوط والتايبوغرافي (Typography)</span>
+            </div>
+            <button type="button" onclick="toggleTheme()" class="bx-tag text-xs font-bold hover:border-bx-primary cursor-pointer flex items-center gap-2">
+                <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+                <span>تبديل السمة (Light / Dark)</span>
+            </button>
+        </header>
+
+        <!-- Main Section Content -->
+        <main class="space-y-8">
+            <section id="typography" class="space-y-6">
+                <div class="flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <span class="w-2.5 h-7 rounded-full bg-bx-primary"></span>
+                        <h2 class="text-xl sm:text-2xl font-bold bx-title">4. الخطوط والتايبوغرافي (Typography & Fonts)
+                        </h2>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="bx-tag text-xs">Syne · Alexandria · Tajawal</span>
+                        <!-- Section Collapse Button -->
+                        <button onclick="toggleSection('sec-typography-body', 'sec-typography-btn')"
+                            id="sec-typography-btn"
+                            class="w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all cursor-pointer"
+                            title="طي / توسيع القسم">
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron-toggle"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Collapsible Body for Section 4 -->
+                <div id="sec-typography-body" class="accordion-content space-y-6">
+
+                    <!-- Part A: Font Families Matrix -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                        <!-- Card 1: Geometric Display (Syne + Alexandria) -->
+                        <div class="bx-card p-6 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span
+                                    class="text-xs font-bold text-bx-primary px-2.5 py-0.5 rounded-full border border-bx-border bg-[var(--bx-table-header)]">Display
+                                    & Geometric</span>
+                                <span class="text-xs text-bx-muted font-bold">Syne + Alexandria</span>
+                            </div>
+                            <h3 class="text-2xl font-black text-bx-title"
+                                style="font-family: 'Alexandria', 'Syne', sans-serif;">الإسكندرية Alexandria</h3>
+                            <p class="text-xs text-bx-muted leading-relaxed">الخط الهندسي القياسي الفاخر للعناوين
+                                البصرية الكبرى، الأرقام والإحصائيات، مطابق لطابع Syne العصري.</p>
+                            <div class="p-3 rounded-xl border border-bx-border bg-[var(--bx-table-header)] text-xl font-extrabold text-bx-primary text-center"
+                                style="font-family: 'Alexandria', 'Syne', sans-serif;">
+                                تقنية المعمارية — 2026
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Tajawal Standard UI -->
+                        <div class="bx-card p-6 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span
+                                    class="text-xs font-bold text-bx-primary px-2.5 py-0.5 rounded-full border border-bx-border bg-[var(--bx-table-header)]">Primary
+                                    UI & Body</span>
+                                <span class="text-xs text-bx-muted font-bold">Tajawal Regular</span>
+                            </div>
+                            <h3 class="text-2xl font-bold font-sans text-bx-title">تجوال Tajawal</h3>
+                            <p class="text-xs text-bx-muted leading-relaxed">الخط العربي القياسي المتزن لكافة النصوص،
+                                الجداول، النماذج، وعناصر الواجهة التفاعلية.</p>
+                            <div
+                                class="p-3 rounded-xl border border-bx-border bg-[var(--bx-table-header)] font-sans text-sm font-bold text-bx-title text-center">
+                                واجهات رقمية متكاملة وسهلة القراءة
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Tajawal Bold / Emphasis -->
+                        <div class="bx-card p-6 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span
+                                    class="text-xs font-bold text-bx-primary px-2.5 py-0.5 rounded-full border border-bx-border bg-[var(--bx-table-header)]">UI
+                                    Headings & Cards</span>
+                                <span class="text-xs text-bx-muted font-bold">Tajawal Bold</span>
+                            </div>
+                            <h3 class="text-2xl font-extrabold font-sans text-bx-title">تجوال عريض Tajawal</h3>
+                            <p class="text-xs text-bx-muted leading-relaxed">الوزن العريض من خط تجوال المخصص لعناوين
+                                البطاقات، الأزرار، وحقول النماذج الرئيسية.</p>
+                            <div
+                                class="p-3 rounded-xl border border-bx-border bg-[var(--bx-table-header)] font-sans text-sm font-black text-bx-primary text-center">
+                                بطاقات مؤشرات الأداء والتحكم
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part B: Type Scale Hierarchy -->
+                    <div class="bx-card p-6 space-y-5">
+                        <div class="flex items-center justify-between border-b border-bx-border pb-3">
+                            <h3 class="text-sm font-bold text-bx-title flex items-center gap-2">
+                                <i data-lucide="align-right" class="w-4 h-4 text-bx-primary"></i>
+                                سلم التدرج الهرمي للنصوص (Typography Hierarchy Scale)
+                            </h3>
+                            <span class="bx-tag text-[10px]">Scale 1.250 · Geometric Arabic</span>
+                        </div>
+
+                        <div class="space-y-4 divide-y divide-[var(--bx-divider)]">
+                            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pt-2">
+                                <span class="text-xs text-bx-muted w-32 shrink-0">Display 3XL · 48px</span>
+                                <p class="text-3xl sm:text-5xl font-black text-bx-title flex-1"
+                                    style="font-family: 'Alexandria', 'Syne', sans-serif;">منظومة تقنية المعمارية</p>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pt-4">
+                                <span class="text-xs text-bx-muted w-32 shrink-0">Heading 1 · 32px</span>
+                                <p class="text-2xl sm:text-3xl font-extrabold text-bx-title flex-1"
+                                    style="font-family: 'Alexandria', 'Syne', sans-serif;">توثيق شامل وموحد للواجهات</p>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pt-4">
+                                <span class="text-xs text-bx-muted w-32 shrink-0">Heading 2 · 24px</span>
+                                <p class="text-xl sm:text-2xl font-bold text-bx-title flex-1"
+                                    style="font-family: 'Alexandria', sans-serif;">هيكلية المكونات ومصفوفة الأداء</p>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pt-4">
+                                <span class="text-xs text-bx-muted w-32 shrink-0">Body Text · 14px</span>
+                                <p class="text-sm font-sans text-bx-text leading-relaxed flex-1">يعتمد نظام التصميم على
+                                    هوية بصرية دقيقة تجمع بين الأناقة وسهولة القراءة في كافة ظروف الإضاءة.</p>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pt-4">
+                                <span class="text-xs text-bx-muted w-32 shrink-0">Caption · 12px</span>
+                                <p class="text-xs text-bx-muted flex-1 font-sans">نصوص توضيحية وملاحظات فرعية معتمدة من
+                                    وثيقة الـ SSoT المعمارية.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part C: Interactive Font Lab -->
+                    <div class="bx-card p-6 sm:p-8 space-y-6">
+                        <div
+                            class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-bx-border pb-4">
+                            <div>
+                                <h3 class="font-bold text-base text-bx-title"
+                                    style="font-family: 'Alexandria', sans-serif;">مختبر التايبوغرافي التفاعلي</h3>
+                                <p class="text-xs text-bx-muted">تجربة حية للخطوط الهندسية والقياسية والأحجام في الوقت
+                                    الفعلي</p>
+                            </div>
+
+                            <div class="flex flex-wrap items-center gap-3">
+                                <!-- Font Family Switcher -->
+                                <div
+                                    class="flex items-center p-1 rounded-xl border border-bx-border bg-[var(--bx-table-header)] gap-1">
+                                    <button onclick="updateFontFamily('\'Alexandria\', sans-serif', this)"
+                                        class="font-lab-family-btn px-2.5 py-1 text-xs font-bold rounded-lg bg-bx-primary text-white transition-all">Alexandria
+                                        (هندسي)</button>
+                                    <button onclick="updateFontFamily('\'Tajawal\', sans-serif', this)"
+                                        class="font-lab-family-btn px-2.5 py-1 text-xs font-bold rounded-lg text-bx-muted hover:text-bx-primary transition-all">Tajawal
+                                        (قياسي)</button>
+                                    <button
+                                        onclick="updateFontFamily('\'Tajawal\', sans-serif', this); document.getElementById('fontPreview').style.fontWeight = '900';"
+                                        class="font-lab-family-btn px-2.5 py-1 text-xs font-extrabold rounded-lg text-bx-muted hover:text-bx-primary transition-all">Tajawal
+                                        (عريض)</button>
+                                </div>
+
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-bx-muted">الحجم:</span>
+                                    <input type="range" min="16" max="44" value="28"
+                                        oninput="updateFontSlider(this.value)" class="w-24 sm:w-32 accent-bx-primary">
+                                    <span id="fontLabel"
+                                        class="text-xs font-black px-2.5 py-1 rounded-full bg-bx-primary text-white">28px</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="text" id="fontInput" oninput="updateFontLive(this.value)"
+                            value="إطار عمل تقنية: هندسة وتوثيق النظم البرمجية — TAQNIYA 2026"
+                            class="bx-input font-bold">
+
+                        <div class="p-6 rounded-2xl border border-bx-border bg-[var(--bx-table-header)]">
+                            <p id="fontPreview" class="bx-title leading-snug font-bold"
+                                style="font-size: 28px; font-family: 'Alexandria', sans-serif;">إطار عمل تقنية: هندسة
+                                وتوثيق النظم البرمجية — TAQNIYA 2026</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ==================== 5. IMAGES & MEDIA (التعامل مع الصور والوسائط) ==================== -->
+        </main>
+    </div>
+
+    <!-- Global & Component JS -->
+    <script src="../../js/taqniya.js"></script>
+    <script src="component.js"></script>
+    <script>
+        // Guaranteed icon rendering
+        function renderIcons() {
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+        }
+        renderIcons();
+        document.addEventListener('DOMContentLoaded', renderIcons);
+        window.addEventListener('load', renderIcons);
+    </script>
+</body>
+</html>
