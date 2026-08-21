@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10. مجموعات الأزرار والتحكم المقسم (Button Groups & Segmented Controls) — Taqniya Design System</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Syne:wght@700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Local Fast Offline Icons & Tailwind -->
+    <script src="../../js/lucide.min.js"></script>
+    <script src="../../js/tailwind.min.js"></script>
+    <script src="../../js/tailwind.config.js"></script>
+    <!-- Global Core Styles -->
+    <link rel="stylesheet" href="../../css/taqniya.css">
+</head>
+<body class="min-h-screen bg-[var(--bx-canvas)] text-bx-text font-sans antialiased">
+
+    <!-- Global Floating Toast Stack Container -->
+    <div id="toastContainer" class="fixed top-4 left-4 z-[99999] flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
+
+    <div class="max-w-[1600px] mx-auto p-4 sm:p-8 lg:p-12 space-y-8">
+        <!-- Component Header Navigation -->
+        <header class="flex items-center justify-between border-b border-bx-border pb-4">
+            <div class="flex items-center gap-3">
+                <a href="../../index.html" class="bx-tag hover:border-bx-primary transition-all">← المعرض العام</a>
+                <span class="text-bx-muted text-xs">/</span>
+                <span class="text-xs font-black text-bx-title">10. مجموعات الأزرار والتحكم المقسم (Button Groups & Segmented Controls)</span>
+            </div>
+            <button type="button" onclick="toggleTheme()" class="bx-tag text-xs font-bold hover:border-bx-primary cursor-pointer flex items-center gap-2">
+                <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+                <span>تبديل السمة (Light / Dark)</span>
+            </button>
+        </header>
+
+        <!-- Main Section Content -->
+        <main class="space-y-8">
+            <section id="button-groups" class="space-y-6">
+                <div class="flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <span class="w-2.5 h-7 rounded-full bg-bx-primary"></span>
+                        <h2 class="text-xl sm:text-2xl font-bold bx-title">10. مجموعات الأزرار وأشرطة الأدوات (Button
+                            Groups & Toolbars)</h2>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="bx-tag font-mono text-xs">Segmented · Checkbox · Radio · Toolbars ·
+                            Pagination</span>
+                        <!-- Section Collapse Button -->
+                        <button onclick="toggleSection('sec-btngroups-body', 'sec-btngroups-btn')"
+                            id="sec-btngroups-btn"
+                            class="w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all cursor-pointer"
+                            title="طي / توسيع القسم">
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron-toggle"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Collapsible Body for Section 10 -->
+                <div id="sec-btngroups-body" class="accordion-content space-y-6">
+
+                    <!-- Part 1: Checkbox & Radio Button Groups -->
+                    <div class="bx-card p-6 sm:p-8 space-y-6">
+                        <div class="flex items-center justify-between border-b border-bx-border pb-3">
+                            <div>
+                                <h3 class="text-sm sm:text-base font-black text-bx-title flex items-center gap-2">
+                                    <i data-lucide="sliders" class="w-4 h-4 text-bx-primary"></i>
+                                    1. مجموعات أزرار التبديل (Segmented Radio & Checkbox Groups)
+                                </h3>
+                                <p class="text-xs text-bx-muted mt-0.5">مجموعات متصلة تعمل كأزرار راديو (مفردة) أو
+                                    مربعات اختيار (متعددة)</p>
+                            </div>
+                            <span class="bx-tag text-[10px]">Segmented Controls</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Segmented Radio Group (Single Choice) -->
+                            <div class="space-y-3">
+                                <label
+                                    class="text-xs font-black uppercase text-bx-muted flex items-center justify-between">
+                                    <span>مجموعة أزرار راديو (Radio Group - Single Choice)</span>
+                                    <span class="text-[10px] text-bx-primary font-mono" id="activeViewModeLabel">الوضع:
+                                        عرض شبكي</span>
+                                </label>
+                                <div class="bx-btn-group w-full justify-between" id="viewModeRadioGroup">
+                                    <button type="button" onclick="setSegmentedRadio(this, 'عرض شبكي')"
+                                        class="bx-group-item active flex-1 justify-center">
+                                        <i data-lucide="layout-grid" class="w-4 h-4"></i>
+                                        <span>شبكة (Grid)</span>
+                                    </button>
+                                    <button type="button" onclick="setSegmentedRadio(this, 'عرض قائمة')"
+                                        class="bx-group-item flex-1 justify-center">
+                                        <i data-lucide="list" class="w-4 h-4"></i>
+                                        <span>قائمة (List)</span>
+                                    </button>
+                                    <button type="button" onclick="setSegmentedRadio(this, 'عرض جدول')"
+                                        class="bx-group-item flex-1 justify-center">
+                                        <i data-lucide="table" class="w-4 h-4"></i>
+                                        <span>جدول (Table)</span>
+                                    </button>
+                                </div>
+                                <p class="text-[10px] text-bx-muted">يسمح باختيار خيار واحد فقط مع انتقال بصري سلس
+                                    للنقاط النشطة</p>
+                            </div>
+
+                            <!-- Segmented Checkbox Group (Multi Choice) -->
+                            <div class="space-y-3">
+                                <label
+                                    class="text-xs font-black uppercase text-bx-muted flex items-center justify-between">
+                                    <span>مجموعة أزرار اختيار متعدد (Checkbox Group - Multi-Select)</span>
+                                    <span class="text-[10px] text-bx-primary font-mono" id="activeFeaturesCount">2 ميزات
+                                        مفعلة</span>
+                                </label>
+                                <div class="bx-btn-group w-full justify-between" id="featuresCheckboxGroup">
+                                    <button type="button" onclick="toggleSegmentedCheckbox(this)"
+                                        class="bx-group-item active flex-1 justify-center">
+                                        <i data-lucide="cloud" class="w-4 h-4"></i>
+                                        <span>سحابي</span>
+                                    </button>
+                                    <button type="button" onclick="toggleSegmentedCheckbox(this)"
+                                        class="bx-group-item active flex-1 justify-center">
+                                        <i data-lucide="bell" class="w-4 h-4"></i>
+                                        <span>تنبيهات</span>
+                                    </button>
+                                    <button type="button" onclick="toggleSegmentedCheckbox(this)"
+                                        class="bx-group-item flex-1 justify-center">
+                                        <i data-lucide="database" class="w-4 h-4"></i>
+                                        <span>نسخ تلقائي</span>
+                                    </button>
+                                </div>
+                                <p class="text-[10px] text-bx-muted">يمكن تفعيل أو إلغاء كل زر بشكل مستقل كـ Toggle
+                                    Checkbox</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 2: Button Toolbar (شريط الأدوات) -->
+                    <div class="bx-card p-6 sm:p-8 space-y-6">
+                        <div class="flex items-center justify-between border-b border-bx-border pb-3">
+                            <div>
+                                <h3 class="text-sm sm:text-base font-black text-bx-title flex items-center gap-2">
+                                    <i data-lucide="edit-3" class="w-4 h-4 text-bx-primary"></i>
+                                    2. شريط الأدوات المعماري المتكامل (Button Toolbar)
+                                </h3>
+                                <p class="text-xs text-bx-muted mt-0.5">تجميع لأدوات التحرير والمحاذاة والتصدير مع فواصل
+                                    هيكلية أنيقة</p>
+                            </div>
+                            <span class="bx-tag text-[10px]">Rich Toolbar</span>
+                        </div>
+
+                        <div class="bx-toolbar">
+                            <!-- Format Group -->
+                            <div class="flex items-center gap-1">
+                                <button onclick="toggleToolbarBtn(this)"
+                                    class="bx-toolbar-btn active font-black font-display text-xs"
+                                    title="غامق (Bold)">B</button>
+                                <button onclick="toggleToolbarBtn(this)"
+                                    class="bx-toolbar-btn italic font-display text-xs" title="مائل (Italic)">I</button>
+                                <button onclick="toggleToolbarBtn(this)" class="bx-toolbar-btn underline text-xs"
+                                    title="تحته خط (Underline)">U</button>
+                                <button onclick="toggleToolbarBtn(this)" class="bx-toolbar-btn"
+                                    title="كود برمجي (Code)">
+                                    <i data-lucide="code" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+
+                            <div class="bx-toolbar-divider"></div>
+
+                            <!-- Alignment Group -->
+                            <div class="flex items-center gap-1">
+                                <button onclick="setToolbarRadio(this)" class="bx-toolbar-btn active"
+                                    title="محاذاة لليمين">
+                                    <i data-lucide="align-right" class="w-3.5 h-3.5"></i>
+                                </button>
+                                <button onclick="setToolbarRadio(this)" class="bx-toolbar-btn" title="توسيط">
+                                    <i data-lucide="align-center" class="w-3.5 h-3.5"></i>
+                                </button>
+                                <button onclick="setToolbarRadio(this)" class="bx-toolbar-btn" title="محاذاة لليسار">
+                                    <i data-lucide="align-left" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+
+                            <div class="bx-toolbar-divider"></div>
+
+                            <!-- Actions / Export Group -->
+                            <div class="flex items-center gap-1 mr-auto">
+                                <button onclick="showToast('info', 'رابط خارجي', 'تم نسخ الرابط المعماري')"
+                                    class="bx-toolbar-btn" title="إدراج رابط">
+                                    <i data-lucide="link" class="w-3.5 h-3.5"></i>
+                                </button>
+                                <button
+                                    onclick="showToast('success', 'تصدير PDF', 'جاري إنشاء ملف المستند المعماري...')"
+                                    class="bx-btn bx-btn-outline bx-btn-sm text-xs font-bold gap-1">
+                                    <i data-lucide="file-down" class="w-3.5 h-3.5"></i>
+                                    <span>تصدير PDF</span>
+                                </button>
+                                <button onclick="showToast('info', 'مشاركة', 'تم فتح نافذة المشاركة الفورية')"
+                                    class="bx-btn bx-btn-primary bx-btn-sm text-xs font-bold gap-1">
+                                    <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+                                    <span>مشاركة</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 3: Navigation & Pagination Button Group (أزرار التنقل والترقيم) -->
+                    <div class="bx-card p-6 sm:p-8 space-y-6">
+                        <div class="flex items-center justify-between border-b border-bx-border pb-3">
+                            <div>
+                                <h3 class="text-sm sm:text-base font-black text-bx-title flex items-center gap-2">
+                                    <i data-lucide="chevrons-left-right" class="w-4 h-4 text-bx-primary"></i>
+                                    3. مجموعة أزرار التنقل والترقيم (Navigation & Pagination Group)
+                                </h3>
+                                <p class="text-xs text-bx-muted mt-0.5">أزرار الانتقال بين السجلات والصفحات مع زر التالي
+                                    والسابق</p>
+                            </div>
+                            <span class="bx-tag text-[10px]">Prev / Next Controls</span>
+                        </div>
+
+                        <div
+                            class="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-xl border border-bx-border bg-[var(--bx-table-header)]">
+                            <span class="text-xs font-bold text-bx-muted">عرض الصفحة <strong
+                                    class="text-bx-primary font-mono">1</strong> من <strong
+                                    class="text-bx-title font-mono">12</strong> (إجمالي 120 سجلاً)</span>
+
+                            <!-- Navigation Buttons Bar -->
+                            <div
+                                class="inline-flex items-center rounded-2xl border border-bx-border bg-[var(--bx-surface-solid)] p-1 gap-1 shadow-sm">
+                                <!-- Previous Button -->
+                                <button
+                                    onclick="showToast('info', 'أزرار التنقل (Navigation · Prev)', 'الانتقال إلى الصفحة السابقة (Previous Page)')"
+                                    class="bx-btn bx-btn-outline !rounded-xl !py-1.5 !px-3 text-xs font-bold gap-1">
+                                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                                    <span>السابق</span>
+                                </button>
+
+                                <!-- Page Numbers -->
+                                <button
+                                    class="w-8 h-8 rounded-xl bg-bx-primary text-white font-mono font-bold text-xs flex items-center justify-center shadow-sm">1</button>
+                                <button
+                                    class="w-8 h-8 rounded-xl border border-transparent hover:border-bx-border text-bx-text font-mono font-bold text-xs flex items-center justify-center transition-colors">2</button>
+                                <button
+                                    class="w-8 h-8 rounded-xl border border-transparent hover:border-bx-border text-bx-text font-mono font-bold text-xs flex items-center justify-center transition-colors">3</button>
+                                <span class="w-6 text-center text-xs font-bold text-bx-muted">...</span>
+                                <button
+                                    class="w-8 h-8 rounded-xl border border-transparent hover:border-bx-border text-bx-text font-mono font-bold text-xs flex items-center justify-center transition-colors">12</button>
+
+                                <!-- Next Button -->
+                                <button
+                                    onclick="showToast('info', 'أزرار التنقل (Navigation · Next)', 'الانتقال إلى الصفحة التالية (Next Page)')"
+                                    class="bx-btn bx-btn-primary !rounded-xl !py-1.5 !px-3 text-xs font-bold gap-1">
+                                    <span>التالي</span>
+                                    <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ==================== 11. CARDS MATRIX (البطاقات المعمارية) ==================== -->
+        </main>
+    </div>
+
+    <!-- Global & Component JS -->
+    <script src="../../js/taqniya.js"></script>
+    <script src="component.js"></script>
+    <script>
+        function renderIcons() {
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+        }
+        renderIcons();
+        document.addEventListener('DOMContentLoaded', renderIcons);
+        window.addEventListener('load', renderIcons);
+    </script>
+</body>
+</html>

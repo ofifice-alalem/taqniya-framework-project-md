@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7. لوحة الألوان والسمات (Color Palette & Semantic Tokens) — Taqniya Design System</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Syne:wght@700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Local Fast Offline Icons & Tailwind -->
+    <script src="../../js/lucide.min.js"></script>
+    <script src="../../js/tailwind.min.js"></script>
+    <script src="../../js/tailwind.config.js"></script>
+    <!-- Global Core Styles -->
+    <link rel="stylesheet" href="../../css/taqniya.css">
+</head>
+<body class="min-h-screen bg-[var(--bx-canvas)] text-bx-text font-sans antialiased">
+
+    <!-- Global Floating Toast Stack Container -->
+    <div id="toastContainer" class="fixed top-4 left-4 z-[99999] flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
+
+    <div class="max-w-[1600px] mx-auto p-4 sm:p-8 lg:p-12 space-y-8">
+        <!-- Component Header Navigation -->
+        <header class="flex items-center justify-between border-b border-bx-border pb-4">
+            <div class="flex items-center gap-3">
+                <a href="../../index.html" class="bx-tag hover:border-bx-primary transition-all">← المعرض العام</a>
+                <span class="text-bx-muted text-xs">/</span>
+                <span class="text-xs font-black text-bx-title">7. لوحة الألوان والسمات (Color Palette & Semantic Tokens)</span>
+            </div>
+            <button type="button" onclick="toggleTheme()" class="bx-tag text-xs font-bold hover:border-bx-primary cursor-pointer flex items-center gap-2">
+                <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+                <span>تبديل السمة (Light / Dark)</span>
+            </button>
+        </header>
+
+        <!-- Main Section Content -->
+        <main class="space-y-8">
+            <section id="colors" class="space-y-6">
+                <div class="flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <span class="w-2.5 h-7 rounded-full bg-bx-primary"></span>
+                        <h2 class="text-xl sm:text-2xl font-bold bx-title">7. لوحة الألوان والمتغيرات (Colors & Palette)
+                        </h2>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="bx-tag font-mono text-xs">Pure CSS Tokens · Light & Dark</span>
+                        <!-- Section Collapse Button -->
+                        <button onclick="toggleSection('sec-colors-body', 'sec-colors-btn')" id="sec-colors-btn"
+                            class="w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all cursor-pointer"
+                            title="طي / توسيع القسم">
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron-toggle"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Collapsible Body for Section 7 -->
+                <div id="sec-colors-body" class="accordion-content space-y-6">
+
+                    <!-- Part A: Structural Core Tokens (الألوان الهيكلية) -->
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between border-b border-bx-border pb-2">
+                            <h3
+                                class="text-xs font-black uppercase tracking-wider text-bx-title flex items-center gap-2">
+                                <i data-lucide="layout" class="w-3.5 h-3.5 text-bx-primary"></i>
+                                الألوان الهيكلية للنظام (Structural Core Tokens)
+                            </h3>
+                            <span class="bx-tag text-[10px]">6 Tokens</span>
+                        </div>
+
+                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                            <div class="bx-card p-4 space-y-3">
+                                <div
+                                    class="h-16 rounded-xl bg-[var(--bx-primary)] flex items-center justify-center font-extrabold font-display text-[var(--bx-primary-contrast)] text-xs tracking-wider">
+                                    Primary
+                                </div>
+                                <div>
+                                    <div class="text-xs font-black text-bx-title">لون التمييز الأساسي</div>
+                                    <div class="text-[10px] text-bx-muted">--bx-primary</div>
+                                </div>
+                            </div>
+
+                            <div class="bx-card p-4 space-y-3">
+                                <div
+                                    class="h-16 rounded-xl bg-[var(--bx-title)] flex items-center justify-center font-extrabold font-display text-[var(--bx-canvas)] text-xs tracking-wider">
+                                    Title
+                                </div>
+                                <div>
+                                    <div class="text-xs font-black text-bx-title">العناوين الرئيسية</div>
+                                    <div class="text-[10px] text-bx-muted">--bx-title</div>
+                                </div>
+                            </div>
+
+                            <div class="bx-card p-4 space-y-3">
+                                <div
+                                    class="h-16 rounded-xl bg-[var(--bx-canvas)] border border-bx-border flex items-center justify-center font-extrabold font-display text-bx-title text-xs tracking-wider">
+                                    Canvas
+                                </div>
+                                <div>
+                                    <div class="text-xs font-black text-bx-title">أرضية الخلفية</div>
+                                    <div class="text-[10px] text-bx-muted">--bx-canvas</div>
+                                </div>
+                            </div>
+
+                            <div class="bx-card p-4 space-y-3">
+                                <div
+                                    class="h-16 rounded-xl bg-[var(--bx-text)] flex items-center justify-center font-extrabold font-display text-[var(--bx-canvas)] text-xs tracking-wider">
+                                    Text
+                                </div>
+                                <div>
+                                    <div class="text-xs font-black text-bx-title">نصوص الواجهة</div>
+                                    <div class="text-[10px] text-bx-muted">--bx-text</div>
+                                </div>
+                            </div>
+
+                            <div class="bx-card p-4 space-y-3">
+                                <div
+                                    class="h-16 rounded-xl border-2 border-bx-border bg-[var(--bx-table-header)] flex items-center justify-center font-extrabold font-display text-bx-title text-xs tracking-wider">
+                                    Border
+                                </div>
+                                <div>
+                                    <div class="text-xs font-black text-bx-title">إطار الحاويات</div>
+                                    <div class="text-[10px] text-bx-muted">--bx-border</div>
+                                </div>
+                            </div>
+
+                            <div class="bx-card p-4 space-y-3">
+                                <div
+                                    class="h-16 rounded-xl border-2 border-[var(--bx-divider)] bg-[var(--bx-table-header)] flex items-center justify-center font-extrabold font-display text-bx-title text-xs tracking-wider">
+                                    Divider
+                                </div>
+                                <div>
+                                    <div class="text-xs font-black text-bx-title">فواصل الجداول</div>
+                                    <div class="text-[10px] text-bx-muted">--bx-divider</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part B: Functional & Status Action Tokens (ألوان الوظائف والحالات) -->
+                    <div class="space-y-3 pt-4 border-t border-bx-border">
+                        <div class="flex items-center justify-between border-b border-bx-border pb-2">
+                            <h3
+                                class="text-xs font-black uppercase tracking-wider text-bx-title flex items-center gap-2">
+                                <i data-lucide="shield-alert" class="w-3.5 h-3.5 text-bx-primary"></i>
+                                ألوان الوظائف والحالات التفاعلية (Functional & Status Tokens)
+                            </h3>
+                            <span class="bx-tag text-[10px]">Action States</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+                            <!-- Danger / Delete -->
+                            <div class="bx-card p-4 space-y-3 border-2 border-[var(--bx-danger)]/30">
+                                <div
+                                    class="h-16 rounded-xl bg-[var(--bx-danger)] text-white flex items-center justify-center font-extrabold font-display text-xs gap-2 shadow-sm tracking-wide">
+                                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                    <span>Danger / Delete</span>
+                                </div>
+                                <div class="space-y-1">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xs font-black text-[var(--bx-danger)]">الحذف والخطر</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-[var(--bx-danger-bg)] text-[var(--bx-danger)] font-display">DANGER</span>
+                                    </div>
+                                    <div class="text-[10px] text-bx-muted">--bx-danger · للحذف، الأخطاء، والتحذيرات
+                                        الحرجة</div>
+                                </div>
+                            </div>
+
+                            <!-- Success / Verification -->
+                            <div class="bx-card p-4 space-y-3 border-2 border-[var(--bx-success)]/30">
+                                <div
+                                    class="h-16 rounded-xl bg-[var(--bx-success)] text-white flex items-center justify-center font-extrabold font-display text-xs gap-2 shadow-sm tracking-wide">
+                                    <i data-lucide="check-circle" class="w-4 h-4"></i>
+                                    <span>Success / Valid</span>
+                                </div>
+                                <div class="space-y-1">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xs font-black text-[var(--bx-success)]">النجاح
+                                            والاعتماد</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-[var(--bx-success-bg)] text-[var(--bx-success)] font-display">SUCCESS</span>
+                                    </div>
+                                    <div class="text-[10px] text-bx-muted">--bx-success · للاكتمال، الاعتماد، والتحقق
+                                        الناجح</div>
+                                </div>
+                            </div>
+
+                            <!-- Warning / Edit / Pending -->
+                            <div class="bx-card p-4 space-y-3 border-2 border-[var(--bx-warning)]/30">
+                                <div
+                                    class="h-16 rounded-xl bg-[var(--bx-warning)] text-white flex items-center justify-center font-extrabold font-display text-xs gap-2 shadow-sm tracking-wide">
+                                    <i data-lucide="edit-3" class="w-4 h-4"></i>
+                                    <span>Warning / Edit</span>
+                                </div>
+                                <div class="space-y-1">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xs font-black text-[var(--bx-warning)]">التعديل
+                                            والانتظار</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-[var(--bx-warning-bg)] text-[var(--bx-warning)] font-display">WARNING</span>
+                                    </div>
+                                    <div class="text-[10px] text-bx-muted">--bx-warning · للتعديل، المهام المرحلية،
+                                        والتنبيهات</div>
+                                </div>
+                            </div>
+
+                            <!-- Info / Assistance -->
+                            <div class="bx-card p-4 space-y-3 border-2 border-[var(--bx-info)]/30">
+                                <div
+                                    class="h-16 rounded-xl bg-[var(--bx-info)] text-white flex items-center justify-center font-extrabold font-display text-xs gap-2 shadow-sm tracking-wide">
+                                    <i data-lucide="info" class="w-4 h-4"></i>
+                                    <span>Info / Assistant</span>
+                                </div>
+                                <div class="space-y-1">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xs font-black text-[var(--bx-info)]">المعلومات
+                                            والمزامنة</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded text-[10px] font-bold bg-[var(--bx-info-bg)] text-[var(--bx-info)] font-display">INFO</span>
+                                    </div>
+                                    <div class="text-[10px] text-bx-muted">--bx-info · للإرشادات، التوجيه، وإشعارات
+                                        النظام</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ==================== 8. KPI & METRICS ==================== -->
+        </main>
+    </div>
+
+    <!-- Global & Component JS -->
+    <script src="../../js/taqniya.js"></script>
+    <script src="component.js"></script>
+    <script>
+        function renderIcons() {
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+        }
+        renderIcons();
+        document.addEventListener('DOMContentLoaded', renderIcons);
+        window.addEventListener('load', renderIcons);
+    </script>
+</body>
+</html>

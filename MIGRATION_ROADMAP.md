@@ -9,8 +9,8 @@
 | رقم المرحلة | اسم المرحلة | الحالة الحالية | تاريخ/وقت البدء | تاريخ/وقت الانتهاء |
 | :---: | :--- | :---: | :---: | :---: |
 | **المرحلة 1** | **الأساسات البصرية والـ Tokens و `taqniya.css` / `taqniya.js`** | ✅ **مكتمل (Completed)** | 2026-08-21 | 2026-08-21 |
-| **المرحلة 2** | **المكونات الهيكلية وأدوات التنقل الأساسي (7 مكونات)** | 🔄 **جاري التنفيذ (In Progress)** | 2026-08-21 | — |
-| **المرحلة 3** | **العناصر البصرية الأساسية والأزرار والبطاقات (7 مكونات)** | ⏳ **قيد الانتظار (Pending)** | — | — |
+| **المرحلة 2** | **المكونات الهيكلية وأدوات التنقل الأساسي (7 مكونات)** | ✅ **مكتمل (Completed)** | 2026-08-21 | 2026-08-21 |
+| **المرحلة 3** | **العناصر البصرية الأساسية والأزرار والبطاقات (7 مكونات)** | ✅ **مكتمل (Completed)** | 2026-08-21 | 2026-08-21 |
 | **المرحلة 4** | **النماذج والجداول والتفاعلات المتقدمة (9 مكونات)** | ⏳ **قيد الانتظار (Pending)** | — | — |
 | **المرحلة 5** | **المعرض العام الموحد والتوثيق والتدقيق النهائي** | ⏳ **قيد الانتظار (Pending)** | — | — |
 
@@ -19,37 +19,37 @@
 ## 📝 تفاصيل المهام لكل مرحلة (Detailed Task Breakdown)
 
 ### 🔹 المرحلة 1: بناء الأساسات البصرية المشتركة والـ Tokens
-- [ ] إنشاء الهيكل الرئيسي للمجلدات في `FRAMEWORK/01_design_system/`
-- [ ] نقل وتنظيم الأصول البصرية في `assets/images/` و `assets/icons/`
-- [ ] إنشاء وثيقة الـ Tokens النقية `tokens.md` (ألوان، أنصاف أقطار، ظلال، حركات)
-- [ ] إنشاء وثيقة القواعد المعمارية والمبادئ `rules.md` (RTL, A11y, Contrast, Typography)
-- [ ] تجميع وبناء ملف الأنماط العام `css/taqniya.css`
-- [ ] تجميع وبناء ملف الجافاسكريبت العام `js/taqniya.js`
-- [ ] **التحقق والتأكد من سلامة التأسيس والتوقف لسؤال المستخدم للموافقة والانتقال**.
+- [x] إنشاء الهيكل الرئيسي للمجلدات في `FRAMEWORK/01_design_system/`
+- [x] نقل وتنظيم الأصول البصرية في `assets/images/` و `assets/icons/`
+- [x] إنشاء وثيقة الـ Tokens النقية `tokens.md` (ألوان، أنصاف أقطار، ظلال، حركات)
+- [x] إنشاء وثيقة القواعد المعمارية والمبادئ `rules.md` (RTL, A11y, Contrast, Typography)
+- [x] تجميع وبناء ملف الأنماط العام `css/taqniya.css`
+- [x] تجميع وبناء ملف الجافاسكريبت العام `js/taqniya.js`
+- [x] **التحقق والتأكد من سلامة التأسيس والتوقف لسؤال المستخدم للموافقة والانتقال**.
 
 ---
 
 ### 🔹 المرحلة 2: المكونات الهيكلية وأدوات التنقل الأساسي (7 مكونات)
-- [ ] `01-breakpoints` (README.md, index.html, component.js)
-- [ ] `02-grid` (README.md, index.html, component.js)
-- [ ] `03-alignment` (README.md, index.html, component.js)
-- [ ] `04-typography` (README.md, index.html, component.js)
-- [ ] `17-breadcrumb` (README.md, index.html, component.css)
-- [ ] `22-navbar` (README.md, index.html, component.css, component.js)
-- [ ] `23-offcanvas` (README.md, index.html, component.css, component.js)
-- [ ] **التحقق المستقل من كل مكون والتوقف لسؤال المستخدم للموافقة والانتقال**.
+- [x] `01-breakpoints` (README.md, index.html, component.js)
+- [x] `02-grid` (README.md, index.html, component.js)
+- [x] `03-alignment` (README.md, index.html, component.js)
+- [x] `04-typography` (README.md, index.html, component.js)
+- [x] `17-breadcrumb` (README.md, index.html, component.css)
+- [x] `22-navbar` (README.md, index.html, component.css, component.js)
+- [x] `23-offcanvas` (README.md, index.html, component.css, component.js)
+- [x] **التحقق المستقل من كل مكون والتوقف لسؤال المستخدم للموافقة والانتقال**.
 
 ---
 
 ### 🔹 المرحلة 3: العناصر البصرية الأساسية والأزرار والبطاقات (7 مكونات)
-- [ ] `05-media` (README.md, index.html, component.css)
-- [ ] `07-color-palette` (README.md, index.html, component.css)
-- [ ] `08-kpi-stat` (README.md, index.html, component.css)
-- [ ] `09-button` (README.md, index.html, component.css)
-- [ ] `10-button-group` (README.md, index.html, component.css, component.js)
-- [ ] `11-card` (README.md, index.html, component.css)
-- [ ] `16-badge` (README.md, index.html, component.css)
-- [ ] **التحقق من تطابق المظهر البصري والتوقف لسؤال المستخدم للموافقة والانتقال**.
+- [x] `05-media` (README.md, index.html, component.css)
+- [x] `07-color-palette` (README.md, index.html, component.css)
+- [x] `08-kpi-stat` (README.md, index.html, component.css)
+- [x] `09-button` (README.md, index.html, component.css)
+- [x] `10-button-group` (README.md, index.html, component.css, component.js)
+- [x] `11-card` (README.md, index.html, component.css)
+- [x] `16-badge` (README.md, index.html, component.css, component.js)
+- [x] **التحقق من تطابق المظهر البصري والتوقف لسؤال المستخدم للموافقة والانتقال**.
 
 ---
 

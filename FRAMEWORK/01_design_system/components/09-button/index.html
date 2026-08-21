@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9. منظومة الأزرار التفاعلية (Interactive Buttons System) — Taqniya Design System</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Syne:wght@700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Local Fast Offline Icons & Tailwind -->
+    <script src="../../js/lucide.min.js"></script>
+    <script src="../../js/tailwind.min.js"></script>
+    <script src="../../js/tailwind.config.js"></script>
+    <!-- Global Core Styles -->
+    <link rel="stylesheet" href="../../css/taqniya.css">
+</head>
+<body class="min-h-screen bg-[var(--bx-canvas)] text-bx-text font-sans antialiased">
+
+    <!-- Global Floating Toast Stack Container -->
+    <div id="toastContainer" class="fixed top-4 left-4 z-[99999] flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
+
+    <div class="max-w-[1600px] mx-auto p-4 sm:p-8 lg:p-12 space-y-8">
+        <!-- Component Header Navigation -->
+        <header class="flex items-center justify-between border-b border-bx-border pb-4">
+            <div class="flex items-center gap-3">
+                <a href="../../index.html" class="bx-tag hover:border-bx-primary transition-all">← المعرض العام</a>
+                <span class="text-bx-muted text-xs">/</span>
+                <span class="text-xs font-black text-bx-title">9. منظومة الأزرار التفاعلية (Interactive Buttons System)</span>
+            </div>
+            <button type="button" onclick="toggleTheme()" class="bx-tag text-xs font-bold hover:border-bx-primary cursor-pointer flex items-center gap-2">
+                <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+                <span>تبديل السمة (Light / Dark)</span>
+            </button>
+        </header>
+
+        <!-- Main Section Content -->
+        <main class="space-y-8">
+            <section id="buttons" class="space-y-6">
+                <div class="flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <span class="w-2.5 h-7 rounded-full bg-bx-primary"></span>
+                        <h2 class="text-xl sm:text-2xl font-bold bx-title">9. الأزرار وحالاتها (Buttons & States)</h2>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="bx-tag font-mono text-xs">Variants · States · Sizes · Icons</span>
+                        <!-- Section Collapse Button -->
+                        <button onclick="toggleSection('sec-buttons-body', 'sec-buttons-btn')" id="sec-buttons-btn"
+                            class="w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all cursor-pointer"
+                            title="طي / توسيع القسم">
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron-toggle"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Collapsible Body for Section 9 -->
+                <div id="sec-buttons-body" class="accordion-content space-y-6">
+
+                    <!-- Part 1: Button Color Variants (أنماط الأزرار اللونية) -->
+                    <div class="bx-card p-6 sm:p-8 space-y-6">
+                        <div class="flex items-center justify-between border-b border-bx-border pb-3">
+                            <div>
+                                <h3 class="text-sm sm:text-base font-black text-bx-title flex items-center gap-2">
+                                    <i data-lucide="palette" class="w-4 h-4 text-bx-primary"></i>
+                                    1. أنماط الأزرار اللونية (Color & Functional Variants)
+                                </h3>
+                                <p class="text-xs text-bx-muted mt-0.5">أنماط معمارية متناسقة تدعم التفاعل اللمسي
+                                    والانسيابي</p>
+                            </div>
+                            <span class="bx-tag text-[10px]">6 Core Styles</span>
+                        </div>
+
+                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                            <!-- Primary -->
+                            <div class="space-y-2 text-center">
+                                <button
+                                    onclick="showToast('info', 'الزر الأساسي (Primary Button)', 'تم النقر على الزر الأساسي بنجاح')"
+                                    class="bx-btn bx-btn-primary w-full py-2.5">
+                                    <i data-lucide="zap" class="w-4 h-4"></i>
+                                    <span>أساسي</span>
+                                </button>
+                                <span class="text-[11px] font-mono text-bx-muted block">.bx-btn-primary</span>
+                            </div>
+
+                            <!-- Outline -->
+                            <div class="space-y-2 text-center">
+                                <button
+                                    onclick="showToast('info', 'الزر المفرغ (Outline Button)', 'تم النقر على الزر المفرغ بنجاح')"
+                                    class="bx-btn bx-btn-outline w-full py-2.5">
+                                    <i data-lucide="compass" class="w-4 h-4"></i>
+                                    <span>مفرغ</span>
+                                </button>
+                                <span class="text-[11px] font-mono text-bx-muted block">.bx-btn-outline</span>
+                            </div>
+
+                            <!-- Ghost -->
+                            <div class="space-y-2 text-center">
+                                <button
+                                    onclick="showToast('info', 'الزر الشفاف (Ghost Button)', 'تم النقر على الزر الشفاف بنجاح')"
+                                    class="bx-btn bx-btn-ghost w-full py-2.5">
+                                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                                    <span>شفاف</span>
+                                </button>
+                                <span class="text-[11px] font-mono text-bx-muted block">.bx-btn-ghost</span>
+                            </div>
+
+                            <!-- Danger -->
+                            <div class="space-y-2 text-center">
+                                <button
+                                    onclick="showToast('error', 'زر الحذف (Danger / Delete)', 'تم الضغط على إجراء الحذف / الخطر')"
+                                    class="bx-btn bx-btn-danger w-full py-2.5">
+                                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                    <span>حذف</span>
+                                </button>
+                                <span class="text-[11px] font-mono text-bx-muted block">.bx-btn-danger</span>
+                            </div>
+
+                            <!-- Success -->
+                            <div class="space-y-2 text-center">
+                                <button
+                                    onclick="showToast('success', 'زر الاعتماد (Success / Valid)', 'تم اعتماد الإجراء وتأكيد النجاح')"
+                                    class="bx-btn bx-btn-success w-full py-2.5">
+                                    <i data-lucide="check-circle" class="w-4 h-4"></i>
+                                    <span>اعتماد</span>
+                                </button>
+                                <span class="text-[11px] font-mono text-bx-muted block">.bx-btn-success</span>
+                            </div>
+
+                            <!-- Warning -->
+                            <div class="space-y-2 text-center">
+                                <button
+                                    onclick="showToast('warning', 'زر التنبيه (Warning / Alert)', 'تم تنبيه النظام ومراجعة المهمة')"
+                                    class="bx-btn bx-btn-warning w-full py-2.5">
+                                    <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+                                    <span>تنبيه</span>
+                                </button>
+                                <span class="text-[11px] font-mono text-bx-muted block">.bx-btn-warning</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 2: Button Interactive States (حالات الأزرار) -->
+                    <div class="bx-card p-6 sm:p-8 space-y-6">
+                        <div class="flex items-center justify-between border-b border-bx-border pb-3">
+                            <div>
+                                <h3 class="text-sm sm:text-base font-black text-bx-title flex items-center gap-2">
+                                    <i data-lucide="activity" class="w-4 h-4 text-bx-primary"></i>
+                                    2. حالات الأزرار التفاعلية (Interactive States)
+                                </h3>
+                                <p class="text-xs text-bx-muted mt-0.5">توضيح لحالة النشاط، التحويم، التعطيل، وحالة
+                                    التحميل التلقائي</p>
+                            </div>
+                            <span class="bx-tag text-[10px]">Life Cycle States</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <!-- Default / Active -->
+                            <div class="p-4 rounded-xl border border-bx-border bg-[var(--bx-table-header)] space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-black text-bx-title">الحالة الافتراضية (Default)</span>
+                                    <span class="bx-tag text-[9px]">Normal</span>
+                                </div>
+                                <button class="bx-btn bx-btn-primary w-full py-2.5">
+                                    <i data-lucide="check" class="w-4 h-4"></i>
+                                    <span>زر جاهز للتفاعل</span>
+                                </button>
+                                <p class="text-[10px] text-bx-muted">استجابة فورية ونبض تفاعلي عند النقر</p>
+                            </div>
+
+                            <!-- Hover & Active Scale -->
+                            <div class="p-4 rounded-xl border border-bx-border bg-[var(--bx-table-header)] space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-black text-bx-title">التحويم والتركيز (Hover)</span>
+                                    <span class="bx-tag text-[9px]">Hover:Scale</span>
+                                </div>
+                                <button
+                                    class="bx-btn bx-btn-outline w-full py-2.5 hover:border-bx-primary hover:text-bx-primary hover:scale-105 transition-transform">
+                                    <i data-lucide="sparkle" class="w-4 h-4"></i>
+                                    <span>تأثير التحويم المضيء</span>
+                                </button>
+                                <p class="text-[10px] text-bx-muted">تدرج لوني ناعم مع رفع نسبي ثلاثي الأبعاد</p>
+                            </div>
+
+                            <!-- Disabled -->
+                            <div class="p-4 rounded-xl border border-bx-border bg-[var(--bx-table-header)] space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-black text-bx-title">حالة التعطيل (Disabled)</span>
+                                    <span class="bx-tag text-[9px] border-red-500/30 text-red-500">Disabled</span>
+                                </div>
+                                <button disabled
+                                    class="bx-btn bx-btn-primary w-full py-2.5 opacity-40 cursor-not-allowed">
+                                    <i data-lucide="slash" class="w-4 h-4"></i>
+                                    <span>زر غير متاح حالياً</span>
+                                </button>
+                                <p class="text-[10px] text-bx-muted">إيقاف كافة أحداث الماوس والتفاعل (Pointer-events)
+                                </p>
+                            </div>
+
+                            <!-- Loading State -->
+                            <div class="p-4 rounded-xl border border-bx-border bg-[var(--bx-table-header)] space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-black text-bx-title">حالة التحميل (Loading)</span>
+                                    <span class="bx-tag text-[9px] border-bx-primary text-bx-primary">Async Spin</span>
+                                </div>
+                                <button class="bx-btn bx-btn-primary w-full py-2.5 gap-2 cursor-wait">
+                                    <i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i>
+                                    <span>جاري المعالجة...</span>
+                                </button>
+                                <p class="text-[10px] text-bx-muted">دوران مستمر للأيقونة أثناء معالجة الطلبات الحية</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Part 3: Icon Variations & Sizing (تنوع الأيقونات والأحجام) -->
+                    <div class="bx-card p-6 sm:p-8 space-y-6">
+                        <div class="flex items-center justify-between border-b border-bx-border pb-3">
+                            <div>
+                                <h3 class="text-sm sm:text-base font-black text-bx-title flex items-center gap-2">
+                                    <i data-lucide="maximize-2" class="w-4 h-4 text-bx-primary"></i>
+                                    3. تنوع الأيقونات والأحجام (Icon Variations & Sizing)
+                                </h3>
+                                <p class="text-xs text-bx-muted mt-0.5">أزرار بأيقونة أمامية، خلفية، نص خالص، وأزرار
+                                    أيقونية خالصة</p>
+                            </div>
+                            <span class="bx-tag text-[10px]">Icons & Sizes</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Icon Placement Variations -->
+                            <div class="space-y-4">
+                                <label class="text-xs font-black uppercase text-bx-muted">تنوع مواضع الأيقونة (Icon
+                                    Placement)</label>
+                                <div class="flex flex-wrap items-center gap-3">
+                                    <!-- Leading Icon -->
+                                    <button class="bx-btn bx-btn-primary py-2.5 px-4 text-xs font-bold">
+                                        <i data-lucide="send" class="w-4 h-4"></i>
+                                        <span>أيقونة في البداية (Leading)</span>
+                                    </button>
+
+                                    <!-- Trailing Icon -->
+                                    <button class="bx-btn bx-btn-outline py-2.5 px-4 text-xs font-bold">
+                                        <span>أيقونة في النهاية (Trailing)</span>
+                                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                                    </button>
+
+                                    <!-- Text Only (No Icon) -->
+                                    <button class="bx-btn bx-btn-primary py-2.5 px-4 text-xs font-bold">
+                                        <span>بدون أيقونة (Text-Only)</span>
+                                    </button>
+                                </div>
+
+                                <!-- Pure Icon-Only Buttons -->
+                                <div class="space-y-2 pt-2">
+                                    <span class="text-[11px] font-bold text-bx-muted">أزرار أيقونية فقط (Icon-Only
+                                        Buttons):</span>
+                                    <div class="flex items-center gap-3">
+                                        <!-- Circular Icon Button -->
+                                        <button class="bx-icon-circle-btn" title="زر دائري">
+                                            <i data-lucide="bell" class="w-4 h-4"></i>
+                                        </button>
+                                        <button
+                                            class="bx-icon-circle-btn text-bx-primary border-bx-primary bg-[var(--bx-pill)]"
+                                            title="زر دائري نشط">
+                                            <i data-lucide="bookmark" class="w-4 h-4"></i>
+                                        </button>
+                                        <!-- Rounded Squircle Icon Button -->
+                                        <button
+                                            class="w-11 h-11 rounded-2xl border border-bx-border hover:border-bx-primary hover:text-bx-primary flex items-center justify-center text-bx-text transition-all"
+                                            title="زر مربع منحني">
+                                            <i data-lucide="share-2" class="w-4 h-4"></i>
+                                        </button>
+                                        <button
+                                            class="w-11 h-11 rounded-2xl border-2 border-red-500/30 bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all"
+                                            title="زر حذف مربع">
+                                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Size Variations -->
+                            <div class="space-y-4">
+                                <label class="text-xs font-black uppercase text-bx-muted">المقاسات القياسية (Size
+                                    Hierarchy)</label>
+                                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                                    <!-- Large -->
+                                    <button class="bx-btn bx-btn-primary bx-btn-lg">
+                                        <i data-lucide="layers" class="w-5 h-5"></i>
+                                        <span>كبير LG</span>
+                                    </button>
+
+                                    <!-- Medium -->
+                                    <button class="bx-btn bx-btn-primary bx-btn-md">
+                                        <i data-lucide="layers" class="w-4 h-4"></i>
+                                        <span>متوسط MD</span>
+                                    </button>
+
+                                    <!-- Small -->
+                                    <button class="bx-btn bx-btn-primary bx-btn-sm">
+                                        <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+                                        <span>صغير SM</span>
+                                    </button>
+                                </div>
+                                <p class="text-[10px] text-bx-muted">متطابقة ومحسوبة بالـ Tokens لتنسيقها داخل الجداول،
+                                    البطاقات، أو الشرائط العلوية</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ==================== 10. BUTTON GROUPS & TOOLBARS (مجموعات الأزرار وأشرطة الأدوات) ==================== -->
+        </main>
+    </div>
+
+    <!-- Global & Component JS -->
+    <script src="../../js/taqniya.js"></script>
+    <script src="component.js"></script>
+    <script>
+        function renderIcons() {
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+        }
+        renderIcons();
+        document.addEventListener('DOMContentLoaded', renderIcons);
+        window.addEventListener('load', renderIcons);
+    </script>
+</body>
+</html>
