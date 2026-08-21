@@ -42,3 +42,42 @@ This document governs the global design principles, accessibility, and visual gu
 ## 5. Technology Neutrality
 1. The framework design system provides the **Visual Contract** in pure HTML/CSS/JS.
 2. Target project implementations (Laravel Blade, React, Vue) must implement native components conforming strictly to these visual tokens.
+
+---
+
+## 6. Project Integration & On-Demand AI Implementation Protocol (Strict SSoT)
+
+When building pages, features, or interfaces in target projects (e.g., Laravel, React, Vue apps in this workspace), the AI Agent MUST strictly adhere to the following 4 rules:
+
+### 1. Mandatory Upstream Reference
+- `FRAMEWORK/01_design_system/` is the **Single Source of Truth (SSoT)**.
+- Never write ad-hoc, inline, or unapproved CSS styles in project templates.
+- Always inspect the corresponding component in `FRAMEWORK/01_design_system/components/XX-name/` before creating a UI element.
+
+### 2. On-Demand / Just-In-Time (JIT) Generation
+- **DO NOT** generate or copy all 23 components into a target project in bulk.
+- Generate **ONLY** the specific component(s) required by the immediate feature or view being implemented (e.g., if creating a login page, generate only the form, input, button, and alert components).
+
+### 3. Native Technology Adaptation
+- Convert the pure HTML/CSS/JS reference into the native component syntax of the target project:
+  - **Laravel Projects**: Generate modular Blade components (e.g., `resources/views/components/ui/button.blade.php`, `<x-ui.button>`, `<x-ui.card>`).
+  - **React / Next.js Projects**: Generate typed JSX/TSX components (e.g., `components/ui/Button.tsx`).
+  - **Vue Projects**: Generate Single File Components (e.g., `components/ui/Button.vue`).
+- Preserve exact CSS classes (`.bx-btn`, `.bx-card`, `.bx-input`, `.bx-title`) and CSS custom properties (`var(--bx-primary)`, etc.).
+
+### 4. Zero Divergence Rule
+- Component props, slots, and variations in the target project must strictly reflect the structure and behavioral states defined in the Design System.
+- Global styles and tokens must be loaded via `taqniya.css` or the project's compiled asset pipeline.
+
+### 5. Missing Component Intake & Resolution Protocol
+When a required UI element (e.g., Timeline, Kanban Board, Treeview, File Uploader, Date Range Picker) does **NOT** exist in `FRAMEWORK/01_design_system/components/`:
+1. **Never Improvise Secretly**: The AI Agent MUST pause and ask the user:
+   > *"المكون المطلوبة `[Component Name]` غير موجود حالياً في منظومة تقنية للتصميم. هل لديك صورة أو تصميم مرجعي تود اعتماده، أم أقوم بإنشاء المكون الجديد مع وراثة كامل خصائص وتوكنز المنظومة (Spatial UI, RTL, Alexandria/Tajawal Fonts, Tokens)؟"*
+2. **Inherit Design Contract Strictly**: If generated, the component must strictly inherit:
+   - Surface & elevation tokens (`--bx-surface-solid`, `--bx-border`, `--bx-primary`, `--bx-title`, `--bx-muted`).
+   - Logical RTL properties (`margin-inline`, `padding-inline`, `border-inline`).
+   - Typography hierarchy (Alexandria for titles, Tajawal for body, JetBrains Mono for dates/numbers).
+   - Complete interaction states (Default, Hover, Active, Focus, Disabled).
+3. **Upstream Framework Registration**: Once approved by the user, the newly created component should be documented and registered into `FRAMEWORK/01_design_system/components/` so it becomes a permanent reusable asset for all future projects.
+
+
