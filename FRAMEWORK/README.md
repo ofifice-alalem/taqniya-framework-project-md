@@ -113,11 +113,15 @@ FRAMEWORK/
 │   ├── package_policy.md              # Universal dependency evaluation & licensing
 │   └── documentation_rules.md         # Tripartite SSoT model & semantic sync rules
 │
-├── 01_design_system/                  # Universal UI/UX Standards
-│   ├── rules.md                       # Accessibility (WCAG 2.1 AA), 8 states & reuse-first
-│   ├── tokens.md                      # Universal design token taxonomy & recommended baselines
-│   ├── components.md                  # Component contracts, props & state taxonomy
-│   └── patterns.md                    # Composite UI patterns (List, Detail, Forms, etc.)
+├── 01_design_system/                  # Taqniya Spatial UI Design System (VisionOS Glassmorphism)
+│   ├── index.html                     # Unified Showcase Gallery (Interactive Component Dashboard)
+│   ├── README.md                      # Design System Guide & 3-Tier Token Architecture
+│   ├── rules.md                       # Accessibility (WCAG 2.1 AA), RTL-First & On-Demand AI Protocol
+│   ├── tokens.md                      # Authoritative Design Values Contract (Colors, Radii, Shadows)
+│   ├── css/taqniya.css                # Global CSS Engine (Tokens, Glassmorphism, Responsive Grid)
+│   ├── js/taqniya.js                  # Global JS Engine (Theme Toggle, Toasts, Modals, Dropdowns)
+│   └── components/                    # 23 Modular Standalone Components (HTML/CSS/JS + README)
+│       ├── 01-breakpoints/ ... 11-card/ ... 13-modal/ ... 22-navbar/ ... 23-offcanvas/
 │
 ├── 02_testing/                        # Quality Assurance & Verification
 │   ├── testing_strategy.md            # Pragmatic test pyramid & Superpowers boundary
