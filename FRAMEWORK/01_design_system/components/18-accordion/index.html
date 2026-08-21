@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18. القوائم الأوكورديون القابلة للطي (Accordions) — Taqniya Design System</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Syne:wght@700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Local Fast Offline Icons & Tailwind -->
+    <script src="../../js/lucide.min.js"></script>
+    <script src="../../js/tailwind.min.js"></script>
+    <script src="../../js/tailwind.config.js"></script>
+    <!-- Global Core Styles -->
+    <link rel="stylesheet" href="../../css/taqniya.css">
+</head>
+<body class="min-h-screen bg-[var(--bx-canvas)] text-bx-text font-sans antialiased">
+
+    <!-- Global Floating Toast Stack Container -->
+    <div id="toastContainer" class="fixed top-4 left-4 z-[99999] flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
+
+    <!-- Extra Top Overlays -->
+    
+
+    <div class="max-w-[1600px] mx-auto p-4 sm:p-8 lg:p-12 space-y-8">
+        <!-- Component Header Navigation -->
+        <header class="flex items-center justify-between border-b border-bx-border pb-4">
+            <div class="flex items-center gap-3">
+                <a href="../../index.html" class="bx-tag hover:border-bx-primary transition-all">← المعرض العام</a>
+                <span class="text-bx-muted text-xs">/</span>
+                <span class="text-xs font-black text-bx-title">18. القوائم الأوكورديون القابلة للطي (Accordions)</span>
+            </div>
+            <button type="button" onclick="toggleTheme()" class="bx-tag text-xs font-bold hover:border-bx-primary cursor-pointer flex items-center gap-2">
+                <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+                <span>تبديل السمة (Light / Dark)</span>
+            </button>
+        </header>
+
+        <!-- Main Section Content -->
+        <main class="space-y-8">
+            <section id="accordion" class="space-y-6">
+                <div class="flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <span class="w-2.5 h-7 rounded-full bg-bx-primary"></span>
+                        <h2 class="text-xl sm:text-2xl font-bold bx-title">18. القوائم الأكورديون (Accordion)</h2>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="bx-tag font-mono text-xs">Smooth Expand · Multi-Panel</span>
+                        <button onclick="toggleSection('sec-accordion-body', 'sec-accordion-btn')"
+                            id="sec-accordion-btn"
+                            class="w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all cursor-pointer"
+                            title="طي / توسيع القسم">
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron-toggle"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="sec-accordion-body" class="accordion-content space-y-6">
+                    <div class="bx-card p-6 sm:p-8 space-y-6">
+                        <!-- Header Controls -->
+                        <div
+                            class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-bx-divider">
+                            <div>
+                                <h3 class="bx-title text-base font-black">أكورديون المواصفات والمعايير الهندسية (System
+                                    Accordion)</h3>
+                                <p class="text-xs text-bx-muted">قوائم مطوية انسيابية لعرض الإجابات والمواصفات المعمارية
+                                    الدقيقة</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button type="button" onclick="expandAllAccordions('mainAccordionGroup')"
+                                    class="bx-btn bx-btn-outline text-xs px-3">
+                                    <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+                                    <span>توسيع الكل</span>
+                                </button>
+                                <button type="button" onclick="collapseAllAccordions('mainAccordionGroup')"
+                                    class="bx-btn bx-btn-ghost text-xs px-3">
+                                    <i data-lucide="minimize-2" class="w-3.5 h-3.5"></i>
+                                    <span>طي الكل</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Accordion Items List -->
+                        <div class="space-y-3" id="mainAccordionGroup">
+                            <!-- Accordion Item 1 (Expanded by default) -->
+                            <div
+                                class="accordion-item rounded-2xl border border-bx-border bg-[var(--bx-surface-solid)] overflow-hidden transition-all">
+                                <button type="button" onclick="toggleAccordionItem(this)"
+                                    class="w-full flex items-center justify-between p-4 text-right cursor-pointer hover:bg-[var(--bx-table-header)] transition-colors">
+                                    <div class="flex items-center gap-3.5">
+                                        <div
+                                            class="w-9 h-9 rounded-xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-xs shrink-0">
+                                            01
+                                        </div>
+                                        <div>
+                                            <h4 class="font-black text-xs sm:text-sm text-bx-title">ما هي معايير الـ
+                                                Single Source of Truth (SSoT) المعتمدة؟</h4>
+                                            <p class="text-[11px] text-bx-muted">القاعدة الصارمة لتطابق واجهات النظام مع
+                                                الكود المصدري</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span
+                                            class="bx-tag border-emerald-500/30 text-emerald-600 text-[10px] hidden sm:inline-block">معتمد
+                                            100%</span>
+                                        <i data-lucide="chevron-down"
+                                            class="w-4 h-4 text-bx-muted chevron-icon transition-transform rotate-180"></i>
+                                    </div>
+                                </button>
+                                <div
+                                    class="accordion-panel px-5 pb-4 pt-1 text-xs text-bx-muted border-t border-bx-divider">
+                                    <div class="accordion-panel-content space-y-3">
+                                        <p class="leading-relaxed">تعتمد منظومة تقنية على ملف تصميمي مركزي واحد كمستند
+                                            وحيد وموثوق (SSoT). يمنع كتابة أي تنسيقات CSS عشوائية، ويتم استيراد كافة
+                                            المتغيرات والتدرجات من ملف `css/style.css` حصراً.</p>
+                                        <div
+                                            class="p-3 rounded-xl bg-[var(--bx-table-header)] border border-bx-border font-mono text-[11px] text-bx-title">
+                                            <code>Strict Rule: Design Tokens must match CSS Custom Properties across Light/Dark modes.</code>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Accordion Item 2 -->
+                            <div
+                                class="accordion-item rounded-2xl border border-bx-border bg-[var(--bx-surface-solid)] overflow-hidden transition-all">
+                                <button type="button" onclick="toggleAccordionItem(this)"
+                                    class="w-full flex items-center justify-between p-4 text-right cursor-pointer hover:bg-[var(--bx-table-header)] transition-colors">
+                                    <div class="flex items-center gap-3.5">
+                                        <div
+                                            class="w-9 h-9 rounded-xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-xs shrink-0">
+                                            02
+                                        </div>
+                                        <div>
+                                            <h4 class="font-black text-xs sm:text-sm text-bx-title">توزيع طبقات الـ
+                                                Breakpoints والشاشات التجاوبية</h4>
+                                            <p class="text-[11px] text-bx-muted">محددات القياس المعتمدة لشاشات الجوال
+                                                والأجهزة اللوحية والحاسوب</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="bx-tag text-[10px] hidden sm:inline-block">5 Breakpoints</span>
+                                        <i data-lucide="chevron-down"
+                                            class="w-4 h-4 text-bx-muted chevron-icon transition-transform"></i>
+                                    </div>
+                                </button>
+                                <div
+                                    class="accordion-panel is-collapsed px-5 pb-4 pt-1 text-xs text-bx-muted border-t border-bx-divider">
+                                    <div class="accordion-panel-content space-y-2">
+                                        <p class="leading-relaxed">يتضمن النظام 5 قياسات أساسية تبدأ من `sm: 640px`،
+                                            مروراً بـ `md: 768px`، `lg: 1024px`، `xl: 1280px`، وصولاً إلى الشاشات
+                                            العريضة `2xl: 1536px` مع دعم حقيقي لتنسيق RTL بالكامل.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Accordion Item 3 -->
+                            <div
+                                class="accordion-item rounded-2xl border border-bx-border bg-[var(--bx-surface-solid)] overflow-hidden transition-all">
+                                <button type="button" onclick="toggleAccordionItem(this)"
+                                    class="w-full flex items-center justify-between p-4 text-right cursor-pointer hover:bg-[var(--bx-table-header)] transition-colors">
+                                    <div class="flex items-center gap-3.5">
+                                        <div
+                                            class="w-9 h-9 rounded-xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-xs shrink-0">
+                                            03
+                                        </div>
+                                        <div>
+                                            <h4 class="font-black text-xs sm:text-sm text-bx-title">قواعد الأمان
+                                                والمصادقة الثنائية (2FA & RBAC)</h4>
+                                            <p class="text-[11px] text-bx-muted">حماية الحسابات وإدارة الأدوار والصلاحيات الصارمة</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="bx-tag text-[10px] hidden sm:inline-block">2FA Enforced</span>
+                                        <i data-lucide="chevron-down"
+                                            class="w-4 h-4 text-bx-muted chevron-icon transition-transform"></i>
+                                    </div>
+                                </button>
+                                <div
+                                    class="accordion-panel is-collapsed px-5 pb-4 pt-1 text-xs text-bx-muted border-t border-bx-divider">
+                                    <div class="accordion-panel-content space-y-2">
+                                        <p class="leading-relaxed">يتم فرض التحقق الثنائي عبر OTP، وتشفير الاتصال
+                                            ببروتوكول TLS 1.3 مع تطبيق مصفوفة صلاحيات تفصيلية (Read, Write, Deploy,
+                                            Audit Logs).</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Global & Component JS -->
+    <script src="../../js/taqniya.js"></script>
+    <script src="component.js"></script>
+    <script>
+        function renderIcons() {
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+        }
+        renderIcons();
+        document.addEventListener('DOMContentLoaded', renderIcons);
+        window.addEventListener('load', renderIcons);
+    </script>
+</body>
+</html>

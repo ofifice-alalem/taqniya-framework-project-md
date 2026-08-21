@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20. معرض الشرائح المنزلق (Interactive Carousel) — Taqniya Design System</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Syne:wght@700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Local Fast Offline Icons & Tailwind -->
+    <script src="../../js/lucide.min.js"></script>
+    <script src="../../js/tailwind.min.js"></script>
+    <script src="../../js/tailwind.config.js"></script>
+    <!-- Global Core Styles -->
+    <link rel="stylesheet" href="../../css/taqniya.css">
+</head>
+<body class="min-h-screen bg-[var(--bx-canvas)] text-bx-text font-sans antialiased">
+
+    <!-- Global Floating Toast Stack Container -->
+    <div id="toastContainer" class="fixed top-4 left-4 z-[99999] flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
+
+    <!-- Extra Top Overlays -->
+    
+
+    <div class="max-w-[1600px] mx-auto p-4 sm:p-8 lg:p-12 space-y-8">
+        <!-- Component Header Navigation -->
+        <header class="flex items-center justify-between border-b border-bx-border pb-4">
+            <div class="flex items-center gap-3">
+                <a href="../../index.html" class="bx-tag hover:border-bx-primary transition-all">← المعرض العام</a>
+                <span class="text-bx-muted text-xs">/</span>
+                <span class="text-xs font-black text-bx-title">20. معرض الشرائح المنزلق (Interactive Carousel)</span>
+            </div>
+            <button type="button" onclick="toggleTheme()" class="bx-tag text-xs font-bold hover:border-bx-primary cursor-pointer flex items-center gap-2">
+                <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+                <span>تبديل السمة (Light / Dark)</span>
+            </button>
+        </header>
+
+        <!-- Main Section Content -->
+        <main class="space-y-8">
+            <section id="carousel" class="space-y-6 pb-16">
+                <div class="flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <span class="w-2.5 h-7 rounded-full bg-bx-primary"></span>
+                        <h2 class="text-xl sm:text-2xl font-bold bx-title">20. أشرطة العرض المنزلقة (Carousel)</h2>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="bx-tag font-mono text-xs">Interactive Slider · Touch Ready</span>
+                        <button onclick="toggleSection('sec-carousel-body', 'sec-carousel-btn')" id="sec-carousel-btn"
+                            class="w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:border-bx-primary transition-all cursor-pointer"
+                            title="طي / توسيع القسم">
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron-toggle"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="sec-carousel-body" class="accordion-content space-y-6">
+                    <div class="bx-card p-6 sm:p-8 space-y-6">
+                        <div
+                            class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-bx-divider">
+                            <div>
+                                <h3 class="bx-title text-base font-black">معرض المكونات المعمارية التفاعلي (Interactive
+                                    Carousel)</h3>
+                                <p class="text-xs text-bx-muted">انتقال انسيابي بين البطاقات مع إمكانية التشغيل التلقائي
+                                    والتنقل بالنقر أو السحب</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span id="carouselCounterBadge"
+                                    class="bx-tag font-mono text-xs text-bx-primary border-bx-primary/30">الشريحة 1 من
+                                    4</span>
+                                <div class="flex items-center gap-2">
+                                    <button type="button" onclick="carouselPrevSlide()"
+                                        class="w-9 h-9 rounded-xl border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-title hover:text-bx-primary bg-[var(--bx-surface-solid)] transition-all shadow-sm">
+                                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                    </button>
+                                    <button type="button" onclick="carouselNextSlide()"
+                                        class="w-9 h-9 rounded-xl border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-title hover:text-bx-primary bg-[var(--bx-surface-solid)] transition-all shadow-sm">
+                                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="relative overflow-hidden rounded-3xl border border-bx-border bg-[var(--bx-table-header)] min-h-[260px] w-full max-w-full">
+                            <div id="carouselTrack" class="flex transition-transform duration-500 ease-out w-full"
+                                style="transform: translateX(0%);">
+                                <div
+                                    class="w-full min-w-full max-w-full shrink-0 p-6 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 box-border">
+                                    <div class="space-y-3 max-w-lg text-right">
+                                        <span class="bx-tag border-bx-primary/40 text-bx-primary text-[11px]">الإصدار
+                                            3.0 المعتمد</span>
+                                        <h4 class="font-black text-xl sm:text-2xl text-bx-title leading-tight">منظومة
+                                            تقنية — تجربة Spatial UI المتكاملة</h4>
+                                        <p class="text-xs text-bx-muted leading-relaxed">واجهات فائقة النقاء مستوحاة من
+                                            فلسفة VisionOS مع دعم التباين الفاتح والداكن وتكامل SSoT بنسبة 100%.</p>
+                                        <div class="flex items-center gap-3 pt-2">
+                                            <button onclick="openModal('detailModal')"
+                                                class="bx-btn bx-btn-primary text-xs px-5">
+                                                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                                                <span>استعراض المواصفات</span>
+                                            </button>
+                                            <span class="text-xs font-bold text-emerald-500 flex items-center gap-1"><i
+                                                    data-lucide="check" class="w-3.5 h-3.5"></i> متطابق ومعتمد</span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="w-32 h-32 sm:w-40 sm:h-40 rounded-3xl bg-bx-pill border-2 border-bx-primary/30 flex items-center justify-center shadow-xl shadow-bx-primary/10 shrink-0">
+                                        <img src="../../assets/images/avatar_3d_1.png" alt="Spatial 3D"
+                                            class="w-28 h-28 object-contain">
+                                    </div>
+                                </div>
+                                <div
+                                    class="w-full min-w-full max-w-full shrink-0 p-6 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 box-border">
+                                    <div class="space-y-3 max-w-lg text-right">
+                                        <span class="bx-tag border-emerald-500/40 text-emerald-600 text-[11px]">سرعة
+                                            فائقة · High Throughput</span>
+                                        <h4 class="font-black text-xl sm:text-2xl text-bx-title leading-tight">محرك
+                                            PostgreSQL 16 & Redis Caching</h4>
+                                        <p class="text-xs text-bx-muted leading-relaxed">بنية قواعد بيانات موزعة تضمن
+                                            سرعة استجابة واستعلامات بأقل من 40 ميلي ثانية تحت الضغط العالي.</p>
+                                        <div class="flex items-center gap-3 pt-2">
+                                            <button
+                                                onclick="showToast('success', 'حالة المحرك', 'PostgreSQL 16 متصل بزمن استجابة 0.042s')"
+                                                class="bx-btn bx-btn-primary bg-emerald-600 hover:bg-emerald-700 text-xs px-5">
+                                                <i data-lucide="activity" class="w-3.5 h-3.5"></i>
+                                                <span>فحص الأداء اللحظي</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="w-32 h-32 sm:w-40 sm:h-40 rounded-3xl bg-emerald-500/10 border-2 border-emerald-500/30 text-emerald-500 flex items-center justify-center shadow-xl shadow-emerald-500/10 shrink-0">
+                                        <i data-lucide="database" class="w-16 h-16"></i>
+                                    </div>
+                                </div>
+                                <div
+                                    class="w-full min-w-full max-w-full shrink-0 p-6 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 box-border">
+                                    <div class="space-y-3 max-w-lg text-right">
+                                        <span class="bx-tag border-amber-500/40 text-amber-600 text-[11px]">حماية متقدمة
+                                            · 2FA Enforced</span>
+                                        <h4 class="font-black text-xl sm:text-2xl text-bx-title leading-tight">جدار
+                                            الحماية والمصادقة الصارمة (RBAC)</h4>
+                                        <p class="text-xs text-bx-muted leading-relaxed">عزل كامل للصلاحيات، تشفير كامل
+                                            عبر بروتوكول TLS 1.3 وسجلات تدقيق أمني مفصلة (Audit Logs).</p>
+                                        <div class="flex items-center gap-3 pt-2">
+                                            <button onclick="openModal('securityAlertModal')"
+                                                class="bx-btn bx-btn-primary bg-amber-600 hover:bg-amber-700 text-xs px-5">
+                                                <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i>
+                                                <span>اختبار التحقق الأمني</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="w-32 h-32 sm:w-40 sm:h-40 rounded-3xl bg-amber-500/10 border-2 border-amber-500/30 text-amber-500 flex items-center justify-center shadow-xl shadow-amber-500/10 shrink-0">
+                                        <i data-lucide="shield-check" class="w-16 h-16"></i>
+                                    </div>
+                                </div>
+                                <div
+                                    class="w-full min-w-full max-w-full shrink-0 p-6 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 box-border">
+                                    <div class="space-y-3 max-w-lg text-right">
+                                        <span class="bx-tag border-bx-primary/40 text-bx-primary text-[11px]">سحابة GCP
+                                            الرياض · me-central2</span>
+                                        <h4 class="font-black text-xl sm:text-2xl text-bx-title leading-tight">التدشين
+                                            السحابي والـ Orchestration</h4>
+                                        <p class="text-xs text-bx-muted leading-relaxed">إتاحة تشغيل وإطلاق المعمارية
+                                            بضغطة زر واحدة عبر المعالج التفاعلي المتكامل.</p>
+                                        <div class="flex items-center gap-3 pt-2">
+                                            <button onclick="openModal('wizardModal')"
+                                                class="bx-btn bx-btn-primary text-xs px-5">
+                                                <i data-lucide="rocket" class="w-3.5 h-3.5"></i>
+                                                <span>فتح معالج التدشين</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="w-32 h-32 sm:w-40 sm:h-40 rounded-3xl bg-bx-pill border-2 border-bx-primary/30 flex items-center justify-center shadow-xl shadow-bx-primary/10 shrink-0">
+                                        <img src="../../assets/images/avatar_3d_2.png" alt="Cloud 3D"
+                                            class="w-28 h-28 object-contain">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center gap-2 pt-2" id="carouselDotsGroup">
+                            <button type="button" onclick="goToCarouselSlide(0)"
+                                class="carousel-dot h-2.5 w-7 rounded-full bg-bx-primary transition-all"></button>
+                            <button type="button" onclick="goToCarouselSlide(1)"
+                                class="carousel-dot h-2.5 w-2.5 rounded-full bg-bx-border hover:bg-bx-primary transition-all"></button>
+                            <button type="button" onclick="goToCarouselSlide(2)"
+                                class="carousel-dot h-2.5 w-2.5 rounded-full bg-bx-border hover:bg-bx-primary transition-all"></button>
+                            <button type="button" onclick="goToCarouselSlide(3)"
+                                class="carousel-dot h-2.5 w-2.5 rounded-full bg-bx-border hover:bg-bx-primary transition-all"></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== 21. TABS & SEGMENTED CONTROLS ==================== -->
+        </main>
+    </div>
+
+    <!-- Extra Bottom Overlays (e.g. Modals) -->
+    
+
+    <!-- Global & Component JS -->
+    <script src="../../js/taqniya.js"></script>
+    <script src="component.js"></script>
+    <script>
+        function renderIcons() {
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+        }
+        renderIcons();
+        document.addEventListener('DOMContentLoaded', renderIcons);
+        window.addEventListener('load', renderIcons);
+    </script>
+</body>
+</html>

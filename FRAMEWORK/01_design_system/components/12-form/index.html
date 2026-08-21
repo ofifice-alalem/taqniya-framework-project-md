@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12. حقول الإدخال والنماذج (Inputs & Form Studio) — Taqniya Design System</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Syne:wght@700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Local Fast Offline Icons & Tailwind -->
+    <script src="../../js/lucide.min.js"></script>
+    <script src="../../js/tailwind.min.js"></script>
+    <script src="../../js/tailwind.config.js"></script>
+    <!-- Global Core Styles -->
+    <link rel="stylesheet" href="../../css/taqniya.css">
+</head>
+<body class="min-h-screen bg-[var(--bx-canvas)] text-bx-text font-sans antialiased">
+
+    <!-- Global Floating Toast Stack Container -->
+    <div id="toastContainer" class="fixed top-4 left-4 z-[99999] flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
+
+    <!-- Extra Top Overlays -->
+    
+
+    <div class="max-w-[1600px] mx-auto p-4 sm:p-8 lg:p-12 space-y-8">
+        <!-- Component Header Navigation -->
+        <header class="flex items-center justify-between border-b border-bx-border pb-4">
+            <div class="flex items-center gap-3">
+                <a href="../../index.html" class="bx-tag hover:border-bx-primary transition-all">← المعرض العام</a>
+                <span class="text-bx-muted text-xs">/</span>
+                <span class="text-xs font-black text-bx-title">12. حقول الإدخال والنماذج (Inputs & Form Studio)</span>
+            </div>
+            <button type="button" onclick="toggleTheme()" class="bx-tag text-xs font-bold hover:border-bx-primary cursor-pointer flex items-center gap-2">
+                <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+                <span>تبديل السمة (Light / Dark)</span>
+            </button>
+        </header>
+
+        <!-- Main Section Content -->
+        <main class="space-y-8">
+            <section id="forms" class="space-y-6">
+                <div class="flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <span class="w-2.5 h-7 rounded-full bg-bx-primary"></span>
+                        <h2 class="text-xl sm:text-2xl font-bold bx-title">12. النماذج وحقول الإدخال (Forms & Inputs)
+                        </h2>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="bx-tag font-mono text-xs">Validation · Input Groups · Multi-Select ·
+                            Controls</span>
+                        <!-- Section Collapse Button -->
+                        <button onclick="toggleSection('sec-forms-body', 'sec-forms-btn')" id="sec-forms-btn"
+                            class="w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all cursor-pointer"
+                            title="طي / توسيع القسم">
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron-toggle"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Collapsible Body for Section 9 -->
+                <div id="sec-forms-body" class="accordion-content space-y-8">
+
+                    <!-- ================= Part 1: Input Fields & Live Client-Side Validation ================= -->
+                    <div class="bx-card p-6 sm:p-8 space-y-6">
+                        <div class="flex items-center justify-between border-b border-bx-border pb-3">
+                            <div>
+                                <h3 class="text-sm sm:text-base font-black text-bx-title flex items-center gap-2">
+                                    <i data-lucide="check-check" class="w-4 h-4 text-bx-primary"></i>
+                                    1. حقول الإدخال والتحقق اللحظي (Client-Side Validation)
+                                </h3>
+                                <p class="text-xs text-bx-muted mt-0.5">تحقق مباشر أثناء الكتابة (Live Feedback) مع
+                                    حالات النجاح والخطأ الصريحة</p>
+                            </div>
+                            <span class="bx-tag text-[10px]">Real-time Validation</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                            <!-- 1. Text Field with min-length check -->
+                            <div class="space-y-2">
+                                <label
+                                    class="text-xs font-black uppercase text-bx-muted flex items-center justify-between">
+                                    <span>اسم المشروع أو النظام *</span>
+                                    <span class="text-[10px] text-bx-primary font-mono">min: 4 chars</span>
+                                </label>
+                                <div class="relative">
+                                    <input type="text" id="valProjectName" oninput="validateField('projectName')"
+                                        placeholder="أدخل اسم النظام..." value="منظومة تقنية المعمارية"
+                                        class="bx-input pr-10 text-xs font-bold">
+                                    <span id="valProjectIcon"
+                                        class="absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-500">
+                                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                                    </span>
+                                </div>
+                                <div id="valProjectFeedback"
+                                    class="text-xs font-bold text-emerald-500 flex items-center gap-1">
+                                    <i data-lucide="check" class="w-3.5 h-3.5"></i> الاسم مستوفٍ للشروط ومعتمد
+                                </div>
+                            </div>
+
+                            <!-- 2. Email Field with Regex Validation -->
+                            <div class="space-y-2">
+                                <label
+                                    class="text-xs font-black uppercase text-bx-muted flex items-center justify-between">
+                                    <span>البريد الإلكتروني للجهة *</span>
+                                    <span class="text-[10px] text-bx-primary font-mono">RFC-compliant</span>
+                                </label>
+                                <div class="relative">
+                                    <input type="email" id="valEmail" oninput="validateField('email')"
+                                        placeholder="name@taqniya.io" value="user@domain.com"
+                                        class="bx-input pr-10 text-xs font-bold">
+                                    <span id="valEmailIcon"
+                                        class="absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-500">
+                                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                                    </span>
+                                </div>
+                                <div id="valEmailFeedback"
+                                    class="text-xs font-bold text-emerald-500 flex items-center gap-1">
+                                    <i data-lucide="check" class="w-3.5 h-3.5"></i> عنوان البريد الإلكتروني صالح ومطابق
+                                </div>
+                            </div>
+
+                            <!-- 3. Password Field with Eye Toggle & Strength Check -->
+                            <div class="space-y-2">
+                                <label
+                                    class="text-xs font-black uppercase text-bx-muted flex items-center justify-between">
+                                    <span>كلمة المرور المشفرة *</span>
+                                    <span class="text-[10px] text-bx-primary font-mono">min: 6 + numbers</span>
+                                </label>
+                                <div class="relative">
+                                    <input type="password" id="valPassword" oninput="validateField('password')"
+                                        placeholder="••••••••" value="Taqniya@2026"
+                                        class="bx-input pr-10 pl-10 text-xs font-bold">
+                                    <button type="button"
+                                        onclick="togglePassVisibility('valPassword', 'passToggleIcon')"
+                                        class="absolute left-3.5 top-1/2 -translate-y-1/2 text-bx-muted hover:text-bx-primary transition-colors cursor-pointer"
+                                        title="إظهار / إخفاء">
+                                        <i data-lucide="eye" id="passToggleIcon" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <div id="valPassFeedback"
+                                    class="text-xs font-bold text-emerald-500 flex items-center gap-1">
+                                    <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> كلمة مرور قوية ومؤمنة
+                                </div>
+                            </div>
+
+                            <!-- 4. Disabled / Readonly State Input -->
+                            <div class="space-y-2">
+                                <label
+                                    class="text-xs font-black uppercase text-bx-muted flex items-center justify-between">
+                                    <span>معرف التوكن الحصري (معطل / للقراءة فقط)</span>
+                                    <span class="text-[10px] text-bx-muted font-mono">readonly</span>
+                                </label>
+                                <div class="relative">
+                                    <input type="text" value="TK-SYSTEM-AUTH-9982X" disabled
+                                        class="bx-input text-xs font-mono font-bold opacity-60 cursor-not-allowed bg-[var(--bx-table-header)]">
+                                    <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-bx-muted">
+                                        <i data-lucide="lock" class="w-4 h-4"></i>
+                                    </span>
+                                </div>
+                                <div class="text-[10px] text-bx-muted font-bold">هذا الحقل يتم توليده تلقائياً من خادم
+                                    المعمارية</div>
+                            </div>
+
+                        </div>
+
+                        <!-- 5. File Upload & Dropzone Area (منطقة رفع الملفات والمرفقات) -->
+                        <div class="space-y-3 pt-4 border-t border-bx-border">
+                            <label class="text-xs font-black uppercase text-bx-muted flex items-center justify-between">
+                                <span class="flex items-center gap-1.5">
+                                    <i data-lucide="paperclip" class="w-3.5 h-3.5 text-bx-primary"></i>
+                                    المرفقات وملفات التوثيق المعماري (File Upload & Dropzone)
+                                </span>
+                                <span class="text-[10px] text-bx-primary font-mono">Max: 25MB · SSoT Docs</span>
+                            </label>
+                            <div class="p-6 sm:p-8 border-2 border-dashed border-bx-border hover:border-bx-primary rounded-2xl text-center cursor-pointer transition-all bg-[var(--bx-table-header)]/50 group"
+                                onclick="document.getElementById('fileIn').click()">
+                                <div
+                                    class="w-12 h-12 rounded-2xl border border-bx-border bg-[var(--bx-surface-solid)] text-bx-primary group-hover:scale-110 flex items-center justify-center mx-auto mb-2.5 transition-transform shadow-sm">
+                                    <i data-lucide="upload-cloud" class="w-6 h-6"></i>
+                                </div>
+                                <h4 class="font-extrabold font-display text-sm text-bx-title">انقر لرفع ملف أو اسحب
+                                    وأفلت هنا</h4>
+                                <p class="text-xs text-bx-muted mt-1 font-bold">صيغ مدعومة: JPG, PNG, PDF, WEBP, ZIP —
+                                    الحد الأقصى 25MB</p>
+                                <input type="file" id="fileIn" class="hidden" onchange="handleFileSelected()">
+                                <div id="fileNotice"
+                                    class="hidden mt-3 text-xs font-black text-emerald-500 flex items-center justify-center gap-1.5 p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/30">
+                                    <i data-lucide="check-circle" class="w-4 h-4"></i> تم اختيار الملف وجاهز للإرسال
+                                    والتحقق!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ================= Part 2: Input Groups (مجموعات الإدخال المركبة) ================= -->
+                    <div class="bx-card p-6 sm:p-8 space-y-6">
+                        <div class="flex items-center justify-between border-b border-bx-border pb-3">
+                            <div>
+                                <h3 class="text-sm sm:text-base font-black text-bx-title flex items-center gap-2">
+                                    <i data-lucide="layers" class="w-4 h-4 text-bx-primary"></i>
+                                    2. مجموعات الإدخال المركبة (Input Groups)
+                                </h3>
+                                <p class="text-xs text-bx-muted mt-0.5">دمج السوابق واللواحق (Addons)، الأزرار المدمجة،
+                                    ورموز الدول</p>
+                            </div>
+                            <span class="bx-tag text-[10px]">Segmented Addons</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                            <!-- Group 1: URL Prefix Addon -->
+                            <div class="space-y-2">
+                                <label class="text-xs font-black uppercase text-bx-muted">رابط الوصول للنطاق (Prefix
+                                    Addon)</label>
+                                <div class="bx-input-group">
+                                    <span class="bx-input-addon font-mono text-xs">https://taqniya.io/</span>
+                                    <input type="text" placeholder="workspace-id" value="design-system"
+                                        class="font-bold">
+                                </div>
+                            </div>
+
+                            <!-- Group 2: Currency Suffix Addon -->
+                            <div class="space-y-2">
+                                <label class="text-xs font-black uppercase text-bx-muted">الميزانية التقديرية (Suffix
+                                    Addon)</label>
+                                <div class="bx-input-group">
+                                    <input type="text" placeholder="0.00" value="45,000.00"
+                                        class="font-mono font-bold text-left">
+                                    <span class="bx-input-addon bx-input-addon-end font-bold text-xs">ر.س / SAR</span>
+                                </div>
+                            </div>
+
+                            <!-- Group 3: Input with Inline Action Button -->
+                            <div class="space-y-2">
+                                <label class="text-xs font-black uppercase text-bx-muted">رمز التفعيل أو الترقية (Button
+                                    Action Group)</label>
+                                <div class="bx-input-group">
+                                    <input type="text" id="promoCodeInput" placeholder="أدخل رمز القسيمة..."
+                                        value="VIP-TAQNIYA" class="font-mono font-bold">
+                                    <button type="button"
+                                        onclick="showToast('success', 'تفعيل الرمز', 'تم التحقق من رمز التفعيل بنجاح وتطبيق الخصم!')"
+                                        class="px-4 bg-bx-primary hover:bg-bx-primary-hover text-white font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer">
+                                        <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+                                        <span>تطبيق</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Group 4: Phone Number with Country Code Dropdown -->
+                            <div class="space-y-2">
+                                <label class="text-xs font-black uppercase text-bx-muted">رقم الهاتف المعتمد (Merged
+                                    Country Code)</label>
+                                <div class="bx-input-group">
+                                    <span class="bx-input-addon font-bold text-xs gap-1.5 bg-[var(--bx-table-header)]">
+                                        <span>🇸🇦</span>
+                                        <span class="font-mono text-bx-title">+966</span>
+                                    </span>
+                                    <input type="tel" placeholder="5X XXX XXXX" value="50 123 4567"
+                                        class="font-mono font-bold text-right">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- ================= Part 3: Select & Multi-Select with Fuzzy Search ================= -->
+                    <div class="bx-card p-6 sm:p-8 space-y-6">
+                        <div class="flex items-center justify-between border-b border-bx-border pb-3">
+                            <div>
+                                <h3 class="text-sm sm:text-base font-black text-bx-title flex items-center gap-2">
+                                    <i data-lucide="list-filter" class="w-4 h-4 text-bx-primary"></i>
+                                    3. القوائم المنسدلة والاختيار المتعدد الذكي (Select & Multi-Select with Fuzzy
+                                    Search)
+                                </h3>
+                                <p class="text-xs text-bx-muted mt-0.5">دعم البحث الفوري المرن (Substring Matching)
+                                    وإدارة الشارات التفاعلية</p>
+                            </div>
+                            <span class="bx-tag text-[10px]">Fuzzy Search Supported</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                            <!-- 1. Single Select with Filter -->
+                            <div class="space-y-2">
+                                <label class="text-xs font-black uppercase text-bx-muted">القائمة المنسدلة المفردة
+                                    (Single Select)</label>
+                                <div class="relative">
+                                    <div onclick="toggleDropdown('singleSelectMenu')" class="bx-dropdown-trigger">
+                                        <div class="flex items-center gap-2 font-bold text-xs text-bx-title"
+                                            id="singleSelectVal">
+                                            <span>البيئة الإنتاجية (Production Cluster)</span>
+                                        </div>
+                                        <i data-lucide="chevron-down" class="w-4 h-4 text-bx-primary"></i>
+                                    </div>
+                                    <div id="singleSelectMenu" class="hidden bx-dropdown-menu">
+                                        <div class="p-2 border-b border-bx-border">
+                                            <div class="relative">
+                                                <input type="text" oninput="filterSingleSelectOptions(this.value)"
+                                                    placeholder="بحث سريع في البيئات..."
+                                                    class="w-full h-8 px-8 text-xs font-bold rounded-lg border border-bx-border bg-[var(--bx-table-header)] text-bx-text outline-none focus:border-bx-primary">
+                                                <i data-lucide="search"
+                                                    class="w-3.5 h-3.5 text-bx-muted absolute right-2.5 top-1/2 -translate-y-1/2"></i>
+                                            </div>
+                                        </div>
+                                        <div class="max-h-48 overflow-y-auto py-1 divide-y divide-[var(--bx-divider)]"
+                                            id="singleSelectOptionsList">
+                                            <div onclick="selectSingleOption('البيئة الإنتاجية (Production Cluster)', this)"
+                                                class="single-select-row active bx-dropdown-item flex items-center justify-between py-2.5">
+                                                <div class="flex items-center gap-2.5">
+                                                    <input type="radio" name="singleEnvRadio"
+                                                        class="bx-custom-radio pointer-events-none" checked>
+                                                    <span class="font-bold text-xs">البيئة الإنتاجية (Production)</span>
+                                                </div>
+                                                <span class="text-[10px] font-mono text-bx-muted">prod</span>
+                                            </div>
+                                            <div onclick="selectSingleOption('بيئة الاختبار والتطوير (Staging)', this)"
+                                                class="single-select-row bx-dropdown-item flex items-center justify-between py-2.5">
+                                                <div class="flex items-center gap-2.5">
+                                                    <input type="radio" name="singleEnvRadio"
+                                                        class="bx-custom-radio pointer-events-none">
+                                                    <span class="font-bold text-xs">بيئة الاختبار (Staging)</span>
+                                                </div>
+                                                <span class="text-[10px] font-mono text-bx-muted">staging</span>
+                                            </div>
+                                            <div onclick="selectSingleOption('البيئة المحلية (Local Dev)', this)"
+                                                class="single-select-row bx-dropdown-item flex items-center justify-between py-2.5">
+                                                <div class="flex items-center gap-2.5">
+                                                    <input type="radio" name="singleEnvRadio"
+                                                        class="bx-custom-radio pointer-events-none">
+                                                    <span class="font-bold text-xs">البيئة المحلية (Local)</span>
+                                                </div>
+                                                <span class="text-[10px] font-mono text-bx-muted">local</span>
+                                            </div>
+                                            <div onclick="selectSingleOption('بيئة العزل والتعافي (Disaster Recovery)', this)"
+                                                class="single-select-row bx-dropdown-item flex items-center justify-between py-2.5">
+                                                <div class="flex items-center gap-2.5">
+                                                    <input type="radio" name="singleEnvRadio"
+                                                        class="bx-custom-radio pointer-events-none">
+                                                    <span class="font-bold text-xs">التعافي من الكوارث (DR)</span>
+                                                </div>
+                                                <span class="text-[10px] font-mono text-bx-muted">dr</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2. Multi-Select with Fuzzy / Substring Search & Removable Chips -->
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <label class="text-xs font-black uppercase text-bx-muted">الاختيار المتعدد الذكي
+                                        (Multi-Select with Chips)</label>
+                                    <span id="multiSelectCount" class="bx-tag text-[10px]">3 محددة</span>
+                                </div>
+                                <div class="relative">
+                                    <!-- Trigger box with Chips -->
+                                    <div onclick="toggleDropdown('multiSelectMenu')"
+                                        class="min-h-[3.25rem] p-2 rounded-2xl border 1.5 border-bx-border bg-transparent flex flex-wrap items-center gap-1.5 cursor-pointer hover:border-bx-primary transition-all">
+                                        <div id="multiSelectedChips" class="flex flex-wrap items-center gap-1.5 flex-1">
+                                            <!-- Chips rendered via JS -->
+                                        </div>
+                                        <i data-lucide="chevron-down"
+                                            class="w-4 h-4 text-bx-primary mr-auto shrink-0"></i>
+                                    </div>
+
+                                    <!-- Dropdown Menu with Fuzzy Search -->
+                                    <div id="multiSelectMenu" class="hidden bx-dropdown-menu">
+                                        <div class="p-2.5 border-b border-bx-border space-y-2">
+                                            <div class="relative">
+                                                <input type="text" id="multiSearchInput"
+                                                    oninput="filterMultiSelect(this.value)"
+                                                    placeholder="ابحث بالاسم أو الاختصار (مثال: auth, واجهة)..."
+                                                    class="w-full h-8 pr-8 pl-3 text-xs font-bold rounded-lg border border-bx-border bg-[var(--bx-table-header)] text-bx-text outline-none focus:border-bx-primary">
+                                                <i data-lucide="search"
+                                                    class="w-3.5 h-3.5 text-bx-muted absolute right-2.5 top-1/2 -translate-y-1/2"></i>
+                                            </div>
+                                            <div class="flex items-center justify-between text-[11px] font-bold px-1">
+                                                <button type="button" onclick="selectAllMulti(event)"
+                                                    class="text-bx-primary hover:underline cursor-pointer">تحديد
+                                                    الكل</button>
+                                                <button type="button" onclick="clearAllMulti(event)"
+                                                    class="text-[var(--bx-danger)] hover:underline cursor-pointer">مسح
+                                                    الكل</button>
+                                            </div>
+                                        </div>
+
+                                        <!-- Multi-Select Items List -->
+                                        <div class="max-h-48 overflow-y-auto py-1 divide-y divide-[var(--bx-divider)]"
+                                            id="multiSelectList">
+                                            <!-- Item 1 -->
+                                            <div data-val="auth"
+                                                data-label="محرك المصادقة والأمان (Authentication Core)"
+                                                onclick="toggleMultiItem('auth', event)"
+                                                class="multi-item px-3 py-2 flex items-center justify-between hover:bg-[var(--bx-row-hover)] cursor-pointer text-xs font-bold">
+                                                <div class="flex items-center gap-2.5">
+                                                    <input type="checkbox" id="chk_auth"
+                                                        class="bx-custom-check pointer-events-none" checked>
+                                                    <span class="text-bx-title">محرك المصادقة والأمان</span>
+                                                </div>
+                                                <span class="text-[10px] font-mono text-bx-muted">auth</span>
+                                            </div>
+
+                                            <!-- Item 2 -->
+                                            <div data-val="database"
+                                                data-label="قاعدة البيانات ومستودع السجلات (Database & Storage)"
+                                                onclick="toggleMultiItem('database', event)"
+                                                class="multi-item px-3 py-2 flex items-center justify-between hover:bg-[var(--bx-row-hover)] cursor-pointer text-xs font-bold">
+                                                <div class="flex items-center gap-2.5">
+                                                    <input type="checkbox" id="chk_database"
+                                                        class="bx-custom-check pointer-events-none" checked>
+                                                    <span class="text-bx-title">قاعدة البيانات ومستودع السجلات</span>
+                                                </div>
+                                                <span class="text-[10px] font-mono text-bx-muted">db</span>
+                                            </div>
+
+                                            <!-- Item 3 -->
+                                            <div data-val="ui" data-label="مكتبة العناصر البصرية (UI Design Tokens)"
+                                                onclick="toggleMultiItem('ui', event)"
+                                                class="multi-item px-3 py-2 flex items-center justify-between hover:bg-[var(--bx-row-hover)] cursor-pointer text-xs font-bold">
+                                                <div class="flex items-center gap-2.5">
+                                                    <input type="checkbox" id="chk_ui"
+                                                        class="bx-custom-check pointer-events-none" checked>
+                                                    <span class="text-bx-title">مكتبة العناصر البصرية</span>
+                                                </div>
+                                                <span class="text-[10px] font-mono text-bx-muted">ui</span>
+                                            </div>
+
+                                            <!-- Item 4 -->
+                                            <div data-val="analytics"
+                                                data-label="تحليلات الأداء والمؤشرات (Analytics & Metrics)"
+                                                onclick="toggleMultiItem('analytics', event)"
+                                                class="multi-item px-3 py-2 flex items-center justify-between hover:bg-[var(--bx-row-hover)] cursor-pointer text-xs font-bold">
+                                                <div class="flex items-center gap-2.5">
+                                                    <input type="checkbox" id="chk_analytics"
+                                                        class="bx-custom-check pointer-events-none">
+                                                    <span class="text-bx-title">تحليلات الأداء والمؤشرات</span>
+                                                </div>
+                                                <span class="text-[10px] font-mono text-bx-muted">metrics</span>
+                                            </div>
+
+                                            <!-- Item 5 -->
+                                            <div data-val="workflow"
+                                                data-label="سير العمل والأتمتة (Workflows & Pipelines)"
+                                                onclick="toggleMultiItem('workflow', event)"
+                                                class="multi-item px-3 py-2 flex items-center justify-between hover:bg-[var(--bx-row-hover)] cursor-pointer text-xs font-bold">
+                                                <div class="flex items-center gap-2.5">
+                                                    <input type="checkbox" id="chk_workflow"
+                                                        class="bx-custom-check pointer-events-none">
+                                                    <span class="text-bx-title">سير العمل والأتمتة</span>
+                                                </div>
+                                                <span class="text-[10px] font-mono text-bx-muted">pipeline</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- ================= Part 4: Checks, Radios & Switches Matrix ================= -->
+                    <div class="bx-card p-6 sm:p-8 space-y-6">
+                        <div class="flex items-center justify-between border-b border-bx-border pb-3">
+                            <div>
+                                <h3 class="text-sm sm:text-base font-black text-bx-title flex items-center gap-2">
+                                    <i data-lucide="toggle-left" class="w-4 h-4 text-bx-primary"></i>
+                                    4. أدوات الاختيار والتحكم (Checks, Radios & Switches Matrix)
+                                </h3>
+                                <p class="text-xs text-bx-muted mt-0.5">مربعات الاختيار المخصصة، أزرار الراديو الدائرية،
+                                    ومفاتيح التبديل السلسة</p>
+                            </div>
+                            <span class="bx-tag text-[10px]">Controls Matrix</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                            <!-- Column 1: Custom Checkboxes -->
+                            <div class="p-5 rounded-2xl border border-bx-border bg-[var(--bx-table-header)] space-y-4">
+                                <div class="flex items-center justify-between border-b border-bx-border pb-2">
+                                    <span class="text-xs font-black text-bx-title">مربعات الاختيار (Checks)</span>
+                                    <span class="text-[10px] font-mono text-bx-muted">.bx-custom-check</span>
+                                </div>
+
+                                <div class="space-y-3">
+                                    <label class="flex items-center gap-3 cursor-pointer group">
+                                        <input type="checkbox" class="bx-custom-check" checked>
+                                        <span
+                                            class="text-xs font-bold text-bx-text group-hover:text-bx-primary transition-colors">محدد
+                                            ونشط (Checked)</span>
+                                    </label>
+
+                                    <label class="flex items-center gap-3 cursor-pointer group">
+                                        <input type="checkbox" class="bx-custom-check">
+                                        <span
+                                            class="text-xs font-bold text-bx-text group-hover:text-bx-primary transition-colors">غير
+                                            محدد (Unchecked)</span>
+                                    </label>
+
+                                    <label class="flex items-center gap-3 opacity-50 cursor-not-allowed">
+                                        <input type="checkbox" class="bx-custom-check" disabled checked>
+                                        <span class="text-xs font-bold text-bx-muted">معطل ومحدد (Disabled)</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Column 2: Custom Radios -->
+                            <div class="p-5 rounded-2xl border border-bx-border bg-[var(--bx-table-header)] space-y-4">
+                                <div class="flex items-center justify-between border-b border-bx-border pb-2">
+                                    <span class="text-xs font-black text-bx-title">أزرار الراديو (Radios)</span>
+                                    <span class="text-[10px] font-mono text-bx-muted">.bx-custom-radio</span>
+                                </div>
+
+                                <div class="space-y-3">
+                                    <label class="flex items-center gap-3 cursor-pointer group">
+                                        <input type="radio" name="userRoleRadio" class="bx-custom-radio" checked>
+                                        <div>
+                                            <span
+                                                class="text-xs font-bold text-bx-text group-hover:text-bx-primary transition-colors block">مدير
+                                                المنظومة (Admin)</span>
+                                            <span class="text-[10px] text-bx-muted">صلاحية كاملة على الإعدادات</span>
+                                        </div>
+                                    </label>
+
+                                    <label class="flex items-center gap-3 cursor-pointer group">
+                                        <input type="radio" name="userRoleRadio" class="bx-custom-radio">
+                                        <div>
+                                            <span
+                                                class="text-xs font-bold text-bx-text group-hover:text-bx-primary transition-colors block">مهندس
+                                                معمارية (Architect)</span>
+                                            <span class="text-[10px] text-bx-muted">تعديل المكونات والوثائق</span>
+                                        </div>
+                                    </label>
+
+                                    <label class="flex items-center gap-3 opacity-50 cursor-not-allowed">
+                                        <input type="radio" name="userRoleRadio" class="bx-custom-radio" disabled>
+                                        <span class="text-xs font-bold text-bx-muted">صلاحية مقيدة (Disabled)</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Column 3: Custom Switches -->
+                            <div class="p-5 rounded-2xl border border-bx-border bg-[var(--bx-table-header)] space-y-4">
+                                <div class="flex items-center justify-between border-b border-bx-border pb-2">
+                                    <span class="text-xs font-black text-bx-title">مفاتيح التبديل (Switches)</span>
+                                    <span class="text-[10px] font-mono text-bx-muted">.bx-custom-switch</span>
+                                </div>
+
+                                <div class="space-y-3.5">
+                                    <label class="flex items-center justify-between cursor-pointer">
+                                        <div>
+                                            <span class="text-xs font-bold text-bx-title block">التنبيهات اللحظية</span>
+                                            <span class="text-[10px] text-bx-muted">إشعارات النظام المباشرة</span>
+                                        </div>
+                                        <label class="bx-switch-label">
+                                            <input type="checkbox" class="bx-custom-switch" checked
+                                                onchange="showToast('info', 'إعدادات الإشعارات', this.checked ? 'تم تفعيل التنبيهات اللحظية' : 'تم تعطيل التنبيهات')">
+                                            <span class="bx-switch-slider"></span>
+                                        </label>
+                                    </label>
+
+                                    <label class="flex items-center justify-between cursor-pointer">
+                                        <div>
+                                            <span class="text-xs font-bold text-bx-title block">المصادقة الثنائية
+                                                (2FA)</span>
+                                            <span class="text-[10px] text-bx-muted">حماية الحساب عبر OTP</span>
+                                        </div>
+                                        <label class="bx-switch-label">
+                                            <input type="checkbox" class="bx-custom-switch" checked
+                                                onchange="showToast('success', 'الأمان', this.checked ? 'تم تفعيل المصادقة الثنائية' : 'تم تعطيل المصادقة الثنائية')">
+                                            <span class="bx-switch-slider"></span>
+                                        </label>
+                                    </label>
+
+                                    <label class="flex items-center justify-between opacity-50 cursor-not-allowed">
+                                        <div>
+                                            <span class="text-xs font-bold text-bx-muted block">وضع الصيانة
+                                                (Locked)</span>
+                                            <span class="text-[10px] text-bx-muted">يتطلب صلاحية الخادم</span>
+                                        </div>
+                                        <label class="bx-switch-label">
+                                            <input type="checkbox" class="bx-custom-switch" disabled>
+                                            <span class="bx-switch-slider"></span>
+                                        </label>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Action Bar Footer -->
+                    <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-bx-border">
+                        <div class="flex flex-wrap items-center gap-3">
+                            <button onclick="submitFormDemo()" class="bx-btn bx-btn-primary">
+                                <i data-lucide="save" class="w-4 h-4"></i>
+                                <span>حفظ وتطبيق النموذج</span>
+                            </button>
+                            <button onclick="resetFormDemo()" class="bx-btn bx-btn-outline">
+                                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                                <span>إعادة ضبط الحقول</span>
+                            </button>
+                        </div>
+                        <span class="text-xs text-bx-muted font-bold flex items-center gap-1.5">
+                            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-500"></i>
+                            جميع المدخلات متوافقة 100% مع معايير SSoT
+                        </span>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ==================== 13. MODALS & DIALOGS ==================== -->
+        </main>
+    </div>
+
+    <!-- Extra Bottom Overlays (e.g. Modals) -->
+    
+
+    <!-- Global & Component JS -->
+    <script src="../../js/taqniya.js"></script>
+    <script src="component.js"></script>
+    <script>
+        function renderIcons() {
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+        }
+        renderIcons();
+        document.addEventListener('DOMContentLoaded', renderIcons);
+        window.addEventListener('load', renderIcons);
+    </script>
+</body>
+</html>

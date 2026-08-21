@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15. التنبيهات والإشعارات وبطاقات الحالة (Feedback & Alerts) — Taqniya Design System</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Syne:wght@700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Local Fast Offline Icons & Tailwind -->
+    <script src="../../js/lucide.min.js"></script>
+    <script src="../../js/tailwind.min.js"></script>
+    <script src="../../js/tailwind.config.js"></script>
+    <!-- Global Core Styles -->
+    <link rel="stylesheet" href="../../css/taqniya.css">
+</head>
+<body class="min-h-screen bg-[var(--bx-canvas)] text-bx-text font-sans antialiased">
+
+    <!-- Global Floating Toast Stack Container -->
+    <div id="toastContainer" class="fixed top-4 left-4 z-[99999] flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
+
+    <!-- Extra Top Overlays -->
+    
+
+    <div class="max-w-[1600px] mx-auto p-4 sm:p-8 lg:p-12 space-y-8">
+        <!-- Component Header Navigation -->
+        <header class="flex items-center justify-between border-b border-bx-border pb-4">
+            <div class="flex items-center gap-3">
+                <a href="../../index.html" class="bx-tag hover:border-bx-primary transition-all">← المعرض العام</a>
+                <span class="text-bx-muted text-xs">/</span>
+                <span class="text-xs font-black text-bx-title">15. التنبيهات والإشعارات وبطاقات الحالة (Feedback & Alerts)</span>
+            </div>
+            <button type="button" onclick="toggleTheme()" class="bx-tag text-xs font-bold hover:border-bx-primary cursor-pointer flex items-center gap-2">
+                <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+                <span>تبديل السمة (Light / Dark)</span>
+            </button>
+        </header>
+
+        <!-- Main Section Content -->
+        <main class="space-y-8">
+            <section id="feedback" class="space-y-6 pb-12">
+                <div class="flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <span class="w-2.5 h-7 rounded-full bg-bx-primary"></span>
+                        <h2 class="text-xl sm:text-2xl font-bold bx-title">15. التنبيهات والإشعارات (Notifications &
+                            Alerts)</h2>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="bx-tag font-mono text-xs">Toasts · Alerts</span>
+                        <!-- Section Collapse Button -->
+                        <button onclick="toggleSection('sec-feedback-body', 'sec-feedback-btn')" id="sec-feedback-btn"
+                            class="w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all cursor-pointer"
+                            title="طي / توسيع القسم">
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron-toggle"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Collapsible Body for Section 15 -->
+                <div id="sec-feedback-body" class="accordion-content space-y-6">
+                    <!-- 15.1 Static Inline Framed Alerts -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Success Alert Card -->
+                        <div class="bx-card p-5 flex items-start gap-4 border-2 border-emerald-500/40">
+                            <div
+                                class="w-11 h-11 rounded-[18px] border-2 border-emerald-500/40 text-emerald-500 flex items-center justify-center font-black text-lg shrink-0">
+                                <i data-lucide="check" class="w-5 h-5"></i>
+                            </div>
+                            <div class="flex-1 space-y-0.5">
+                                <h4 class="font-display font-extrabold text-sm text-emerald-600">عملية ناجحة ومكتملة
+                                </h4>
+                                <p class="text-xs text-bx-muted">تمت مزامنة جميع ملفات الـ SSoT المعمارية بدون أي
+                                    تعارضات في الشجرة.</p>
+                            </div>
+                            <span class="bx-tag border-emerald-500/30 text-emerald-600 text-[10px]">200 OK</span>
+                        </div>
+
+                        <!-- Warning Alert Card -->
+                        <div class="bx-card p-5 flex items-start gap-4 border-2 border-amber-500/40">
+                            <div
+                                class="w-11 h-11 rounded-[18px] border-2 border-amber-500/40 text-amber-500 flex items-center justify-center font-black text-lg shrink-0">
+                                <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                            </div>
+                            <div class="flex-1 space-y-0.5">
+                                <h4 class="font-display font-extrabold text-sm text-amber-600">تنبيه يتطلب المراجعة</h4>
+                                <p class="text-xs text-bx-muted">هناك ملفات غير معتمدة في المسار الحالي، يرجى تشغيل
+                                    التحقق قبل النشر.</p>
+                            </div>
+                            <span class="bx-tag border-amber-500/30 text-amber-600 text-[10px]">تحذير</span>
+                        </div>
+
+                        <!-- Info Alert Card -->
+                        <div class="bx-card p-5 flex items-start gap-4 border-2 border-bx-primary/40">
+                            <div
+                                class="w-11 h-11 rounded-[18px] border-2 border-bx-primary/40 text-bx-primary flex items-center justify-center font-black text-lg shrink-0">
+                                <i data-lucide="info" class="w-5 h-5"></i>
+                            </div>
+                            <div class="flex-1 space-y-0.5">
+                                <h4 class="font-display font-extrabold text-sm text-bx-title">معلومات النظام المحدثة
+                                </h4>
+                                <p class="text-xs text-bx-muted">يتم توليد واجهات النظام بالاعتماد على الهوية الإطارية
+                                    الموحدة Braxton.</p>
+                            </div>
+                            <span class="bx-tag text-[10px]">نظام تقنية</span>
+                        </div>
+
+                        <!-- Error Alert Card -->
+                        <div class="bx-card p-5 flex items-start gap-4 border-2 border-red-500/40">
+                            <div
+                                class="w-11 h-11 rounded-[18px] border-2 border-red-500/40 text-red-500 flex items-center justify-center font-black text-lg shrink-0">
+                                <i data-lucide="alert-octagon" class="w-5 h-5"></i>
+                            </div>
+                            <div class="flex-1 space-y-0.5">
+                                <h4 class="font-display font-extrabold text-sm text-red-500">فشل في الاتصال</h4>
+                                <p class="text-xs text-bx-muted">تعذر الوصول إلى خادم التوثيق المركزي، تم تفعيل وضع عدم
+                                    الاتصال (Offline).</p>
+                            </div>
+                            <span class="bx-tag border-red-500/30 text-red-500 text-[10px]">خطأ</span>
+                        </div>
+                    </div>
+
+                    <!-- 15.2 Interactive Toast Trigger Controls (Upgraded Luxury Buttons) -->
+                    <div class="bx-card p-6 sm:p-8 space-y-6">
+                        <div
+                            class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-bx-divider">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-10 h-10 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black">
+                                    <i data-lucide="bell-ring" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="bx-title text-base font-black">اختبار الإشعارات العائمة التفاعلية
+                                        (Floating Toasts)</h3>
+                                    <p class="text-xs text-bx-muted">انقر لتجربة ظهور الإشعارات العائمة مع تأثيرات
+                                        الحركة والأصوات البصرية</p>
+                                </div>
+                            </div>
+                            <span class="bx-tag font-mono text-xs">Live Toast System</span>
+                        </div>
+
+                        <!-- 4 Rich Interactive Trigger Cards/Buttons Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <!-- 1. Success Toast Trigger Button -->
+                            <button
+                                onclick="showToast('success', 'تم حفظ التعديلات بنجاح', 'تمت مزامنة كافة البيانات وتوثيق التغييرات في ملفات النظام')"
+                                class="group relative flex items-center gap-3.5 p-4 rounded-2xl border-2 border-emerald-500/30 hover:border-emerald-500/70 bg-gradient-to-br from-emerald-500/10 to-transparent hover:bg-emerald-500/15 shadow-lg shadow-emerald-500/5 hover:shadow-emerald-500/20 hover:-translate-y-1 active:translate-y-0 active:scale-95 transition-all text-right cursor-pointer">
+                                <div
+                                    class="w-11 h-11 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white flex items-center justify-center font-black shrink-0 transition-all shadow-sm">
+                                    <i data-lucide="check-circle" class="w-5 h-5"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div
+                                        class="font-black text-xs sm:text-sm text-emerald-600 dark:text-emerald-400 group-hover:text-emerald-500">
+                                        إشعار نجاح</div>
+                                    <div class="text-[11px] text-bx-muted truncate">Success · 200 OK</div>
+                                </div>
+                                <i data-lucide="sparkles"
+                                    class="w-4 h-4 text-emerald-500 opacity-40 group-hover:opacity-100 transition-opacity"></i>
+                            </button>
+
+                            <!-- 2. Error Toast Trigger Button -->
+                            <button
+                                onclick="showToast('error', 'تعذر حفظ السجل المعماري', 'حدث خطأ في الاتصال بالخادم، يرجى إعادة المحاولة بعد قليل')"
+                                class="group relative flex items-center gap-3.5 p-4 rounded-2xl border-2 border-red-500/30 hover:border-red-500/70 bg-gradient-to-br from-red-500/10 to-transparent hover:bg-red-500/15 shadow-lg shadow-red-500/5 hover:shadow-red-500/20 hover:-translate-y-1 active:translate-y-0 active:scale-95 transition-all text-right cursor-pointer">
+                                <div
+                                    class="w-11 h-11 rounded-2xl bg-red-500/20 border border-red-500/40 text-red-500 group-hover:bg-red-500 group-hover:text-white flex items-center justify-center font-black shrink-0 transition-all shadow-sm">
+                                    <i data-lucide="alert-octagon" class="w-5 h-5"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div
+                                        class="font-black text-xs sm:text-sm text-red-600 dark:text-red-400 group-hover:text-red-500">
+                                        إشعار خطأ</div>
+                                    <div class="text-[11px] text-bx-muted truncate">Error · 400 Failed</div>
+                                </div>
+                                <i data-lucide="flame"
+                                    class="w-4 h-4 text-red-500 opacity-40 group-hover:opacity-100 transition-opacity"></i>
+                            </button>
+
+                            <!-- 3. Warning Toast Trigger Button -->
+                            <button
+                                onclick="showToast('warning', 'صلاحيات غير مكتملة', 'يرجى مراجعة الصلاحيات المعمارية قبل متابعة الإجراء المطلوب')"
+                                class="group relative flex items-center gap-3.5 p-4 rounded-2xl border-2 border-amber-500/30 hover:border-amber-500/70 bg-gradient-to-br from-amber-500/10 to-transparent hover:bg-amber-500/15 shadow-lg shadow-amber-500/5 hover:shadow-amber-500/20 hover:-translate-y-1 active:translate-y-0 active:scale-95 transition-all text-right cursor-pointer">
+                                <div
+                                    class="w-11 h-11 rounded-2xl bg-amber-500/20 border border-amber-500/40 text-amber-500 group-hover:bg-amber-500 group-hover:text-white flex items-center justify-center font-black shrink-0 transition-all shadow-sm">
+                                    <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div
+                                        class="font-black text-xs sm:text-sm text-amber-600 dark:text-amber-400 group-hover:text-amber-500">
+                                        إشعار تحذير</div>
+                                    <div class="text-[11px] text-bx-muted truncate">Warning · Action Req.</div>
+                                </div>
+                                <i data-lucide="zap"
+                                    class="w-4 h-4 text-amber-500 opacity-40 group-hover:opacity-100 transition-opacity"></i>
+                            </button>
+
+                            <!-- 4. Info Toast Trigger Button -->
+                            <button
+                                onclick="showToast('info', 'تحديث تلقائي للمشروع', 'تم ربط ملفات الـ SSoT بالهيكل البرمجي المعتمد بنجاح')"
+                                class="group relative flex items-center gap-3.5 p-4 rounded-2xl border-2 border-bx-primary/30 hover:border-bx-primary/70 bg-gradient-to-br from-bx-primary/10 to-transparent hover:bg-bx-primary/15 shadow-lg shadow-bx-primary/5 hover:shadow-bx-primary/20 hover:-translate-y-1 active:translate-y-0 active:scale-95 transition-all text-right cursor-pointer">
+                                <div
+                                    class="w-11 h-11 rounded-2xl bg-bx-pill border border-bx-border text-bx-primary group-hover:bg-bx-primary group-hover:text-white flex items-center justify-center font-black shrink-0 transition-all shadow-sm">
+                                    <i data-lucide="info" class="w-5 h-5"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div
+                                        class="font-black text-xs sm:text-sm text-bx-title group-hover:text-bx-primary">
+                                        إشعار معلومة</div>
+                                    <div class="text-[11px] text-bx-muted truncate">Info · Live Notice</div>
+                                </div>
+                                <i data-lucide="sparkles"
+                                    class="w-4 h-4 text-bx-primary opacity-40 group-hover:opacity-100 transition-opacity"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== 16. BADGES & CHIPS ==================== -->
+        </main>
+    </div>
+
+    <!-- Extra Bottom Overlays (e.g. Modals) -->
+    
+
+    <!-- Global & Component JS -->
+    <script src="../../js/taqniya.js"></script>
+    <script src="component.js"></script>
+    <script>
+        function renderIcons() {
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+        }
+        renderIcons();
+        document.addEventListener('DOMContentLoaded', renderIcons);
+        window.addEventListener('load', renderIcons);
+    </script>
+</body>
+</html>

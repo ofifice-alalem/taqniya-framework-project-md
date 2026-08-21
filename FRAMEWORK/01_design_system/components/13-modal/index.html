@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13. النوافذ المنبثقة والحوارية (Modals & Dialogs) — Taqniya Design System</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Syne:wght@700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Local Fast Offline Icons & Tailwind -->
+    <script src="../../js/lucide.min.js"></script>
+    <script src="../../js/tailwind.min.js"></script>
+    <script src="../../js/tailwind.config.js"></script>
+    <!-- Global Core Styles -->
+    <link rel="stylesheet" href="../../css/taqniya.css">
+</head>
+<body class="min-h-screen bg-[var(--bx-canvas)] text-bx-text font-sans antialiased">
+
+    <!-- Global Floating Toast Stack Container -->
+    <div id="toastContainer" class="fixed top-4 left-4 z-[99999] flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
+
+    <div class="max-w-[1600px] mx-auto p-4 sm:p-8 lg:p-12 space-y-8">
+        <!-- Component Header Navigation -->
+        <header class="flex items-center justify-between border-b border-bx-border pb-4">
+            <div class="flex items-center gap-3">
+                <a href="../../index.html" class="bx-tag hover:border-bx-primary transition-all">← المعرض العام</a>
+                <span class="text-bx-muted text-xs">/</span>
+                <span class="text-xs font-black text-bx-title">13. النوافذ المنبثقة والحوارية (Modals & Dialogs)</span>
+            </div>
+            <button type="button" onclick="toggleTheme()" class="bx-tag text-xs font-bold hover:border-bx-primary cursor-pointer flex items-center gap-2">
+                <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+                <span>تبديل السمة (Light / Dark)</span>
+            </button>
+        </header>
+
+        <!-- Main Section Content -->
+        <main class="space-y-8">
+            <section id="modals" class="space-y-6">
+                <div class="flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <span class="w-2.5 h-7 rounded-full bg-bx-primary"></span>
+                        <h2 class="text-xl sm:text-2xl font-bold bx-title">13. النوافذ المنبثقة والحوارية (Modals &
+                            Dialogs)</h2>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="bx-tag font-mono text-xs">Popups · Dialogs · Drawers · Wizards</span>
+                        <!-- Section Collapse Button -->
+                        <button onclick="toggleSection('sec-modals-body', 'sec-modals-btn')" id="sec-modals-btn"
+                            class="w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all cursor-pointer"
+                            title="طي / توسيع القسم">
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron-toggle"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Collapsible Body for Section 13 -->
+                <div id="sec-modals-body" class="accordion-content space-y-6">
+                    <!-- Modals Catalog Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+                        <!-- 1. Confirmation & Destructive Modals -->
+                        <div
+                            class="bx-card p-6 flex flex-col justify-between space-y-4 hover:border-red-500 transition-all">
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <div
+                                        class="w-10 h-10 rounded-2xl bg-red-500/10 text-red-500 border border-red-500/30 flex items-center justify-center font-bold">
+                                        <i data-lucide="trash-2" class="w-5 h-5"></i>
+                                    </div>
+                                    <span class="bx-tag border-red-500/30 text-red-500 text-[10px]">Destructive
+                                        Action</span>
+                                </div>
+                                <h4 class="font-display font-extrabold text-base text-bx-title">نافذة تأكيد الحذف الحرج
+                                </h4>
+                                <p class="text-xs text-bx-muted leading-relaxed">نافذة حوارية لتحذير المستخدم قبل حذف
+                                    السجلات أو العمليات الحساسة مع زر تأكيد وإلغاء.</p>
+                            </div>
+                            <button onclick="openModal('deleteModal')"
+                                class="bx-btn bx-btn-outline w-full text-red-500 hover:bg-red-500 hover:text-white border-red-500/40 text-xs py-2.5">
+                                <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+                                <span>تجربة نافذة الحذف</span>
+                            </button>
+                        </div>
+
+                        <!-- 2. Success & Completed Modal -->
+                        <div
+                            class="bx-card p-6 flex flex-col justify-between space-y-4 hover:border-emerald-500 transition-all">
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <div
+                                        class="w-10 h-10 rounded-2xl bg-emerald-500/10 text-emerald-500 border border-emerald-500/30 flex items-center justify-center font-bold">
+                                        <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                                    </div>
+                                    <span class="bx-tag border-emerald-500/30 text-emerald-600 text-[10px]">Success
+                                        State</span>
+                                </div>
+                                <h4 class="font-display font-extrabold text-base text-bx-title">إشعار إتمام العملية
+                                    والنجاح</h4>
+                                <p class="text-xs text-bx-muted leading-relaxed">نافذة إيصال ورقم مرجعي تؤكد نجاح
+                                    الإجراء مع تفاصيل العملية وخيارات المتابعة.</p>
+                            </div>
+                            <button onclick="openModal('successModal')"
+                                class="bx-btn bx-btn-outline w-full text-emerald-600 hover:bg-emerald-600 hover:text-white border-emerald-500/40 text-xs py-2.5">
+                                <i data-lucide="award" class="w-4 h-4"></i>
+                                <span>تجربة نافذة النجاح</span>
+                            </button>
+                        </div>
+
+                        <!-- 3. Security & Alert Modal -->
+                        <div
+                            class="bx-card p-6 flex flex-col justify-between space-y-4 hover:border-amber-500 transition-all">
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <div
+                                        class="w-10 h-10 rounded-2xl bg-amber-500/10 text-amber-500 border border-amber-500/30 flex items-center justify-center font-bold">
+                                        <i data-lucide="shield-alert" class="w-5 h-5"></i>
+                                    </div>
+                                    <span class="bx-tag border-amber-500/30 text-amber-600 text-[10px]">Security
+                                        Alert</span>
+                                </div>
+                                <h4 class="font-display font-extrabold text-base text-bx-title">تحذير أمني ومصادقة 2FA
+                                </h4>
+                                <p class="text-xs text-bx-muted leading-relaxed">نافذة تحقق من محاولة تسجيل الدخول من
+                                    جهاز غير معتاد مع إمكانية تفويض أو حظر.</p>
+                            </div>
+                            <button onclick="openModal('securityAlertModal')"
+                                class="bx-btn bx-btn-outline w-full text-amber-600 hover:bg-amber-600 hover:text-white border-amber-500/40 text-xs py-2.5">
+                                <i data-lucide="lock" class="w-4 h-4"></i>
+                                <span>تجربة تنبيه الأمان</span>
+                            </button>
+                        </div>
+
+                        <!-- 4. Form & Data Entry Modal -->
+                        <div
+                            class="bx-card p-6 flex flex-col justify-between space-y-4 hover:border-bx-primary transition-all">
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <div
+                                        class="w-10 h-10 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-bold">
+                                        <i data-lucide="file-plus-2" class="w-5 h-5"></i>
+                                    </div>
+                                    <span class="bx-tag text-[10px]">Data Entry Form</span>
+                                </div>
+                                <h4 class="font-display font-extrabold text-base text-bx-title">نموذج إنشاء / تعديل سجل
+                                    جديد</h4>
+                                <p class="text-xs text-bx-muted leading-relaxed">نافذة إدخال متكاملة بحقول مخصصة، اختيار
+                                    التصنيف، تحديد الأولوية، والتحقق الفوري.</p>
+                            </div>
+                            <button onclick="openModal('createRecordModal')"
+                                class="bx-btn bx-btn-primary w-full text-xs py-2.5">
+                                <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                                <span>تجربة نموذج الإدخال</span>
+                            </button>
+                        </div>
+
+                        <!-- 5. 3-Step Wizard Stepper Modal -->
+                        <div
+                            class="bx-card p-6 flex flex-col justify-between space-y-4 hover:border-bx-primary transition-all">
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <div
+                                        class="w-10 h-10 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-bold">
+                                        <i data-lucide="git-merge" class="w-5 h-5"></i>
+                                    </div>
+                                    <span class="bx-tag text-[10px]">Multi-Step Wizard</span>
+                                </div>
+                                <h4 class="font-display font-extrabold text-base text-bx-title">معالج إعداد متعدد
+                                    الخطوات (Wizard)</h4>
+                                <p class="text-xs text-bx-muted leading-relaxed">معالج تهيئة من 3 مراحل مع مؤشر خطوات
+                                    تفاعلي، مراجعة وتأكيد الإعدادات المعمارية.</p>
+                            </div>
+                            <button onclick="openModal('wizardModal')"
+                                class="bx-btn bx-btn-primary w-full text-xs py-2.5">
+                                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                                <span>تجربة المعالج التفاعلي</span>
+                            </button>
+                        </div>
+
+                        <!-- 6. Architectural Details Modal -->
+                        <div
+                            class="bx-card p-6 flex flex-col justify-between space-y-4 hover:border-bx-primary transition-all">
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <div
+                                        class="w-10 h-10 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-bold">
+                                        <i data-lucide="cpu" class="w-5 h-5"></i>
+                                    </div>
+                                    <span class="bx-tag text-[10px]">System Specs</span>
+                                </div>
+                                <h4 class="font-display font-extrabold text-base text-bx-title">المواصفات والتفاصيل
+                                    المعمارية</h4>
+                                <p class="text-xs text-bx-muted leading-relaxed">نافذة عرض تفصيلي لمواصفات النظام،
+                                    مؤشرات SSoT، حالة التوافق، وتصدير التقارير.</p>
+                            </div>
+                            <button onclick="openModal('detailModal')"
+                                class="bx-btn bx-btn-outline w-full text-xs py-2.5">
+                                <i data-lucide="maximize-2" class="w-4 h-4"></i>
+                                <span>عرض تفاصيل المواصفات</span>
+                            </button>
+                        </div>
+
+                        <!-- 7. Permissions & Role Settings Modal -->
+                        <div
+                            class="bx-card p-6 flex flex-col justify-between space-y-4 hover:border-bx-primary transition-all">
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <div
+                                        class="w-10 h-10 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-bold">
+                                        <i data-lucide="key-round" class="w-5 h-5"></i>
+                                    </div>
+                                    <span class="bx-tag text-[10px]">Access Control</span>
+                                </div>
+                                <h4 class="font-display font-extrabold text-base text-bx-title">إدارة الصلاحيات والأمان
+                                </h4>
+                                <p class="text-xs text-bx-muted leading-relaxed">نافذة تحكم بمفاتيح التبديل (Switches)
+                                    لتحديد مستويات الوصول للـ API والنشر وقواعد البيانات.</p>
+                            </div>
+                            <button onclick="openModal('permissionsModal')"
+                                class="bx-btn bx-btn-outline w-full text-xs py-2.5">
+                                <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
+                                <span>إعداد الصلاحيات</span>
+                            </button>
+                        </div>
+
+                        <!-- 8. User Feedback & Star Rating Modal -->
+                        <div
+                            class="bx-card p-6 flex flex-col justify-between space-y-4 hover:border-bx-primary transition-all">
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <div
+                                        class="w-10 h-10 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-bold">
+                                        <i data-lucide="star" class="w-5 h-5"></i>
+                                    </div>
+                                    <span class="bx-tag text-[10px]">Feedback & Rating</span>
+                                </div>
+                                <h4 class="font-display font-extrabold text-base text-bx-title">استطلاع الرأي والتقييم
+                                </h4>
+                                <p class="text-xs text-bx-muted leading-relaxed">نافذة تقييم تفاعلية بالنجوم، حقل
+                                    ملاحظات موسع، وخيار المشاركة بدون اسم.</p>
+                            </div>
+                            <button onclick="openModal('feedbackRatingModal')"
+                                class="bx-btn bx-btn-outline w-full text-xs py-2.5">
+                                <i data-lucide="message-square" class="w-4 h-4"></i>
+                                <span>تقييم التجربة</span>
+                            </button>
+                        </div>
+
+                        <!-- 9. Slide-Over Side Drawer Sheet -->
+                        <div
+                            class="bx-card p-6 flex flex-col justify-between space-y-4 hover:border-bx-primary transition-all">
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <div
+                                        class="w-10 h-10 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-bold">
+                                        <i data-lucide="panel-right-open" class="w-5 h-5"></i>
+                                    </div>
+                                    <span class="bx-tag text-[10px]">Slide Sheet / Drawer</span>
+                                </div>
+                                <h4 class="font-display font-extrabold text-base text-bx-title">اللوح الجانبي المنزلق
+                                    (Side Drawer)</h4>
+                                <p class="text-xs text-bx-muted leading-relaxed">لوح جانبي سلس ينسدل من الحافة لمعاينة
+                                    السجلات الجانبية وقوائم التعديل السريع.</p>
+                            </div>
+                            <button onclick="openDrawer()" class="bx-btn bx-btn-primary w-full text-xs py-2.5">
+                                <i data-lucide="sidebar" class="w-4 h-4"></i>
+                                <span>فتح اللوح الجانبي</span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- ==================== COMPREHENSIVE MODALS & DIALOGS STACK ==================== -->
+
+    <!-- ===== 1. MODAL: DESTRUCTIVE DELETE CONFIRMATION ===== -->
+    <div id="deleteModal" onclick="if(event.target===this) closeModal('deleteModal')"
+        class="fixed inset-0 bg-black/65 backdrop-blur-md z-[9999] hidden items-center justify-center p-4">
+        <div class="bx-modal-card max-w-lg w-full p-6 sm:p-7 space-y-5 shadow-2xl relative border-2 border-red-500/30">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between border-b border-bx-border pb-4">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-11 h-11 rounded-2xl bg-red-500/15 border border-red-500/30 text-red-500 flex items-center justify-center font-black text-lg shadow-sm">
+                        <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h3 class="bx-title text-lg font-black text-red-500">تأكيد حذف السجل المعماري</h3>
+                        <p class="text-xs text-bx-muted">إجراء إداري حرج وغير قابل للتراجع</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('deleteModal')"
+                    class="w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body with Divided Detail Rows -->
+            <div class="space-y-4">
+                <div
+                    class="p-3.5 rounded-2xl bg-red-500/5 border border-red-500/20 text-xs text-red-600 dark:text-red-400 font-bold flex items-start gap-2.5">
+                    <i data-lucide="alert-circle" class="w-4 h-4 shrink-0 mt-0.5"></i>
+                    <p class="leading-relaxed">تنبيه: سيتم مسح هذا السجل وجميع ملفات الـ SSoT والتبعيات الفرعية المرتبطة
+                        به نهائياً من قاعدة البيانات.</p>
+                </div>
+
+                <!-- Structured Divided Detail List -->
+                <div class="rounded-2xl border border-bx-border bg-[var(--bx-table-header)] overflow-hidden text-xs">
+                    <div class="flex items-center justify-between px-4 py-2.5 border-b border-bx-divider">
+                        <span class="text-bx-muted font-bold">الرمز التعريفي للسجل:</span>
+                        <span
+                            class="font-mono font-black text-red-500 bg-red-500/10 px-2 py-0.5 rounded-md">#TQ-COMP-984</span>
+                    </div>
+                    <div class="flex items-center justify-between px-4 py-2.5 border-b border-bx-divider">
+                        <span class="text-bx-muted font-bold">اسم المكون المعماري:</span>
+                        <span class="font-black text-bx-title">Architecture Validation Unit</span>
+                    </div>
+                    <div class="flex items-center justify-between px-4 py-2.5 border-b border-bx-divider">
+                        <span class="text-bx-muted font-bold">الوحدات والتبعيات المرتبطة:</span>
+                        <span class="font-bold text-amber-500">3 مكونات فرعية ستتأثر</span>
+                    </div>
+                    <div class="flex items-center justify-between px-4 py-2.5">
+                        <span class="text-bx-muted font-bold">نوع الحذف:</span>
+                        <span class="bx-tag border-red-500/40 text-red-500 text-[10px] py-0.5">Permanent Hard
+                            Delete</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="flex items-center justify-end gap-3 pt-4 border-t border-bx-border">
+                <button onclick="closeModal('deleteModal')"
+                    class="bx-btn bx-btn-outline text-xs px-5 flex-1 sm:flex-none">
+                    <span>إلغاء الأمر</span>
+                </button>
+                <button
+                    onclick="showToast('error', 'تم الحذف', 'تم حذف السجل المحدد نهائياً من النظام'); closeModal('deleteModal')"
+                    class="bx-btn bx-btn-primary bg-red-600 hover:bg-red-700 text-xs px-6 flex-1 sm:flex-none">
+                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                    <span>تأكيد الحذف النهائي</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 2. MODAL: SUCCESS & RECEIPT CONFIRMATION ===== -->
+    <div id="successModal" onclick="if(event.target===this) closeModal('successModal')"
+        class="fixed inset-0 bg-black/65 backdrop-blur-md z-[9999] hidden items-center justify-center p-4">
+        <div
+            class="bx-modal-card max-w-lg w-full p-6 sm:p-7 space-y-5 shadow-2xl relative border-2 border-emerald-500/30">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between border-b border-bx-border pb-4">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-11 h-11 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-500 flex items-center justify-center font-black text-lg shadow-sm">
+                        <i data-lucide="check" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="bx-title text-lg font-black text-emerald-600">تم اعتماد ونشر العملية بنجاح</h3>
+                        <p class="text-xs text-bx-muted">إشعار إتمام المعالجة وحفظ البيانات</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('successModal')"
+                    class="w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body with Divided Detail Rows -->
+            <div class="space-y-4">
+                <div
+                    class="p-3.5 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 text-xs text-emerald-600 dark:text-emerald-400 font-bold flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                        <span>تمت مزامنة كافة الملفات المعمارية بنجاح 100%</span>
+                    </div>
+                    <span class="bx-tag border-emerald-500/40 text-emerald-600 text-[10px] py-0.5">200 OK</span>
+                </div>
+
+                <!-- Structured Divided Detail List -->
+                <div class="rounded-2xl border border-bx-border bg-[var(--bx-table-header)] overflow-hidden text-xs">
+                    <div class="flex items-center justify-between px-4 py-2.5 border-b border-bx-divider">
+                        <span class="text-bx-muted font-bold">الرقم المرجعي للعملية:</span>
+                        <span
+                            class="font-mono font-black text-emerald-600 bg-emerald-500/10 px-2 py-0.5 rounded-md">#TX-2026-90481</span>
+                    </div>
+                    <div class="flex items-center justify-between px-4 py-2.5 border-b border-bx-divider">
+                        <span class="text-bx-muted font-bold">نوع الإجراء المعتمد:</span>
+                        <span class="font-black text-bx-title">اعتماد ونشر معماري (Production Sync)</span>
+                    </div>
+                    <div class="flex items-center justify-between px-4 py-2.5 border-b border-bx-divider">
+                        <span class="text-bx-muted font-bold">المشرف المسؤول:</span>
+                        <span class="font-bold text-bx-title">Eng. Architecture Lead</span>
+                    </div>
+                    <div class="flex items-center justify-between px-4 py-2.5 border-b border-bx-divider">
+                        <span class="text-bx-muted font-bold">زمن المعالجة الفعلي:</span>
+                        <span class="font-mono text-emerald-500 font-bold">0.042 ثانية (Live)</span>
+                    </div>
+                    <div class="flex items-center justify-between px-4 py-2.5">
+                        <span class="text-bx-muted font-bold">حالة الـ SSoT:</span>
+                        <span class="text-emerald-500 font-bold flex items-center gap-1"><i data-lucide="shield-check"
+                                class="w-3.5 h-3.5"></i> متطابق ومعتمد</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="flex items-center justify-end gap-3 pt-4 border-t border-bx-border">
+                <button
+                    onclick="showToast('info', 'تحميل التقرير', 'جاري تجهيز وثيقة الاعتماد PDF...'); closeModal('successModal')"
+                    class="bx-btn bx-btn-outline text-xs px-4 flex-1 sm:flex-none">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span>تحميل الإيصال</span>
+                </button>
+                <button onclick="closeModal('successModal')"
+                    class="bx-btn bx-btn-primary bg-emerald-600 hover:bg-emerald-700 text-xs px-6 flex-1 sm:flex-none">
+                    <i data-lucide="check" class="w-4 h-4"></i>
+                    <span>متابعة العمل</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 3. MODAL: SECURITY & 2FA ALERT ===== -->
+    <div id="securityAlertModal" onclick="if(event.target===this) closeModal('securityAlertModal')"
+        class="fixed inset-0 bg-black/60 backdrop-blur-md z-[9999] hidden items-center justify-center p-4">
+        <div class="bx-modal-card max-w-md w-full p-6 sm:p-8 space-y-6 shadow-2xl relative">
+            <button onclick="closeModal('securityAlertModal')"
+                class="absolute top-4 left-4 w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+            <div class="flex items-center gap-3 border-b border-bx-border pb-4">
+                <div
+                    class="w-12 h-12 rounded-2xl bg-amber-500/15 border border-amber-500/40 text-amber-500 flex items-center justify-center shrink-0">
+                    <i data-lucide="shield-alert" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h3 class="bx-title text-lg text-amber-600">تنبيه أمان وتسجيل غير معتاد</h3>
+                    <p class="text-xs text-bx-muted">رصد محاولة وصول من عنوان IP جديد</p>
+                </div>
+            </div>
+            <div
+                class="space-y-2 text-xs font-bold p-3.5 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border">
+                <div class="flex justify-between py-1 border-b border-bx-divider"><span class="text-bx-muted">الموقع
+                        التقريبي:</span><span>Riyadh, Saudi Arabia</span></div>
+                <div class="flex justify-between py-1 border-b border-bx-divider"><span class="text-bx-muted">عنوان الـ
+                        IP:</span><span class="font-mono text-bx-primary">197.24.18.90</span></div>
+                <div class="flex justify-between py-1"><span class="text-bx-muted">المتصفح والنظام:</span><span>Chrome
+                        128 (Windows 11)</span></div>
+            </div>
+            <div class="space-y-2">
+                <label class="text-xs font-bold text-bx-muted">أدخل رمز التحقق الثنائي (2FA Code):</label>
+                <div class="flex gap-2 justify-center dir-ltr">
+                    <input type="text" maxlength="1" value="8"
+                        class="w-11 h-12 text-center text-lg font-black rounded-xl border border-bx-border bg-transparent focus:border-bx-primary text-bx-title">
+                    <input type="text" maxlength="1" value="4"
+                        class="w-11 h-12 text-center text-lg font-black rounded-xl border border-bx-border bg-transparent focus:border-bx-primary text-bx-title">
+                    <input type="text" maxlength="1" value="2"
+                        class="w-11 h-12 text-center text-lg font-black rounded-xl border border-bx-border bg-transparent focus:border-bx-primary text-bx-title">
+                    <input type="text" maxlength="1" value="9"
+                        class="w-11 h-12 text-center text-lg font-black rounded-xl border border-bx-border bg-transparent focus:border-bx-primary text-bx-title">
+                    <input type="text" maxlength="1"
+                        class="w-11 h-12 text-center text-lg font-black rounded-xl border border-bx-border bg-transparent focus:border-bx-primary text-bx-title">
+                    <input type="text" maxlength="1"
+                        class="w-11 h-12 text-center text-lg font-black rounded-xl border border-bx-border bg-transparent focus:border-bx-primary text-bx-title">
+                </div>
+            </div>
+            <div class="flex gap-3 justify-center pt-2">
+                <button
+                    onclick="showToast('error', 'تم حظر الجهاز', 'تم رفض تسجيل الدخول وتأمين الحساب فوراً'); closeModal('securityAlertModal')"
+                    class="bx-btn bx-btn-outline text-red-500 hover:border-red-500 flex-1 text-xs">
+                    <i data-lucide="ban" class="w-4 h-4"></i>
+                    <span>حظر الجهاز</span>
+                </button>
+                <button
+                    onclick="showToast('success', 'تم التفويض', 'تمت المصادقة الثنائية بنجاح واعتماد الجهاز'); closeModal('securityAlertModal')"
+                    class="bx-btn bx-btn-primary flex-1 text-xs">
+                    <i data-lucide="check" class="w-4 h-4"></i>
+                    <span>تفويض ومتابعة</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 4. MODAL: CREATE / EDIT DATA ENTRY FORM ===== -->
+    <div id="createRecordModal" onclick="if(event.target===this) closeModal('createRecordModal')"
+        class="fixed inset-0 bg-black/65 backdrop-blur-md z-[9999] hidden items-center justify-center p-4">
+        <div
+            class="bx-modal-card max-w-xl w-full p-6 sm:p-8 space-y-5 shadow-2xl relative max-h-[90vh] overflow-y-auto border border-bx-border">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between border-b border-bx-border pb-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 flex items-center justify-center shrink-0">
+                        <img src="../../assets/images/logo.png" alt="Taqniya Logo" class="w-full h-full object-contain">
+                    </div>
+                    <div>
+                        <h3 class="bx-title text-lg font-black">إنشاء وتوثيق سجل معماري جديد</h3>
+                        <p class="text-xs text-bx-muted">إضافة المكون الجديد للمستودع المعماري المركزي</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('createRecordModal')"
+                    class="w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Form Content with Divided Sections -->
+            <div class="space-y-4 text-xs">
+                <!-- Section 1: Component Name -->
+                <div class="space-y-1.5 pb-3 border-b border-bx-divider">
+                    <div class="flex justify-between items-center">
+                        <label class="font-black text-bx-title">اسم المكون المعماري (Component Title):</label>
+                        <span class="text-[11px] font-mono text-bx-muted">Required *</span>
+                    </div>
+                    <input type="text" placeholder="مثال: Authentication & Identity Management Gateway"
+                        class="bx-input text-sm">
+                </div>
+
+                <!-- Section 2: Category and Priority (Upgraded Divided Row) -->
+                <div class="space-y-3 pb-3 border-b border-bx-divider">
+                    <div class="space-y-1.5">
+                        <label class="font-black text-bx-title">المسار المعماري (Layer):</label>
+                        <div class="relative">
+                            <div onclick="toggleDropdown('modalLayerMenu')" class="bx-dropdown-trigger !h-11">
+                                <div class="flex items-center gap-2.5 font-bold text-xs text-bx-title"
+                                    id="modalLayerVal">
+                                    <div
+                                        class="w-6 h-6 rounded-lg bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-bold">
+                                        <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+                                    </div>
+                                    <span>Core Architecture System</span>
+                                </div>
+                                <i data-lucide="chevron-down" class="w-4 h-4 text-bx-primary"></i>
+                            </div>
+                            <div id="modalLayerMenu" class="hidden bx-dropdown-menu z-50">
+                                <div class="max-h-48 overflow-y-auto py-1 divide-y divide-[var(--bx-divider)]">
+                                    <div onclick="selectDropdown('modalLayerVal', 'modalLayerMenu', '<div class=\'w-6 h-6 rounded-lg bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-bold\'><i data-lucide=\'layers\' class=\'w-3.5 h-3.5\'></i></div><span>Core Architecture System</span>', this)"
+                                        class="bx-dropdown-item active flex items-center justify-between py-2.5">
+                                        <div class="flex items-center gap-2.5">
+                                            <input type="radio" name="modalLayerRadio"
+                                                class="bx-custom-radio pointer-events-none" checked>
+                                            <div
+                                                class="w-6 h-6 rounded-lg bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-bold">
+                                                <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+                                            </div>
+                                            <span class="font-bold text-xs">Core Architecture System</span>
+                                        </div>
+                                        <span class="text-[10px] font-mono text-bx-muted">core</span>
+                                    </div>
+                                    <div onclick="selectDropdown('modalLayerVal', 'modalLayerMenu', '<div class=\'w-6 h-6 rounded-lg bg-purple-500/15 text-purple-600 border border-purple-500/30 flex items-center justify-center font-bold\'><i data-lucide=\'layout-grid\' class=\'w-3.5 h-3.5\'></i></div><span>Spatial UI Components</span>', this)"
+                                        class="bx-dropdown-item flex items-center justify-between py-2.5">
+                                        <div class="flex items-center gap-2.5">
+                                            <input type="radio" name="modalLayerRadio"
+                                                class="bx-custom-radio pointer-events-none">
+                                            <div
+                                                class="w-6 h-6 rounded-lg bg-purple-500/15 text-purple-600 border border-purple-500/30 flex items-center justify-center font-bold">
+                                                <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+                                            </div>
+                                            <span class="font-bold text-xs">Spatial UI Components</span>
+                                        </div>
+                                        <span class="text-[10px] font-mono text-bx-muted">ui</span>
+                                    </div>
+                                    <div onclick="selectDropdown('modalLayerVal', 'modalLayerMenu', '<div class=\'w-6 h-6 rounded-lg bg-blue-500/15 text-blue-600 border border-blue-500/30 flex items-center justify-center font-bold\'><i data-lucide=\'webhook\' class=\'w-3.5 h-3.5\'></i></div><span>API Endpoints & Contracts</span>', this)"
+                                        class="bx-dropdown-item flex items-center justify-between py-2.5">
+                                        <div class="flex items-center gap-2.5">
+                                            <input type="radio" name="modalLayerRadio"
+                                                class="bx-custom-radio pointer-events-none">
+                                            <div
+                                                class="w-6 h-6 rounded-lg bg-blue-500/15 text-blue-600 border border-blue-500/30 flex items-center justify-center font-bold">
+                                                <i data-lucide="webhook" class="w-3.5 h-3.5"></i>
+                                            </div>
+                                            <span class="font-bold text-xs">API Endpoints & Contracts</span>
+                                        </div>
+                                        <span class="text-[10px] font-mono text-bx-muted">api</span>
+                                    </div>
+                                    <div onclick="selectDropdown('modalLayerVal', 'modalLayerMenu', '<div class=\'w-6 h-6 rounded-lg bg-emerald-500/15 text-emerald-600 border border-emerald-500/30 flex items-center justify-center font-bold\'><i data-lucide=\'database\' class=\'w-3.5 h-3.5\'></i></div><span>Database & Storage Engine</span>', this)"
+                                        class="bx-dropdown-item flex items-center justify-between py-2.5">
+                                        <div class="flex items-center gap-2.5">
+                                            <input type="radio" name="modalLayerRadio"
+                                                class="bx-custom-radio pointer-events-none">
+                                            <div
+                                                class="w-6 h-6 rounded-lg bg-emerald-500/15 text-emerald-600 border border-emerald-500/30 flex items-center justify-center font-bold">
+                                                <i data-lucide="database" class="w-3.5 h-3.5"></i>
+                                            </div>
+                                            <span class="font-bold text-xs">Database & Storage Engine</span>
+                                        </div>
+                                        <span class="text-[10px] font-mono text-bx-muted">db</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Enhanced Priority Selector Cards -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <label class="font-black text-bx-title">مستوى الأولوية (Priority Level):</label>
+                            <span id="selectedPriorityBadge"
+                                class="bx-tag border-emerald-500/30 text-emerald-600 text-[10px] py-0.5">عادي
+                                (Default)</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2.5">
+                            <!-- Normal Priority Card -->
+                            <label
+                                class="flex items-center justify-between p-3 rounded-2xl border-2 border-emerald-500/30 bg-emerald-500/5 hover:bg-emerald-500/10 cursor-pointer transition-all group">
+                                <div class="flex items-center gap-2">
+                                    <div
+                                        class="w-7 h-7 rounded-xl bg-emerald-500/15 text-emerald-600 flex items-center justify-center font-black">
+                                        <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-black text-xs text-emerald-600">عادي</div>
+                                        <div class="text-[10px] text-bx-muted hidden sm:block">Standard</div>
+                                    </div>
+                                </div>
+                                <input type="radio" name="modal_pri" value="normal" checked
+                                    onchange="document.getElementById('selectedPriorityBadge').className='bx-tag border-emerald-500/30 text-emerald-600 text-[10px] py-0.5'; document.getElementById('selectedPriorityBadge').textContent='عادي (Default)';"
+                                    class="bx-custom-radio">
+                            </label>
+
+                            <!-- High / Important Priority Card -->
+                            <label
+                                class="flex items-center justify-between p-3 rounded-2xl border-2 border-amber-500/30 bg-amber-500/5 hover:bg-amber-500/10 cursor-pointer transition-all group">
+                                <div class="flex items-center gap-2">
+                                    <div
+                                        class="w-7 h-7 rounded-xl bg-amber-500/15 text-amber-600 flex items-center justify-center font-black">
+                                        <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-black text-xs text-amber-600">هام</div>
+                                        <div class="text-[10px] text-bx-muted hidden sm:block">High</div>
+                                    </div>
+                                </div>
+                                <input type="radio" name="modal_pri" value="high"
+                                    onchange="document.getElementById('selectedPriorityBadge').className='bx-tag border-amber-500/30 text-amber-600 text-[10px] py-0.5'; document.getElementById('selectedPriorityBadge').textContent='هام (High)';"
+                                    class="bx-custom-radio">
+                            </label>
+
+                            <!-- Critical / Urgent Priority Card -->
+                            <label
+                                class="flex items-center justify-between p-3 rounded-2xl border-2 border-red-500/30 bg-red-500/5 hover:bg-red-500/10 cursor-pointer transition-all group">
+                                <div class="flex items-center gap-2">
+                                    <div
+                                        class="w-7 h-7 rounded-xl bg-red-500/15 text-red-500 flex items-center justify-center font-black">
+                                        <i data-lucide="flame" class="w-3.5 h-3.5"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-black text-xs text-red-500">حرج</div>
+                                        <div class="text-[10px] text-bx-muted hidden sm:block">Critical</div>
+                                    </div>
+                                </div>
+                                <input type="radio" name="modal_pri" value="critical"
+                                    onchange="document.getElementById('selectedPriorityBadge').className='bx-tag border-red-500/30 text-red-500 text-[10px] py-0.5'; document.getElementById('selectedPriorityBadge').textContent='حرج (Critical)';"
+                                    class="bx-custom-radio">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: Architecture Specs & Description -->
+                <div class="space-y-1.5 pb-3 border-b border-bx-divider">
+                    <div class="flex justify-between items-center">
+                        <label class="font-black text-bx-title">المواصفات والمتطلبات الهندسية:</label>
+                        <span class="text-[11px] text-bx-muted">حد أقصى 500 حرف</span>
+                    </div>
+                    <textarea rows="3" placeholder="اكتب ملخصاً هندسياً للمكون وقواعد الربط ومحددات الأداء..."
+                        class="w-full rounded-2xl border border-bx-border bg-transparent p-3 text-sm text-bx-title font-bold focus:border-bx-primary outline-none transition-all"></textarea>
+                </div>
+
+                <!-- Section 4: SSoT Activation Toggle -->
+                <div
+                    class="flex items-center justify-between p-3.5 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border">
+                    <div class="space-y-0.5">
+                        <div class="text-xs font-black text-bx-title">التفعيل المباشر في بيئة الـ SSoT النشطة</div>
+                        <div class="text-[11px] text-bx-muted">إتاحة المكون لفرق التطوير فور الاعتماد</div>
+                    </div>
+                    <label class="bx-switch-label">
+                        <input type="checkbox" checked class="bx-custom-switch">
+                        <span class="bx-switch-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="flex items-center justify-end gap-3 pt-4 border-t border-bx-border">
+                <button onclick="closeModal('createRecordModal')"
+                    class="bx-btn bx-btn-outline text-xs px-5">إلغاء</button>
+                <button
+                    onclick="showToast('success', 'تم الإنشاء بنجاح', 'تمت إضافة المكون وتوثيقه في شجرة النظام'); closeModal('createRecordModal')"
+                    class="bx-btn bx-btn-primary text-xs px-6">
+                    <i data-lucide="check" class="w-4 h-4"></i>
+                    <span>حفظ واعتماد السجل</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 5. MODAL: 3-STEP WIZARD MODAL (UPGRADED) ===== -->
+    <div id="wizardModal" onclick="if(event.target===this) closeModal('wizardModal')"
+        class="fixed inset-0 bg-black/65 backdrop-blur-md z-[9999] hidden items-center justify-center p-4">
+        <div
+            class="bx-modal-card max-w-2xl w-full p-6 sm:p-8 space-y-6 shadow-2xl relative border border-bx-border max-h-[90vh] overflow-y-auto">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between border-b border-bx-border pb-4">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black text-lg shadow-sm">
+                        <i data-lucide="sparkles" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h3 class="bx-title text-lg font-black">معالج تهيئة وتدشين المنظومة</h3>
+                            <span id="wizStepCounter"
+                                class="bx-tag border-bx-primary/40 text-bx-primary text-[10px] py-0.5">الخطوة 1 من
+                                3</span>
+                        </div>
+                        <p class="text-xs text-bx-muted">خطوات الربط، اختيار بيئة السحابة، واعتماد الـ SSoT</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('wizardModal')"
+                    class="w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Stepper Progress Bar (Interactive Node Track) -->
+            <div class="p-3.5 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border">
+                <div class="flex items-center justify-between gap-2 px-1">
+                    <!-- Step 1 Node -->
+                    <div onclick="setWizardStep(1)" id="wizStepBtn-1"
+                        class="flex-1 flex flex-col items-center gap-1.5 cursor-pointer group">
+                        <div id="wizBadge-1"
+                            class="w-9 h-9 rounded-2xl bg-bx-primary text-white font-black text-xs flex items-center justify-center shadow-md transition-all">
+                            1
+                        </div>
+                        <span id="wizLabel-1" class="text-[11px] font-black text-bx-primary">المعطيات والبيئة</span>
+                    </div>
+
+                    <div id="wizLine-1" class="h-1 flex-1 rounded-full bg-bx-border transition-all"></div>
+
+                    <!-- Step 2 Node -->
+                    <div onclick="setWizardStep(2)" id="wizStepBtn-2"
+                        class="flex-1 flex flex-col items-center gap-1.5 cursor-pointer group">
+                        <div id="wizBadge-2"
+                            class="w-9 h-9 rounded-2xl bg-transparent border-2 border-bx-border text-bx-muted font-black text-xs flex items-center justify-center transition-all">
+                            2
+                        </div>
+                        <span id="wizLabel-2" class="text-[11px] font-bold text-bx-muted">البنية والبيانات</span>
+                    </div>
+
+                    <div id="wizLine-2" class="h-1 flex-1 rounded-full bg-bx-border transition-all"></div>
+
+                    <!-- Step 3 Node -->
+                    <div onclick="setWizardStep(3)" id="wizStepBtn-3"
+                        class="flex-1 flex flex-col items-center gap-1.5 cursor-pointer group">
+                        <div id="wizBadge-3"
+                            class="w-9 h-9 rounded-2xl bg-transparent border-2 border-bx-border text-bx-muted font-black text-xs flex items-center justify-center transition-all">
+                            3
+                        </div>
+                        <span id="wizLabel-3" class="text-[11px] font-bold text-bx-muted">المراجعة والإطلاق</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wizard Step Panes -->
+            <div class="min-h-[220px]">
+                <!-- Step 1 Pane: Project Identity & Deployment Environment -->
+                <div id="wizPane-1" class="space-y-4 text-xs">
+                    <div class="space-y-1.5 pb-3 border-b border-bx-divider">
+                        <label class="font-black text-bx-title">اسم المشروع / المنظومة المعمارية:</label>
+                        <input type="text" value="منظومة تقنية المعمارية — الإصدار 3.0" class="bx-input text-sm">
+                    </div>
+
+                    <!-- Deployment Environments Choice Grid -->
+                    <div class="space-y-2 pb-3 border-b border-bx-divider">
+                        <label class="font-black text-bx-title block">البيئة المستهدفة للتشغيل:</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <label
+                                class="p-3.5 rounded-2xl border-2 border-bx-primary bg-bx-pill flex flex-col justify-between space-y-2 cursor-pointer transition-all">
+                                <div class="flex items-center justify-between">
+                                    <i data-lucide="cloud" class="w-5 h-5 text-bx-primary"></i>
+                                    <input type="radio" name="wiz_env" checked class="bx-custom-radio">
+                                </div>
+                                <div>
+                                    <h5 class="font-black text-bx-title text-xs">سحابة GCP الرياض</h5>
+                                    <p class="text-[10px] text-bx-muted">me-central2 Region</p>
+                                </div>
+                            </label>
+
+                            <label
+                                class="p-3.5 rounded-2xl border border-bx-border hover:border-bx-primary flex flex-col justify-between space-y-2 cursor-pointer transition-all">
+                                <div class="flex items-center justify-between">
+                                    <i data-lucide="server" class="w-5 h-5 text-bx-muted"></i>
+                                    <input type="radio" name="wiz_env" class="bx-custom-radio">
+                                </div>
+                                <div>
+                                    <h5 class="font-black text-bx-title text-xs">سحابة AWS البحرين</h5>
+                                    <p class="text-[10px] text-bx-muted">me-south-1 Region</p>
+                                </div>
+                            </label>
+
+                            <label
+                                class="p-3.5 rounded-2xl border border-bx-border hover:border-bx-primary flex flex-col justify-between space-y-2 cursor-pointer transition-all">
+                                <div class="flex items-center justify-between">
+                                    <i data-lucide="shield" class="w-5 h-5 text-bx-muted"></i>
+                                    <input type="radio" name="wiz_env" class="bx-custom-radio">
+                                </div>
+                                <div>
+                                    <h5 class="font-black text-bx-title text-xs">سحابة خاصة مغلقة</h5>
+                                    <p class="text-[10px] text-bx-muted">On-Premise Isolated</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 Pane: Architecture & Database Engines (Hidden by default) -->
+                <div id="wizPane-2" class="space-y-4 text-xs hidden">
+                    <div class="space-y-2 pb-3 border-b border-bx-divider">
+                        <label class="font-black text-bx-title block">اختر محرك البيانات الأساسي (Database
+                            Engine):</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <label
+                                class="p-3.5 rounded-2xl border-2 border-bx-primary bg-bx-pill flex flex-col justify-between space-y-2 cursor-pointer transition-all">
+                                <div class="flex items-center justify-between">
+                                    <i data-lucide="database" class="w-5 h-5 text-bx-primary"></i>
+                                    <input type="radio" name="wiz_db" checked class="bx-custom-radio">
+                                </div>
+                                <div>
+                                    <h5 class="font-black text-bx-title text-xs">PostgreSQL 16</h5>
+                                    <p class="text-[10px] text-emerald-500 font-bold">Strict Relational</p>
+                                </div>
+                            </label>
+
+                            <label
+                                class="p-3.5 rounded-2xl border border-bx-border hover:border-bx-primary flex flex-col justify-between space-y-2 cursor-pointer transition-all">
+                                <div class="flex items-center justify-between">
+                                    <i data-lucide="zap" class="w-5 h-5 text-bx-muted"></i>
+                                    <input type="radio" name="wiz_db" class="bx-custom-radio">
+                                </div>
+                                <div>
+                                    <h5 class="font-black text-bx-title text-xs">Redis Cluster</h5>
+                                    <p class="text-[10px] text-amber-500 font-bold">In-Memory Cache</p>
+                                </div>
+                            </label>
+
+                            <label
+                                class="p-3.5 rounded-2xl border border-bx-border hover:border-bx-primary flex flex-col justify-between space-y-2 cursor-pointer transition-all">
+                                <div class="flex items-center justify-between">
+                                    <i data-lucide="layers" class="w-5 h-5 text-bx-muted"></i>
+                                    <input type="radio" name="wiz_db" class="bx-custom-radio">
+                                </div>
+                                <div>
+                                    <h5 class="font-black text-bx-title text-xs">MySQL 8.4 LTS</h5>
+                                    <p class="text-[10px] text-bx-muted">InnoDB Engine</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Divided Switches List -->
+                    <div class="space-y-2.5">
+                        <div
+                            class="flex items-center justify-between p-3 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border">
+                            <div class="space-y-0.5">
+                                <div class="text-xs font-black text-bx-title">تفعيل مزامنة SSoT الفورية (Live Sync)
+                                </div>
+                                <div class="text-[10px] text-bx-muted">ضمان مطابقة الوثائق مع الكود الفعلي لحظياً</div>
+                            </div>
+                            <label class="bx-switch-label">
+                                <input type="checkbox" checked class="bx-custom-switch">
+                                <span class="bx-switch-slider"></span>
+                            </label>
+                        </div>
+
+                        <div
+                            class="flex items-center justify-between p-3 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border">
+                            <div class="space-y-0.5">
+                                <div class="text-xs font-black text-bx-title">النسخ الاحتياطي التلقائي (Automated
+                                    Snapshot)</div>
+                                <div class="text-[10px] text-bx-muted">إنشاء نقطة استعادة يومية لكل المكونات</div>
+                            </div>
+                            <label class="bx-switch-label">
+                                <input type="checkbox" checked class="bx-custom-switch">
+                                <span class="bx-switch-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 Pane: Review & Final Launch (Hidden by default) -->
+                <div id="wizPane-3" class="space-y-4 text-xs hidden">
+                    <div
+                        class="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 font-bold flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span>اكتملت جميع المتطلبات والمنظومة جاهزة للتدشين الفوري</span>
+                        </div>
+                        <span class="bx-tag border-emerald-500/30 text-emerald-600 text-[10px] py-0.5">جاهز 100%</span>
+                    </div>
+
+                    <!-- Structured Divided Summary Receipt -->
+                    <div class="rounded-2xl border border-bx-border bg-[var(--bx-table-header)] overflow-hidden">
+                        <div class="flex items-center justify-between px-4 py-2.5 border-b border-bx-divider">
+                            <span class="text-bx-muted font-bold">اسم المشروع:</span>
+                            <span class="font-black text-bx-title">منظومة تقنية المعمارية 3.0</span>
+                        </div>
+                        <div class="flex items-center justify-between px-4 py-2.5 border-b border-bx-divider">
+                            <span class="text-bx-muted font-bold">بيئة الاستضافة:</span>
+                            <span class="font-bold text-bx-primary">Google Cloud (Riyadh Region)</span>
+                        </div>
+                        <div class="flex items-center justify-between px-4 py-2.5 border-b border-bx-divider">
+                            <span class="text-bx-muted font-bold">محرك البيانات:</span>
+                            <span class="font-bold text-bx-title">PostgreSQL 16 + Redis Cluster</span>
+                        </div>
+                        <div class="flex items-center justify-between px-4 py-2.5 border-b border-bx-divider">
+                            <span class="text-bx-muted font-bold">حالة التوافق SSoT:</span>
+                            <span class="text-emerald-500 font-bold flex items-center gap-1"><i
+                                    data-lucide="check-circle" class="w-3.5 h-3.5"></i> مفعل ومعتمد</span>
+                        </div>
+                        <div class="flex items-center justify-between px-4 py-2.5">
+                            <span class="text-bx-muted font-bold">معايير الأمان:</span>
+                            <span class="font-mono text-[11px] text-bx-title">TLS 1.3 · 2FA Enforced</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Controls Footer -->
+            <div class="flex items-center justify-between pt-4 border-t border-bx-border">
+                <button id="wizPrevBtn" onclick="wizardPrevStep()"
+                    class="bx-btn bx-btn-outline text-xs px-4 opacity-50 cursor-not-allowed" disabled>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    <span>السابق</span>
+                </button>
+                <div class="flex gap-2.5">
+                    <button onclick="closeModal('wizardModal')" class="bx-btn bx-btn-ghost text-xs px-4">إلغاء</button>
+                    <button id="wizNextBtn" onclick="wizardNextStep()"
+                        class="bx-btn bx-btn-primary text-xs px-6 shadow-md">
+                        <span>التالي</span>
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 6. MODAL: SYSTEM ARCHITECTURE & SPECS DETAILS ===== -->
+    <div id="detailModal" onclick="if(event.target===this) closeModal('detailModal')"
+        class="fixed inset-0 bg-black/60 backdrop-blur-md z-[9999] hidden items-center justify-center p-4">
+        <div
+            class="bx-modal-card max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-bx-border pb-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 flex items-center justify-center shrink-0">
+                        <img src="../../assets/images/logo.png" alt="Taqniya Logo" class="w-full h-full object-contain">
+                    </div>
+                    <div>
+                        <h3 class="bx-title text-lg font-black">مواصفات وتفاصيل النظام المعماري</h3>
+                        <p class="text-xs text-bx-muted">معلومات الهيكلية وحالة التوافق</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('detailModal')"
+                    class="w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+            <div class="space-y-2 text-xs sm:text-sm font-bold">
+                <div class="flex justify-between py-2.5 border-b border-bx-divider"><span class="text-bx-muted">الرمز
+                        التعريفي:</span><span class="font-mono text-bx-primary font-black">#TQ-FRAMEWORK-2026</span>
+                </div>
+                <div class="flex justify-between py-2.5 border-b border-bx-divider"><span class="text-bx-muted">معيار
+                        التصميم:</span><span>Braxton Design System (VisionOS Vector)</span></div>
+                <div class="flex justify-between py-2.5 border-b border-bx-divider"><span class="text-bx-muted">حالة الـ
+                        SSoT:</span><span class="bx-tag border-emerald-500/30 text-emerald-600">متطابق ومعتمد
+                        100%</span></div>
+                <div class="flex justify-between py-2.5 border-b border-bx-divider"><span class="text-bx-muted">طبقة
+                        التوافق (Breakpoints):</span><span class="font-mono text-xs">6 شاشات (xs - xxl)</span></div>
+                <div class="flex justify-between py-2.5"><span class="text-bx-muted">تاريخ آخر
+                        توثيق:</span><span>2026-08-20 · 23:55</span></div>
+            </div>
+            <div class="flex gap-3 justify-center pt-2">
+                <button
+                    onclick="showToast('info', 'تصدير المواصفات', 'تم نسخ المواصفات المعمارية إلى الحافظة'); closeModal('detailModal')"
+                    class="bx-btn bx-btn-outline flex-1 text-xs">
+                    <i data-lucide="copy" class="w-4 h-4"></i>
+                    <span>نسخ المواصفات</span>
+                </button>
+                <button onclick="closeModal('detailModal')" class="bx-btn bx-btn-primary flex-1 text-xs">
+                    <i data-lucide="check" class="w-4 h-4"></i>
+                    <span>إغلاق النافذة</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 7. MODAL: PERMISSIONS & ROLE SETTINGS ===== -->
+    <div id="permissionsModal" onclick="if(event.target===this) closeModal('permissionsModal')"
+        class="fixed inset-0 bg-black/60 backdrop-blur-md z-[9999] hidden items-center justify-center p-4">
+        <div
+            class="bx-modal-card max-w-md w-full p-6 sm:p-8 space-y-5 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-bx-border pb-3">
+                <div class="flex items-center gap-2.5">
+                    <div
+                        class="w-9 h-9 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-bold">
+                        <i data-lucide="key-round" class="w-4 h-4"></i>
+                    </div>
+                    <div>
+                        <h3 class="bx-title text-base font-black">إدارة الصلاحيات والأمان</h3>
+                        <p class="text-[11px] text-bx-muted">تحديد أذونات الوصول المعمارية</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('permissionsModal')"
+                    class="w-7 h-7 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all">
+                    <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                </button>
+            </div>
+
+            <!-- Permission Switches List -->
+            <div class="space-y-3">
+                <div
+                    class="flex items-center justify-between p-3 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border">
+                    <div>
+                        <div class="text-xs font-black text-bx-title">القراءة واستعراض المستودع</div>
+                        <div class="text-[10px] text-bx-muted">Read-Only Architecture Access</div>
+                    </div>
+                    <label class="bx-switch-label">
+                        <input type="checkbox" checked class="bx-custom-switch">
+                        <span class="bx-switch-slider"></span>
+                    </label>
+                </div>
+
+                <div
+                    class="flex items-center justify-between p-3 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border">
+                    <div>
+                        <div class="text-xs font-black text-bx-title">التعديل وكتابة الكود</div>
+                        <div class="text-[10px] text-bx-muted">Write & Refactor Permissions</div>
+                    </div>
+                    <label class="bx-switch-label">
+                        <input type="checkbox" checked class="bx-custom-switch">
+                        <span class="bx-switch-slider"></span>
+                    </label>
+                </div>
+
+                <div
+                    class="flex items-center justify-between p-3 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border">
+                    <div>
+                        <div class="text-xs font-black text-bx-title">النشر في بيئة الإنتاج (Deploy)</div>
+                        <div class="text-[10px] text-bx-muted">Production Pipeline Trigger</div>
+                    </div>
+                    <label class="bx-switch-label">
+                        <input type="checkbox" class="bx-custom-switch">
+                        <span class="bx-switch-slider"></span>
+                    </label>
+                </div>
+
+                <div
+                    class="flex items-center justify-between p-3 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border">
+                    <div>
+                        <div class="text-xs font-black text-bx-title">سجلات التدقيق الأمني (Audit Logs)</div>
+                        <div class="text-[10px] text-bx-muted">Export and Review Security Logs</div>
+                    </div>
+                    <label class="bx-switch-label">
+                        <input type="checkbox" checked class="bx-custom-switch">
+                        <span class="bx-switch-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="flex gap-2 justify-end pt-2 border-t border-bx-border">
+                <button onclick="closeModal('permissionsModal')"
+                    class="bx-btn bx-btn-outline text-xs px-4">إلغاء</button>
+                <button
+                    onclick="showToast('success', 'تم تحديث الصلاحيات', 'تم تطبيق الصلاحيات الجديدة على مستوى الـ Role بنجاح'); closeModal('permissionsModal')"
+                    class="bx-btn bx-btn-primary text-xs px-5">
+                    <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                    <span>حفظ الصلاحيات</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 8. MODAL: USER FEEDBACK & STAR RATING ===== -->
+    <div id="feedbackRatingModal" onclick="if(event.target===this) closeModal('feedbackRatingModal')"
+        class="fixed inset-0 bg-black/65 backdrop-blur-md z-[9999] hidden items-center justify-center p-4">
+        <div class="bx-modal-card max-w-md w-full p-6 sm:p-7 space-y-5 shadow-2xl relative border border-bx-border">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between border-b border-bx-border pb-4">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-11 h-11 rounded-2xl bg-amber-500/15 border border-amber-500/30 text-amber-500 flex items-center justify-center font-black text-lg shadow-sm">
+                        <i data-lucide="star" class="w-6 h-6"></i>
+                    </div>
+                    <div class="text-right">
+                        <h3 class="bx-title text-base sm:text-lg font-black">تقييم تجربة منظومة تقنية</h3>
+                        <p class="text-xs text-bx-muted">رأيك يساهم في تحسين المنظومة المعمارية</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('feedbackRatingModal')"
+                    class="w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body with Divided Sections -->
+            <div class="space-y-4 text-xs">
+                <!-- Section 1: Star Rating Scale -->
+                <div class="space-y-2 text-center pb-4 border-b border-bx-divider">
+                    <span class="text-bx-muted font-bold block">ما مدى رضاك عن تجربة الواجهات المعمارية؟</span>
+                    <div class="flex items-center justify-center gap-2.5 py-1" id="starRatingGroup">
+                        <button type="button" onclick="setRatingStars(1)"
+                            class="star-btn text-amber-400 hover:scale-125 transition-transform"><i data-lucide="star"
+                                class="w-7 h-7 fill-amber-400"></i></button>
+                        <button type="button" onclick="setRatingStars(2)"
+                            class="star-btn text-amber-400 hover:scale-125 transition-transform"><i data-lucide="star"
+                                class="w-7 h-7 fill-amber-400"></i></button>
+                        <button type="button" onclick="setRatingStars(3)"
+                            class="star-btn text-amber-400 hover:scale-125 transition-transform"><i data-lucide="star"
+                                class="w-7 h-7 fill-amber-400"></i></button>
+                        <button type="button" onclick="setRatingStars(4)"
+                            class="star-btn text-amber-400 hover:scale-125 transition-transform"><i data-lucide="star"
+                                class="w-7 h-7 fill-amber-400"></i></button>
+                        <button type="button" onclick="setRatingStars(5)"
+                            class="star-btn text-amber-400 hover:scale-125 transition-transform"><i data-lucide="star"
+                                class="w-7 h-7 fill-amber-400"></i></button>
+                    </div>
+                    <div id="starRatingLabel"
+                        class="inline-block px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-[11px] font-black text-amber-600">
+                        تقييم ممتاز: 5 من 5 نجوم ★★★★★
+                    </div>
+                </div>
+
+                <!-- Section 2: Quick Feedback Tags (Divided) -->
+                <div class="space-y-1.5 pb-3.5 border-b border-bx-divider">
+                    <span class="text-bx-muted font-bold block">ما أكثر ما أعجبك؟ (اختياري):</span>
+                    <div class="flex flex-wrap gap-1.5 pt-0.5">
+                        <button type="button"
+                            onclick="this.classList.toggle('bg-bx-primary'); this.classList.toggle('text-white');"
+                            class="bx-tag text-[11px] py-1 px-2.5 cursor-pointer hover:border-bx-primary transition-all">✨
+                            التناسق البصري</button>
+                        <button type="button"
+                            onclick="this.classList.toggle('bg-bx-primary'); this.classList.toggle('text-white');"
+                            class="bx-tag text-[11px] py-1 px-2.5 cursor-pointer hover:border-bx-primary transition-all">⚡
+                            سرعة الأداء</button>
+                        <button type="button"
+                            onclick="this.classList.toggle('bg-bx-primary'); this.classList.toggle('text-white');"
+                            class="bx-tag text-[11px] py-1 px-2.5 cursor-pointer hover:border-bx-primary transition-all">📱
+                            التوافق مع الشاشات</button>
+                        <button type="button"
+                            onclick="this.classList.toggle('bg-bx-primary'); this.classList.toggle('text-white');"
+                            class="bx-tag text-[11px] py-1 px-2.5 cursor-pointer hover:border-bx-primary transition-all">🧩
+                            تكامل الـ SSoT</button>
+                    </div>
+                </div>
+
+                <!-- Section 3: Comments & Suggestions (Divided) -->
+                <div class="space-y-1.5 pb-3.5 border-b border-bx-divider">
+                    <div class="flex justify-between items-center">
+                        <label class="font-black text-bx-title">ملاحظات أو اقتراحات إضافية:</label>
+                        <span class="text-[10px] text-bx-muted">اختياري</span>
+                    </div>
+                    <textarea rows="3" placeholder="اكتب رأيك الصريح ومقترحاتك لتطوير المنظومة في الإصدار القادم..."
+                        class="w-full rounded-2xl border border-bx-border bg-transparent p-3 text-xs text-bx-title font-bold focus:border-bx-primary outline-none transition-all"></textarea>
+                </div>
+
+                <!-- Section 4: Privacy & Anonymity (Divided) -->
+                <div
+                    class="flex items-center justify-between p-3 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border">
+                    <div class="space-y-0.5">
+                        <div class="text-xs font-black text-bx-title">إرسال التقييم بهوية مجهولة</div>
+                        <div class="text-[10px] text-bx-muted">عدم إرفاق معرف المستخدم مع النتيجة</div>
+                    </div>
+                    <label class="bx-switch-label">
+                        <input type="checkbox" class="bx-custom-switch">
+                        <span class="bx-switch-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="flex items-center justify-end gap-3 pt-4 border-t border-bx-border">
+                <button onclick="closeModal('feedbackRatingModal')"
+                    class="bx-btn bx-btn-outline text-xs px-5">إلغاء</button>
+                <button
+                    onclick="showToast('success', 'شكراً لتقييمك!', 'تم استلام ملاحظاتك بنجاح وسيتم أخذها بعين الاعتبار في التحديث القادم'); closeModal('feedbackRatingModal')"
+                    class="bx-btn bx-btn-primary text-xs px-6">
+                    <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                    <span>إرسال التقييم</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global & Component JS -->
+    <script src="../../js/taqniya.js"></script>
+    <script src="component.js"></script>
+    <script>
+        function renderIcons() {
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+        }
+        renderIcons();
+        document.addEventListener('DOMContentLoaded', renderIcons);
+        window.addEventListener('load', renderIcons);
+    </script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>19. لوحات الطي والتوسيع البسيطة (Collapse Panels) — Taqniya Design System</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800;900&family=JetBrains+Mono:wght@500;700&family=Syne:wght@700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Local Fast Offline Icons & Tailwind -->
+    <script src="../../js/lucide.min.js"></script>
+    <script src="../../js/tailwind.min.js"></script>
+    <script src="../../js/tailwind.config.js"></script>
+    <!-- Global Core Styles -->
+    <link rel="stylesheet" href="../../css/taqniya.css">
+</head>
+<body class="min-h-screen bg-[var(--bx-canvas)] text-bx-text font-sans antialiased">
+
+    <!-- Global Floating Toast Stack Container -->
+    <div id="toastContainer" class="fixed top-4 left-4 z-[99999] flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
+
+    <!-- Extra Top Overlays -->
+    
+
+    <div class="max-w-[1600px] mx-auto p-4 sm:p-8 lg:p-12 space-y-8">
+        <!-- Component Header Navigation -->
+        <header class="flex items-center justify-between border-b border-bx-border pb-4">
+            <div class="flex items-center gap-3">
+                <a href="../../index.html" class="bx-tag hover:border-bx-primary transition-all">← المعرض العام</a>
+                <span class="text-bx-muted text-xs">/</span>
+                <span class="text-xs font-black text-bx-title">19. لوحات الطي والتوسيع البسيطة (Collapse Panels)</span>
+            </div>
+            <button type="button" onclick="toggleTheme()" class="bx-tag text-xs font-bold hover:border-bx-primary cursor-pointer flex items-center gap-2">
+                <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+                <span>تبديل السمة (Light / Dark)</span>
+            </button>
+        </header>
+
+        <!-- Main Section Content -->
+        <main class="space-y-8">
+            <section id="collapse" class="space-y-6">
+                <div class="flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <span class="w-2.5 h-7 rounded-full bg-bx-primary"></span>
+                        <h2 class="text-xl sm:text-2xl font-bold bx-title">19. الإخفاء والإظهار (Collapse)</h2>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="bx-tag font-mono text-xs">Smooth Toggle · Filter Drawer</span>
+                        <button onclick="toggleSection('sec-collapse-body', 'sec-collapse-btn')" id="sec-collapse-btn"
+                            class="w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:border-bx-primary transition-all cursor-pointer"
+                            title="طي / توسيع القسم">
+                            <i data-lucide="chevron-down" class="w-4 h-4 chevron-toggle"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="sec-collapse-body" class="accordion-content space-y-6">
+                    <div class="bx-card p-6 sm:p-8 space-y-8">
+                        <!-- 19.1 Code Snippet Collapse -->
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between pb-3 border-b border-bx-divider">
+                                <div>
+                                    <h3 class="bx-title text-base font-black">استعراض المخطط البرمجي (Collapsible Code
+                                        Schema)</h3>
+                                    <p class="text-xs text-bx-muted">إظهار وإخفاء الشيفرة البرمجية وبيانات الـ JSON
+                                        بنقرة واحدة</p>
+                                </div>
+                                <button type="button"
+                                    onclick="toggleCollapseBlock('codeSchemaCollapse', 'codeSchemaBtn')"
+                                    id="codeSchemaBtn" class="bx-btn bx-btn-primary text-xs px-4">
+                                    <i data-lucide="code-2" class="w-4 h-4"></i>
+                                    <span id="codeSchemaBtnText">إظهار كود الـ Schema</span>
+                                </button>
+                            </div>
+
+                            <div id="codeSchemaCollapse" class="collapse-block">
+                                <div class="collapse-inner pt-2">
+                                    <div
+                                        class="rounded-2xl bg-[#1E1B2E] border border-bx-border p-4 text-xs font-mono text-emerald-400 space-y-3 shadow-inner">
+                                        <div
+                                            class="flex items-center justify-between text-bx-muted pb-2 border-b border-white/10">
+                                            <span class="text-[11px] text-purple-300">schema-definition.json</span>
+                                            <button
+                                                onclick="showToast('success', 'تم النسخ', 'تم نسخ كود الـ JSON بنجاح')"
+                                                class="hover:text-white transition-colors flex items-center gap-1">
+                                                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                                                <span>نسخ</span>
+                                            </button>
+                                        </div>
+                                        <pre class="overflow-x-auto text-[11px] leading-relaxed"><code>{
+  "system": "Taqniya Framework 3.0",
+  "ssot_integrity": 1.0,
+  "breakpoints": ["sm", "md", "lg", "xl", "2xl"],
+  "theme": {
+    "primary": "#5B3CE6",
+    "canvas_light": "#EBEBFA",
+    "canvas_dark": "#28293D"
+  },
+  "modules": ["KPIs", "Modals", "Progress", "Toasts", "Badges", "Carousel"]
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 19.2 Filter Panel Collapse -->
+                        <div class="space-y-3 pt-4 border-t border-bx-divider">
+                            <div class="flex items-center justify-between pb-3 border-b border-bx-divider">
+                                <div>
+                                    <h3 class="bx-title text-base font-black">لوحة الفلاتر المتقدمة (Collapsible Filter
+                                        Panel)</h3>
+                                    <p class="text-xs text-bx-muted">لوحة خيارات تصفية قابلة للطي للحفاظ على بساطة
+                                        الشاشة</p>
+                                </div>
+                                <button type="button"
+                                    onclick="toggleCollapseBlock('advancedFilterPanel', 'filterToggleBtn')"
+                                    id="filterToggleBtn" class="bx-btn bx-btn-outline text-xs px-4">
+                                    <i data-lucide="sliders-horizontal" class="w-4 h-4 text-bx-primary"></i>
+                                    <span>خيارات التصفية المتقدمة</span>
+                                    <i data-lucide="chevron-down"
+                                        class="w-3.5 h-3.5 chevron-icon transition-transform"></i>
+                                </button>
+                            </div>
+
+                            <div id="advancedFilterPanel" class="collapse-block">
+                                <div class="collapse-inner pt-2">
+                                    <div
+                                        class="p-5 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border space-y-4 text-xs">
+                                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                            <div class="space-y-1">
+                                                <label class="font-bold text-bx-muted">الفترة الزمنية:</label>
+                                                <div class="relative">
+                                                    <div onclick="toggleDropdown('filterPeriodMenu')"
+                                                        class="bx-dropdown-trigger !h-10 text-xs">
+                                                        <div class="flex items-center gap-2 font-bold text-bx-title"
+                                                            id="filterPeriodVal">
+                                                            <span>آخر 24 ساعة</span>
+                                                        </div>
+                                                        <i data-lucide="chevron-down"
+                                                            class="w-4 h-4 text-bx-primary"></i>
+                                                    </div>
+                                                    <div id="filterPeriodMenu" class="hidden bx-dropdown-menu z-50">
+                                                        <div
+                                                            class="max-h-40 overflow-y-auto py-1 divide-y divide-[var(--bx-divider)]">
+                                                            <div onclick="selectDropdown('filterPeriodVal', 'filterPeriodMenu', 'آخر 24 ساعة', this)"
+                                                                class="bx-dropdown-item active flex items-center justify-between py-2">
+                                                                <div class="flex items-center gap-2">
+                                                                    <input type="radio" name="filterPeriodRadio"
+                                                                        class="bx-custom-radio pointer-events-none"
+                                                                        checked>
+                                                                    <span class="font-bold text-xs">آخر 24 ساعة</span>
+                                                                </div>
+                                                                <span
+                                                                    class="text-[10px] font-mono text-bx-muted">24h</span>
+                                                            </div>
+                                                            <div onclick="selectDropdown('filterPeriodVal', 'filterPeriodMenu', 'آخر 7 أيام', this)"
+                                                                class="bx-dropdown-item flex items-center justify-between py-2">
+                                                                <div class="flex items-center gap-2">
+                                                                    <input type="radio" name="filterPeriodRadio"
+                                                                        class="bx-custom-radio pointer-events-none">
+                                                                    <span class="font-bold text-xs">آخر 7 أيام</span>
+                                                                </div>
+                                                                <span
+                                                                    class="text-[10px] font-mono text-bx-muted">7d</span>
+                                                            </div>
+                                                            <div onclick="selectDropdown('filterPeriodVal', 'filterPeriodMenu', 'هذا الشهر', this)"
+                                                                class="bx-dropdown-item flex items-center justify-between py-2">
+                                                                <div class="flex items-center gap-2">
+                                                                    <input type="radio" name="filterPeriodRadio"
+                                                                        class="bx-custom-radio pointer-events-none">
+                                                                    <span class="font-bold text-xs">هذا الشهر</span>
+                                                                </div>
+                                                                <span
+                                                                    class="text-[10px] font-mono text-bx-muted">Month</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="space-y-1">
+                                                <label class="font-bold text-bx-muted">الحالة المعمارية:</label>
+                                                <div class="relative">
+                                                    <div onclick="toggleDropdown('filterStatusMenu')"
+                                                        class="bx-dropdown-trigger !h-10 text-xs">
+                                                        <div class="flex items-center gap-2 font-bold text-bx-title"
+                                                            id="filterStatusVal">
+                                                            <span class="w-2 h-2 rounded-full bg-bx-primary"></span>
+                                                            <span>جميع الحالات</span>
+                                                        </div>
+                                                        <i data-lucide="chevron-down"
+                                                            class="w-4 h-4 text-bx-primary"></i>
+                                                    </div>
+                                                    <div id="filterStatusMenu" class="hidden bx-dropdown-menu z-50">
+                                                        <div
+                                                            class="max-h-40 overflow-y-auto py-1 divide-y divide-[var(--bx-divider)]">
+                                                            <div onclick="selectDropdown('filterStatusVal', 'filterStatusMenu', '<span class=\'w-2 h-2 rounded-full bg-bx-primary\'></span><span>جميع الحالات</span>', this)"
+                                                                class="bx-dropdown-item active flex items-center justify-between py-2">
+                                                                <div class="flex items-center gap-2">
+                                                                    <input type="radio" name="filterStatusRadio"
+                                                                        class="bx-custom-radio pointer-events-none"
+                                                                        checked>
+                                                                    <span class="font-bold text-xs">جميع الحالات</span>
+                                                                </div>
+                                                                <span class="bx-tag text-[10px] py-0.5">All</span>
+                                                            </div>
+                                                            <div onclick="selectDropdown('filterStatusVal', 'filterStatusMenu', '<span class=\'w-2 h-2 rounded-full bg-emerald-500\'></span><span>معتمد وموثق SSoT</span>', this)"
+                                                                class="bx-dropdown-item flex items-center justify-between py-2">
+                                                                <div class="flex items-center gap-2">
+                                                                    <input type="radio" name="filterStatusRadio"
+                                                                        class="bx-custom-radio pointer-events-none">
+                                                                    <span
+                                                                        class="font-bold text-xs text-emerald-600">معتمد
+                                                                        وموثق SSoT</span>
+                                                                </div>
+                                                                <span
+                                                                    class="bx-tag border-emerald-500/30 text-emerald-600 text-[10px] py-0.5">SSoT</span>
+                                                            </div>
+                                                            <div onclick="selectDropdown('filterStatusVal', 'filterStatusMenu', '<span class=\'w-2 h-2 rounded-full bg-amber-500\'></span><span>قيد المراجعة</span>', this)"
+                                                                class="bx-dropdown-item flex items-center justify-between py-2">
+                                                                <div class="flex items-center gap-2">
+                                                                    <input type="radio" name="filterStatusRadio"
+                                                                        class="bx-custom-radio pointer-events-none">
+                                                                    <span class="font-bold text-xs text-amber-600">قيد
+                                                                        المراجعة</span>
+                                                                </div>
+                                                                <span
+                                                                    class="bx-tag border-amber-500/30 text-amber-600 text-[10px] py-0.5">Review</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="space-y-1">
+                                                <label class="font-bold text-bx-muted">المشرف المسؤول:</label>
+                                                <input type="text" placeholder="اكتب اسم المهندس..."
+                                                    class="bx-input !h-10 text-xs">
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-end gap-2 pt-2 border-t border-bx-divider">
+                                            <button
+                                                onclick="toggleCollapseBlock('advancedFilterPanel', 'filterToggleBtn')"
+                                                class="bx-btn bx-btn-ghost text-xs px-4">إغلاق</button>
+                                            <button
+                                                onclick="showToast('info', 'تطبيق الفلترة', 'تمت تصفية السجلات بنجاح'); toggleCollapseBlock('advancedFilterPanel', 'filterToggleBtn')"
+                                                class="bx-btn bx-btn-primary text-xs px-5">
+                                                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                                                <span>تطبيق التصفية</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== 20. CAROUSEL ==================== -->
+        </main>
+    </div>
+
+    <!-- Extra Bottom Overlays (e.g. Modals) -->
+    
+
+    <!-- Global & Component JS -->
+    <script src="../../js/taqniya.js"></script>
+    <script src="component.js"></script>
+    <script>
+        function renderIcons() {
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+        }
+        renderIcons();
+        document.addEventListener('DOMContentLoaded', renderIcons);
+        window.addEventListener('load', renderIcons);
+    </script>
+</body>
+</html>
