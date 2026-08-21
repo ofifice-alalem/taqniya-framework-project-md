@@ -44,64 +44,401 @@
         </button>
     </div>
 
-    <!-- ===== SIDE DRAWER ===== -->
-    <div id="drawerOverlay" onclick="closeDrawer()" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[998] hidden transition-all"></div>
-    <div id="drawerContent" class="fixed top-0 left-0 h-full w-[420px] max-w-[90vw] bg-[var(--bx-canvas)] z-[999] shadow-2xl translate-x-[-100%] transition-transform duration-300 p-6 flex flex-col justify-between overflow-y-auto border-r-2 border-bx-border">
-        <div class="space-y-5">
-            <div class="flex items-center justify-between border-b border-bx-border pb-3.5">
-                <h3 class="bx-title text-lg">تعديل بيانات السجل</h3>
-                <button onclick="closeDrawer()" class="w-8 h-8 rounded-full border border-bx-border flex items-center justify-center font-bold">
+    <!-- ==================== GLOBAL OFFCANVAS & SLIDE DRAWERS SYSTEM (4-DIRECTIONS) ==================== -->
+    <!-- Unified Backdrop Overlay for All Offcanvas Drawers -->
+    <div id="offcanvasBackdrop" onclick="closeAllOffcanvas()" class="fixed inset-0 bg-black/60 backdrop-blur-md z-[9998] hidden transition-opacity duration-300"></div>
+
+    <!-- ===== 1. RIGHT OFFCANVAS: SYSTEM SETTINGS & SPATIAL PREFERENCES ===== -->
+    <aside id="offcanvasRight" class="fixed top-0 right-0 h-full w-[460px] max-w-[92vw] bg-[var(--bx-surface-solid)] z-[9999] shadow-2xl translate-x-full transition-transform duration-300 p-6 flex flex-col justify-between overflow-y-auto border-l-2 border-bx-border">
+        <div class="space-y-6">
+            <!-- Header -->
+            <div class="flex items-center justify-between border-b border-bx-border pb-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black">
+                        <i data-lucide="settings-2" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h3 class="bx-title text-base font-black">إعدادات وتخصيص المنظومة</h3>
+                            <span class="bx-tag text-[9px] py-0.5 text-bx-primary border-bx-primary/30">Right Drawer</span>
+                        </div>
+                        <p class="text-xs text-bx-muted">تفضيلات المعمارية والبيئة السحابية والواجهات</p>
+                    </div>
+                </div>
+                <button onclick="closeOffcanvas('right')" class="w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all">
                     <i data-lucide="x" class="w-4 h-4"></i>
                 </button>
             </div>
-            <div class="space-y-3.5">
-                <div>
-                    <label class="text-xs font-black uppercase text-bx-muted block mb-1">عنوان السجل</label>
-                    <input type="text" class="bx-input h-11" value="تطوير واجهة المستخدم المعاصرة">
-                </div>
-                <div>
-                    <label class="text-xs font-black uppercase text-bx-muted block mb-1">الحالة</label>
-                    <div class="relative">
-                        <div onclick="toggleDropdown('drawerDrop')" class="bx-dropdown-trigger !h-11">
-                            <span id="drawerVal">نشط ومكتمل</span>
-                            <i data-lucide="chevron-down" class="w-4 h-4 text-bx-primary"></i>
-                        </div>
-                        <div id="drawerDrop" class="hidden bx-dropdown-menu">
-                            <div onclick="selectDropdown('drawerVal', 'drawerDrop', 'نشط ومكتمل', this)" class="bx-dropdown-item active flex items-center justify-between py-2.5">
-                                <div class="flex items-center gap-2">
-                                    <input type="radio" name="drawerStatusRadio" class="bx-custom-radio pointer-events-none" checked>
-                                    <span class="font-bold text-xs">نشط ومكتمل</span>
-                                </div>
-                                <span class="bx-tag border-emerald-500/30 text-emerald-600 text-[10px]">Active</span>
-                            </div>
-                            <div onclick="selectDropdown('drawerVal', 'drawerDrop', 'قيد المراجعة', this)" class="bx-dropdown-item flex items-center justify-between py-2.5">
-                                <div class="flex items-center gap-2">
-                                    <input type="radio" name="drawerStatusRadio" class="bx-custom-radio pointer-events-none">
-                                    <span class="font-bold text-xs">قيد المراجعة</span>
-                                </div>
-                                <span class="bx-tag border-amber-500/30 text-amber-600 text-[10px]">Review</span>
-                            </div>
-                            <div onclick="selectDropdown('drawerVal', 'drawerDrop', 'معلق مؤقتاً', this)" class="bx-dropdown-item flex items-center justify-between py-2.5">
-                                <div class="flex items-center gap-2">
-                                    <input type="radio" name="drawerStatusRadio" class="bx-custom-radio pointer-events-none">
-                                    <span class="font-bold text-xs">معلق مؤقتاً</span>
-                                </div>
-                                <span class="bx-tag text-[10px]">Pending</span>
-                            </div>
-                        </div>
+
+            <!-- Body Content -->
+            <div class="space-y-5">
+                <!-- Visual Theme Control -->
+                <div class="p-4 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-black text-bx-title">السمة البصرية والمظهر</span>
+                        <span class="text-[10px] text-bx-muted">Light / Dark / System</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button type="button" onclick="setThemeMode('light')" class="p-2.5 rounded-xl border border-bx-border bg-[var(--bx-surface-solid)] text-xs font-bold flex items-center justify-center gap-2 hover:border-bx-primary transition-all">
+                            <i data-lucide="sun" class="w-4 h-4 text-amber-500"></i>
+                            <span>الوضع الفاتح</span>
+                        </button>
+                        <button type="button" onclick="setThemeMode('dark')" class="p-2.5 rounded-xl border border-bx-border bg-[var(--bx-surface-solid)] text-xs font-bold flex items-center justify-center gap-2 hover:border-bx-primary transition-all">
+                            <i data-lucide="moon" class="w-4 h-4 text-bx-primary"></i>
+                            <span>الوضع الداكن</span>
+                        </button>
                     </div>
                 </div>
-                <div>
-                    <label class="text-xs font-black uppercase text-bx-muted block mb-1">الوصف والملاحظات</label>
-                    <textarea class="bx-input h-24 py-2.5 rounded-2xl" placeholder="أدخل الملاحظات هنا..."></textarea>
+
+                <!-- Cloud Environment Selection -->
+                <div class="space-y-2">
+                    <label class="text-xs font-black text-bx-title block">المنطقة السحابية الأساسية (Region Node)</label>
+                    <div class="p-3 rounded-2xl border border-bx-border bg-[var(--bx-surface-solid)] flex items-center justify-between">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <div>
+                                <div class="text-xs font-black text-bx-title">سحابة الرياض (me-central2)</div>
+                                <div class="text-[10px] text-bx-muted">زمن الاستجابة: 28ms · حالة مستقرة</div>
+                            </div>
+                        </div>
+                        <span class="bx-tag text-[9px] border-emerald-500/30 text-emerald-600">Active</span>
+                    </div>
+                </div>
+
+                <!-- Security & Live Switches -->
+                <div class="space-y-2 pt-2 border-t border-bx-divider">
+                    <div class="flex items-center justify-between p-3 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border">
+                        <div class="space-y-0.5">
+                            <div class="text-xs font-black text-bx-title">التحقق الثنائي للأوامر الحساسة</div>
+                            <div class="text-[10px] text-bx-muted">2FA Shield on Destructive Actions</div>
+                        </div>
+                        <label class="bx-switch-label">
+                            <input type="checkbox" class="bx-custom-switch" checked>
+                            <span class="bx-switch-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border">
+                        <div class="space-y-0.5">
+                            <div class="text-xs font-black text-bx-title">التنبيهات الفورية المباشرة</div>
+                            <div class="text-[10px] text-bx-muted">Live WebSocket Push Notifications</div>
+                        </div>
+                        <label class="bx-switch-label">
+                            <input type="checkbox" class="bx-custom-switch" checked>
+                            <span class="bx-switch-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border">
+                        <div class="space-y-0.5">
+                            <div class="text-xs font-black text-bx-title">تسجيل سجلات التدقيق تلقائياً</div>
+                            <div class="text-[10px] text-bx-muted">Audit Log Auto-Capture (SSoT)</div>
+                        </div>
+                        <label class="bx-switch-label">
+                            <input type="checkbox" class="bx-custom-switch">
+                            <span class="bx-switch-slider"></span>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
-        <button onclick="showToast('success', 'تحديث البيانات', 'تم حفظ وتحديث التعديلات بنجاح!'); closeDrawer();" class="bx-btn bx-btn-primary w-full mt-4 py-3">
-            <i data-lucide="check-circle" class="w-4 h-4"></i>
-            <span>حفظ التغييرات</span>
-        </button>
-    </div>
+
+        <!-- Footer Actions -->
+        <div class="pt-4 border-t border-bx-border flex items-center gap-3">
+            <button onclick="closeOffcanvas('right')" class="bx-btn bx-btn-outline text-xs flex-1">إلغاء</button>
+            <button onclick="showToast('success', 'إعدادات المنظومة', 'تم حفظ التفضيلات وتطبيقها بنجاح! ⚙️'); closeOffcanvas('right');" class="bx-btn bx-btn-primary text-xs flex-[2]">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                <span>حفظ التغييرات</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ===== 2. LEFT OFFCANVAS: ADVANCED FILTERS & DATA AUDIT QUERY ===== -->
+    <aside id="offcanvasLeft" class="fixed top-0 left-0 h-full w-[460px] max-w-[92vw] bg-[var(--bx-surface-solid)] z-[9999] shadow-2xl -translate-x-full transition-transform duration-300 p-6 flex flex-col justify-between overflow-y-auto border-r-2 border-bx-border">
+        <div class="space-y-6">
+            <!-- Header -->
+            <div class="flex items-center justify-between border-b border-bx-border pb-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black">
+                        <i data-lucide="filter" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h3 class="bx-title text-base font-black">تصفية السجلات المعمارية المتقدمة</h3>
+                            <span class="bx-tag text-[9px] py-0.5 text-bx-primary border-bx-primary/30">Left Drawer</span>
+                        </div>
+                        <p class="text-xs text-bx-muted">استعلامات معقدة وبحث متعدد المعايير</p>
+                    </div>
+                </div>
+                <button onclick="closeOffcanvas('left')" class="w-8 h-8 rounded-full border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Body Content -->
+            <div class="space-y-4">
+                <!-- Search Query Keyword -->
+                <div>
+                    <label class="text-xs font-black text-bx-title block mb-1.5">كلمة البحث أو كود السجل</label>
+                    <div class="flex items-center h-11 px-3.5 rounded-2xl border border-bx-border bg-[var(--bx-table-header)] focus-within:border-bx-primary transition-all">
+                        <i data-lucide="search" class="w-4 h-4 text-bx-muted ml-2"></i>
+                        <input type="text" placeholder="مثال: TQ-COMP-984 أو Microservice..." class="w-full bg-transparent text-xs font-bold text-bx-title placeholder:text-bx-muted outline-none">
+                    </div>
+                </div>
+
+                <!-- Component Classification Chips -->
+                <div>
+                    <label class="text-xs font-black text-bx-title block mb-1.5">فئة المكون المعماري</label>
+                    <div class="flex flex-wrap gap-1.5">
+                        <button type="button" onclick="this.classList.toggle('bg-bx-primary'); this.classList.toggle('text-white');" class="bx-tag text-xs py-1.5 px-3 cursor-pointer hover:border-bx-primary transition-all bg-bx-primary text-white">الواجهات UI</button>
+                        <button type="button" onclick="this.classList.toggle('bg-bx-primary'); this.classList.toggle('text-white');" class="bx-tag text-xs py-1.5 px-3 cursor-pointer hover:border-bx-primary transition-all">قواعد البيانات</button>
+                        <button type="button" onclick="this.classList.toggle('bg-bx-primary'); this.classList.toggle('text-white');" class="bx-tag text-xs py-1.5 px-3 cursor-pointer hover:border-bx-primary transition-all">خدمات السحابة</button>
+                        <button type="button" onclick="this.classList.toggle('bg-bx-primary'); this.classList.toggle('text-white');" class="bx-tag text-xs py-1.5 px-3 cursor-pointer hover:border-bx-primary transition-all">الأمان والتشفير</button>
+                    </div>
+                </div>
+
+                <!-- Status Filter Radio Group -->
+                <div class="space-y-2 pt-2 border-t border-bx-divider">
+                    <label class="text-xs font-black text-bx-title block">حالة الاعتماد التشغيلي</label>
+                    <div class="space-y-1.5">
+                        <label class="flex items-center justify-between p-3 rounded-2xl border border-bx-border bg-[var(--bx-table-header)] cursor-pointer hover:border-bx-primary transition-all">
+                            <div class="flex items-center gap-2.5">
+                                <input type="radio" name="offcanvasStatus" checked class="bx-custom-radio">
+                                <span class="text-xs font-black text-bx-title">جميع الحالات التشغيلية</span>
+                            </div>
+                            <span class="text-[10px] font-mono text-bx-muted">148 سجل</span>
+                        </label>
+                        <label class="flex items-center justify-between p-3 rounded-2xl border border-bx-border bg-[var(--bx-table-header)] cursor-pointer hover:border-bx-primary transition-all">
+                            <div class="flex items-center gap-2.5">
+                                <input type="radio" name="offcanvasStatus" class="bx-custom-radio">
+                                <span class="text-xs font-black text-emerald-600">معتمد ونشط بالإنتاج (Active)</span>
+                            </div>
+                            <span class="text-[10px] font-mono text-emerald-600">112</span>
+                        </label>
+                        <label class="flex items-center justify-between p-3 rounded-2xl border border-bx-border bg-[var(--bx-table-header)] cursor-pointer hover:border-bx-primary transition-all">
+                            <div class="flex items-center gap-2.5">
+                                <input type="radio" name="offcanvasStatus" class="bx-custom-radio">
+                                <span class="text-xs font-black text-amber-600">قيد المراجعة والتدقيق (Review)</span>
+                            </div>
+                            <span class="text-[10px] font-mono text-amber-600">28</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Range Slider: Resource Utilization -->
+                <div class="space-y-2 pt-2 border-t border-bx-divider">
+                    <div class="flex items-center justify-between">
+                        <label class="text-xs font-black text-bx-title">نسبة استهلاك الموارد السحابية</label>
+                        <span id="filterRangeVal" class="text-xs font-mono font-black text-bx-primary">أكبر من 65%</span>
+                    </div>
+                    <input type="range" min="0" max="100" value="65" oninput="document.getElementById('filterRangeVal').innerText = 'أكبر من ' + this.value + '%'" class="w-full accent-[var(--bx-primary)] cursor-pointer">
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Actions -->
+        <div class="pt-4 border-t border-bx-border flex items-center gap-3">
+            <button onclick="showToast('info', 'إعادة تعيين', 'تمت استعادة الفلاتر الافتراضية'); closeOffcanvas('left');" class="bx-btn bx-btn-outline text-xs flex-1">مسح الكل</button>
+            <button onclick="showToast('success', 'تطبيق الفلترة', 'تم العثور على 38 سجل مطابق للمعايير 🎯'); closeOffcanvas('left');" class="bx-btn bx-btn-primary text-xs flex-[2]">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                <span>تطبيق الفلترة (38 سجل)</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ===== 3. TOP OFFCANVAS: LIVE CLOUD ALERTS & BROADCAST BANNER ===== -->
+    <aside id="offcanvasTop" class="fixed top-0 inset-x-0 w-full max-h-[85vh] bg-[var(--bx-surface-solid)] z-[9999] shadow-2xl -translate-y-full transition-transform duration-300 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto border-b-2 border-bx-border">
+        <div class="max-w-6xl w-full mx-auto space-y-6">
+            <!-- Header -->
+            <div class="flex items-center justify-between border-b border-bx-border pb-4">
+                <div class="flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-2xl bg-amber-500/15 text-amber-600 border border-amber-500/30 flex items-center justify-center font-black">
+                        <i data-lucide="radio" class="w-5 h-5 animate-pulse"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h3 class="bx-title text-base sm:text-lg font-black">مركز الإشعارات والتنبيهات السحابية المباشرة</h3>
+                            <span class="bx-tag text-[9px] py-0.5 text-amber-600 border-amber-500/30">Top Drawer Banner</span>
+                        </div>
+                        <p class="text-xs text-bx-muted">بث فوري لحالة الخوادم والأحداث الأمنية المعمارية عبر السحابة</p>
+                    </div>
+                </div>
+                <button onclick="closeOffcanvas('top')" class="w-9 h-9 rounded-xl border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Live Metrics Strip -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div class="p-3.5 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border space-y-1">
+                    <div class="text-[10px] text-bx-muted font-bold">جاهزية الخوادم (Uptime)</div>
+                    <div class="text-base font-black text-emerald-600 font-mono flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>99.98%</span>
+                    </div>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border space-y-1">
+                    <div class="text-[10px] text-bx-muted font-bold">زمن الاستجابة (Latency)</div>
+                    <div class="text-base font-black text-bx-primary font-mono">32ms</div>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border space-y-1">
+                    <div class="text-[10px] text-bx-muted font-bold">استهلاك الذاكرة (Memory)</div>
+                    <div class="text-base font-black text-amber-600 font-mono">64.2%</div>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border space-y-1">
+                    <div class="text-[10px] text-bx-muted font-bold">سجلات تم فحصها اليوم</div>
+                    <div class="text-base font-black text-bx-title font-mono">1.48M</div>
+                </div>
+            </div>
+
+            <!-- Broadcast Alerts Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Alert 1: Security Critical -->
+                <div class="p-4 rounded-2xl border-2 border-red-500/30 bg-red-500/5 space-y-2 relative overflow-hidden">
+                    <div class="flex items-center justify-between">
+                        <span class="bx-tag text-[9px] py-0.5 border-red-500/30 text-red-600 bg-red-500/10">أمني عالي الأهمية</span>
+                        <span class="text-[10px] font-mono text-bx-muted">منذ 4 دقائق</span>
+                    </div>
+                    <h4 class="text-xs font-black text-red-600">محاولة وصول غير مصرح بها من IP خارجي</h4>
+                    <p class="text-[11px] text-bx-muted leading-relaxed">تم تفعيل بروتوكول الحظر الفوري وتأمين المنفذ بواسطة جدار الحماية السحابي.</p>
+                </div>
+
+                <!-- Alert 2: Deployment Success -->
+                <div class="p-4 rounded-2xl border-2 border-emerald-500/30 bg-emerald-500/5 space-y-2 relative overflow-hidden">
+                    <div class="flex items-center justify-between">
+                        <span class="bx-tag text-[9px] py-0.5 border-emerald-500/30 text-emerald-600 bg-emerald-500/10">اعتماد معماري</span>
+                        <span class="text-[10px] font-mono text-bx-muted">منذ 18 دقيقة</span>
+                    </div>
+                    <h4 class="text-xs font-black text-emerald-600">تم تدشين تحديث SSoT Core v3.2 بنجاح</h4>
+                    <p class="text-[11px] text-bx-muted leading-relaxed">اكتملت مزامنة كافة العقد السحابية في منطقة الرياض دون أي انقطاع في الخدمة.</p>
+                </div>
+
+                <!-- Alert 3: Scheduled Maintenance -->
+                <div class="p-4 rounded-2xl border-2 border-amber-500/30 bg-amber-500/5 space-y-2 relative overflow-hidden">
+                    <div class="flex items-center justify-between">
+                        <span class="bx-tag text-[9px] py-0.5 border-amber-500/30 text-amber-600 bg-amber-500/10">صيانة مجدولة</span>
+                        <span class="text-[10px] font-mono text-bx-muted">الليلة 03:00 ص</span>
+                    </div>
+                    <h4 class="text-xs font-black text-amber-600">ترقية خوادم قواعد البيانات المركزية</h4>
+                    <p class="text-[11px] text-bx-muted leading-relaxed">سيتم تحويل حركة المرور مؤقتاً إلى العقدة الاحتياطية بجدة لمدة 15 دقيقة.</p>
+                </div>
+            </div>
+
+            <!-- Top Drawer Footer Actions -->
+            <div class="pt-4 border-t border-bx-border flex items-center justify-between">
+                <button onclick="showToast('info', 'تحديث البث', 'تم تحديث كافة المؤشرات السحابية');" class="bx-btn bx-btn-outline text-xs px-4">
+                    <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                    <span>تحديث المؤشرات الحية</span>
+                </button>
+                <div class="flex items-center gap-3">
+                    <button onclick="showToast('success', 'التنبيهات', 'تم تعليم جميع الإشعارات كمقروءة');" class="bx-btn bx-btn-outline text-xs px-4">
+                        <span>تعليم الكل كمقروء</span>
+                    </button>
+                    <button onclick="closeOffcanvas('top')" class="bx-btn bx-btn-primary text-xs px-6">
+                        <span>إغلاق اللوحة العلوية</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ===== 4. BOTTOM OFFCANVAS: QUICK ACTION SHEET & MICRO-TERMINAL ===== -->
+    <aside id="offcanvasBottom" class="fixed bottom-0 inset-x-0 w-full max-h-[85vh] bg-[var(--bx-surface-solid)] z-[9999] shadow-2xl translate-y-full transition-transform duration-300 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto border-t-2 border-bx-border rounded-t-3xl">
+        <div class="max-w-5xl w-full mx-auto space-y-6">
+            <!-- Sheet Drag Handle Indicator -->
+            <div class="w-16 h-1.5 rounded-full bg-bx-border mx-auto hover:bg-bx-primary transition-all cursor-pointer" onclick="closeOffcanvas('bottom')"></div>
+
+            <!-- Header -->
+            <div class="flex items-center justify-between border-b border-bx-border pb-4">
+                <div class="flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black">
+                        <i data-lucide="terminal" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h3 class="bx-title text-base sm:text-lg font-black">شريط المهام السريعة والطرفية المصغرة (Action Sheet)</h3>
+                            <span class="bx-tag text-[9px] py-0.5 text-bx-primary border-bx-primary/30">Bottom Sheet</span>
+                        </div>
+                        <p class="text-xs text-bx-muted">تنفيذ العمليات الإدارية وتصدير البيانات وسجل الأوامر الفوري</p>
+                    </div>
+                </div>
+                <button onclick="closeOffcanvas('bottom')" class="w-9 h-9 rounded-xl border border-bx-border hover:border-bx-primary flex items-center justify-center text-bx-muted hover:text-bx-primary transition-all">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- 6 Quick Action Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+                <button type="button" onclick="showToast('info', 'تصدير PDF', 'جاري إنشاء تقرير المعمارية بصيغة PDF...')" class="p-3.5 rounded-2xl border border-bx-border bg-[var(--bx-table-header)] hover:border-bx-primary hover:bg-[var(--bx-surface-solid)] text-center space-y-2 transition-all shadow-xs group">
+                    <div class="w-10 h-10 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20 mx-auto flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="file-text" class="w-5 h-5"></i>
+                    </div>
+                    <span class="text-xs font-black text-bx-title block">تصدير PDF</span>
+                </button>
+
+                <button type="button" onclick="showToast('success', 'تفريغ الكاش', 'تم تفريغ الذاكرة المؤقتة بنجاح ⚡')" class="p-3.5 rounded-2xl border border-bx-border bg-[var(--bx-table-header)] hover:border-bx-primary hover:bg-[var(--bx-surface-solid)] text-center space-y-2 transition-all shadow-xs group">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-500 border border-amber-500/20 mx-auto flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="zap" class="w-5 h-5"></i>
+                    </div>
+                    <span class="text-xs font-black text-bx-title block">تفريغ الكاش</span>
+                </button>
+
+                <button type="button" onclick="showToast('info', 'مزامنة DB', 'تمت مزامنة 148 سجل مع قاعدة البيانات المركزية')" class="p-3.5 rounded-2xl border border-bx-border bg-[var(--bx-table-header)] hover:border-bx-primary hover:bg-[var(--bx-surface-solid)] text-center space-y-2 transition-all shadow-xs group">
+                    <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-500 border border-blue-500/20 mx-auto flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="database" class="w-5 h-5"></i>
+                    </div>
+                    <span class="text-xs font-black text-bx-title block">مزامنة DB</span>
+                </button>
+
+                <button type="button" onclick="showToast('success', 'نسخة احتياطية', 'تم حفظ نسخة احتياطية مشفرة في سحابة الرياض 🛡️')" class="p-3.5 rounded-2xl border border-bx-border bg-[var(--bx-table-header)] hover:border-bx-primary hover:bg-[var(--bx-surface-solid)] text-center space-y-2 transition-all shadow-xs group">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 mx-auto flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="shield-check" class="w-5 h-5"></i>
+                    </div>
+                    <span class="text-xs font-black text-bx-title block">نسخة احتياطية</span>
+                </button>
+
+                <button type="button" onclick="showToast('info', 'تصدير Excel', 'تم تحميل ملف البيانات بنجاح 📊')" class="p-3.5 rounded-2xl border border-bx-border bg-[var(--bx-table-header)] hover:border-bx-primary hover:bg-[var(--bx-surface-solid)] text-center space-y-2 transition-all shadow-xs group">
+                    <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-500 border border-purple-500/20 mx-auto flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="table" class="w-5 h-5"></i>
+                    </div>
+                    <span class="text-xs font-black text-bx-title block">تصدير Excel</span>
+                </button>
+
+                <button type="button" onclick="showToast('info', 'فحص السلامة', 'جميع التبعيات والمكتبات متطابقة 100%')" class="p-3.5 rounded-2xl border border-bx-border bg-[var(--bx-table-header)] hover:border-bx-primary hover:bg-[var(--bx-surface-solid)] text-center space-y-2 transition-all shadow-xs group">
+                    <div class="w-10 h-10 rounded-xl bg-bx-pill text-bx-primary border border-bx-border mx-auto flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="check-square" class="w-5 h-5"></i>
+                    </div>
+                    <span class="text-xs font-black text-bx-title block">فحص السلامة</span>
+                </button>
+            </div>
+
+            <!-- Micro Terminal Preview -->
+            <div class="p-4 rounded-2xl bg-gray-950 text-gray-100 font-mono text-xs space-y-2 border border-bx-border/50 shadow-inner">
+                <div class="flex items-center justify-between text-[11px] text-gray-400 border-b border-gray-800 pb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-yellow-500"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
+                        <span class="mr-2 font-bold text-gray-300">Taqniya Spatial Terminal v3.2</span>
+                    </div>
+                    <span class="text-emerald-400">me-central2: Connected</span>
+                </div>
+                <div class="space-y-1 text-[11px] leading-relaxed pt-1">
+                    <p class="text-emerald-400">> [OK] Cloud node healthy (me-central2-node-01)</p>
+                    <p class="text-blue-400">> [SYNC] SSoT schema validated against 13-stack protocol</p>
+                    <p class="text-gray-300">> [READY] Action Sheet listening for command execution...</p>
+                </div>
+            </div>
+
+            <!-- Bottom Sheet Footer -->
+            <div class="pt-3 border-t border-bx-border flex items-center justify-between">
+                <span class="text-xs text-bx-muted font-bold">يمكنك سحب اللوحة للأسفل أو الضغط خارجها للإغلاق</span>
+                <button onclick="closeOffcanvas('bottom')" class="bx-btn bx-btn-primary text-xs px-6">
+                    <span>إغلاق اللوحة السفلية</span>
+                </button>
+            </div>
+        </div>
+    </aside>
 
     <!-- Floating Reopen Sidebar Button (Appears when sidebar is collapsed) -->
     <button id="sidebarReopenBtn" onclick="toggleSidebarCollapse()" class="hidden fixed top-4 right-4 z-40 px-3.5 py-2 rounded-2xl border border-bx-border bg-[var(--bx-surface-solid)] text-bx-primary font-bold text-xs shadow-lg hover:border-bx-primary items-center gap-2 transition-all cursor-pointer">
@@ -427,6 +764,16 @@
                                     <span>أشرطة التنقل (Navbar)</span>
                                 </div>
                                 <span class="nav-badge">21</span>
+                            </a>
+
+                            <a href="#offcanvas" class="bx-nav-item" onclick="setNavActive(this)">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="nav-icon-box">
+                                        <i data-lucide="panel-left-close" class="w-3.5 h-3.5"></i>
+                                    </div>
+                                    <span>اللوحات المنزلقة (Offcanvas)</span>
+                                </div>
+                                <span class="nav-badge">22</span>
                             </a>
                         </div>
                     </div>
@@ -4878,6 +5225,162 @@
                                 </nav>
                             </div>
                     </div>
+                </div>
+            </section>
+
+            <!-- ==================== 22. OFFCANVAS & SLIDE DRAWERS ==================== -->
+            <section id="offcanvas" class="bx-card p-6 sm:p-8 space-y-6">
+                <!-- Section Header -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-bx-border pb-5">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-bold text-base shadow-xs">
+                            22
+                        </div>
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold bx-title">22. اللوحات المنزلقة والأدراج (Offcanvas & Side Drawers)</h2>
+                            <p class="text-xs text-bx-muted mt-0.5">لوحات تفاعلية ثلاثية الأبعاد (Spatial Drawers) تدعم 4 اتجاهات انزلاق (يمين، يسار، أعلى، أسفل) مع خلفية زجاجية ضبابية</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="bx-tag font-mono text-xs">4 Directions · Spatial UI · Slide Sheets</span>
+                    </div>
+                </div>
+
+                <!-- 4 Directional Offcanvas Interactive Showcase Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- 22.1: Right Offcanvas (اللوحة المنزلقة من اليمين) -->
+                    <div class="bx-card p-6 space-y-4 border border-bx-border hover:border-bx-primary transition-all duration-300">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black">
+                                    <i data-lucide="panel-right-open" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-black text-sm text-bx-title">اللوحة اليمنى: إعدادات وتخصيص المنظومة</h4>
+                                    <span class="bx-tag text-[9px] py-0.5 text-bx-primary border-bx-primary/30">Right Drawer (RTL Primary)</span>
+                                </div>
+                            </div>
+                            <span class="bx-tag text-[11px] py-1 px-2.5 font-bold flex items-center gap-1.5 border-bx-primary/30 text-bx-primary bg-bx-pill">
+                                <i data-lucide="arrow-right-circle" class="w-3.5 h-3.5"></i>
+                                <span>الجهة اليمنى</span>
+                            </span>
+                        </div>
+                        <p class="text-xs text-bx-muted leading-relaxed">
+                            تنزلق بسلاسة من جهة اليمين (الاتجاه الطبيعي للغة العربية)، مخصصة للوحات التحكم الإدارية، خيارات الثيم، تفضيلات السحابة ومفاتيح الأمان.
+                        </p>
+                        <div class="p-3.5 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border flex items-center justify-between text-xs font-bold">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                <span class="text-bx-title">إعدادات العقد السحابية والثيم</span>
+                            </div>
+                            <code class="bx-tag font-mono text-[11px] font-bold text-bx-primary border-bx-primary/30 bg-bx-pill">.bx-offcanvas-right</code>
+                        </div>
+                        <button onclick="openOffcanvas('right')" class="bx-btn bx-btn-primary w-full text-xs py-3 shadow-md flex items-center justify-center gap-2">
+                            <i data-lucide="settings-2" class="w-4 h-4"></i>
+                            <span>فتح اللوحة اليمنى (Right Drawer)</span>
+                        </button>
+                    </div>
+
+                    <!-- 22.2: Left Offcanvas (اللوحة المنزلقة من اليسار) -->
+                    <div class="bx-card p-6 space-y-4 border border-bx-border hover:border-bx-primary transition-all duration-300">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black">
+                                    <i data-lucide="panel-left-open" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-black text-sm text-bx-title">اللوحة اليسرى: استعلام وتصفية السجلات</h4>
+                                    <span class="bx-tag text-[9px] py-0.5 text-bx-primary border-bx-primary/30">Left Drawer (Filter Studio)</span>
+                                </div>
+                            </div>
+                            <span class="bx-tag text-[11px] py-1 px-2.5 font-bold flex items-center gap-1.5 border-bx-primary/30 text-bx-primary bg-bx-pill">
+                                <i data-lucide="arrow-left-circle" class="w-3.5 h-3.5"></i>
+                                <span>الجهة اليسرى</span>
+                            </span>
+                        </div>
+                        <p class="text-xs text-bx-muted leading-relaxed">
+                            تنزلق من جهة اليسار، مثالية للمحركات المتقدمة لفلترة البيانات، فحص سجلات المعمارية، وتحديد نطاقات الاستهلاك والبحث متعدد المعايير.
+                        </p>
+                        <div class="p-3.5 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border flex items-center justify-between text-xs font-bold">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="filter" class="w-4 h-4 text-bx-primary"></i>
+                                <span class="text-bx-title">فلاتر الحالة + استهلاك الموارد</span>
+                            </div>
+                            <code class="bx-tag font-mono text-[11px] font-bold text-bx-primary border-bx-primary/30 bg-bx-pill">.bx-offcanvas-left</code>
+                        </div>
+                        <button onclick="openOffcanvas('left')" class="bx-btn bx-btn-primary w-full text-xs py-3 shadow-md flex items-center justify-center gap-2">
+                            <i data-lucide="filter" class="w-4 h-4"></i>
+                            <span>فتح اللوحة اليسرى (Left Drawer)</span>
+                        </button>
+                    </div>
+
+                    <!-- 22.3: Top Offcanvas (اللوحة المنزلقة من الأعلى) -->
+                    <div class="bx-card p-6 space-y-4 border border-bx-border hover:border-bx-primary transition-all duration-300">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-2xl bg-amber-500/10 text-amber-600 border border-amber-500/30 flex items-center justify-center font-black">
+                                    <i data-lucide="panel-top-open" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-black text-sm text-bx-title">اللوحة العلوية: مركز الإشعارات والبث السحابي</h4>
+                                    <span class="bx-tag text-[9px] py-0.5 text-amber-600 border-amber-500/30">Top Drawer (Broadcast Banner)</span>
+                                </div>
+                            </div>
+                            <span class="bx-tag text-[11px] py-1 px-2.5 font-bold flex items-center gap-1.5 border-amber-500/30 text-amber-600 bg-amber-500/10">
+                                <i data-lucide="arrow-up-circle" class="w-3.5 h-3.5"></i>
+                                <span>الجهة العلوية</span>
+                            </span>
+                        </div>
+                        <p class="text-xs text-bx-muted leading-relaxed">
+                            تنسدل بكامل العرض من أعلى الشاشة، مخصصة لإعلانات الطوارئ الحرجة، مراقبة صحة الخوادم الفورية، وبث الأحداث الأمنية المباشرة.
+                        </p>
+                        <div class="p-3.5 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border flex items-center justify-between text-xs font-bold">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                                <span class="text-bx-title">مؤشرات Uptime + تنبيهات أمنية</span>
+                            </div>
+                            <code class="bx-tag font-mono text-[11px] font-bold text-amber-600 border-amber-500/30 bg-amber-500/10">.bx-offcanvas-top</code>
+                        </div>
+                        <button onclick="openOffcanvas('top')" class="bx-btn bx-btn-primary w-full text-xs py-3 shadow-md flex items-center justify-center gap-2">
+                            <i data-lucide="radio" class="w-4 h-4"></i>
+                            <span>فتح اللوحة العلوية (Top Drawer)</span>
+                        </button>
+                    </div>
+
+                    <!-- 22.4: Bottom Offcanvas (اللوحة المنزلقة من الأسفل) -->
+                    <div class="bx-card p-6 space-y-4 border border-bx-border hover:border-bx-primary transition-all duration-300">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-2xl bg-bx-pill text-bx-primary border border-bx-border flex items-center justify-center font-black">
+                                    <i data-lucide="panel-bottom-open" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-black text-sm text-bx-title">اللوحة السفلية: ورقة المهام والطرفية المصغرة</h4>
+                                    <span class="bx-tag text-[9px] py-0.5 text-bx-primary border-bx-primary/30">Bottom Sheet (Action Grid)</span>
+                                </div>
+                            </div>
+                            <span class="bx-tag text-[11px] py-1 px-2.5 font-bold flex items-center gap-1.5 border-bx-primary/30 text-bx-primary bg-bx-pill">
+                                <i data-lucide="arrow-down-circle" class="w-3.5 h-3.5"></i>
+                                <span>الجهة السفلية</span>
+                            </span>
+                        </div>
+                        <p class="text-xs text-bx-muted leading-relaxed">
+                            ورقة منزلقة من الأسفل مع مقبض سحب هندسي، تحتوي على شبكة من 6 عمليات إدارية سريعة (تصدير، كاش، مزامنة) مع طرفية تنفيذ فورية.
+                        </p>
+                        <div class="p-3.5 rounded-2xl bg-[var(--bx-table-header)] border border-bx-border flex items-center justify-between text-xs font-bold">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="terminal" class="w-4 h-4 text-emerald-500"></i>
+                                <span class="text-bx-title">أزرار تصدير + طرفية CLI مصغرة</span>
+                            </div>
+                            <code class="bx-tag font-mono text-[11px] font-bold text-bx-primary border-bx-primary/30 bg-bx-pill">.bx-offcanvas-bottom</code>
+                        </div>
+                        <button onclick="openOffcanvas('bottom')" class="bx-btn bx-btn-primary w-full text-xs py-3 shadow-md flex items-center justify-center gap-2">
+                            <i data-lucide="terminal" class="w-4 h-4"></i>
+                            <span>فتح اللوحة السفلية (Bottom Sheet)</span>
+                        </button>
+                    </div>
+
                 </div>
             </section>
 

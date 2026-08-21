@@ -1085,3 +1085,80 @@
         .sidebar-scroll::-webkit-scrollbar-thumb:hover {
             background: var(--bx-primary);
         }
+
+        /* ==========================================================================
+           22. TAQNIYA OFFCANVAS & SLIDE DRAWERS SYSTEM (bx-offcanvas)
+           ========================================================================== */
+        .bx-offcanvas {
+            position: fixed;
+            z-index: 9999;
+            background-color: var(--bx-surface-solid);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+            overflow-y: auto;
+        }
+
+        .bx-offcanvas-backdrop {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 9998;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Direction: Right (اللوحة المنزلقة من اليمين) */
+        .bx-offcanvas-right {
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 460px;
+            max-width: 92vw;
+            border-left: 2px solid var(--bx-border);
+            transform: translateX(100%);
+        }
+
+        /* Direction: Left (اللوحة المنزلقة من اليسار) */
+        .bx-offcanvas-left {
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 460px;
+            max-width: 92vw;
+            border-right: 2px solid var(--bx-border);
+            transform: translateX(-100%);
+        }
+
+        /* Direction: Top (اللوحة المنزلقة من الأعلى) */
+        .bx-offcanvas-top {
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            max-height: 85vh;
+            border-bottom: 2px solid var(--bx-border);
+            transform: translateY(-100%);
+        }
+
+        /* Direction: Bottom (اللوحة المنزلقة من الأسفل) */
+        .bx-offcanvas-bottom {
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            max-height: 85vh;
+            border-top: 2px solid var(--bx-border);
+            border-top-left-radius: 1.5rem;
+            border-top-right-radius: 1.5rem;
+            transform: translateY(100%);
+        }
+
+        /* Active Open State for all directions (الحالة النشطة المفتوحة) */
+        .bx-offcanvas.bx-offcanvas-open,
+        .bx-offcanvas-right.bx-offcanvas-open,
+        .bx-offcanvas-left.bx-offcanvas-open,
+        .bx-offcanvas-top.bx-offcanvas-open,
+        .bx-offcanvas-bottom.bx-offcanvas-open {
+            transform: translate(0, 0) !important;
+        }

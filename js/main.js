@@ -424,15 +424,132 @@
                 label.textContent = descriptions[count - 1] || `${count} من 5 نجوم`;
             }
         }
+        // ================= TAQNIYA OFFCANVAS SYSTEM (bx-offcanvas) =================
+        function openOffcanvas(direction) {
+            closeAllOffcanvas(); // Close others before opening target
+
+            const backdrop = document.getElementById('offcanvasBackdrop');
+            if (backdrop) {
+                backdrop.classList.remove('hidden');
+                backdrop.style.opacity = '1';
+            }
+
+            const drawerId = 'offcanvas' + direction.charAt(0).toUpperCase() + direction.slice(1).toLowerCase();
+            const drawer = document.getElementById(drawerId);
+
+            if (drawer) {
+                drawer.classList.add('bx-offcanvas-open');
+                if (direction === 'right') {
+                    drawer.classList.remove('translate-x-full');
+                    drawer.classList.add('translate-x-0');
+                } else if (direction === 'left') {
+                    drawer.classList.remove('-translate-x-full');
+                    drawer.classList.add('translate-x-0');
+                } else if (direction === 'top') {
+                    drawer.classList.remove('-translate-y-full');
+                    drawer.classList.add('translate-y-0');
+                } else if (direction === 'bottom') {
+                    drawer.classList.remove('translate-y-full');
+                    drawer.classList.add('translate-y-0');
+                }
+            }
+
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+        }
+
+        function closeOffcanvas(direction) {
+            const drawerId = 'offcanvas' + direction.charAt(0).toUpperCase() + direction.slice(1).toLowerCase();
+            const drawer = document.getElementById(drawerId);
+
+            if (drawer) {
+                drawer.classList.remove('bx-offcanvas-open');
+                if (direction === 'right') {
+                    drawer.classList.remove('translate-x-0');
+                    drawer.classList.add('translate-x-full');
+                } else if (direction === 'left') {
+                    drawer.classList.remove('translate-x-0');
+                    drawer.classList.add('-translate-x-full');
+                } else if (direction === 'top') {
+                    drawer.classList.remove('translate-y-0');
+                    drawer.classList.add('-translate-y-full');
+                } else if (direction === 'bottom') {
+                    drawer.classList.remove('translate-y-0');
+                    drawer.classList.add('translate-y-full');
+                }
+            }
+
+            // Check if any other offcanvas is still open
+            const directions = ['right', 'left', 'top', 'bottom'];
+            const anyOpen = directions.some(dir => {
+                const el = document.getElementById('offcanvas' + dir.charAt(0).toUpperCase() + dir.slice(1).toLowerCase());
+                return el && (el.classList.contains('bx-offcanvas-open') || el.classList.contains('translate-x-0') || el.classList.contains('translate-y-0'));
+            });
+
+            if (!anyOpen) {
+                const backdrop = document.getElementById('offcanvasBackdrop');
+                if (backdrop) {
+                    backdrop.classList.add('hidden');
+                }
+            }
+        }
+
+        function closeAllOffcanvas() {
+            ['right', 'left', 'top', 'bottom'].forEach(dir => {
+                const drawerId = 'offcanvas' + dir.charAt(0).toUpperCase() + dir.slice(1).toLowerCase();
+                const drawer = document.getElementById(drawerId);
+                if (drawer) {
+                    drawer.classList.remove('bx-offcanvas-open');
+                    if (dir === 'right') {
+                        drawer.classList.remove('translate-x-0');
+                        drawer.classList.add('translate-x-full');
+                    } else if (dir === 'left') {
+                        drawer.classList.remove('translate-x-0');
+                        drawer.classList.add('-translate-x-full');
+                    } else if (dir === 'top') {
+                        drawer.classList.remove('translate-y-0');
+                        drawer.classList.add('-translate-y-full');
+                    } else if (dir === 'bottom') {
+                        drawer.classList.remove('translate-y-0');
+                        drawer.classList.add('translate-y-full');
+                    }
+                }
+            });
+
+            const backdrop = document.getElementById('offcanvasBackdrop');
+            if (backdrop) {
+                backdrop.classList.add('hidden');
+            }
+        }
+
+        // Backward-compatible aliases for legacy openDrawer / closeDrawer
         function openDrawer() {
-            document.getElementById('drawerOverlay').classList.remove('hidden');
-            document.getElementById('drawerContent').style.transform = 'translateX(0)';
-            lucide.createIcons();
+            openOffcanvas('right');
         }
         function closeDrawer() {
-            document.getElementById('drawerOverlay').classList.add('hidden');
-            document.getElementById('drawerContent').style.transform = 'translateX(-100%)';
+            closeOffcanvas('right');
         }
+
+        function setThemeMode(mode) {
+            if (mode === 'dark') {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                showToast('info', 'السمة البصرية', 'تم تفعيل الوضع الداكن 🌙');
+            } else {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                showToast('info', 'السمة البصرية', 'تم تفعيل الوضع الفاتح ☀️');
+            }
+        }
+
+        // Keyboard ESC key closes all offcanvas & modals
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeAllOffcanvas();
+                document.querySelectorAll('.bx-dropdown-menu').forEach(menu => menu.classList.add('hidden'));
+            }
+        });
 
         // Table Bulk Actions
         function toggleSelectAll(master) {
