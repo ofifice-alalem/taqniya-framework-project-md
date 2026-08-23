@@ -164,6 +164,8 @@ FRAMEWORK/
     └── frontend/                      # Frontend Profiles & Common Capabilities
         ├── README.md                  # Frontend Profile Architecture & Policy
         ├── common/                    # Universal 25-Capability Performance Standards
+        │   ├── capability_matrix.md   # Master index & 25-capability matrix
+        │   └── capability_policy.md   # Policy states (required, enabled, disabled, optional)
         ├── react/                     # React 18.x / 19.x SPA Stack Profile
         ├── vue/                       # Vue 3.x SPA Stack Profile
         └── blade/                     # Laravel Blade / Livewire 3 / Alpine Stack Profile
@@ -178,7 +180,7 @@ When executing any task, AI agents and developers MUST evaluate instructions aga
 1. **Level 1: Platform / System Safety Constraints** (Non-negotiable platform, system, and safety constraints).
 2. **Level 2: Explicit Current User Direction** (Controls project choices and preferences; subject to Levels 1 & 3).
 3. **Level 3: Taqniya Core Mandatory Invariants** (MUST / MUST NOT engineering rules: security, data safety, input protection, boundary integrity).
-4. **Level 4: Project Global Specifications & Stack Configuration** (`PROJECT/MD/stack.yaml`, `business_rules.md`, `data.md`, `design_rules.md`).
+4. **Level 4: Project Global Specifications & Stack Configuration** (`PROJECT/MD/stack.yaml`, `frontend_capabilities.yaml`, `business_rules.md`, `data.md`, `design_rules.md`).
 5. **Level 5: Technology / Stack Profiles** (`06_stack_profiles/*`).
 6. **Level 6: Functional Phase Specifications** (`PROJECT/MD/phases/<phase_name>/*`).
 7. **Level 7: Taqniya Recommended Guidelines** (SHOULD / SHOULD NOT guidance; `00_core/*`, `01_design_system/*`, `02_testing/*` baselines).
@@ -192,11 +194,12 @@ When executing any task, AI agents and developers MUST evaluate instructions aga
 1. Create a `PROJECT/MD/` folder with:
    - `README.md` (Project scope & phase index)
    - `stack.yaml` (Technology stack configuration)
+   - `frontend_capabilities.yaml` (Frontend capability policy decisions)
    - `business_rules.md` (Global business logic)
    - `data.md` (Global data architecture)
    - `design_rules.md` (Visual design tokens)
    - `prompts/` (AI management prompts)
    - `phases/` (Functional implementation phases)
-2. Populate `stack.yaml` with your exact technologies and versions.
+2. Populate `stack.yaml` and choose your capability policy (`frontend_capabilities.yaml`).
 3. Follow the 8-step initialization routine in [`04_workflows/project_initialization.md`](04_workflows/project_initialization.md).
 4. Point your AI IDE (Antigravity / Cursor / Claude) rules to this framework root.

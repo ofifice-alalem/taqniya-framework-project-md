@@ -48,31 +48,36 @@ STEP 8: Start Project Work (Proceed with Phase implementation)
 - Ensure values are single, unambiguous technology choices (e.g. `framework: "Laravel 11"`, NOT `framework: "Laravel 11 / Node.js Express"`).
 - Apply the **"No Technology = No Assumption"** rule: do not invent defaults for omitted dimensions; prompt for clarification only if an omitted dimension is strictly required for the immediate task.
 
-### Step 3: Resolve Technology Profiles
+### Step 3: Resolve Technology Profiles & Configure Frontend Capabilities
 - Scan `FRAMEWORK/06_stack_profiles/` for matching dimensional profiles:
-  - If a declared technology matches a profile (e.g., `backend.framework: "Laravel"` matches `06_stack_profiles/backend/laravel/`), mark it as active.
+  - If a declared technology matches a profile (e.g., `backend.name: "Laravel"` matches `06_stack_profiles/backend/laravel/`, `frontend.name: "React"` matches `06_stack_profiles/frontend/react/`), mark it as active.
   - If no specialized profile exists (e.g., Svelte, Django, FastAPI, Go), activate the **Unknown Profile Protocol** (apply universal Core principles and report missing profile).
+- **Frontend Capability Selection:**
+  - When `frontend:` is declared in `stack.yaml`, determine whether to use the **Canonical Recommended Defaults** or **Customize**:
+    - **Recommended Defaults:** Automatically populate `PROJECT/MD/frontend_capabilities.yaml` from `FRAMEWORK/05_templates/generic/project/frontend_capabilities.yaml`.
+    - **Customize:** Prompt the user to set specific capability states (`required`, `enabled`, `disabled`, `optional`).
 
 ### Step 4 & 5: Ingest Core and Relevant Profiles
 - Load mandatory invariants from `03_ai_protocol/mandatory_rules.md`.
-- Load matching profile rules for the active development domain.
+- Load matching profile rules and `frontend/common/capability_policy.md` for the active development domain.
 
 ### Step 6: Scaffold `PROJECT/MD/` Structure
 Create the project specification tree under `PROJECT/MD/`:
 ```text
 PROJECT/MD/
-├── README.md             (Overall project scope, overview, and state)
-├── stack.yaml            (Technology stack configuration)
-├── business_rules.md     (Global business logic and constraints)
-├── data.md               (Global data architecture & common entities)
-├── design_rules.md       (Visual design tokens, typography & palette)
-├── prompts/              (AI Management & Review prompts)
+├── README.md                   (Overall project scope, overview, and state)
+├── stack.yaml                  (Technology stack configuration)
+├── frontend_capabilities.yaml  (Frontend engineering & performance policy decisions)
+├── business_rules.md           (Global business logic and constraints)
+├── data.md                     (Global data architecture & common entities)
+├── design_rules.md             (Visual design tokens, typography & palette)
+├── prompts/                    (AI Management & Review prompts)
 │   ├── Project_Recovery.md
 │   ├── Module_Review.md
 │   ├── Phase_Review.md
 │   └── phases_prompt.md
-└── phases/               (Functional phases tree)
-    └── phase_00_sample/  (Standard phase template)
+└── phases/                     (Functional phases tree)
+    └── phase_00_sample/        (Standard phase template)
         ├── README.md
         ├── backend.md
         ├── frontend.md

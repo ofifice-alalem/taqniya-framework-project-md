@@ -11,9 +11,9 @@
 
 ---
 
-## 2. Complete Inventory of Framework Files (206 Files Total Across 57 Directories)
+## 2. Complete Inventory of Framework Files (208 Files Total Across 57 Directories)
 
-*Repository inventory at audit time: 206 files across 57 directories.*
+*Repository inventory at audit time: 208 files across 57 directories.*
 
 | Directory | File | Single Responsibility / Core Purpose |
 | :--- | :--- | :--- |
@@ -63,11 +63,12 @@
 | | `data.md` | Generic phase schema migrations and persistence deliveries. |
 | | `testing.md` | Generic phase automated test deliverables and scenarios. |
 | | `checklist.md` | Generic 10-workstream operational phase checklist with `[IF APPLICABLE]` support. |
-| **`05_templates/generic/project/` (5 files)** | `README.md` | Generic project documentation hub template. |
+| **`05_templates/generic/project/` (6 files)** | `README.md` | Generic project documentation hub template. |
 | | `project_context.md` | Generic project background, goals, architecture style, and technical baseline. |
 | | `business_rules.md` | Generic ubiquitous domain glossary and global business rules. |
 | | `database.md` | Generic data architecture, storage paradigm, entities, and constraints. |
 | | `stack.yaml` | Canonical top-level stack configuration template with 13 independent dimensions. |
+| | `frontend_capabilities.yaml` | Canonical project frontend capability policy decision template. |
 | **`05_templates/generic/reports/` (3 files)** | `implementation_report.md` | Generic feature implementation summary and verification report template. |
 | | `code_review.md` | Generic architecture, security, and quality code review scorecard template. |
 | | `phase_report.md` | Generic phase completion sign-off and retrospective report template. |
@@ -75,7 +76,7 @@
 | **`05_templates/stacks/laravel/feature/` (7 files)** | `requirements.md`, `business_rules.md`, `acceptance_criteria.md`, `backend.md`, `frontend.md`, `database.md`, `routes.md` | Laravel-specialized feature specification templates. |
 | **`05_templates/stacks/laravel/phase/` (7 files)** | `README.md`, `backend.md`, `frontend.md`, `database.md`, `routes.md`, `testing.md`, `checklist.md` | Laravel-specialized phase blueprint templates with Pest, Pint, and Larastan checks. |
 | **`06_stack_profiles/` (1 file)** | `README.md` | Modular dimensional profile architecture (`frontend/`, `backend/`, `database/`, `testing/`, etc.). |
-| **`06_stack_profiles/frontend/common/` (12 files)** | `capability_matrix.md`, `performance.md`, `navigation.md`, `data_fetching.md`, `state_management.md`, `rendering.md`, `code_splitting.md`, `caching.md`, `asset_loading.md`, `forms.md`, `accessibility.md`, `README.md` | Universal 25-Capability Frontend Performance & Engineering standards. |
+| **`06_stack_profiles/frontend/common/` (12 files)** | `capability_matrix.md`, `capability_policy.md`, `performance.md`, `navigation.md`, `data_fetching.md`, `state_management.md`, `rendering.md`, `code_splitting.md`, `caching.md`, `asset_loading.md`, `forms.md`, `accessibility.md` | Universal 25-Capability Frontend Performance & Engineering standards. |
 | **`06_stack_profiles/frontend/react/` (6 files)** | `README.md`, `architecture.md`, `coding_rules.md`, `state.md`, `performance.md`, `testing.md` | React 18.x / 19.x SPA Technology Profile (Zustand, TanStack Query, TanStack Virtual). |
 | **`06_stack_profiles/frontend/vue/` (6 files)** | `README.md`, `architecture.md`, `coding_rules.md`, `state.md`, `performance.md`, `testing.md` | Vue 3.x SPA Technology Profile (Composition API, Pinia, TanStack Query Vue). |
 | **`06_stack_profiles/frontend/blade/` (5 files)** | `README.md`, `architecture.md`, `coding_rules.md`, `interactivity.md`, `performance.md` | Laravel Blade Technology Profile (Livewire 3 wire:navigate, Alpine.js reactivity). |
@@ -190,7 +191,7 @@ Every concept and term across the repository was audited and classified:
 | 17 | **Change Management** | **PASS** | 5 tiers with pre-implementation ADR for Tier 5 architecture changes. |
 | 18 | **Template Neutrality** | **PASS** | All generic templates under `05_templates/generic/` are 100% technology-agnostic. |
 | 19 | **Internal References** | **PASS** | 0 broken links across all non-template files. |
-| 20 | **Inventory Accuracy** | **PASS** | Exact 206 files across 57 directories verified on physical disk. |
+| 20 | **Inventory Accuracy** | **PASS** | Exact 208 files across 57 directories verified on physical disk. |
 
 ---
 

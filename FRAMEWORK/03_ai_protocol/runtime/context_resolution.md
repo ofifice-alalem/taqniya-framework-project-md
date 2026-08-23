@@ -36,7 +36,7 @@ A task may touch a single focused area or span multiple dimensions. Antigravity 
 
 | Task Dimension | Trigger Criteria | Core Rules to Include | Profile Files to Include | Project MD Specs to Include |
 | :--- | :--- | :--- | :--- | :--- |
-| **UI & Styling** | Modifying visual views, styles, or interactive UI components. | `00_core/coding_rules.md`<br>`01_design_system/*` | `frontend/{tech}/*`<br>`styling/{tech}/*` | `PROJECT/MD/design_rules.md`<br>`phases/<phase>/frontend.md` |
+| **UI & Styling** | Modifying visual views, styles, client state, or interactive UI components. | `00_core/coding_rules.md`<br>`01_design_system/*` | `frontend/common/*`<br>`frontend/{tech}/*`<br>`styling/{tech}/*` | `PROJECT/MD/frontend_capabilities.yaml`<br>`PROJECT/MD/design_rules.md`<br>`phases/<phase>/frontend.md` |
 | **Domain Logic** | Modifying business formulas, invariants, state transitions. | `00_core/coding_rules.md`<br>`00_core/architecture.md` | `backend/{tech}/architecture.md`<br>`backend/{tech}/coding_rules.md` | `PROJECT/MD/business_rules.md`<br>`phases/<phase>/backend.md` |
 | **Data & Storage** | Adding/modifying entities, collections, migrations, or queries. | `00_core/database_rules.md`<br>`00_core/coding_rules.md` | `backend/{tech}/database.md`<br>`database/{tech}/*` | `PROJECT/MD/data.md`<br>`phases/<phase>/data.md` |
 | **Security & Auth** | Modifying permissions, policies, auth guards, or access checks. | `00_core/security_rules.md`<br>`00_core/coding_rules.md` | `backend/{tech}/security.md` | `PROJECT/MD/business_rules.md`<br>`phases/<phase>/routes.md` |

@@ -27,10 +27,11 @@ Canonical Path: 06_stack_profiles/{dimension}/{technology}/
 | `state.name` | `06_stack_profiles/state/{tech}/` | `06_stack_profiles/state/zustand/` *(Example)* |
 | `build.name` | `06_stack_profiles/build/{tech}/` | `06_stack_profiles/build/vite/` *(Example)* |
 
-### Frontend Common Capability Resolution
+### Frontend Capability Policy Resolution
 When any `frontend:` dimension is declared in `PROJECT/MD/stack.yaml`:
-1. **Auto-Load Common Matrix:** Antigravity MUST automatically load `06_stack_profiles/frontend/common/capability_matrix.md` to govern universal performance and frontend capability policies.
-2. **Auto-Load Specific Profile:** Load the matching technology profile (e.g., `frontend/react/`, `frontend/vue/`, or `frontend/blade/`) to apply framework-idiomatic implementation rules.
+1. **Load Project Policy:** Ingest `PROJECT/MD/frontend_capabilities.yaml` to discover the project's explicit policy states (`required`, `enabled`, `disabled`, `optional`).
+2. **Apply Policy Definitions:** Antigravity MUST apply the evaluation rules from `06_stack_profiles/frontend/common/capability_policy.md` and `capability_matrix.md`.
+3. **Load Specific Profile:** Load the matching technology profile (e.g., `frontend/react/`, `frontend/vue/`, or `frontend/blade/`) for framework-idiomatic implementation syntax.
 
 ---
 

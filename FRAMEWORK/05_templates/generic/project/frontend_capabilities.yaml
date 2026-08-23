@@ -1,0 +1,60 @@
+# ==============================================================================
+# TAQNIYA FRONTEND CAPABILITIES POLICY (frontend_capabilities.yaml)
+# ==============================================================================
+# This configuration declares the explicit frontend engineering and performance
+# capability policies chosen for this project.
+#
+# POLICY STATES:
+# - required: MUST be applied whenever the framework activation threshold is met.
+# - enabled:  Permitted and available in the project architecture.
+# - disabled: STRICTLY FORBIDDEN from being used or imported.
+# - optional: NOT applied automatically; used ONLY upon explicit task request.
+# ==============================================================================
+
+frontend:
+  capabilities:
+    # --------------------------------------------------------------------------
+    # 1. Navigation & Routing Capabilities
+    # --------------------------------------------------------------------------
+    client_side_routing: required      # SPA route transitions without full reload
+    prefetching_on_intent: required    # Prefetch route/chunks on hover/intent
+    route_loading_states: required     # Skeletons/indicators during route changes
+
+    # --------------------------------------------------------------------------
+    # 2. Loading & Code Splitting Capabilities
+    # --------------------------------------------------------------------------
+    code_splitting: required           # Dynamic import() per route entrypoint
+    lazy_loading: required             # Defer non-critical routes and heavy assets
+    component_lazy_loading: required   # Defer heavy dialogs, rich text, and charts
+
+    # --------------------------------------------------------------------------
+    # 3. Data Fetching & Network Efficiency
+    # --------------------------------------------------------------------------
+    async_data_fetching: required      # Standard 4-state lifecycle (Load/Empty/Error/Success)
+    client_caching_swr: required       # Stale-While-Revalidate caching pattern
+    request_deduplication: required    # Merge identical concurrent in-flight requests
+    request_cancellation: required     # AbortController cancellation on unmount/re-query
+    debouncing_throttling: required    # 300ms debounce on search and auto-complete
+    pagination_incremental: required   # Cursor/offset paginated payloads
+
+    # --------------------------------------------------------------------------
+    # 4. State & Rendering Optimization
+    # --------------------------------------------------------------------------
+    component_architecture: required   # Modular presentation/container separation
+    reactive_state: required           # Fine-grained DOM updates without cascading re-renders
+    optimistic_ui: enabled             # Immediate feedback with rollback on error
+    virtualized_lists: optional        # DOM virtualization for tables > 100 records
+    background_web_workers: optional   # Web Workers for CPU-blocking calculations
+    persistent_client_state: optional  # LocalStorage / IndexedDB lookup persistence
+
+    # --------------------------------------------------------------------------
+    # 5. Forms, Assets & Production Hygiene
+    # --------------------------------------------------------------------------
+    form_state_optimization: required  # Double-submit guard and 422 error mapping
+    asset_optimization: required       # Image optimization and responsive loading
+    image_lazy_loading: required       # Native HTML5 loading="lazy" for offscreen images
+    tree_shaking: required             # Named ES module imports exclusively
+    production_build_opts: required    # Asset hashing, minification, and compression
+    error_loading_boundaries: required # Isolate component crashes from crashing app
+    accessibility_standards: required  # Native RTL, focus traps, and WCAG AA contrast
+    bundle_size_analysis: optional     # Bundle visualization tracking

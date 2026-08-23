@@ -64,11 +64,11 @@ This document defines the complete end-to-end execution lifecycle followed by An
 ### Step 1: Bootstrap Check
 Verify that the workspace is an active Taqniya project (`PROJECT/MD/stack.yaml` and `PROJECT/MD/` present).
 
-### Step 2: Read Stack Configuration
-Extract declared technologies across all dimensions without unverified assumptions following the 7-step resolution protocol.
+### Step 2: Read Stack Configuration & Frontend Capabilities
+Extract declared technologies from `PROJECT/MD/stack.yaml` and active capability policies from `PROJECT/MD/frontend_capabilities.yaml` without unverified assumptions following the resolution protocol.
 
-### Step 3: Resolve Profiles
-Match declared technologies to `06_stack_profiles/{dimension}/{tech}/`. If a profile is missing, activate the Unknown Technology Protocol gracefully.
+### Step 3: Resolve Profiles & Capability Policies
+Match declared technologies to `06_stack_profiles/{dimension}/{tech}/` and load `06_stack_profiles/frontend/common/capability_policy.md`. If a profile is missing, activate the Unknown Technology Protocol gracefully.
 
 ### Step 4: Task Impact Analysis
 Analyze the user request to determine:

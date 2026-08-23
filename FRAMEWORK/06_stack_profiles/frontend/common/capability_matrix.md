@@ -3,6 +3,8 @@
 # Purpose
 This document defines the 25 core frontend performance and engineering capabilities supported across modern web frameworks in Taqniya. It establishes their priority, purpose, and implementation mechanisms across **React, Vue, and Blade**.
 
+> **Policy Governance:** For the definition of policy states (`required`, `enabled`, `disabled`, `optional`) and project configuration, see [`capability_policy.md`](capability_policy.md). Project choices are declared in `PROJECT/MD/frontend_capabilities.yaml`.
+
 ---
 
 ## 1. Core Performance Architecture Pillars
