@@ -159,8 +159,14 @@ FRAMEWORK/
 │
 └── 06_stack_profiles/                 # Modular Technology Profiles (Optional Extensions)
     ├── README.md                      # Dimensional profile architecture & discovery matrix
-    └── backend/                       # Backend Profiles
-        └── laravel/                   # Laravel Stack Profile (PHP 8.2+ / Laravel 11.x)
+    ├── backend/                       # Backend Profiles
+    │   └── laravel/                   # Laravel Stack Profile (PHP 8.2+ / Laravel 11.x)
+    └── frontend/                      # Frontend Profiles & Common Capabilities
+        ├── README.md                  # Frontend Profile Architecture & Policy
+        ├── common/                    # Universal 25-Capability Performance Standards
+        ├── react/                     # React 18.x / 19.x SPA Stack Profile
+        ├── vue/                       # Vue 3.x SPA Stack Profile
+        └── blade/                     # Laravel Blade / Livewire 3 / Alpine Stack Profile
 ```
 
 ---

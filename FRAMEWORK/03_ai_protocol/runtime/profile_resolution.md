@@ -27,6 +27,11 @@ Canonical Path: 06_stack_profiles/{dimension}/{technology}/
 | `state.name` | `06_stack_profiles/state/{tech}/` | `06_stack_profiles/state/zustand/` *(Example)* |
 | `build.name` | `06_stack_profiles/build/{tech}/` | `06_stack_profiles/build/vite/` *(Example)* |
 
+### Frontend Common Capability Resolution
+When any `frontend:` dimension is declared in `PROJECT/MD/stack.yaml`:
+1. **Auto-Load Common Matrix:** Antigravity MUST automatically load `06_stack_profiles/frontend/common/capability_matrix.md` to govern universal performance and frontend capability policies.
+2. **Auto-Load Specific Profile:** Load the matching technology profile (e.g., `frontend/react/`, `frontend/vue/`, or `frontend/blade/`) to apply framework-idiomatic implementation rules.
+
 ---
 
 ## 2. Deterministic Profile Resolution Cases (A – E)

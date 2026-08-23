@@ -44,10 +44,10 @@ $$\text{Profile Key} = \text{Category} + \text{Technology Name} + \text{Version}
 
 ## 3. Technology Dimension Independence
 
-Every architectural dimension is independently resolvable. Taqniya Core assumes zero coupling between dimensions:
-- `frontend.framework: React` does NOT assume `build_tool: Vite` or `language: TypeScript`.
-- `backend.framework: Laravel` does NOT assume `frontend: Blade/Inertia` or `database: MySQL`.
-- Any combination (e.g., React + Laravel, Svelte + Django, Vue + FastAPI, Angular + NestJS) resolves its respective dimension profiles independently.
+Every architectural dimension is independently resolvable. Taqniya Core and Profiles assume zero coupling between dimensions:
+- `frontend.name: "React"` does NOT assume `build.name: "Vite"`, `styling.name: "Tailwind"`, or `language: "TypeScript"`.
+- `backend.name: "Laravel"` does NOT assume `frontend: "Blade"` or `database: "MySQL"`.
+- Any combination resolves its respective dimension profiles independently, using `PROJECT/MD/stack.yaml` as the sole authoritative declaration.
 
 ---
 
@@ -86,5 +86,9 @@ When contributing a new profile, structure it with single-responsibility markdow
 
 | Category | Profile | Target Version(s) | Status |
 | :--- | :--- | :--- | :--- |
+| **`frontend/common/`** | **[`capability_matrix.md`](frontend/common/capability_matrix.md)** | Universal 25-Capability Matrix | Active & Verified |
+| **`frontend/`** | **[`react/`](frontend/react/README.md)** | React 18.x / 19.x SPA | Active & Verified |
+| **`frontend/`** | **[`vue/`](frontend/vue/README.md)** | Vue 3.x SPA (Composition API) | Active & Verified |
+| **`frontend/`** | **[`blade/`](frontend/blade/README.md)** | Laravel Blade / Livewire 3 / Alpine | Active & Verified |
 | **`backend/`** | **[`laravel/`](backend/laravel/README.md)** | PHP 8.2+ / Laravel 11.x | Active & Verified |
 | *Other Categories* | *Modular extensions* | *Multi-stack* | *Added on-demand* |

@@ -11,9 +11,9 @@
 
 ---
 
-## 2. Complete Inventory of Framework Files (85 Files Total Across 21 Directories)
+## 2. Complete Inventory of Framework Files (206 Files Total Across 57 Directories)
 
-*Repository inventory at audit time: 85 files across 21 directories.*
+*Repository inventory at audit time: 206 files across 57 directories.*
 
 | Directory | File | Single Responsibility / Core Purpose |
 | :--- | :--- | :--- |
@@ -26,10 +26,7 @@
 | | `security_rules.md` | OWASP defense, perimeter authorization (Default Deny), parameterized queries, zero-secrets, and secure configuration loading. |
 | | `package_policy.md` | Universal dependency evaluation criteria, licensing compliance (MIT/Apache), and supply-chain safety. |
 | | `documentation_rules.md` | Tripartite SSoT model, Code ≠ MD discrepancy reconciliation, and semantic impact sync rules. |
-| **`01_design_system/` (4 files)** | `rules.md` | Universal design governance (applied where a UI exists), component reuse-first policy, WCAG 2.1 AA accessibility, and 8 interactive states. |
-| | `tokens.md` | Universal design token taxonomy & recommended baselines (project defines values). |
-| | `components.md` | Reusable UI component philosophy, prop contracts, and component taxonomy. |
-| | `patterns.md` | Composite screen archetypes (List pages, Detail views, Forms, Skeletons, Modals). |
+| **`01_design_system/` (23 components + Core)** | `index.html`, `rules.md`, `tokens.md`, `css/taqniya.css`, `js/taqniya.js`, `audit.js`, `components/` (01 to 23) | Universal spatial UI design system, 3-tier tokens, 23 standalone isolated components with 12/12 passing audit. |
 | **`02_testing/` (4 files)** | `testing_strategy.md` | Pragmatic test pyramid (Unit, Integration, Feature, E2E, Regression), state isolation, and Superpowers boundary. |
 | | `testing_rules.md` | Behavioral testing (test behavior, not implementation details), external state isolation, and pre-existing debt reporting. |
 | | `test_quality.md` | AAA structure, expressive naming, time freezing, determinism, and mocking boundaries. |
@@ -78,7 +75,11 @@
 | **`05_templates/stacks/laravel/feature/` (7 files)** | `requirements.md`, `business_rules.md`, `acceptance_criteria.md`, `backend.md`, `frontend.md`, `database.md`, `routes.md` | Laravel-specialized feature specification templates. |
 | **`05_templates/stacks/laravel/phase/` (7 files)** | `README.md`, `backend.md`, `frontend.md`, `database.md`, `routes.md`, `testing.md`, `checklist.md` | Laravel-specialized phase blueprint templates with Pest, Pint, and Larastan checks. |
 | **`06_stack_profiles/` (1 file)** | `README.md` | Modular dimensional profile architecture (`frontend/`, `backend/`, `database/`, `testing/`, etc.). |
-| **`06_stack_profiles/backend/laravel/` (8 files)** | `README.md`, `stack.md`, `architecture.md`, `coding_rules.md`, `database.md`, `security.md`, `testing.md`, `package_policy.md` | Full Laravel Technology Profile (PHP 8.2+ / Laravel 11.x, Pest, Pint, Larastan Level 8). |
+| **`06_stack_profiles/frontend/common/` (12 files)** | `capability_matrix.md`, `performance.md`, `navigation.md`, `data_fetching.md`, `state_management.md`, `rendering.md`, `code_splitting.md`, `caching.md`, `asset_loading.md`, `forms.md`, `accessibility.md`, `README.md` | Universal 25-Capability Frontend Performance & Engineering standards. |
+| **`06_stack_profiles/frontend/react/` (6 files)** | `README.md`, `architecture.md`, `coding_rules.md`, `state.md`, `performance.md`, `testing.md` | React 18.x / 19.x SPA Technology Profile (Zustand, TanStack Query, TanStack Virtual). |
+| **`06_stack_profiles/frontend/vue/` (6 files)** | `README.md`, `architecture.md`, `coding_rules.md`, `state.md`, `performance.md`, `testing.md` | Vue 3.x SPA Technology Profile (Composition API, Pinia, TanStack Query Vue). |
+| **`06_stack_profiles/frontend/blade/` (5 files)** | `README.md`, `architecture.md`, `coding_rules.md`, `interactivity.md`, `performance.md` | Laravel Blade Technology Profile (Livewire 3 wire:navigate, Alpine.js reactivity). |
+| **`06_stack_profiles/backend/laravel/` (8 files)** | `README.md`, `stack.md`, `architecture.md`, `coding_rules.md`, `database.md`, `security.md`, `testing.md`, `package_policy.md` | Full Laravel Backend Technology Profile (PHP 8.2+ / Laravel 11.x, Pest, Pint, Larastan Level 8). |
 
 ---
 
