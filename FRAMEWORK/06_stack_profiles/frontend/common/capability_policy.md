@@ -35,7 +35,7 @@ AI agents MUST evaluate declared capability states according to these determinis
 | Policy State | Architectural Meaning | AI Agent Execution Directive |
 | :--- | :--- | :--- |
 | **`required`** | **Mandatory when in scope** | The AI agent **MUST** apply this capability whenever the active component/view meets the framework-defined activation threshold (e.g., virtualize when rows > 100). The agent does NOT ask for permission. |
-| **`enabled`** | **Permitted & Available** | The capability is vetted and supported in the project architecture. The AI agent may apply it where standard engineering practices dictate. |
+| **`enabled`** | **Permitted & Available** | The capability is approved and available in the project architecture. The AI agent may implement it according to framework rules, but omitting it does NOT constitute a policy failure (unlike `required` where meeting framework thresholds demands implementation). |
 | **`disabled`** | **Forbidden** | The AI agent **MUST NOT** import, wire up, or implement this capability in the project under any circumstances unless the project policy is explicitly updated. |
 | **`optional`** | **Elective / Explicit Only** | The capability is **NOT applied automatically** by the AI agent. It is implemented ONLY when explicitly requested in the active task prompt or specified in project specifications. |
 

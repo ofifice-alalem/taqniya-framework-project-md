@@ -1,7 +1,11 @@
 # ==============================================================================
-# TAQNIYA FRONTEND CAPABILITIES POLICY (frontend_capabilities.yaml)
+# REFERENCE EXAMPLE ONLY (PROJECT/MD/frontend_capabilities.yaml)
 # ==============================================================================
-# Active policy configuration for this project.
+# This file demonstrates the resulting project policy after selecting the
+# "Taqniya Recommended Defaults" option during project initialization.
+#
+# NOTE: It is NOT a framework-level default. In new projects, this file does not
+# exist initially; it is generated ONLY after the developer makes their selection.
 # Governed by: FRAMEWORK/06_stack_profiles/frontend/common/capability_policy.md
 # ==============================================================================
 
