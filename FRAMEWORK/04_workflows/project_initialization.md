@@ -43,9 +43,10 @@ STEP 8: Verification & Phase Execution (Validate DoD & start Phase deliverables)
 - Check if `PROJECT/MD/stack.yaml` exists.
 - If missing, create `PROJECT/MD/stack.yaml` declaring single canonical technology choices for frontend, backend, database, cache, API, authentication, testing, and deployment.
 
-### Step 2: Validate Stack Configuration
+### Step 2: Validate Stack Configuration & Communication Architecture
 - Verify that required metadata (project name, type) is present.
 - Ensure values are single, unambiguous technology choices (e.g. `backend.name: "Laravel 11"`, NOT `backend.name: "Laravel 11 / Node.js Express"`).
+- **Validate Communication Architecture:** Confirm that `architecture.communication.mode` is explicitly declared (`direct`, `api_first`, or `hybrid`). If omitted, prompt the developer to choose the communication mode before proceeding.
 - Apply the **"No Technology = No Assumption"** rule: do not invent defaults for omitted dimensions; prompt for clarification only if an omitted dimension is strictly required for the immediate task.
 
 ### Step 3: Resolve Technology Profiles

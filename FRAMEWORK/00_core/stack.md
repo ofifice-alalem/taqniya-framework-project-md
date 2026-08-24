@@ -88,19 +88,20 @@ Is it required for the current task?
 
 ---
 
-## 4. Full Technology Dimension Independence
+## 4. Full Technology Dimension & Communication Independence
 
-Frontend, backend, database, testing, and infrastructure are strictly independent configuration dimensions. Any valid combination is fully supported:
+Frontend, backend, database, communication mode, testing, and infrastructure are strictly independent configuration dimensions. Any valid combination is fully supported:
 
-- **React + Laravel + PostgreSQL + Vitest + Pest**
-- **Vue + Django + MySQL + Pytest + Playwright**
-- **Svelte + FastAPI + SQLite + Vitest + Pytest**
-- **Angular + NestJS + MongoDB + Jest + Cypress**
-- **Next.js Fullstack + Prisma + PostgreSQL**
-- **Go-Fiber + HTMX + PostgreSQL + Go Test**
+- **React + Laravel + PostgreSQL + Vitest + Pest** (`communication.mode: api_first`)
+- **Laravel + Blade + PostgreSQL + Pest** (`communication.mode: direct`)
+- **Laravel + Inertia (Vue 3) + Mobile REST API** (`communication.mode: hybrid`)
+- **Vue + Django + MySQL + Pytest + Playwright** (`communication.mode: api_first`)
+- **Svelte + FastAPI + SQLite + Vitest + Pytest** (`communication.mode: api_first`)
+- **Next.js Fullstack + Prisma + PostgreSQL** (`communication.mode: direct`)
+- **Go-Fiber + HTMX + PostgreSQL + Go Test** (`communication.mode: direct`)
 - **Custom Proprietary Frameworks**
 
-Taqniya Core makes zero assumptions about framework couplings (e.g., Laravel does not imply Inertia or Blade; Node.js does not imply React).
+Taqniya Core makes zero assumptions about framework couplings (e.g., Laravel does not imply Inertia or Blade; Node.js does not imply React; and Web does not imply REST API). All layer communication is governed explicitly by `architecture.communication.mode` in `stack.yaml`.
 
 ---
 

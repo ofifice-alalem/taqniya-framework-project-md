@@ -13,18 +13,19 @@ The Stack Resolution Protocol inspects `PROJECT/MD/stack.yaml` and extracts inde
 [ PROJECT/MD/stack.yaml ]
          │
          ├──► 1. Project Metadata (name, description, type, repository)
-         ├──► 2. Frontend (name, version, language, package_manager)
-         ├──► 3. Styling (name, version)
-         ├──► 4. State Management (name, version)
-         ├──► 5. Backend (name, version, language, package_manager)
-         ├──► 6. Database & Storage (name, version, orm_or_query_builder, migration_tool, primary_key_strategy)
-         ├──► 7. Cache (name, version)
-         ├──► 8. API & Transport (name, style, documentation)
-         ├──► 9. Authentication & Security (name, strategy, rbac)
-         ├──► 10. Automated Testing (name, unit_runner, integration_runner, e2e_runner, mocking)
-         ├──► 11. Build Toolchain (name, bundler, transpiler)
-         ├──► 12. Deployment (name, platform, container_runtime, ci_cd)
-         └──► 13. Infrastructure (name, provider)
+         ├──► 2. Architecture & Communication (pattern, mode: direct | api_first | hybrid, channels)
+         ├──► 3. Frontend (name, version, language, package_manager)
+         ├──► 4. Styling (name, version)
+         ├──► 5. State Management (name, version)
+         ├──► 6. Backend (name, version, language, package_manager)
+         ├──► 7. Database & Storage (name, version, orm_or_query_builder, migration_tool, primary_key_strategy)
+         ├──► 8. Cache (name, version)
+         ├──► 9. API & Transport (name, style, documentation)
+         ├──► 10. Authentication & Security (name, strategy, rbac)
+         ├──► 11. Automated Testing (name, unit_runner, integration_runner, e2e_runner, mocking)
+         ├──► 12. Build Toolchain (name, bundler, transpiler)
+         ├──► 13. Deployment (name, platform, container_runtime, ci_cd)
+         └──► 14. Infrastructure (name, provider)
 ```
 
 ---
@@ -36,6 +37,10 @@ The Stack Resolution Protocol inspects `PROJECT/MD/stack.yaml` and extracts inde
    - Declaring `backend.name: Laravel` does NOT imply Blade, Inertia, or MySQL.
    - Declaring `frontend.name: React` does NOT imply a Node.js backend or Tailwind styling.
    - Declaring `database.name: PostgreSQL` does NOT imply relational ORMs over raw queries.
+3. **Communication Mode Alignment:**
+   - `direct`: Frontend and Backend communicate in-process (e.g., Blade templates or Inertia.js props) with session-based authentication and zero redundant REST API boilerplate.
+   - `api_first`: Decoupled Client-Server architecture where all clients consume formal endpoints with token/header authentication and JSON schemas.
+   - `hybrid`: Multi-channel system providing direct web communication alongside dedicated API endpoints for mobile apps or external consumers.
 
 ---
 

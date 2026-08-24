@@ -23,6 +23,22 @@ project:
   type: "web" # e.g., web | api | cli | mobile | fullstack | microservice | library | headless
   repository: "[GIT_REPOSITORY_URL]"
 
+# Architecture & Communication Mode (Defines how layers and clients communicate)
+architecture:
+  pattern: "Layered" # e.g., Layered | Clean | Modular | Event-Driven | Serverless | Hexagonal
+  communication:
+    mode: "direct" # direct (Monolith/Inertia) | api_first (Decoupled SPA/Clients) | hybrid (Web Direct + Mobile API)
+    direct:
+      enabled: true
+      type: "Monolith" # e.g., Blade Server-Rendered | Inertia.js Bridge | Server Actions | Fullstack Framework
+      consumers:
+        - "web"
+    api:
+      enabled: false
+      type: "rest" # e.g., rest | graphql | grpc | trpc
+      consumers:
+        - "mobile" # e.g., mobile | 3rd_party | microservices
+
 # Frontend Dimension (Optional - Omit if headless/backend-only/CLI)
 frontend:
   name: "[e.g., React | Vue | Svelte | Angular | Blade | Next.js | Custom]"

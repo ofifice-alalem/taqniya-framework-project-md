@@ -9,10 +9,17 @@
 
 عند تشغيل هذا الموجّه، اتبع التسلسل المحدد خطوة بخطوة:
 
-### 1. قراءة وفحص التقنيات (`stack.yaml`)
+### 1. قراءة وفحص التقنيات ونمط الاتصال المعماري (`stack.yaml`)
 - افتح واقرأ ملف `PROJECT/MD/stack.yaml`.
 - استخرج أبعاد المشروع المعتمدة (Backend, Frontend, Database, State, Styling, Testing).
-- **قاعدة صارمة:** لا تفترض وجود أي تقنية لم تُذكر صراحة في `stack.yaml`.
+- **فحص نمط الاتصال المعماري (Communication Architecture):**
+  - تحقق هل قسم `architecture.communication.mode` محدد في `stack.yaml`؟
+  - **إذا كان غير محدد:** اسأل المطور: *"ما هو نمط الاتصال المعماري المعتمد للنظام؟"*
+    1. **`direct`**: اتصال مباشر (Monolith / Blade / Inertia.js) بمصادقة Sessions وبدون بناء REST API منفصل.
+    2. **`api_first`**: واجهة مفصولة تستهلك REST/GraphQL Endpoints مع Bearer Tokens و JSON Schemas.
+    3. **`hybrid`**: نظام مزدوج يجمع بين الويب المباشر وواجهات API لتطبيقات الهاتف.
+  - حدّث `PROJECT/MD/stack.yaml` بالنمط الذي اختاره المطور.
+- **قاعدة صارمة:** لا تفترض وجود أي تقنية أو نمط اتصال لم يُذكر صراحة في `stack.yaml`.
 
 ### 2. مطابقة وحل البروفايلات (`06_stack_profiles/*`)
 - طابق التقنيات المعلنة مع المجلدات في `FRAMEWORK/06_stack_profiles/`.

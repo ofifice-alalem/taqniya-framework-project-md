@@ -11,6 +11,21 @@ project:
   type: "web"
   repository: "https://github.com/ofifice-alalem/taqniya-framework-project-md"
 
+architecture:
+  pattern: "Layered"
+  communication:
+    mode: "api_first" # direct | api_first | hybrid
+    direct:
+      enabled: false
+      consumers: []
+    api:
+      enabled: true
+      type: "rest"
+      documentation: "OpenAPI 3.1 / Swagger"
+      consumers:
+        - "web"
+        - "mobile"
+
 frontend:
   name: "React"
   version: "18.3"
