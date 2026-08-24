@@ -11,9 +11,9 @@
 
 ---
 
-## 2. Complete Inventory of Framework Files (208 Files Total Across 57 Directories)
+## 2. Complete Inventory of Framework Files (211 Files Total Across 57 Directories)
 
-*Repository inventory at audit time: 208 files across 57 directories.*
+*Repository inventory at audit time: 211 files across 57 directories.*
 
 | Directory | File | Single Responsibility / Core Purpose |
 | :--- | :--- | :--- |
@@ -27,7 +27,7 @@
 | | `package_policy.md` | Universal dependency evaluation criteria, licensing compliance (MIT/Apache), and supply-chain safety. |
 | | `documentation_rules.md` | Tripartite SSoT model, Code ≠ MD discrepancy reconciliation, and semantic impact sync rules. |
 | **`01_design_system/` (23 components + Core)** | `index.html`, `rules.md`, `tokens.md`, `css/taqniya.css`, `js/taqniya.js`, `audit.js`, `components/` (01 to 23) | Universal spatial UI design system, 3-tier tokens, 23 standalone isolated components with 12/12 passing audit. |
-| **`02_testing/` (4 files)** | `testing_strategy.md` | Pragmatic test pyramid (Unit, Integration, Feature, E2E, Regression), state isolation, and Superpowers boundary. |
+| **`02_testing/` (4 files)** | `testing_strategy.md` | Pragmatic test pyramid (Unit, Integration, Feature, E2E, Regression), state isolation, and Execution Engine boundary. |
 | | `testing_rules.md` | Behavioral testing (test behavior, not implementation details), external state isolation, and pre-existing debt reporting. |
 | | `test_quality.md` | AAA structure, expressive naming, time freezing, determinism, and mocking boundaries. |
 | | `verification.md` | The 8-Stage Pre-Completion Gatekeeper with 4-state gate evaluation (`REQUIRED`, `N/A`, `OPTIONAL`, `FAILED`). |
@@ -36,14 +36,16 @@
 | | `project_md_protocol.md` | Canonical 9-level rule hierarchy, SSoT definition, and conflict resolution protocol. |
 | | `change_management.md` | 5-tier change impact classification, breaking change deprecation, and ADR triggers. |
 | | `completion_criteria.md` | 10-point Definition of Done (DoD) preventing false completion claims. |
-| **`03_ai_protocol/runtime/` (9 files)** | `README.md` | Runtime architecture, system responsibility matrix, and lifecycle pipeline overview. |
+| **`03_ai_protocol/runtime/` (11 files)** | `README.md` | Runtime architecture, system responsibility matrix, and lifecycle pipeline overview. |
 | | `bootstrap.md` | Workspace detection, project state classification (Greenfield/Brownfield), and startup checklist. |
 | | `stack_resolution.md` | `stack.yaml` reading, multi-dimensional extraction, 7-step resolution protocol, and zero-assumption validation. |
 | | `profile_resolution.md` | Modular profile directory discovery, deterministic Cases A–E, and Unknown Technology Protocol. |
 | | `context_resolution.md` | Multi-dimensional Task Impact Analysis (Primary Domain + Affected Dimensions + Required Authorities ➔ Minimal Context). |
 | | `conflict_resolution.md` | Canonical 9-level authority hierarchy, scenario resolutions, and Code vs MD drift reconciliation. |
-| | `task_lifecycle.md` | 10-step end-to-end task execution lifecycle with explicit Superpowers branching and task-appropriate testing. |
-| | `superpowers_integration.md` | Interoperability contract: Superpowers (HOW to execute, optional) vs Taqniya (WHAT rules to enforce). |
+| | `task_lifecycle.md` | 10-step end-to-end task execution lifecycle with explicit Execution Engine handoff and task-appropriate testing. |
+| | `execution_engine.md` | Universal Execution Engine interoperability contract: Taqniya (WHAT rules to enforce) vs Execution Engine (HOW to execute). |
+| | `execution_engines.yaml` | Canonical master catalog of recognized execution engines (superpowers, claude_code, antigravity, codex, custom, native). |
+| | `audit_runtime.js` | Dedicated automated test suite validating catalog schema, engine resolver, unknown engine error handling, and swappability (9/9 pass). |
 | | `antigravity_activation.md` | Activation Specification vs Actual Host Configuration, workspace hooks (`GEMINI.md` / `AGENTS.md`), and IDE hooks. |
 | **`04_workflows/` (5 files)** | `project_initialization.md` | 8-step initialization protocol driven by `stack.yaml` reading, validation, and profile resolution. |
 | | `md_synchronization.md` | Semantic impact-driven documentation synchronization across any software or storage paradigm. |
@@ -63,12 +65,13 @@
 | | `data.md` | Generic phase schema migrations and persistence deliveries. |
 | | `testing.md` | Generic phase automated test deliverables and scenarios. |
 | | `checklist.md` | Generic 10-workstream operational phase checklist with `[IF APPLICABLE]` support. |
-| **`05_templates/generic/project/` (6 files)** | `README.md` | Generic project documentation hub template. |
+| **`05_templates/generic/project/` (7 files)** | `README.md` | Generic project documentation hub template. |
 | | `project_context.md` | Generic project background, goals, architecture style, and technical baseline. |
 | | `business_rules.md` | Generic ubiquitous domain glossary and global business rules. |
 | | `database.md` | Generic data architecture, storage paradigm, entities, and constraints. |
 | | `stack.yaml` | Canonical top-level stack configuration template with 13 independent dimensions. |
 | | `frontend_capabilities.yaml` | Canonical project frontend capability policy decision template. |
+| | `execution_engine.yaml` | Canonical project execution engine selection template. |
 | **`05_templates/generic/reports/` (3 files)** | `implementation_report.md` | Generic feature implementation summary and verification report template. |
 | | `code_review.md` | Generic architecture, security, and quality code review scorecard template. |
 | | `phase_report.md` | Generic phase completion sign-off and retrospective report template. |
@@ -148,10 +151,10 @@ Every concept and term across the repository was audited and classified:
    - $$\text{Task} \longrightarrow \text{Primary Domain} + \text{Affected Dimensions} + \text{Required Authorities} \longrightarrow \text{Minimal Context}$$
    - Eliminates context window bloat by ingesting only the minimal union of required rules, profiles, and specifications.
 
-4. **Superpowers Interoperability (`superpowers_integration.md` & `task_lifecycle.md`):**
-   - `Superpowers = HOW TO WORK` (Task decomposition, TDD loop, hypothesis debugging).
-   - `Taqniya = WHAT RULES TO ENFORCE` (Boundaries, security, data integrity, SSoT, DoD).
-   - Core Invariant: **Superpowers is optional**. If unavailable, Taqniya executes seamlessly via native task lifecycle. TDD is applied to behavioral code changes, not to documentation, configuration, or cosmetic styling tasks.
+4. **Execution Engine Interoperability (`execution_engine.md` & `task_lifecycle.md`):**
+   - `Execution Engine = HOW TO WORK` (Task decomposition, implementation, TDD loop, hypothesis debugging).
+   - `Taqniya = WHAT RULES TO ENFORCE` (Boundaries, security, data integrity, SSoT, DoD, verification).
+   - Core Invariant: **Execution Engine is decoupled & pluggable**. Taqniya hands off the resolved task context to the configured engine (`superpowers`, `claude_code`, `antigravity`, `custom`) and executes standard native lifecycle if no external engine is configured.
 
 5. **Antigravity Activation Model (`antigravity_activation.md`):**
    - Clear distinction between **Activation Specification** (architectural contract) and **Actual Host Configuration** (physical execution hook in `GEMINI.md` / `AGENTS.md` or IDE rules).
@@ -183,15 +186,15 @@ Every concept and term across the repository was audited and classified:
 | 9 | **Context Loading** | **PASS** | Multi-dimensional Task Impact Analysis; lazy-loads minimal union of authorities without prompt bloat. |
 | 10 | **Authority Hierarchy** | **PASS** | Canonical 9 levels unified identically across README, AUDIT, project_md_protocol, conflict_resolution. |
 | 11 | **Single Source of Truth (SSoT)** | **PASS** | Quadrant model (Project MD + ADR + Code + Tests); 4-step reconciliation protocol without blind overwrites. |
-| 12 | **Superpowers Independence** | **PASS** | Strictly optional; Taqniya operates standalone via native lifecycle if Superpowers is absent. |
+| 12 | **Execution Engine Decoupling** | **PASS** | Configured engine (Superpowers, Claude Code, Antigravity, Custom) executes within Taqniya rules; native fallback lifecycle. |
 | 13 | **Antigravity Activation** | **PASS** | Activation Specification vs Actual Host Configuration clearly distinguished. |
-| 14 | **Task Lifecycle** | **PASS** | 10-step lifecycle with explicit Superpowers branching and task-appropriate testing. |
+| 14 | **Task Lifecycle** | **PASS** | 10-step lifecycle with explicit Execution Engine handoff and task-appropriate testing. |
 | 15 | **Testing Applicability** | **PASS** | TDD for behavioral changes; regression tests for bug fixes; targeted verification for docs/styling/config. |
 | 16 | **Documentation Synchronization** | **PASS** | Semantic-impact driven; updates only affected Project MD specs + `changes.md`. |
 | 17 | **Change Management** | **PASS** | 5 tiers with pre-implementation ADR for Tier 5 architecture changes. |
 | 18 | **Template Neutrality** | **PASS** | All generic templates under `05_templates/generic/` are 100% technology-agnostic. |
 | 19 | **Internal References** | **PASS** | 0 broken links across all non-template files. |
-| 20 | **Inventory Accuracy** | **PASS** | Exact 208 files across 57 directories verified on physical disk. |
+| 20 | **Inventory Accuracy** | **PASS** | Exact 211 files across 57 directories verified on physical disk. |
 
 ---
 

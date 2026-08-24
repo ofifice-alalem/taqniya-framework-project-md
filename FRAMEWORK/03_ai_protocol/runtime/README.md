@@ -1,7 +1,7 @@
 # Taqniya Runtime Protocol & AI Execution Architecture
 
 # Purpose
-The **Taqniya Runtime Protocol** defines the active operating machinery that bridges **Antigravity (AI Host)**, **Taqniya Core (Engineering Standards)**, **Stack Configuration (`PROJECT/MD/stack.yaml`)**, **Technology Profiles (`06_stack_profiles/*`)**, **Project Specifications (`PROJECT/MD/*`)**, and **Superpowers (Optional Workflow Engine)** into a unified, conflict-free pair-programming experience.
+The **Taqniya Runtime Protocol** defines the active operating machinery that bridges **Taqniya Core (Engineering Standards)**, **Stack Configuration (`PROJECT/MD/stack.yaml`)**, **Technology Profiles (`06_stack_profiles/*`)**, **Project Specifications (`PROJECT/MD/*`)**, and the **Configured Execution Engine** into a unified, conflict-free pair-programming experience.
 
 It transforms Taqniya from a static documentation blueprint into an active runtime contract that guides the AI autonomously across every task lifecycle.
 
@@ -11,14 +11,11 @@ It transforms Taqniya from a static documentation blueprint into an active runti
 
 To eliminate friction and ensure zero overlapping authority, responsibilities are strictly partitioned:
 
-```
+```text
 ┌──────────────────────────────────────────────────────────────────────────┐
 │                             SYSTEM ROLES                                 │
 ├────────────────────┬─────────────────────────────────────────────────────┤
 │ System Component   │ Core Operational Responsibility                     │
-├────────────────────┼─────────────────────────────────────────────────────┤
-│ Antigravity        │ HOST & EXECUTION AGENT                              │
-│                    │ Reads files, runs tools, executes commands, reports. │
 ├────────────────────┼─────────────────────────────────────────────────────┤
 │ Taqniya Core       │ WHAT RULES & STANDARDS MUST BE FOLLOWED             │
 │                    │ Universal boundary governance, security, data       │
@@ -36,9 +33,9 @@ To eliminate friction and ensure zero overlapping authority, responsibilities ar
 │                    │ stack.yaml, business rules, data, design tokens,    │
 │                    │ AI prompts, and functional implementation phases.   │
 ├────────────────────┼─────────────────────────────────────────────────────┤
-│ Superpowers        │ HOW TO PLAN AND EXECUTE TASKS METHODICALLY          │
-│                    │ Task decomposition, TDD cycles, debugging loops,    │
-│                    │ code review routines, and verification planning.    │
+│ Execution Engine   │ HOW TO PLAN AND EXECUTE TASKS METHODICALLY          │
+│ (Declared in MD)   │ Task decomposition, TDD cycles, debugging loops,    │
+│                    │ code review routines, and execution methodologies.  │
 └────────────────────┴─────────────────────────────────────────────────────┘
 ```
 
@@ -77,8 +74,8 @@ To eliminate friction and ensure zero overlapping authority, responsibilities ar
                                      │
                                      ▼
                      ┌───────────────────────────────┐
-                     │    5. SUPERPOWERS WORKFLOW    │
-                     │     (Plan / TDD / Execute)    │
+                     │  5. EXECUTION ENGINE WORKFLOW │
+                     │   (Configured Engine in MD)   │
                      └───────────────┬───────────────┘
                                      │
                                      ▼
@@ -106,5 +103,5 @@ To eliminate friction and ensure zero overlapping authority, responsibilities ar
 | **[4. Context Resolution](context_resolution.md)** | Task-driven minimal context loading algorithm preventing prompt bloat and token waste. |
 | **[5. Conflict Resolution](conflict_resolution.md)** | 9-level authority hierarchy, rule precedence, and resolving Code vs Documentation drift. |
 | **[6. Task Lifecycle](task_lifecycle.md)** | End-to-end 10-step execution lifecycle from initial user prompt to verified completion. |
-| **[7. Superpowers Integration](superpowers_integration.md)** | Interoperability contract between Superpowers (HOW to work) and Taqniya (WHAT rules to enforce). |
+| **[7. Execution Engine Contract](execution_engine.md)** | Interoperability contract between the configured Execution Engine (HOW to work) and Taqniya (WHAT rules to enforce). |
 | **[8. Antigravity Activation](antigravity_activation.md)** | Concrete Antigravity hooks, global rules, and workspace entry points. |

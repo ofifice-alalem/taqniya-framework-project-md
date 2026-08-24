@@ -1,0 +1,23 @@
+# ==============================================================================
+# TAQNIYA CANONICAL EXECUTION ENGINES CATALOG (execution_engines.yaml)
+# ==============================================================================
+# Master registry of recognized execution engines for Taqniya Framework.
+# This file serves purely as a catalog/registry answering:
+# "What execution engines does Taqniya recognize?"
+#
+# Governed by: FRAMEWORK/03_ai_protocol/runtime/execution_engine.md
+# ==============================================================================
+
+engines:
+  - name: "superpowers"
+    description: "External agent workflow methodology (Structured planning, subagents, TDD)."
+  - name: "claude_code"
+    description: "CLI-driven agentic execution environment."
+  - name: "antigravity"
+    description: "IDE interactive agent environment."
+  - name: "codex"
+    description: "Direct code generation and patch synthesis."
+  - name: "custom"
+    description: "User-defined orchestration scripts, custom runners, or manual workflows."
+  - name: "native"
+    description: "Built-in structured execution lifecycle provided directly by Taqniya Runtime."

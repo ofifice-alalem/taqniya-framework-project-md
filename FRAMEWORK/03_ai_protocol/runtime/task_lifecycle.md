@@ -1,7 +1,7 @@
 # Runtime Specification: The 10-Step Task Execution Lifecycle
 
 # Purpose
-This document defines the complete end-to-end execution lifecycle followed by Antigravity from the moment a user submits a prompt to the final verified completion.
+This document defines the complete end-to-end execution lifecycle followed by the AI agent from the moment a user submits a prompt to the final verified completion.
 
 ---
 
@@ -35,26 +35,25 @@ This document defines the complete end-to-end execution lifecycle followed by An
    (Verify existing implementation, detect drift, check tests)
             │
             ▼
-   7. WORKFLOW EXECUTION BRANCH
-   Is Superpowers Available in the Host?
-         │
-         ├──► YES ──► Superpowers Workflow Engine
-         │            (Plan ➔ TDD for behavioral code ➔ Implement ➔ Debug)
-         │
-         └──► NO  ──► Native Taqniya Workflow
-                      (Direct structured execution following Core rules)
-            │
-            ▼
-   8. TAQNIYA VERIFICATION GATEKEEPER
-   (Task-relevant tests, static analysis, linting, boundaries)
-            │
-            ▼
-   9. SEMANTIC DOCUMENTATION SYNCHRONIZATION
-   (Update affected PROJECT/MD/ specs + phase files)
-            │
-            ▼
-   10. COMPLETION SIGN-OFF
-   (Validate 10-Point DoD ➔ Output Concise Summary)
+    7. EXECUTION ENGINE HANDOFF
+    (Pass Resolved Context to configured Execution Engine)
+             │
+             ├─► Configured Engine (Superpowers / Claude Code / Antigravity / Custom)
+             │   (Plans, executes TDD/implementation, debugs loops)
+             │
+             └─► Fallback (Direct structured Taqniya execution)
+             │
+             ▼
+    8. TAQNIYA VERIFICATION GATEKEEPER
+    (Task-relevant tests, static analysis, linting, boundaries)
+             │
+             ▼
+    9. SEMANTIC DOCUMENTATION SYNCHRONIZATION
+    (Update affected PROJECT/MD/ specs + phase files)
+             │
+             ▼
+    10. COMPLETION SIGN-OFF
+    (Validate 10-Point DoD ➔ Output Concise Summary)
 ```
 
 ---
@@ -64,11 +63,11 @@ This document defines the complete end-to-end execution lifecycle followed by An
 ### Step 1: Bootstrap Check
 Verify that the workspace is an active Taqniya project (`PROJECT/MD/stack.yaml` and `PROJECT/MD/` present).
 
-### Step 2: Read Stack Configuration & Frontend Capabilities
-Extract declared technologies from `PROJECT/MD/stack.yaml` and active capability policies from `PROJECT/MD/frontend_capabilities.yaml` without unverified assumptions following the resolution protocol.
+### Step 2: Read Stack Configuration, Capabilities & Execution Engine
+Extract declared technologies from `PROJECT/MD/stack.yaml`, active capability policies from `PROJECT/MD/frontend_capabilities.yaml`, and configured Execution Engine from `PROJECT/MD/execution_engine.yaml` following the resolution protocol.
 
 ### Step 3: Resolve Profiles & Capability Policies
-Match declared technologies to `06_stack_profiles/{dimension}/{tech}/` and load `06_stack_profiles/frontend/common/capability_policy.md`. If a profile is missing, activate the Unknown Technology Protocol gracefully.
+Match declared technologies to `06_stack_profiles/{dimension}/{tech}/` and load `06_stack_profiles/frontend/common/capability_policy.md` and `execution_engine.md`. If a profile is missing, activate the Unknown Technology Protocol gracefully.
 
 ### Step 4: Task Impact Analysis
 Analyze the user request to determine:
@@ -82,9 +81,10 @@ Load ONLY the union of Core rules, Technology Profiles, and Project MD specifica
 ### Step 6: Inspect Existing Codebase
 Read target source files, existing tests, and neighboring modules. Reconcile any divergence against Project MD using the Conflict Resolution Protocol.
 
-### Step 7: Workflow Execution (Superpowers vs Native Taqniya)
-- **IF Superpowers is Available:** Engage Superpowers for task decomposition, test coordination, and hypothesis-driven debugging loops.
-- **IF Superpowers is Unavailable:** Taqniya executes autonomously using standard structured task decomposition and implementation.
+### Step 7: Execution Engine Handoff & Implementation
+- Pass the **Resolved Task Context** to the configured Execution Engine declared in `PROJECT/MD/execution_engine.yaml` (e.g., Superpowers, Claude Code, Antigravity, or Custom).
+- The Execution Engine performs planning, iterative implementation, and error debugging within the constraints of Taqniya rules.
+- If no external engine is configured or active, Taqniya executes directly following native structured task decomposition.
 
 #### Task-Appropriate Testing Discipline:
 - **Behavioral Changes & New Features:** SHOULD author failing automated tests first (TDD: Red ➔ Green ➔ Refactor) where practical and supported by the testing stack.

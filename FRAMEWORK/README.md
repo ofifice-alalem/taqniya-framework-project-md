@@ -124,7 +124,7 @@ FRAMEWORK/
 │       ├── 01-breakpoints/ ... 11-card/ ... 13-modal/ ... 22-navbar/ ... 23-offcanvas/
 │
 ├── 02_testing/                        # Quality Assurance & Verification
-│   ├── testing_strategy.md            # Pragmatic test pyramid & Superpowers boundary
+│   ├── testing_strategy.md            # Pragmatic test pyramid & quality governance
 │   ├── testing_rules.md               # Behavioral testing & boundary edge cases
 │   ├── test_quality.md                # AAA pattern, determinism & mocking boundaries
 │   └── verification.md                # The 8-Stage Pre-Completion Gatekeeper
@@ -143,7 +143,9 @@ FRAMEWORK/
 │       ├── context_resolution.md      # Task-driven minimal context loading algorithm
 │       ├── conflict_resolution.md     # 9-level authority hierarchy & drift reconciliation
 │       ├── task_lifecycle.md          # 10-step end-to-end task execution lifecycle
-│       ├── superpowers_integration.md # Taqniya + Superpowers collaboration contract
+│       ├── execution_engine.md        # Universal Execution Engine interoperability contract
+│       ├── execution_engines.yaml     # Master catalog of recognized execution engines
+│       ├── audit_runtime.js           # Automated Execution Engine abstraction test suite
 │       └── antigravity_activation.md  # Antigravity IDE entry point & global hooks
 │
 ├── 04_workflows/                      # Integration & Compliance Procedures
@@ -180,7 +182,7 @@ When executing any task, AI agents and developers MUST evaluate instructions aga
 1. **Level 1: Platform / System Safety Constraints** (Non-negotiable platform, system, and safety constraints).
 2. **Level 2: Explicit Current User Direction** (Controls project choices and preferences; subject to Levels 1 & 3).
 3. **Level 3: Taqniya Core Mandatory Invariants** (MUST / MUST NOT engineering rules: security, data safety, input protection, boundary integrity).
-4. **Level 4: Project Global Specifications & Stack Configuration** (`PROJECT/MD/stack.yaml`, `frontend_capabilities.yaml`, `business_rules.md`, `data.md`, `design_rules.md`).
+4. **Level 4: Project Global Specifications & Stack Configuration** (`PROJECT/MD/stack.yaml`, `frontend_capabilities.yaml`, `execution_engine.yaml`, `business_rules.md`, `data.md`, `design_rules.md`).
 5. **Level 5: Technology / Stack Profiles** (`06_stack_profiles/*`).
 6. **Level 6: Functional Phase Specifications** (`PROJECT/MD/phases/<phase_name>/*`).
 7. **Level 7: Taqniya Recommended Guidelines** (SHOULD / SHOULD NOT guidance; `00_core/*`, `01_design_system/*`, `02_testing/*` baselines).
@@ -195,11 +197,12 @@ When executing any task, AI agents and developers MUST evaluate instructions aga
    - `README.md` (Project scope & phase index)
    - `stack.yaml` (Technology stack configuration)
    - `frontend_capabilities.yaml` (Frontend capability policy decisions)
+   - `execution_engine.yaml` (Declared execution engine methodology)
    - `business_rules.md` (Global business logic)
    - `data.md` (Global data architecture)
    - `design_rules.md` (Visual design tokens)
    - `prompts/` (AI management prompts)
    - `phases/` (Functional implementation phases)
-2. Populate `stack.yaml` and choose your capability policy (`frontend_capabilities.yaml`).
+2. Populate `stack.yaml`, choose your capability policy (`frontend_capabilities.yaml`), and select your execution engine (`execution_engine.yaml`).
 3. Follow the 8-step initialization routine in [`04_workflows/project_initialization.md`](04_workflows/project_initialization.md).
 4. Point your AI IDE (Antigravity / Cursor / Claude) rules to this framework root.

@@ -57,13 +57,14 @@ STEP 8: Start Project Work (Proceed with Phase implementation)
     - `frontend.name: "React"` ➔ **React Recommended Baseline**
     - `frontend.name: "Vue"` ➔ **Vue Recommended Baseline**
     - `frontend.name: "Blade"` ➔ **Blade Recommended Baseline**
-  - Prompt the developer: *"Do you want to adopt the Recommended Defaults baseline or Customize?"*
-    - **Recommended Defaults:** Automatically populate `PROJECT/MD/frontend_capabilities.yaml` with the stack-specific baseline.
-    - **Customize:** Present the 26 capabilities for the developer to set explicit states (`required`, `enabled`, `disabled`, `optional`).
+- **Execution Engine Selection:**
+  - Read registered engines from the canonical catalog [`FRAMEWORK/03_ai_protocol/runtime/execution_engines.yaml`](../03_ai_protocol/runtime/execution_engines.yaml).
+  - Prompt the developer to select their preferred execution engine (e.g., `superpowers`, `claude_code`, `antigravity`, `codex`, `custom`, or `native`).
+  - Generate `PROJECT/MD/execution_engine.yaml` based on the developer's selection. (If omitted, Taqniya defaults automatically to `native`).
 
 ### Step 4 & 5: Ingest Core and Relevant Profiles
 - Load mandatory invariants from `03_ai_protocol/mandatory_rules.md`.
-- Load matching profile rules and `frontend/common/capability_policy.md` for the active development domain.
+- Load matching profile rules, `frontend/common/capability_policy.md`, and `runtime/execution_engine.md` for the active development domain.
 
 ### Step 6: Scaffold `PROJECT/MD/` Structure
 Create the project specification tree under `PROJECT/MD/`:
@@ -72,6 +73,7 @@ PROJECT/MD/
 ├── README.md                   (Overall project scope, overview, and state)
 ├── stack.yaml                  (Technology stack configuration)
 ├── frontend_capabilities.yaml  (Frontend engineering & performance policy decisions)
+├── execution_engine.yaml       (Configured execution engine methodology)
 ├── business_rules.md           (Global business logic and constraints)
 ├── data.md                     (Global data architecture & common entities)
 ├── design_rules.md             (Visual design tokens, typography & palette)

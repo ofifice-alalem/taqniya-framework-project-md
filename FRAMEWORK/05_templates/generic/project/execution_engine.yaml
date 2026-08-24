@@ -1,0 +1,19 @@
+# ==============================================================================
+# TAQNIYA EXECUTION ENGINE CONFIGURATION (execution_engine.yaml)
+# ==============================================================================
+# This configuration declares the execution engine methodology used to plan,
+# implement, and debug code under the Taqniya Framework.
+#
+# ALLOWED VALUES:
+# - superpowers : Structured planning, TDD coordination, and hypothesis debugging.
+# - claude_code : CLI-driven agentic execution and terminal loops.
+# - antigravity : Native IDE workflow with paired artifacts and lifecycle tools.
+# - custom      : User-defined orchestration scripts or custom agent runners.
+# - native      : Direct structured execution by AI following Taqniya Core rules.
+#
+# FALLBACK: If this file is omitted, Taqniya defaults automatically to "native".
+# Governed by: FRAMEWORK/03_ai_protocol/runtime/execution_engine.md
+# ==============================================================================
+
+execution_engine:
+  name: "superpowers"

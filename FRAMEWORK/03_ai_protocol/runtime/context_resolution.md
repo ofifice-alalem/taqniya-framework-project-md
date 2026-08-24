@@ -1,7 +1,7 @@
 # Runtime Specification: Task Context Resolution Protocol
 
 # Purpose
-This document establishes the **Task-Driven Context Loading Algorithm** powered by **Multi-Dimensional Task Impact Analysis**. It guarantees that Antigravity loads ONLY the minimal, relevant union of Core rules, Technology Profiles, and Project MD specifications required for the active task, completely eliminating context window pollution and prompt bloat.
+This document establishes the **Task-Driven Context Loading Algorithm** powered by **Multi-Dimensional Task Impact Analysis**. It guarantees that the AI loads ONLY the minimal, relevant union of Core rules, Technology Profiles, and Project MD specifications required for the active task, completely eliminating context window pollution and prompt bloat.
 
 ---
 
