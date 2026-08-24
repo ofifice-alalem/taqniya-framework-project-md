@@ -45,21 +45,124 @@ Taqniya Core does NOT mandate a single architectural pattern. Projects choose an
 
 ---
 
-## 3. Universal Structural Boundaries & Separation of Concerns
+## 3. System Communication Modes & Transport Architecture
 
-Regardless of the chosen architectural style, all implementations MUST maintain explicit boundary separation:
+How the frontend and backend communicate is an authoritative architectural decision declared in `PROJECT/MD/stack.yaml` (`architecture.communication.mode`). The AI Agent MUST strictly adhere to the operational rules of the declared mode:
 
-### A. Ingress & Interface Boundaries
-- **Role:** Accept incoming requests, events, CLI commands, or UI interactions; validate input payloads; delegate execution; and serialize responses.
-- **Rule:** Interface handlers MUST remain focused on transport orchestration. They MUST NOT contain core business formulas, raw query executions, or domain state decisions.
+```text
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                        SYSTEM COMMUNICATION ARCHITECTURE MODES                         │
+├─────────────────┬───────────────────────────────┬──────────────────────────────────────┤
+│ Mode            │ Data Transport Mechanism      │ State, Auth & AI Implementation Rule │
+├─────────────────┼───────────────────────────────┼──────────────────────────────────────┤
+│ 1. DIRECT       │ In-process context / props    │ • Session cookies & CSRF tokens      │
+│ (Monolith /     │ (Blade views, Inertia props,  │ • Zero redundant REST API endpoints  │
+│  Inertia)       │  Server Actions, SSR context) │ • Direct Controller-to-View rendering│
+├─────────────────┼───────────────────────────────┼──────────────────────────────────────┤
+│ 2. API-FIRST    │ Decoupled network transport   │ • Stateless Bearer Tokens / OAuth2   │
+│ (SPA / Mobile / │ (REST JSON endpoints, GraphQL,│ • Contractual JSON Resources & Schemas│
+│  Microservices) │  gRPC, OpenAPI 3.1)           │ • Strict CORS & HTTP Error Envelopes │
+├─────────────────┼───────────────────────────────┼──────────────────────────────────────┤
+│ 3. HYBRID       │ Dual-channel architecture     │ • Web: Direct Controllers + Sessions │
+│ (Direct Web +   │ (Direct web channel + formal  │ • API: /api/v1 Controllers + Tokens  │
+│  Mobile/API)    │  REST API for mobile/partners)│ • Shared Actions/Services logic layer │
+└─────────────────┴───────────────────────────────┴──────────────────────────────────────┘
+```
 
-### B. Domain & Core Logic Boundaries
-- **Role:** Encapsulate business rules, domain invariants, workflow coordination, and state transitions.
-- **Rule:** Core business logic MUST remain decoupled from low-level transport mechanisms (e.g., avoid passing raw HTTP request objects into domain functions).
+### Detailed Operational Rules by Mode:
 
-### C. Infrastructure & External System Boundaries
-- **Role:** Abstract persistence engines, external third-party APIs, message brokers, file systems, and hardware drivers.
-- **Rule:** Isolate query construction, caching mechanics, and third-party API communication behind clear interfaces or modules.
+#### A. Direct Mode (`mode: "direct"`)
+* **When Used:** Monolithic server-rendered frameworks (e.g., Laravel Blade, Django templates) or Monolith-to-SPA bridges (e.g., Laravel + Inertia.js with React/Vue, Next.js Server Components/Actions).
+* **Data Flow:** The backend controller directly passes models, view-models, or typed props to the view.
+* **Authentication:** Stateful session cookies, CSRF protection, and session-based access guards.
+* **Mandatory AI Rule:** The AI Agent **MUST NOT** generate redundant REST API controllers, API Resource classes, or stateless Bearer Token boilerplate for web views when `mode: direct` is declared.
+
+#### B. API-First Mode (`mode: "api_first"`)
+* **When Used:** Fully decoupled architectures (e.g., Node.js + Vue SPA, FastAPI + React SPA, Go API + Svelte, mobile apps).
+* **Data Flow:** All client data fetching occurs via explicit, contractual HTTP endpoints delivering JSON/Protobuf payloads.
+* **Authentication:** Stateless authentication (Bearer Tokens, JWTs, API Keys, OAuth2) with explicit CORS origin policies.
+* **Mandatory AI Rule:** All endpoints MUST use structured resource transformers (e.g., `JsonResource`, Pydantic serializers) and return standardized HTTP status codes and error envelopes.
+
+#### C. Hybrid Mode (`mode: "hybrid"`)
+* **When Used:** Multi-channel platforms (e.g., Laravel serving web directly via Blade/Inertia, alongside dedicated REST API endpoints for Mobile Apps or third-party partners).
+* **Data Flow & Routing:** Strict separation between Web and API ingress:
+  * `/web` routes ➔ Direct Presentation Controllers (Session Auth, CSRF, direct view/props rendering).
+  * `/api/v1` routes ➔ Dedicated API Controllers (Bearer Token Auth, Rate Limiting, JSON Resources).
+* **Mandatory AI Rule:** The AI Agent **MUST** share the underlying Domain & Application layer (Actions, Services, Repositories), but **MUST NOT** mix Web Controllers with API Controllers or pollute web sessions with stateless API logic.
+
+---
+
+## 4. Universal Structural Boundaries & Backend Layer Flow
+
+Regardless of the chosen architectural style, all backend implementations MUST maintain explicit boundary separation across these canonical layers:
+
+```text
+[ Incoming Request / Event / Client Payload ]
+                   │
+                   ▼
+┌────────────────────────────────────────────────────────┐
+│ 1. Ingress, Routing & Perimeter Security               │
+│    (Routes, Perimeter Middleware, Auth Token Guard)    │
+└──────────────────┬─────────────────────────────────────┘
+                   │ Validates input payload
+                   ▼
+┌────────────────────────────────────────────────────────┐
+│ 2. Input Validation & DTO Boundary                     │
+│    (Form Requests, Schemas, Validated Typed DTOs)      │
+└──────────────────┬─────────────────────────────────────┘
+                   │ Passes validated DTO to
+                   ▼
+┌────────────────────────────────────────────────────────┐
+│ 3. Presentation Layer (Thin Controllers / Handlers)    │
+│    (HTTP Controllers, RPC Handlers, Resolvers)         │
+└──────────────────┬─────────────────────────────────────┘
+                   │ Invokes Action / Service
+                   ▼
+┌────────────────────────────────────────────────────────┐
+│ 4. Domain & Application Layer (Actions / Services)     │
+│    (Business Logic, Transaction Management, Events)    │
+└──────────────────┬─────────────────────────────────────┘
+                   │ Queries / Persists via
+                   ▼
+┌────────────────────────────────────────────────────────┐
+│ 5. Data Access Layer (Repositories / Query Handlers)   │
+│    (Data Abstraction, Persistence Mechanics)          │
+└──────────────────┬─────────────────────────────────────┘
+                   │ Reads / Writes
+                   ▼
+┌────────────────────────────────────────────────────────┐
+│ 6. Storage Engine, Models & Schemas                    │
+│    (Entities, Models, DB Tables, Documents)           │
+└────────────────────────────────────────────────────────┘
+```
+
+### A. Ingress, Routing & Input Validation
+- **Role:** Accept incoming transport requests; enforce perimeter authentication/authorization; and parse/validate raw inputs into strongly-typed Data Transfer Objects (DTOs).
+- **Rule:** Input validation MUST happen before domain logic execution. Invalid inputs must fail fast with standard error payloads.
+
+### B. Presentation Layer (Thin Controllers / Handlers)
+- **Role:** Transport orchestration ONLY (HTTP status codes, header parsing, DTO instantiation, response formatting, and view rendering).
+- **Rules:**
+  - **MUST:** Remain thin and focused on HTTP/transport concerns.
+  - **MUST NOT:** Execute direct database queries (`SQL`, raw queries, ORM builder chains) inside controllers or handlers.
+  - **MUST NOT:** Contain core business formulas, financial calculations, or domain state decisions.
+
+### C. Domain & Application Layer (Actions & Services)
+- **Role:** Encapsulate core business logic, status transitions, calculations, and external side-effects.
+- **Rules:**
+  - **MUST:** Wrap multi-entity or multi-table mutations in atomic database transactions (`ACID`).
+  - **SHOULD:** Prefer single-purpose Action classes/functions (`CreateOrder`, `CancelSubscription`) over massive multi-thousand-line monolithic service files.
+  - **SHOULD:** Dispatch domain events for asynchronous side-effects (notifications, webhooks, audit logs).
+
+### D. Data Access Layer (Repositories & Query Builders)
+- **Role:** Encapsulate querying, filtering, and persistence mechanics behind clear interface contracts.
+- **Rules:**
+  - **MUST:** Isolate persistence details (ORM syntax, SQL generation) from domain services.
+  - **MUST NOT:** Contain business decision logic (e.g., checking discount eligibility).
+
+### E. Infrastructure & External System Boundaries
+- **Role:** Abstract external third-party APIs, payment gateways, message brokers, file systems, and hardware drivers.
+- **Rule:** Isolate third-party SDKs behind internal adapters/interfaces to prevent vendor lock-in and enable deterministic test mocking.
 
 ---
 

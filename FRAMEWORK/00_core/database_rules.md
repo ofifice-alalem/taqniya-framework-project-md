@@ -42,7 +42,14 @@ Applies to all persistence layers and storage paradigms (Relational/SQL, Documen
 
 ---
 
-## 5. Persistence Security & Injection Prevention
+## 5. Financial Data Storage & Precision Invariant
+- **MUST:** Store currency amounts in storage columns as integer minor units (e.g., `BIGINT` / `INTEGER` for cents, halalas, pence) using standardized column name suffixes like `amount_cents`, `total_cents`, or `price_cents`.
+- **MUST:** Pair currency columns with an explicit 3-character ISO 4217 currency code column: `currency CHAR(3) DEFAULT 'USD'`.
+- **MUST NOT:** Floating-point numbers (`FLOAT`, `DOUBLE`) MUST NEVER be used to store monetary or financial values (preventing rounding and precision loss).
+
+---
+
+## 6. Persistence Security & Injection Prevention
 - **MUST:** All dynamic queries, filters, and commands MUST use parameterized inputs, prepared statements, or strongly typed query builders. Direct string concatenation into query strings is STRICTLY FORBIDDEN (eliminating SQLi, NoSQL Injection, and Query Injection).
 - **MUST:** Apply authorization, ownership, tenancy, and access controls on every read, update, and delete operation where applicable.
 - **MUST:** Protect sensitive data (passwords, tokens, PII) using strong one-way hashing or encryption at rest and in transit.
@@ -52,3 +59,4 @@ Applies to all persistence layers and storage paradigms (Relational/SQL, Documen
 2. Confirm that data-access operations over unbounded collections use bounding mechanisms (limits, cursors, pagination, or streaming).
 3. Check that multi-entity mutations utilize atomic transactions (where supported) or idempotency controls.
 4. Verify that schema evolution scripts follow non-destructive patterns.
+5. Confirm that financial amounts are stored as integer minor units (`*_cents`) and never as floating-point numbers.
