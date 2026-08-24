@@ -70,7 +70,7 @@ When instructions, standards, or specifications conflict, the AI agent MUST reso
 ## 4. Discrepancy Resolution Protocol
 When code and `PROJECT/MD/` diverge:
 1. **Identify the Divergence:** Isolate the exact mismatch.
-2. **Check History & Prompts:** Determine if the code was intentionally updated (use `PROJECT/MD/prompts/Project_Recovery.md` if needed).
+2. **Check History & Specifications:** Determine if the code was intentionally updated (use `PROJECT/MD/prompts/02_project_analysis/analyze_project_rules.md` if needed).
 3. **Reconcile:** Fix the code if it was a bug; update `PROJECT/MD/` if the specification evolved.
 4. **Clarify When Ambiguous:** If intent cannot be confirmed from git history, prompt the user for clarification before applying breaking edits.
 

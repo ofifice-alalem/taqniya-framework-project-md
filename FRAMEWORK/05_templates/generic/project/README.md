@@ -10,10 +10,13 @@
 | :--- | :--- |
 | **`README.md`** | Project overview, scope, nature of system, and phases index. |
 | **`stack.yaml`** | Technology stack configuration (Frontend, Backend, DB, Cache, API, Auth, Testing, Deploy). |
+| **`frontend_capabilities.yaml`** | Frontend engineering & performance policy decisions. |
+| **`execution_engine.yaml`** | Configured execution engine selection. |
 | **`business_rules.md`** | Global business rules, entity lifecycles, and operational constraints. |
 | **`data.md`** | Global data architecture, core shared entities, and relationships. |
+| **`database.md`** | Authoritative database schema blueprint (SSoT). |
 | **`design_rules.md`** | Visual design tokens (colors, typography, spacing, radius, shadows). |
-| **`prompts/`** | AI management prompts (`Project_Recovery.md`, `Module_Review.md`, `Phase_Review.md`, `phases_prompt.md`). |
+| **`prompts/`** | 4-tier structured AI lifecycle prompts (`01_initialization`, `02_analysis`, `03_database`, `04_phases`). |
 | **`phases/`** | Functional implementation phases (`phase_00_*`, `phase_01_*`, etc.). |
 
 ---

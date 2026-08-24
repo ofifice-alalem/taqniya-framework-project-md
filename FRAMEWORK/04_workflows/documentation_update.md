@@ -48,7 +48,7 @@ Did system behavior, data structures, contracts, or specifications change?
 1. **Evaluate Semantic Impact:** Inspect the git diff to identify which specifications (if any) changed.
 2. **Update Targeted Authorities:** Apply precise updates directly to the affected markdown files in `PROJECT/MD/`. Do not modify unrelated files.
 3. **Update Phase Deliverables (If Phase Task):** Update status and completed items in `PROJECT/MD/phases/<phase_name>/README.md`.
-4. **Use Review Prompts (If Needed):** Execute `PROJECT/MD/prompts/Phase_Review.md` or `Module_Review.md` to verify documentation completeness.
+4. **Use Review Prompts (If Needed):** Execute `PROJECT/MD/prompts/04_phases/review_phase.md` to verify documentation completeness.
 
 # Verification
 1. Confirm that all semantic specification changes are reflected in their respective Project MD authorities.

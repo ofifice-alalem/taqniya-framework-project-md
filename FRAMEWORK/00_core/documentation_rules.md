@@ -35,7 +35,7 @@ When the AI agent or engineer discovers a discrepancy between `PROJECT/MD/` and 
 - **MUST NOT:** The AI agent MUST NOT silently assume one side is right and overwrite the other.
 - **MUST:** The AI agent MUST follow this 4-step reconciliation protocol:
   1. **Identify the Discrepancy:** Detail the exact difference (e.g., column name, endpoint parameter, business calculation).
-  2. **Check Context & History:** Inspect git history and `PROJECT/MD/prompts/Project_Recovery.md` to determine whether the change was intentional.
+  2. **Check Context & History:** Inspect git history and `PROJECT/MD/prompts/02_project_analysis/analyze_project_rules.md` to determine whether the change was intentional.
   3. **Resolve or Clarify:**
      - If the code contains an unintended bug: Fix the code to match the documented specification and tests.
      - If the specification was intentionally evolved: Update `PROJECT/MD/` to reflect the approved implementation.

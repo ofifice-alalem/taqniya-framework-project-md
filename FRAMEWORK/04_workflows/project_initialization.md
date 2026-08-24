@@ -39,9 +39,10 @@ STEP 8: Verification & Phase Execution (Validate DoD & start Phase deliverables)
 
 ## 2. Detailed Execution Guidelines
 
-### Step 1: Read `PROJECT/MD/stack.yaml`
-- Check if `PROJECT/MD/stack.yaml` exists.
-- If missing, create `PROJECT/MD/stack.yaml` declaring single canonical technology choices for frontend, backend, database, cache, API, authentication, testing, and deployment.
+### Step 1: Read & Verify `PROJECT/MD/stack.yaml`
+- Check if `PROJECT/MD/stack.yaml` exists in the project repository.
+- **IF MISSING:** 🛑 **STOP IMMEDIATELY.** The project is uninitialized. The AI Agent MUST NOT invent or auto-generate technology choices. The AI must prompt the developer to provide `PROJECT/MD/stack.yaml` or declare their chosen stack before proceeding.
+- **IF PRESENT:** Ingest declared technologies and proceed to Step 2.
 
 ### Step 2: Validate Stack Configuration & Communication Architecture
 - Verify that required metadata (project name, type) is present.
@@ -109,8 +110,11 @@ PROJECT/MD/
 ### Step 7: Build Task-Specific Minimal Context
 - Load only task-relevant files into the AI context following `03_ai_protocol/context_loading.md` and `03_ai_protocol/runtime/context_resolution.md`.
 
-### Step 8: Initialization Verification & Baseline Audit
+### Step 8: Initialization Verification & Database Specification Gate
 - Validate that the Tripartite Model files exist and are syntactically valid (`stack.yaml`, `frontend_capabilities.yaml`, `execution_engine.yaml`).
+- **Database Specification Gate (Before Phase Implementation):**
+  - **Case A (`PROJECT/MD/database.md` exists & is approved):** Proceed directly to execute database migrations via [`03_database/implement_database.md`](../05_templates/generic/project/prompts/03_database/implement_database.md).
+  - **Case B (`PROJECT/MD/database.md` is absent):** Execute [`03_database/design_database.md`](../05_templates/generic/project/prompts/03_database/design_database.md) to synthesize schema from `business_rules.md` and `data.md` ➔ Require developer approval ➔ Proceed to `implement_database.md`.
 - Begin development according to Phase deliverables in `PROJECT/MD/phases/`.
 
 ---
@@ -119,3 +123,4 @@ PROJECT/MD/
 1. Confirm that `PROJECT/MD/stack.yaml`, `frontend_capabilities.yaml`, and `execution_engine.yaml` exist and are valid.
 2. Confirm that technology profile resolution succeeded (or handled unknown technologies gracefully).
 3. Confirm that `PROJECT/MD/` structure was scaffolded and synchronized.
+4. Confirm that database specification status (Exist vs Design) is resolved before phase coding begins.

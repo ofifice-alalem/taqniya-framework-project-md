@@ -68,4 +68,4 @@
 
 ### 10. Phase Completion & Sign-off
 - [ ] Deliverables and status updated in `PROJECT/MD/phases/<phase_name>/README.md`.
-- [ ] AI review prompts (`Phase_Review.md` / `Module_Review.md`) executed for quality verification.
+- [ ] AI review prompt (`PROJECT/MD/prompts/04_phases/review_phase.md`) executed for quality verification.

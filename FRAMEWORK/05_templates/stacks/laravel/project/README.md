@@ -10,10 +10,13 @@
 | :--- | :--- |
 | **`README.md`** | Project overview, scope, nature of system, and phases index. |
 | **`stack.yaml`** | Laravel technology stack configuration (Laravel 11, PHP 8.3, PostgreSQL/MySQL, Sanctum, Pest). |
+| **`frontend_capabilities.yaml`** | Frontend engineering & performance policy decisions. |
+| **`execution_engine.yaml`** | Configured execution engine selection. |
 | **`business_rules.md`** | Global business rules, entity lifecycles, and operational constraints. |
 | **`data.md`** | Global data architecture, Eloquent models, and relationships. |
+| **`database.md`** | Authoritative database schema blueprint (SSoT). |
 | **`design_rules.md`** | Visual design tokens (colors, typography, spacing, radius, shadows). |
-| **`prompts/`** | AI management prompts (`Project_Recovery.md`, `Module_Review.md`, `Phase_Review.md`, `phases_prompt.md`). |
+| **`prompts/`** | 4-tier structured AI lifecycle prompts (`01_initialization`, `02_analysis`, `03_database`, `04_phases`). |
 | **`phases/`** | Functional implementation phases (`phase_00_*`, `phase_01_*`, etc.). |
 
 ---

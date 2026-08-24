@@ -11,9 +11,9 @@
 
 ---
 
-## 2. Complete Inventory of Framework Files (221 Files Total Across 63 Directories)
+## 2. Complete Inventory of Framework Files (217 Files Total Across 62 Directories)
 
-*Repository inventory at audit time: 221 files across 63 directories.*
+*Repository inventory at audit time: 217 files across 62 directories.*
 
 | Directory | File | Single Responsibility / Core Purpose |
 | :--- | :--- | :--- |
@@ -195,7 +195,7 @@ Every concept and term across the repository was audited and classified:
 | 17 | **Change Management** | **PASS** | 5 tiers with pre-implementation ADR for Tier 5 architecture changes. |
 | 18 | **Template Neutrality** | **PASS** | All generic templates under `05_templates/generic/` are 100% technology-agnostic. |
 | 19 | **Internal References** | **PASS** | 0 broken links across all non-template files. |
-| 20 | **Inventory Accuracy** | **PASS** | Exact 221 files across 63 directories verified on physical disk. |
+| 20 | **Inventory Accuracy** | **PASS** | Exact 217 files across 62 directories verified on physical disk. |
 
 ---
 

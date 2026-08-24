@@ -57,7 +57,7 @@ When updating Data Architecture documentation in `PROJECT/MD/data.md` or `PROJEC
 1. **Inspect Semantic Delta:** Review your git diff to identify any changes that alter specifications.
 2. **Apply Structured Updates:** Update the target markdown files under `PROJECT/MD/` with exact signatures, schemas, types, and constraints.
 3. **Update Phase Status:** In the active `PROJECT/MD/phases/phase_*/README.md`, update status and deliverables.
-4. **Consult AI Prompts:** Use `PROJECT/MD/prompts/Module_Review.md` or `Phase_Review.md` to audit project state consistency.
+4. **Consult AI Prompts:** Use `PROJECT/MD/prompts/04_phases/review_phase.md` to audit project state consistency.
 5. **Atomic Commit:** Commit source code and documentation updates in the same git commit.
 
 # Verification
