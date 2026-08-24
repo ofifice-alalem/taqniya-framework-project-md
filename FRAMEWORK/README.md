@@ -163,8 +163,8 @@ FRAMEWORK/
     │   └── laravel/                   # Laravel Stack Profile (PHP 8.2+ / Laravel 11.x)
     └── frontend/                      # Frontend Profiles & Common Capabilities
         ├── README.md                  # Frontend Profile Architecture & Policy
-        ├── common/                    # Universal 25-Capability Performance Standards
-        │   ├── capability_matrix.md   # Master index & 25-capability matrix
+        ├── common/                    # Universal 26-Capability Performance Standards
+        │   ├── capability_matrix.md   # Master index & 26-capability matrix
         │   └── capability_policy.md   # Policy states (required, enabled, disabled, optional)
         ├── react/                     # React 18.x / 19.x SPA Stack Profile
         ├── vue/                       # Vue 3.x SPA Stack Profile

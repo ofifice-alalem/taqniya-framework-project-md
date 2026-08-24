@@ -31,8 +31,8 @@ This directory houses modular **Frontend Technology Profiles** for the Taqniya F
 06_stack_profiles/frontend/
 ├── README.md                      # This overview document
 ├── common/                        # Universal Frontend Capabilities
-│   ├── capability_matrix.md       # Master index & 25-capability matrix
-│   ├── capability_policy.md       # Policy states (required, enabled, disabled, optional)
+│   ├── capability_matrix.md       # Master index & 26-capability matrix
+│   ├── capability_policy.md       # Policy states, classifications & framework baselines
 │   ├── performance.md             # Core philosophy ("Do as little work as necessary")
 │   ├── navigation.md              # Client-side routing, prefetching & deep linking
 │   ├── data_fetching.md           # Async data lifecycles, deduping & cancellation

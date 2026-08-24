@@ -86,7 +86,7 @@ When contributing a new profile, structure it with single-responsibility markdow
 
 | Category | Profile | Target Version(s) | Status |
 | :--- | :--- | :--- | :--- |
-| **`frontend/common/`** | **[`capability_matrix.md`](frontend/common/capability_matrix.md)** | Universal 25-Capability Matrix | Active & Verified |
+| **`frontend/common/`** | **[`capability_matrix.md`](frontend/common/capability_matrix.md)** | Universal 26-Capability Matrix | Active & Verified |
 | **`frontend/`** | **[`react/`](frontend/react/README.md)** | React 18.x / 19.x SPA | Active & Verified |
 | **`frontend/`** | **[`vue/`](frontend/vue/README.md)** | Vue 3.x SPA (Composition API) | Active & Verified |
 | **`frontend/`** | **[`blade/`](frontend/blade/README.md)** | Laravel Blade / Livewire 3 / Alpine | Active & Verified |

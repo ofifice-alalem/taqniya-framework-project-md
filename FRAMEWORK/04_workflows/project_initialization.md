@@ -53,9 +53,13 @@ STEP 8: Start Project Work (Proceed with Phase implementation)
   - If a declared technology matches a profile (e.g., `backend.name: "Laravel"` matches `06_stack_profiles/backend/laravel/`, `frontend.name: "React"` matches `06_stack_profiles/frontend/react/`), mark it as active.
   - If no specialized profile exists (e.g., Svelte, Django, FastAPI, Go), activate the **Unknown Profile Protocol** (apply universal Core principles and report missing profile).
 - **Frontend Capability Selection:**
-  - When `frontend:` is declared in `stack.yaml`, determine whether to use the **Canonical Recommended Defaults** or **Customize**:
-    - **Recommended Defaults:** Automatically populate `PROJECT/MD/frontend_capabilities.yaml` from `FRAMEWORK/05_templates/generic/project/frontend_capabilities.yaml`.
-    - **Customize:** Prompt the user to set specific capability states (`required`, `enabled`, `disabled`, `optional`).
+  - When `frontend:` is declared in `stack.yaml`, resolve the matching **Framework-Specific Recommended Baseline** from `FRAMEWORK/06_stack_profiles/frontend/common/capability_policy.md`:
+    - `frontend.name: "React"` ➔ **React Recommended Baseline**
+    - `frontend.name: "Vue"` ➔ **Vue Recommended Baseline**
+    - `frontend.name: "Blade"` ➔ **Blade Recommended Baseline**
+  - Prompt the developer: *"Do you want to adopt the Recommended Defaults baseline or Customize?"*
+    - **Recommended Defaults:** Automatically populate `PROJECT/MD/frontend_capabilities.yaml` with the stack-specific baseline.
+    - **Customize:** Present the 26 capabilities for the developer to set explicit states (`required`, `enabled`, `disabled`, `optional`).
 
 ### Step 4 & 5: Ingest Core and Relevant Profiles
 - Load mandatory invariants from `03_ai_protocol/mandatory_rules.md`.

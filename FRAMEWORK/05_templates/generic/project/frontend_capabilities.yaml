@@ -5,10 +5,13 @@
 # capability policies chosen for this project.
 #
 # POLICY STATES:
-# - required: MUST be applied whenever the framework activation threshold is met.
+# - required: MUST be applied whenever the framework activation threshold or
+#             structural architectural rule is met.
 # - enabled:  Permitted and available in the project architecture.
 # - disabled: STRICTLY FORBIDDEN from being used or imported.
 # - optional: NOT applied automatically; used ONLY upon explicit task request.
+#
+# Governed by: FRAMEWORK/06_stack_profiles/frontend/common/capability_policy.md
 # ==============================================================================
 
 frontend:
@@ -24,7 +27,7 @@ frontend:
     # 2. Loading & Code Splitting Capabilities
     # --------------------------------------------------------------------------
     code_splitting: required           # Dynamic import() per route entrypoint
-    lazy_loading: required             # Defer non-critical routes and heavy assets
+    lazy_loading: required             # Defer non-critical routes and heavy assets (>30KB)
     component_lazy_loading: required   # Defer heavy dialogs, rich text, and charts
 
     # --------------------------------------------------------------------------
@@ -44,14 +47,14 @@ frontend:
     reactive_state: required           # Fine-grained DOM updates without cascading re-renders
     optimistic_ui: enabled             # Immediate feedback with rollback on error
     virtualized_lists: optional        # DOM virtualization for tables > 100 records
-    background_web_workers: optional   # Web Workers for CPU-blocking calculations
+    background_web_workers: optional   # Web Workers for CPU-blocking calculations (>50ms)
     persistent_client_state: optional  # LocalStorage / IndexedDB lookup persistence
 
     # --------------------------------------------------------------------------
     # 5. Forms, Assets & Production Hygiene
     # --------------------------------------------------------------------------
     form_state_optimization: required  # Double-submit guard and 422 error mapping
-    asset_optimization: required       # Image optimization and responsive loading
+    asset_optimization: required       # Image optimization, responsive srcset, and layouts
     image_lazy_loading: required       # Native HTML5 loading="lazy" for offscreen images
     tree_shaking: required             # Named ES module imports exclusively
     production_build_opts: required    # Asset hashing, minification, and compression
