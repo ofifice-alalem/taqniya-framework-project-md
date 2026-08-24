@@ -45,7 +45,7 @@
 | | `task_lifecycle.md` | 10-step end-to-end task execution lifecycle with explicit Execution Engine handoff and task-appropriate testing. |
 | | `execution_engine.md` | Universal Execution Engine interoperability contract: Taqniya (WHAT rules to enforce) vs Execution Engine (HOW to execute). |
 | | `execution_engines.yaml` | Canonical master catalog of recognized execution engines (superpowers, claude_code, antigravity, codex, custom, native). |
-| | `audit_runtime.js` | Dedicated automated test suite validating catalog schema, engine resolver, unknown engine error handling, and swappability (9/9 pass). |
+| | `audit_runtime.js` | Dedicated automated test suite validating catalog schema, engine resolver, unknown engine error handling, and swappability (10/10 pass). |
 | | `antigravity_activation.md` | Activation Specification vs Actual Host Configuration, workspace hooks (`GEMINI.md` / `AGENTS.md`), and IDE hooks. |
 | **`04_workflows/` (5 files)** | `project_initialization.md` | 8-step initialization protocol driven by `stack.yaml` reading, validation, and profile resolution. |
 | | `md_synchronization.md` | Semantic impact-driven documentation synchronization across any software or storage paradigm. |

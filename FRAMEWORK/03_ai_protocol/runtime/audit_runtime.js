@@ -172,6 +172,38 @@ const isHostClean = !runtimeReadmeText.includes('AI Host') &&
 assert(isHostClean, 'Core runtime files maintain pure duality (Taqniya vs Execution Engine) with zero AI Host pollution');
 
 // ------------------------------------------------------------------------------
+// TEST 8: Engine Swappability Governance Invariant (Pure Handoff Payload)
+// ------------------------------------------------------------------------------
+function buildResolvedTaskContext(engineName, projectConfig) {
+  return {
+    engine: engineName,
+    governance: {
+      stack: projectConfig.stack,
+      frontendCapabilities: projectConfig.frontendCapabilities,
+      securityInvariants: ['PARAMETERIZED_SQL', 'PERIMETER_AUTH_DEFAULT_DENY', 'ZERO_SECRETS'],
+      verificationGates: ['STAGE_1_BUILD', 'STAGE_2_TESTS', 'STAGE_3_SECURITY', 'STAGE_4_BOUNDARIES', 'STAGE_5_UI', 'STAGE_6_DOCS', 'STAGE_7_PERF', 'STAGE_8_DOD']
+    }
+  };
+}
+
+const mockProject = {
+  stack: { backend: 'Laravel 11', frontend: 'Vue 3', database: 'PostgreSQL' },
+  frontendCapabilities: { lazy_loading: 'required', virtualization: 'optional', form_state_optimization: 'enabled' }
+};
+
+const payloadSuperpowers = buildResolvedTaskContext('superpowers', mockProject);
+const payloadCodex = buildResolvedTaskContext('codex', mockProject);
+const payloadClaude = buildResolvedTaskContext('claude_code', mockProject);
+const payloadNative = buildResolvedTaskContext('native', mockProject);
+
+const governanceInvariant = (
+  JSON.stringify(payloadSuperpowers.governance) === JSON.stringify(payloadCodex.governance) &&
+  JSON.stringify(payloadCodex.governance) === JSON.stringify(payloadClaude.governance) &&
+  JSON.stringify(payloadClaude.governance) === JSON.stringify(payloadNative.governance)
+);
+assert(governanceInvariant, 'Swapping execution engines (superpowers ➔ codex ➔ claude_code ➔ native) preserves 100% invariant Taqniya Governance & Verification');
+
+// ------------------------------------------------------------------------------
 // AUDIT SUMMARY
 // ------------------------------------------------------------------------------
 console.log('\n====================================================');

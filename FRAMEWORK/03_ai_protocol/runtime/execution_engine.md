@@ -74,8 +74,9 @@ The list of recognized execution engines is maintained in [`FRAMEWORK/03_ai_prot
 ## 4. Definition of `native` Execution Engine
 
 > **DEFINITION:**  
-> **`native`** is the built-in, autonomous execution lifecycle provided directly by Taqniya Runtime.  
-> It does NOT require any external agent, plugin, or third-party orchestrator. The AI executes structured task decomposition, code authoring, and verification directly following [`task_lifecycle.md`](task_lifecycle.md).
+> **`native`** is the baseline, built-in execution engine methodology recognized by Taqniya.  
+> When selected (or when `execution_engine.yaml` is absent), the AI operates as a direct execution engine performing standard sequential task decomposition, code implementation, and testing, without delegating to an external agent orchestrator or third-party workflow methodology.  
+> Like all other engines, `native` operates strictly under Taqniya governance and must pass all verification gates.
 
 ---
 
