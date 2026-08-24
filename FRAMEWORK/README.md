@@ -145,15 +145,17 @@ FRAMEWORK/
 │       ├── task_lifecycle.md          # 10-step end-to-end task execution lifecycle
 │       ├── execution_engine.md        # Universal Execution Engine interoperability contract
 │       ├── execution_engines.yaml     # Master catalog of recognized execution engines
-│       ├── audit_runtime.js           # Automated Execution Engine abstraction test suite
-│       └── antigravity_activation.md  # Antigravity IDE entry point & global hooks
+│       ├── engine_resolver.js         # Production runtime resolver module
+│       └── audit_runtime.js           # Automated Execution Engine integration test suite
 │
 ├── 04_workflows/                      # Integration & Compliance Procedures
 │   ├── project_initialization.md      # 8-Step stack resolution & onboarding routine
 │   ├── md_synchronization.md          # Semantic impact-driven documentation sync
 │   ├── architecture_compliance.md     # Multi-tier compliance audit (Core + Profile + ADR)
 │   ├── design_system_compliance.md    # UI token & accessibility verification
-│   └── documentation_update.md        # Post-implementation change logging routine
+│   ├── documentation_update.md        # Post-implementation change logging routine
+│   └── activations/                   # Environment Activation Procedures
+│       └── antigravity.md             # Antigravity IDE activation & hook instructions
 │
 ├── 05_templates/                      # Universal Project & Feature Blueprints
 │   └── generic/                       # Technology-agnostic blueprints

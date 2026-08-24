@@ -1,7 +1,7 @@
 # Runtime Specification: Stack Resolution Protocol
 
 # Purpose
-This document specifies how Antigravity reads, validates, and extracts technology choices from `PROJECT/MD/stack.yaml`. It governs how declared technology dimensions are interpreted without making unverified assumptions.
+This document specifies how the AI agent reads, validates, and extracts technology choices from `PROJECT/MD/stack.yaml`. It governs how declared technology dimensions are interpreted without making unverified assumptions.
 
 ---
 
@@ -41,7 +41,7 @@ The Stack Resolution Protocol inspects `PROJECT/MD/stack.yaml` and extracts inde
 
 ## 3. The 7-Step Deterministic Stack Resolution Sequence
 
-When executing any task, Antigravity executes this deterministic sequence:
+When executing any task, the AI agent executes this deterministic sequence:
 
 1. **Read Configuration:** Read `PROJECT/MD/stack.yaml` from the project directory.
 2. **Parse Declared Dimensions:** Extract all specified tools, libraries, and single canonical technology declarations across all 13 dimensions.

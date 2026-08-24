@@ -11,9 +11,9 @@
 
 ---
 
-## 2. Complete Inventory of Framework Files (211 Files Total Across 57 Directories)
+## 2. Complete Inventory of Framework Files (212 Files Total Across 58 Directories)
 
-*Repository inventory at audit time: 211 files across 57 directories.*
+*Repository inventory at audit time: 212 files across 58 directories.*
 
 | Directory | File | Single Responsibility / Core Purpose |
 | :--- | :--- | :--- |
@@ -45,9 +45,14 @@
 | | `task_lifecycle.md` | 10-step end-to-end task execution lifecycle with explicit Execution Engine handoff and task-appropriate testing. |
 | | `execution_engine.md` | Universal Execution Engine interoperability contract: Taqniya (WHAT rules to enforce) vs Execution Engine (HOW to execute). |
 | | `execution_engines.yaml` | Canonical master catalog of recognized execution engines (superpowers, claude_code, antigravity, codex, custom, native). |
-| | `audit_runtime.js` | Dedicated automated test suite validating catalog schema, engine resolver, unknown engine error handling, and swappability (10/10 pass). |
-| | `antigravity_activation.md` | Activation Specification vs Actual Host Configuration, workspace hooks (`GEMINI.md` / `AGENTS.md`), and IDE hooks. |
-| **`04_workflows/` (5 files)** | `project_initialization.md` | 8-step initialization protocol driven by `stack.yaml` reading, validation, and profile resolution. |
+| | `engine_resolver.js` | Authoritative runtime resolver module reading catalog and resolving active project engine. |
+| | `audit_runtime.js` | Real integration test suite validating engine_resolver module, catalog schema, unknown engine errors, and swappability (11/11 pass). |
+| **`04_workflows/` (6 files)** | `project_initialization.md` | 8-step initialization protocol driven by `stack.yaml` reading, validation, and profile resolution. |
+| | `md_synchronization.md` | Semantic impact-driven documentation synchronization across any software or storage paradigm. |
+| | `architecture_compliance.md` | Multi-tier audit procedure for detecting and refactoring boundary violations. |
+| | `design_system_compliance.md` | Audit procedure for validating UI against design tokens and accessibility. |
+| | `documentation_update.md` | Post-implementation change logging procedure and semantic specification updates. |
+| | `activations/antigravity.md` | Antigravity IDE activation & hook instructions (external host configuration). |
 | | `md_synchronization.md` | Semantic impact-driven documentation synchronization across any software or storage paradigm. |
 | | `architecture_compliance.md` | Multi-tier audit procedure for detecting and refactoring boundary violations. |
 | | `design_system_compliance.md` | Audit procedure for validating UI against design tokens and accessibility. |
@@ -194,7 +199,7 @@ Every concept and term across the repository was audited and classified:
 | 17 | **Change Management** | **PASS** | 5 tiers with pre-implementation ADR for Tier 5 architecture changes. |
 | 18 | **Template Neutrality** | **PASS** | All generic templates under `05_templates/generic/` are 100% technology-agnostic. |
 | 19 | **Internal References** | **PASS** | 0 broken links across all non-template files. |
-| 20 | **Inventory Accuracy** | **PASS** | Exact 211 files across 57 directories verified on physical disk. |
+| 20 | **Inventory Accuracy** | **PASS** | Exact 212 files across 58 directories verified on physical disk. |
 
 ---
 

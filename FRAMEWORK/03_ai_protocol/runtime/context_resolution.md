@@ -32,7 +32,7 @@ User Prompt
 
 ## 2. Multi-Dimensional Impact Matrix
 
-A task may touch a single focused area or span multiple dimensions. Antigravity calculates the union of required authorities:
+A task may touch a single focused area or span multiple dimensions. The AI agent calculates the union of required authorities:
 
 | Task Dimension | Trigger Criteria | Core Rules to Include | Profile Files to Include | Project MD Specs to Include |
 | :--- | :--- | :--- | :--- | :--- |

@@ -1,15 +1,30 @@
 /**
  * ==============================================================================
- * TAQNIYA FRAMEWORK: RUNTIME & EXECUTION ENGINE ABSTRACTION AUDIT
+ * TAQNIYA FRAMEWORK: RUNTIME & EXECUTION ENGINE INTEGRATION AUDIT
  * ==============================================================================
- * Formally validates the Execution Engine Abstraction, Catalog integrity,
- * engine resolution algorithm, strict error handling on unknown engines,
- * missing file fallback to "native", swappability, and terminology cleanliness.
+ * Formally executes end-to-end integration tests against the central,
+ * authoritative runtime resolver module (engine_resolver.js) and verifies:
+ * 1. Canonical Catalog loading & validation from execution_engines.yaml
+ * 2. Real engine resolution for all standard engines
+ * 3. Strict error handling on typos / unknown engines (CONFIGURATION_ERROR)
+ * 4. Deterministic fallback to "native" when execution_engine.yaml is absent
+ * 5. Template specification cleanliness (no forbidden workflow flags)
+ * 6. Zero hardcoded coupling in task_lifecycle.md
+ * 7. Clean runtime terminology (Zero AI Host / Antigravity coupling)
+ * 8. 100% Governance Invariance across engine swaps (Deep Equality)
+ * 9. Physical workspace project engine resolution from PROJECT/MD/execution_engine.yaml
  * ==============================================================================
  */
 
 const fs = require('fs');
 const path = require('path');
+const {
+  parseEnginesCatalog,
+  resolveExecutionEngine,
+  buildResolvedTaskContext,
+  DEFAULT_CATALOG_PATH,
+  DEFAULT_PROJECT_ENGINE_PATH
+} = require('./engine_resolver');
 
 const FRAMEWORK_ROOT = path.resolve(__dirname, '../../..');
 const RUNTIME_DIR = path.resolve(__dirname);
@@ -28,116 +43,75 @@ function assert(condition, message) {
 }
 
 console.log('====================================================');
-console.log('🚀 TAQNIYA RUNTIME & EXECUTION ENGINE AUDIT SUITE');
+console.log('🚀 TAQNIYA RUNTIME ENGINE RESOLVER INTEGRATION AUDIT');
 console.log('====================================================\n');
 
 // ------------------------------------------------------------------------------
-// Helper: Simple YAML parser for key-value & lists in execution_engines.yaml
+// TEST 1: Canonical Catalog Registry Integrity via engine_resolver
 // ------------------------------------------------------------------------------
-function parseEnginesCatalog(catalogContent) {
-  const engines = [];
-  const lines = catalogContent.split('\n');
-  let currentEngine = null;
-
-  for (let line of lines) {
-    const trimmed = line.trim();
-    if (trimmed.startsWith('- name:')) {
-      const match = trimmed.match(/- name:\s*["']?([^"']+)["']?/);
-      if (match) {
-        currentEngine = { name: match[1] };
-        engines.push(currentEngine);
-      }
-    } else if (trimmed.startsWith('description:') && currentEngine) {
-      const match = trimmed.match(/description:\s*["']?([^"']+)["']?/);
-      if (match) currentEngine.description = match[1];
-    }
-  }
-  return engines;
-}
-
-function parseProjectEngine(yamlContent) {
-  if (!yamlContent) return null;
-  const match = yamlContent.match(/name:\s*["']?([^"'\s]+)["']?/);
-  return match ? match[1] : null;
-}
-
-// ------------------------------------------------------------------------------
-// Formal Engine Resolver Algorithm (Simulating Taqniya Runtime Step 2 & 7)
-// ------------------------------------------------------------------------------
-function resolveExecutionEngine(yamlContent, fileExists, registeredEngines) {
-  if (!fileExists) {
-    return { status: 'RESOLVED', engine: 'native', fallback: true };
-  }
-
-  const engineName = parseProjectEngine(yamlContent);
-  if (!engineName) {
-    return { status: 'ERROR', error: 'CONFIGURATION_ERROR: Empty or invalid execution_engine configuration' };
-  }
-
-  const isRegistered = registeredEngines.some(e => e.name === engineName);
-  if (!isRegistered) {
-    return {
-      status: 'ERROR',
-      error: `CONFIGURATION_ERROR: Unknown execution engine '${engineName}'. Must match an engine registered in execution_engines.yaml.`
-    };
-  }
-
-  return { status: 'RESOLVED', engine: engineName, fallback: false };
-}
-
-// ------------------------------------------------------------------------------
-// TEST 1: Canonical Catalog Registry Integrity
-// ------------------------------------------------------------------------------
-const catalogPath = path.join(RUNTIME_DIR, 'execution_engines.yaml');
-const catalogExists = fs.existsSync(catalogPath);
-assert(catalogExists, 'Canonical catalog execution_engines.yaml exists');
-
-let catalogEngines = [];
-if (catalogExists) {
-  const content = fs.readFileSync(catalogPath, 'utf8');
-  catalogEngines = parseEnginesCatalog(content);
-  const registeredNames = catalogEngines.map(e => e.name);
-  
+let catalog = [];
+try {
+  catalog = parseEnginesCatalog(DEFAULT_CATALOG_PATH);
+  const registeredNames = catalog.map(e => e.name);
   const expectedEngines = ['superpowers', 'claude_code', 'antigravity', 'codex', 'custom', 'native'];
   const allExpectedPresent = expectedEngines.every(name => registeredNames.includes(name));
-  assert(allExpectedPresent, `Registry contains all 6 recognized engines (${registeredNames.join(', ')})`);
+  assert(allExpectedPresent && catalog.length === 6, `Catalog contains all 6 recognized engines (${registeredNames.join(', ')})`);
+} catch (err) {
+  assert(false, `Catalog loading failed: ${err.message}`);
 }
 
 // ------------------------------------------------------------------------------
-// TEST 2: Resolver Acceptance of All Standard Catalog Engines
+// TEST 2: Central Resolver Acceptance of All Standard Catalog Engines
 // ------------------------------------------------------------------------------
 let allValidAccepted = true;
 ['superpowers', 'claude_code', 'antigravity', 'codex', 'custom', 'native'].forEach(eng => {
-  const yaml = `execution_engine:\n  name: "${eng}"`;
-  const result = resolveExecutionEngine(yaml, true, catalogEngines);
+  const result = resolveExecutionEngine({
+    customYamlContent: `execution_engine:\n  name: "${eng}"`,
+    fileExists: true
+  });
   if (result.status !== 'RESOLVED' || result.engine !== eng) {
     allValidAccepted = false;
   }
 });
-assert(allValidAccepted, 'Resolver successfully accepts all 6 valid catalog engines');
+assert(allValidAccepted, 'Authoritative resolver accepts all 6 valid catalog engines');
 
 // ------------------------------------------------------------------------------
 // TEST 3: Strict Error Handling on Unknown Engines & Typos (No Silent Custom Fallback)
 // ------------------------------------------------------------------------------
-const typoYaml = `execution_engine:\n  name: "claud_code"`;
-const typoResult = resolveExecutionEngine(typoYaml, true, catalogEngines);
-assert(typoResult.status === 'ERROR' && typoResult.error.includes('CONFIGURATION_ERROR'), 'Resolver strictly flags typo "claud_code" as CONFIGURATION_ERROR');
+const typoResult = resolveExecutionEngine({
+  customYamlContent: `execution_engine:\n  name: "claud_code"`,
+  fileExists: true
+});
+assert(typoResult.status === 'ERROR' && typoResult.code === 'UNKNOWN_ENGINE', 'Resolver strictly rejects typo "claud_code" with CONFIGURATION_ERROR');
 
-const unknownYaml = `execution_engine:\n  name: "unknown_random_agent"`;
-const unknownResult = resolveExecutionEngine(unknownYaml, true, catalogEngines);
-assert(unknownResult.status === 'ERROR' && unknownResult.error.includes('CONFIGURATION_ERROR'), 'Resolver strictly flags "unknown_random_agent" as CONFIGURATION_ERROR');
+const unknownResult = resolveExecutionEngine({
+  customYamlContent: `execution_engine:\n  name: "unregistered_agent_xyz"`,
+  fileExists: true
+});
+assert(unknownResult.status === 'ERROR' && unknownResult.code === 'UNKNOWN_ENGINE', 'Resolver strictly rejects "unregistered_agent_xyz" with CONFIGURATION_ERROR');
 
 // ------------------------------------------------------------------------------
 // TEST 4: Missing File Deterministically Defaults to "native"
 // ------------------------------------------------------------------------------
-const missingResult = resolveExecutionEngine('', false, catalogEngines);
+const missingResult = resolveExecutionEngine({
+  fileExists: false,
+  customYamlContent: ''
+});
 assert(missingResult.status === 'RESOLVED' && missingResult.engine === 'native' && missingResult.fallback === true, 'Missing execution_engine.yaml deterministically resolves to "native"');
 
 // ------------------------------------------------------------------------------
-// TEST 5: Engine Template & Reference Spec Integrity (No Workflow Flags)
+// TEST 5: Physical Workspace Project Engine Resolution
+// ------------------------------------------------------------------------------
+const workspaceResult = resolveExecutionEngine({
+  projectEngineYamlPath: DEFAULT_PROJECT_ENGINE_PATH
+});
+assert(workspaceResult.status === 'RESOLVED' && typeof workspaceResult.engine === 'string', `Physical workspace project engine resolved successfully (Active: '${workspaceResult.engine}')`);
+
+// ------------------------------------------------------------------------------
+// TEST 6: Engine Template & Reference Spec Integrity (No Workflow Flags)
 // ------------------------------------------------------------------------------
 const templatePath = path.join(FRAMEWORK_ROOT, '05_templates/generic/project/execution_engine.yaml');
-const referencePath = path.join(FRAMEWORK_ROOT, '../PROJECT/MD/execution_engine.yaml');
+const referencePath = DEFAULT_PROJECT_ENGINE_PATH;
 
 let flagsClean = true;
 [templatePath, referencePath].forEach(filePath => {
@@ -151,7 +125,7 @@ let flagsClean = true;
 assert(flagsClean, 'execution_engine.yaml templates contain zero internal workflow flags (tdd, planning, etc.)');
 
 // ------------------------------------------------------------------------------
-// TEST 6: Swappability Invariant (Engine change requires 0 framework mutations)
+// TEST 7: Swappability Invariant in task_lifecycle.md
 // ------------------------------------------------------------------------------
 const lifecyclePath = path.join(RUNTIME_DIR, 'task_lifecycle.md');
 const lifecycleText = fs.readFileSync(lifecyclePath, 'utf8');
@@ -159,33 +133,24 @@ const isAgnosticLifecycle = lifecycleText.includes('configured Execution Engine'
 assert(isAgnosticLifecycle, 'task_lifecycle.md Step 7 delegates generically to configured Execution Engine with zero conditional coupling');
 
 // ------------------------------------------------------------------------------
-// TEST 7: Terminology Cleanliness (Zero AI Host references in core runtime)
+// TEST 8: Terminology Cleanliness (Zero AI Host references in core runtime)
 // ------------------------------------------------------------------------------
 const runtimeReadmePath = path.join(RUNTIME_DIR, 'README.md');
 const runtimeReadmeText = fs.readFileSync(runtimeReadmePath, 'utf8');
 const contextResPath = path.join(RUNTIME_DIR, 'context_resolution.md');
 const contextResText = fs.readFileSync(contextResPath, 'utf8');
+const bootstrapPath = path.join(RUNTIME_DIR, 'bootstrap.md');
+const bootstrapText = fs.readFileSync(bootstrapPath, 'utf8');
 
 const isHostClean = !runtimeReadmeText.includes('AI Host') && 
                     !contextResText.includes('powered by Antigravity') &&
+                    !bootstrapText.includes('executed by Antigravity') &&
                     !lifecycleText.includes('followed by Antigravity');
-assert(isHostClean, 'Core runtime files maintain pure duality (Taqniya vs Execution Engine) with zero AI Host pollution');
+assert(isHostClean, 'Core runtime files maintain pure duality (Taqniya vs Execution Engine) with zero operational Antigravity coupling');
 
 // ------------------------------------------------------------------------------
-// TEST 8: Engine Swappability Governance Invariant (Pure Handoff Payload)
+// TEST 9: Engine Swappability Governance Invariant (Deep Equality)
 // ------------------------------------------------------------------------------
-function buildResolvedTaskContext(engineName, projectConfig) {
-  return {
-    engine: engineName,
-    governance: {
-      stack: projectConfig.stack,
-      frontendCapabilities: projectConfig.frontendCapabilities,
-      securityInvariants: ['PARAMETERIZED_SQL', 'PERIMETER_AUTH_DEFAULT_DENY', 'ZERO_SECRETS'],
-      verificationGates: ['STAGE_1_BUILD', 'STAGE_2_TESTS', 'STAGE_3_SECURITY', 'STAGE_4_BOUNDARIES', 'STAGE_5_UI', 'STAGE_6_DOCS', 'STAGE_7_PERF', 'STAGE_8_DOD']
-    }
-  };
-}
-
 const mockProject = {
   stack: { backend: 'Laravel 11', frontend: 'Vue 3', database: 'PostgreSQL' },
   frontendCapabilities: { lazy_loading: 'required', virtualization: 'optional', form_state_optimization: 'enabled' }
@@ -202,6 +167,14 @@ const governanceInvariant = (
   JSON.stringify(payloadClaude.governance) === JSON.stringify(payloadNative.governance)
 );
 assert(governanceInvariant, 'Swapping execution engines (superpowers ➔ codex ➔ claude_code ➔ native) preserves 100% invariant Taqniya Governance & Verification');
+
+// ------------------------------------------------------------------------------
+// TEST 10: Missing Frontend Capabilities Protocol Invariant
+// ------------------------------------------------------------------------------
+const profileResPath = path.join(RUNTIME_DIR, 'profile_resolution.md');
+const profileResText = fs.readFileSync(profileResPath, 'utf8');
+const handlesMissingCapabilities = profileResText.includes('NOT CONFIGURED') && profileResText.includes('MUST NOT silently assume a default policy');
+assert(handlesMissingCapabilities, 'profile_resolution.md explicitly handles missing frontend_capabilities.yaml without silent assumptions');
 
 // ------------------------------------------------------------------------------
 // AUDIT SUMMARY

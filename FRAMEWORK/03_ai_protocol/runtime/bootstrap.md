@@ -1,24 +1,22 @@
 # Runtime Specification: Bootstrap Protocol
 
 # Purpose
-This document specifies the bootstrap sequence executed by Antigravity upon initiating any pair-programming session. It defines how Antigravity detects Taqniya governance, validates project structure, identifies the active workspace state, and primes the AI runtime with zero token waste.
+This document specifies the bootstrap sequence executed by the AI agent upon initiating any pair-programming session. It defines how the AI agent detects Taqniya governance, validates project structure, identifies the active workspace state, and primes the AI runtime with zero token waste.
 
 ---
 
-## 1. Workspace Detection Sequence
+## 1. Runtime Discovery Sequence
 
-When an AI agent receives a task or starts a conversation, it performs a lightweight workspace inspection:
-
-```
-[ Antigravity Session Start ]
-             │
-             ▼
+```text
+[ Session Start / User Prompt ]
+               │
+               ▼
 Check Workspace Root for:
 1. PROJECT/MD/stack.yaml ?
 2. PROJECT/MD/ ?
 3. FRAMEWORK/ or global Taqniya installation ?
-             │
-             ├─► ALL PRESENT ────────► State A: ACTIVE TAQNIYA PROJECT
+               │
+               ├─► ALL PRESENT ────────► State A: ACTIVE TAQNIYA PROJECT
              │                         (Proceed to Stack Resolution)
              │
              ├─► CODE PRESENT, NO MD ─► State B: BROWNFIELD ADOPTION

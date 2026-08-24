@@ -1,7 +1,7 @@
 # Runtime Specification: Conflict Resolution & Rule Precedence
 
 # Purpose
-This document defines the deterministic 9-level authority hierarchy and reconciliation protocols used by Antigravity when resolving conflicting guidelines across Core rules, Technology Profiles, Project MD specifications, and Source Code.
+This document defines the deterministic 9-level authority hierarchy and reconciliation protocols used by the AI agent when resolving conflicting guidelines across Core rules, Technology Profiles, Project MD specifications, and Source Code.
 
 ---
 

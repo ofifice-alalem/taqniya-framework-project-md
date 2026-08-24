@@ -1,7 +1,7 @@
 # Runtime Specification: Technology Profile Resolution
 
 # Purpose
-This document specifies how Antigravity resolves declared technologies in `PROJECT/MD/stack.yaml` into specialized **Technology Profiles** under `06_stack_profiles/`, defines deterministic resolution cases (A through E), and establishes the **Unknown Technology Protocol**.
+This document specifies how the AI agent resolves declared technologies in `PROJECT/MD/stack.yaml` into specialized **Technology Profiles** under `06_stack_profiles/`, defines deterministic resolution cases (A through E), and establishes the **Unknown Technology Protocol**.
 
 ---
 
@@ -29,15 +29,17 @@ Canonical Path: 06_stack_profiles/{dimension}/{technology}/
 
 ### Frontend Capability Policy Resolution
 When any `frontend:` dimension is declared in `PROJECT/MD/stack.yaml`:
-1. **Load Project Policy:** Ingest `PROJECT/MD/frontend_capabilities.yaml` to discover the project's explicit policy states (`required`, `enabled`, `disabled`, `optional`).
-2. **Apply Policy Definitions:** Antigravity MUST apply the evaluation rules from `06_stack_profiles/frontend/common/capability_policy.md` and `capability_matrix.md`.
+1. **Check for Policy File:** Inspect `PROJECT/MD/frontend_capabilities.yaml`.
+   - **IF PRESENT:** Ingest the project's explicit policy decisions (`required`, `enabled`, `disabled`, `optional`).
+   - **IF NOT PRESENT (`NOT CONFIGURED`):** The AI agent MUST NOT silently assume a default policy. The AI must trigger Step 3 of Project Initialization ([`04_workflows/project_initialization.md`](../../04_workflows/project_initialization.md)) and prompt the developer to choose between Recommended Defaults or Customization.
+2. **Apply Policy Definitions:** The AI agent MUST apply the evaluation rules from `06_stack_profiles/frontend/common/capability_policy.md` and `capability_matrix.md`.
 3. **Load Specific Profile:** Load the matching technology profile (e.g., `frontend/react/`, `frontend/vue/`, or `frontend/blade/`) for framework-idiomatic implementation syntax.
 
 ---
 
 ## 2. Deterministic Profile Resolution Cases (A – E)
 
-When matching declared technologies against available profiles, Antigravity evaluates these deterministic cases:
+When matching declared technologies against available profiles, the AI agent evaluates these deterministic cases:
 
 ### Case A: Exact Technology & Version Profile Exists
 - **Action:** Load the profile immediately. Apply its idiomatic coding rules, approved packages, and test commands.
@@ -73,7 +75,7 @@ When a technology has no profile in `06_stack_profiles/` (e.g., Svelte, FastAPI,
 2. **Universal Core Governance Applies:** Apply universal engineering principles from `00_core/*` (data safety, input protection, boundary isolation, test pyramid, anti-overengineering).
 3. **No Hallucinated Taqniya Rules:** The AI agent MUST NOT invent fake "Taqniya rules" for the unknown technology. Standard official ecosystem documentation and language idioms may be used, but must be clearly distinguished from framework rules.
 4. **Project MD Authority:** Adhere strictly to project-specific architecture guidelines and ADRs declared in `PROJECT/MD/`.
-5. **No Automatic Framework Mutation:** Profile discovery is strictly read-only. Antigravity MUST NEVER create, modify, or rewrite framework files automatically during profile resolution.
+5. **No Automatic Framework Mutation:** Profile discovery is strictly read-only. The AI agent MUST NEVER create, modify, or rewrite framework files automatically during profile resolution.
 
 ---
 

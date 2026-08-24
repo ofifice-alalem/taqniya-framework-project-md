@@ -1,26 +1,24 @@
-# Runtime Specification: Antigravity Activation & Entry Point
+# Activation Workflow: Antigravity IDE Integration
 
 # Purpose
-This document defines the activation specification for operating the **Taqniya AI Development Framework** within **Antigravity** (and compatible AI IDEs). It outlines the configuration models and hooks that enable an AI agent to discover `PROJECT/MD/stack.yaml`, resolve Technology Profiles, and execute the 10-step Task Lifecycle.
+This document defines the activation and configuration procedure for operating the **Taqniya AI Development Framework** within the **Antigravity IDE** (and compatible environment hosts). It outlines how to point workspace rules or global hooks to Taqniya's technology-agnostic runtime protocol.
 
 ---
 
-## 1. Activation Specification vs Actual Host Configuration
+## 1. Activation Specification vs Host Configuration
 
-```
+```text
 ┌────────────────────────────────────────────────────────────────────────┐
 │              ACTIVATION SPECIFICATION vs HOST CONFIGURATION            │
 ├────────────────────────────────────────────────────────────────────────┤
-│ 1. Activation Specification (This Document):                           │
-│    Defines the architectural contract, hook structure, and runtime     │
-│    lifecycle expectations for AI agents.                               │
+│ 1. Activation Procedure (This Document):                               │
+│    Defines the setup steps, hook structures, and workspace             │
+│    instructions for connecting the host environment to Taqniya.        │
 ├────────────────────────────────────────────────────────────────────────┤
-│ 2. Actual Host Configuration (Physical Execution Trigger):             │
-│    Taqniya cannot force an external AI host to execute instructions    │
-│    merely because Markdown files exist in the repository.              │
-│    Actual enforcement depends on the host's supported instruction      │
-│    loading mechanism (e.g., workspace GEMINI.md, system rules,        │
-│    or custom IDE skills).                                              │
+│ 2. Host Execution Trigger (Physical Execution Hook):                   │
+│    Taqniya operates as a governance framework; actual invocation       │
+│    depends on the environment's supported instruction mechanism        │
+│    (e.g., workspace GEMINI.md, system rules, or IDE customization).    │
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -29,22 +27,24 @@ This document defines the activation specification for operating the **Taqniya A
 ## 2. Recommended Host Hook Models
 
 ### Model A: Project Workspace Hook (Recommended for Project-Level Activation)
-When supported by the host, place a `GEMINI.md` or `AGENTS.md` file in the workspace root. This is the recommended project-level activation mechanism:
+Place a `GEMINI.md` or `AGENTS.md` file in the project workspace root:
 
 ```markdown
-# [PROJECT_NAME] — Antigravity Engineering Instructions
+# [PROJECT_NAME] — Engineering Instructions
 
 This project is governed by the **Taqniya AI Development Framework v1.0**.
 
 - **Stack Configuration:** `PROJECT/MD/stack.yaml`
+- **Capabilities & Policies:** `PROJECT/MD/frontend_capabilities.yaml`
+- **Execution Engine:** `PROJECT/MD/execution_engine.yaml`
 - **Project Specifications (SSoT):** `PROJECT/MD/`
 - **Taqniya Framework Root:** `FRAMEWORK/`
 
-## Operating Directives for AI Agents:
-1. Read `PROJECT/MD/stack.yaml` before proposing or generating code.
+## Operating Directives:
+1. Read `PROJECT/MD/stack.yaml`, `frontend_capabilities.yaml`, and `execution_engine.yaml` before proposing code.
 2. Perform Task Impact Analysis to load only relevant `PROJECT/MD/` and `06_stack_profiles/` files.
 3. Obey the 9-level conflict hierarchy: Platform Safety > User Direction > Core Mandatory > Stack Specs > Profiles > Functional Phases.
-4. Run task-relevant tests and static analysis before reporting completion.
+4. Execute via the configured Execution Engine, then run the 8-Stage Verification Gatekeeper.
 5. Record completed deliverables in `PROJECT/MD/phases/<phase_name>/README.md`.
 ```
 
@@ -57,9 +57,6 @@ If the host utilizes on-demand skill discovery (e.g., `~/.gemini/config/skills/t
 ---
 
 ## 3. Verification Checklist for Activation
-
-When testing activation in a target workspace:
-1. [ ] The AI agent inspects `PROJECT/MD/stack.yaml` upon initial task prompt.
-2. [ ] The AI agent identifies declared technologies without assuming omitted dimensions.
-3. [ ] The AI agent loads only task-relevant `PROJECT/MD/` files via Task Impact Analysis.
-4. [ ] The AI agent executes the verification gatekeeper before declaring completion.
+- [ ] `PROJECT/MD/stack.yaml` exists and contains valid technologies.
+- [ ] `PROJECT/MD/frontend_capabilities.yaml` (if frontend is used) or `execution_engine.yaml` is declared.
+- [ ] Host workspace instructions (`GEMINI.md` / `AGENTS.md`) point to `FRAMEWORK/03_ai_protocol/runtime/task_lifecycle.md`.
