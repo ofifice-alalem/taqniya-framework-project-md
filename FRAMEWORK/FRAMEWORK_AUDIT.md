@@ -11,9 +11,9 @@
 
 ---
 
-## 2. Complete Inventory of Framework Files (212 Files Total Across 58 Directories)
+## 2. Complete Inventory of Framework Files (221 Files Total Across 63 Directories)
 
-*Repository inventory at audit time: 212 files across 58 directories.*
+*Repository inventory at audit time: 221 files across 63 directories.*
 
 | Directory | File | Single Responsibility / Core Purpose |
 | :--- | :--- | :--- |
@@ -53,10 +53,6 @@
 | | `design_system_compliance.md` | Audit procedure for validating UI against design tokens and accessibility. |
 | | `documentation_update.md` | Post-implementation change logging procedure and semantic specification updates. |
 | | `activations/antigravity.md` | Antigravity IDE activation & hook instructions (external host configuration). |
-| | `md_synchronization.md` | Semantic impact-driven documentation synchronization across any software or storage paradigm. |
-| | `architecture_compliance.md` | Multi-tier audit procedure for detecting and refactoring boundary violations. |
-| | `design_system_compliance.md` | Audit procedure for validating UI against design tokens and accessibility. |
-| | `documentation_update.md` | Post-implementation change logging procedure and semantic specification updates. |
 | **`05_templates/generic/adr/` (1 file)** | `ADR.md` | Generic Architecture Decision Record template. |
 | **`05_templates/generic/feature/` (6 files)** | `requirements.md` | Generic feature functional and non-functional requirements blueprint. |
 | | `business_rules.md` | Generic feature business invariants and validation rules blueprint. |
@@ -70,7 +66,7 @@
 | | `data.md` | Generic phase schema migrations and persistence deliveries. |
 | | `testing.md` | Generic phase automated test deliverables and scenarios. |
 | | `checklist.md` | Generic 10-workstream operational phase checklist with `[IF APPLICABLE]` support. |
-| **`05_templates/generic/project/` (7 files)** | `README.md` | Generic project documentation hub template. |
+| **`05_templates/generic/project/` (9 root + 9 prompt templates)** | `README.md`, `project_context.md`, `business_rules.md`, `data.md`, `database.md`, `design_rules.md`, `stack.yaml`, `frontend_capabilities.yaml`, `execution_engine.yaml`, `prompts/` (9 files) | Canonical generic project documentation, Tripartite model blueprints, and 4-tier prompt templates. |
 | | `project_context.md` | Generic project background, goals, architecture style, and technical baseline. |
 | | `business_rules.md` | Generic ubiquitous domain glossary and global business rules. |
 | | `database.md` | Generic data architecture, storage paradigm, entities, and constraints. |
@@ -199,7 +195,7 @@ Every concept and term across the repository was audited and classified:
 | 17 | **Change Management** | **PASS** | 5 tiers with pre-implementation ADR for Tier 5 architecture changes. |
 | 18 | **Template Neutrality** | **PASS** | All generic templates under `05_templates/generic/` are 100% technology-agnostic. |
 | 19 | **Internal References** | **PASS** | 0 broken links across all non-template files. |
-| 20 | **Inventory Accuracy** | **PASS** | Exact 212 files across 58 directories verified on physical disk. |
+| 20 | **Inventory Accuracy** | **PASS** | Exact 221 files across 63 directories verified on physical disk. |
 
 ---
 

@@ -82,10 +82,19 @@ PROJECT/MD/
 ├── data.md                     (Global data architecture & common entities)
 ├── design_rules.md             (Visual design tokens, typography & palette)
 ├── prompts/                    (AI Management & Review prompts)
-│   ├── Project_Recovery.md
-│   ├── Module_Review.md
-│   ├── Phase_Review.md
-│   └── phases_prompt.md
+│   ├── README.md
+│   ├── 01_project_initialization/
+│   │   ├── initialize_project.md
+│   │   └── review_project_configuration.md
+│   ├── 02_project_analysis/
+│   │   └── analyze_project_rules.md
+│   ├── 03_database/
+│   │   ├── design_database.md
+│   │   └── implement_database.md
+│   └── 04_phases/
+│       ├── analyze_phase.md
+│       ├── execute_phase.md
+│       └── review_phase.md
 └── phases/                     (Functional phases tree)
     └── phase_00_sample/        (Standard phase template)
         ├── README.md

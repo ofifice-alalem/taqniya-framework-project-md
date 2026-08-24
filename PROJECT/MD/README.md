@@ -38,14 +38,24 @@ PROJECT/MD/
 │   ├── execution_engine.yaml       (نموذج مرجعي لاختيار محرك التنفيذ)
 │   ├── business_rules.md          (قواعد وشروط العمل العامة)
 │   ├── data.md                    (التصور العام للبيانات والعلاقات)
+│   ├── database.md                (مخطط قاعدة البيانات التفصيلي المعتمد)
 │   └── design_rules.md            (القيم البصرية وحسومات التصميم)
 │
 ├── 🤖 موجهات الذكاء الاصطناعي (AI Prompts)
 │   └── prompts/
-│       ├── Project_Recovery.md  (استعادة وفهم السياق)
-│       ├── Module_Review.md     (مراجعة وحدة وظيفية)
-│       ├── Phase_Review.md      (مراجعة مرحلة كاملة)
-│       └── phases_prompt.md     (إنشاء وتصميم مرحلة جديدة)
+│       ├── README.md                              (دليل وفهرس الموجّهات)
+│       ├── 01_project_initialization/             (موجّهات تهيئة المشروع ومراجعة الإعدادات)
+│       │   ├── initialize_project.md
+│       │   └── review_project_configuration.md
+│       ├── 02_project_analysis/                   (موجّهات استيعاب قواعد العمل والنظام)
+│       │   └── analyze_project_rules.md
+│       ├── 03_database/                           # (موجّهات تصميم وتنفيذ قاعدة البيانات)
+│       │   ├── design_database.md
+│       │   └── implement_database.md
+│       └── 04_phases/                             # (موجّهات تطوير ومراجعة المراحل الوظيفية)
+│           ├── analyze_phase.md
+│           ├── execute_phase.md
+│           └── review_phase.md
 │
 └── 📦 المراحل الوظيفية (Functional Phases)
     └── phases/
