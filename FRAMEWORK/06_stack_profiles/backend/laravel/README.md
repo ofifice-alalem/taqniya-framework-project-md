@@ -43,6 +43,7 @@ Applies to all repositories where `PROJECT/MD/stack.yaml` declares Laravel as th
 In the project's `PROJECT/MD/stack.yaml`, specify:
 ```yaml
 backend:
-  framework: "Laravel 11"
+  name: "Laravel"
+  version: "11.x"
 ```
 When this profile is declared, AI agents and engineers MUST respect both the global Taqniya core rules and the specialized rules in this profile.

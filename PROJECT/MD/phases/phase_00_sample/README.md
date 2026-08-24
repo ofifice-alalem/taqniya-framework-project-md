@@ -24,9 +24,12 @@
 
 ## 🔗 3. الاعتماديات (Dependencies)
 - **تعتمد على:**
-  - `PROJECT/MD/stack.yaml`
-  - `PROJECT/MD/business_rules.md`
-  - `PROJECT/MD/design_rules.md`
+  - `PROJECT/MD/stack.yaml` (التقنيات ونمط الاتصال)
+  - `PROJECT/MD/frontend_capabilities.yaml` (سياسات الأداء المعتمدة)
+  - `PROJECT/MD/execution_engine.yaml` (محرك التنفيذ المعتمد)
+  - `PROJECT/MD/database.md` (مخطط قاعدة البيانات المعتمد - SSoT)
+  - `PROJECT/MD/business_rules.md` (قواعد وشروط العمل)
+  - `PROJECT/MD/design_rules.md` (رموز ونظام التصميم)
 
 ---
 
@@ -35,3 +38,5 @@
 2. توثيق Frontend وحالات الشاشة في `frontend.md`.
 3. مسارات واضحة ومحددة في `routes.md`.
 4. بنية بيانات وكيانات المرحلة في `data.md`.
+5. مواصفة واختبارات المرحلة في `testing.md`.
+6. اجتياز بوابات التحقق الثمانية عبر [`prompts/04_phases/review_phase.md`](../../prompts/04_phases/review_phase.md).

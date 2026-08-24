@@ -50,6 +50,19 @@ Taqniya Core is **100% technology-agnostic at the rule level**. It makes zero as
                                  ▼
                 ┌─────────────────────────────────┐
                 │           AI CONTEXT            │  ◄── 10-Step Lazy-Loaded Minimal Context
+                │     (Resolved Governance)       │      (Specs, rules, capabilities, bounds)
+                └────────────────┬────────────────┘
+                                 │
+                                 ▼
+                ┌─────────────────────────────────┐
+                │   CONFIGURED EXECUTION ENGINE   │  ◄── Autonomous Execution Agent
+                │  (PROJECT/MD/execution_engine)  │      (superpowers, claude_code, codex,
+                │                                 │       antigravity, custom, native)
+                └────────────────┬────────────────┘
+                                 │
+                                 ▼
+                ┌─────────────────────────────────┐
+                │     TAQNIYA VERIFICATION        │  ◄── 8-Stage Gatekeeper & DoD
                 └────────────────┬────────────────┘
                                  │
                                  ▼
@@ -65,9 +78,10 @@ Taqniya Core is **100% technology-agnostic at the rule level**. It makes zero as
 | Artifact | Responsibility | Question It Answers |
 | :--- | :--- | :--- |
 | **`Taqniya Core`** | Universal engineering principles, data integrity, security, and AI protocols. | *"How should an AI engineer reason safely and consistently?"* |
-| **`PROJECT/MD/stack.yaml`** | Authoritative declaration of runtimes, frameworks, databases, and tooling. | *"What technologies are we using in this project?"* |
+| **`PROJECT/MD/stack.yaml`** | Authoritative declaration of runtimes, frameworks, databases, and communication modes. | *"What technologies and architecture are we using in this project?"* |
 | **`Technology Profiles`** | Ecosystem-specific syntax, idioms, lint rules, and vetted package policies. | *"How do we work correctly with those specific tools?"* |
 | **`PROJECT/MD/`** | Business domain invariants, data architecture, design tokens, AI prompts, functional phases. | *"What are we building and what are our project specifications?"* |
+| **`Execution Engine`** | Implementation methodologies, planning, testing loops, and code generation routines. | *"How does the agent execute the implementation?"* |
 | **`Source Code`** | Production software implementation. | *"The running system."* |
 
 ---
@@ -159,7 +173,9 @@ FRAMEWORK/
 │
 ├── 05_templates/                      # Universal Project & Feature Blueprints
 │   └── generic/                       # Technology-agnostic blueprints
-│       └── project/                   # PROJECT/MD/ blueprints
+│       ├── project/                   # PROJECT/MD/ blueprints (stack, capabilities, engine, rules, database, data, design)
+│       │   └── prompts/               # 4-Group Structured AI Lifecycle Prompts (01 to 04)
+│       └── phase/                     # Functional phase blueprints (README, backend, frontend, routes, data, checklist)
 │
 └── 06_stack_profiles/                 # Modular Technology Profiles (Optional Extensions)
     ├── README.md                      # Dimensional profile architecture & discovery matrix
@@ -184,7 +200,7 @@ When executing any task, AI agents and developers MUST evaluate instructions aga
 1. **Level 1: Platform / System Safety Constraints** (Non-negotiable platform, system, and safety constraints).
 2. **Level 2: Explicit Current User Direction** (Controls project choices and preferences; subject to Levels 1 & 3).
 3. **Level 3: Taqniya Core Mandatory Invariants** (MUST / MUST NOT engineering rules: security, data safety, input protection, boundary integrity).
-4. **Level 4: Project Global Specifications & Stack Configuration** (`PROJECT/MD/stack.yaml`, `frontend_capabilities.yaml`, `execution_engine.yaml`, `business_rules.md`, `data.md`, `design_rules.md`).
+4. **Level 4: Project Global Specifications & Stack Configuration** (`PROJECT/MD/stack.yaml`, `frontend_capabilities.yaml`, `execution_engine.yaml`, `business_rules.md`, `data.md`, `database.md`, `design_rules.md`).
 5. **Level 5: Technology / Stack Profiles** (`06_stack_profiles/*`).
 6. **Level 6: Functional Phase Specifications** (`PROJECT/MD/phases/<phase_name>/*`).
 7. **Level 7: Taqniya Recommended Guidelines** (SHOULD / SHOULD NOT guidance; `00_core/*`, `01_design_system/*`, `02_testing/*` baselines).
@@ -197,14 +213,42 @@ When executing any task, AI agents and developers MUST evaluate instructions aga
 
 1. Create a `PROJECT/MD/` folder with:
    - `README.md` (Project scope & phase index)
-   - `stack.yaml` (Technology stack configuration)
+   - `stack.yaml` (Technology stack configuration & communication mode)
    - `frontend_capabilities.yaml` (Frontend capability policy decisions)
-   - `execution_engine.yaml` (Declared execution engine methodology)
-   - `business_rules.md` (Global business logic)
-   - `data.md` (Global data architecture)
-   - `design_rules.md` (Visual design tokens)
-   - `prompts/` (AI management prompts)
+   - `execution_engine.yaml` (Declared execution engine selection)
+   - `business_rules.md` (Global business logic & constraints)
+   - `data.md` (Global data architecture & shared entities)
+   - `database.md` (Database schema blueprint — SSoT)
+   - `design_rules.md` (Visual design tokens & theme rules)
+   - `prompts/` (4-group structured AI lifecycle prompts)
    - `phases/` (Functional implementation phases)
-2. Populate `stack.yaml`, choose your capability policy (`frontend_capabilities.yaml`), and select your execution engine (`execution_engine.yaml`).
-3. Follow the 8-step initialization routine in [`04_workflows/project_initialization.md`](04_workflows/project_initialization.md).
-4. Configure your workspace instructions to load Taqniya (see [`04_workflows/activations/antigravity.md`](04_workflows/activations/antigravity.md)).
+2. Follow the 8-step initialization routine in [`04_workflows/project_initialization.md`](04_workflows/project_initialization.md).
+3. Configure your workspace instructions to load Taqniya (see [`04_workflows/activations/antigravity.md`](04_workflows/activations/antigravity.md)).
+
+---
+
+## 8. Configured Execution Engine Interoperability (WHAT vs HOW)
+
+Taqniya enforces a strict architectural boundary between **Framework Governance** and **Agent Execution Methodology**:
+
+```text
+┌─────────────────────────────────────────────────────────────────────────┐
+│ TAQNIYA FRAMEWORK (WHAT)                                                │
+│ Answers: "What rules, architectures, and criteria govern this system?"  │
+│ Delivers: Resolved Task Context, Rules, Capabilities, DoD Requirements. │
+├─────────────────────────────────────────────────────────────────────────┤
+│ CONFIGURED EXECUTION ENGINE (HOW)                                       │
+│ Answers: "How will the agent plan, code, test, and debug this task?"    │
+│ Governs: Internal planning loops, coding methodologies, TDD, debugging. │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+### Recognized Execution Engines Catalog:
+1. **`superpowers`**: Systematic planning, hypothesis-driven debugging, and test-driven development (TDD).
+2. **`claude_code`**: Terminal-native CLI subagents, bash orchestration, and unix toolchains.
+3. **`antigravity`**: Interactive IDE pairing, rich artifacts generation, and visual UI inspection.
+4. **`codex`**: Direct inline code generation and AST-level patch transformations.
+5. **`custom`**: Developer-defined scripts or bespoke execution agents.
+6. **`native`**: Taqniya's built-in autonomous execution lifecycle protocol.
+
+Engine resolution is managed dynamically by [`03_ai_protocol/runtime/engine_resolver.js`](03_ai_protocol/runtime/engine_resolver.js) with deterministic fallback to `native` on missing configuration and strict `CONFIGURATION_ERROR` gates on unregistered engine names.

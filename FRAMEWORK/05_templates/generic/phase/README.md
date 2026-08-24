@@ -27,7 +27,11 @@
 
 ## 3. Dependencies & Prerequisites
 - **Preceding Phases Required:** `[e.g., phase_00_auth, None]`
-- **Required Stack Declarations:** `[Relevant declarations from stack.yaml]`
+- **Required Stack Declarations:** `PROJECT/MD/stack.yaml` (Runtime, DB, Communication Mode)
+- **Frontend Policy Compliance:** `PROJECT/MD/frontend_capabilities.yaml`
+- **Active Execution Engine:** `PROJECT/MD/execution_engine.yaml`
+- **Database Schema Blueprint (SSoT):** `PROJECT/MD/database.md`
+- **Domain & Visual Invariants:** `PROJECT/MD/business_rules.md`, `PROJECT/MD/design_rules.md`
 
 ---
 
@@ -36,4 +40,6 @@
 - [ ] Frontend screens and UI states documented in `frontend.md`
 - [ ] API endpoints and routes documented in `routes.md`
 - [ ] Schema changes and phase entities documented in `data.md`
-- [ ] Task-relevant tests pass 100%
+- [ ] Phase testing specifications and test cases pass 100%
+- [ ] 8-Stage Verification Gatekeeper executed via `prompts/04_phases/review_phase.md`
+- [ ] Definition of Done (DoD) verified in `03_ai_protocol/completion_criteria.md`

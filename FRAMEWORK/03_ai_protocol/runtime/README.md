@@ -21,21 +21,21 @@ To eliminate friction and ensure zero overlapping authority, responsibilities ar
 │                    │ Universal boundary governance, security, data       │
 │                    │ integrity, testing pyramid, DoD, and AI invariants. │
 ├────────────────────┼─────────────────────────────────────────────────────┤
-│PROJECT/MD/stack.yaml│ WHAT TECHNOLOGIES ARE USED IN THIS PROJECT         │
+│PROJECT/MD/stack.yaml│ WHAT TECHNOLOGIES & ARCHITECTURE ARE USED          │
 │                    │ Authoritative declaration of runtimes, frameworks,  │
-│                    │ engines, tools, and package managers.               │
+│                    │ communication modes (direct/api_first/hybrid), etc. │
 ├────────────────────┼─────────────────────────────────────────────────────┤
 │ Technology Profile │ HOW TO APPLY RULES TO SPECIFIC TOOLS                │
 │ (06_stack_profiles)│ Ecosystem idioms, syntax patterns, approved packages,│
 │                    │ and toolchain-specific testing/linting commands.    │
 ├────────────────────┼─────────────────────────────────────────────────────┤
 │ PROJECT/MD/        │ WHAT ARE WE BUILDING & PROJECT-SPECIFIC DECISIONS   │
-│                    │ stack.yaml, business rules, data, design tokens,    │
-│                    │ AI prompts, and functional implementation phases.   │
+│                    │ stack.yaml, frontend_capabilities.yaml, database.md,│
+│                    │ execution_engine.yaml, business rules, data, design.│
 ├────────────────────┼─────────────────────────────────────────────────────┤
 │ Execution Engine   │ HOW TO PLAN AND EXECUTE TASKS METHODICALLY          │
-│ (Declared in MD)   │ Task decomposition, TDD cycles, debugging loops,    │
-│                    │ code review routines, and execution methodologies.  │
+│ (Declared in MD)   │ Autonomous implementation, planning loops, coding,  │
+│                    │ and testing methodologies (superpowers, codex, etc.)│
 └────────────────────┴─────────────────────────────────────────────────────┘
 ```
 
@@ -93,9 +93,9 @@ To eliminate friction and ensure zero overlapping authority, responsibilities ar
 
 ---
 
-## 3. Runtime Specification Catalog
+## 3. Runtime Specification & Engine Modules
 
-| Specification File | Purpose & Focus Area |
+| Specification / Module | Purpose & Focus Area |
 | :--- | :--- |
 | **[1. Bootstrap Protocol](bootstrap.md)** | Workspace detection, project initialization, validation checks, and startup sequence. |
 | **[2. Stack Resolution](stack_resolution.md)** | Parsing `PROJECT/MD/stack.yaml`, extracting multi-dimensional technologies, and zero-assumption rules. |
@@ -104,4 +104,6 @@ To eliminate friction and ensure zero overlapping authority, responsibilities ar
 | **[5. Conflict Resolution](conflict_resolution.md)** | 9-level authority hierarchy, rule precedence, and resolving Code vs Documentation drift. |
 | **[6. Task Lifecycle](task_lifecycle.md)** | End-to-end 10-step execution lifecycle from initial user prompt to verified completion. |
 | **[7. Execution Engine Contract](execution_engine.md)** | Interoperability contract between the configured Execution Engine (HOW to work) and Taqniya (WHAT rules to enforce). |
-| **[8. Antigravity Activation](antigravity_activation.md)** | Concrete Antigravity hooks, global rules, and workspace entry points. |
+| **[8. Execution Engine Catalog](execution_engines.yaml)** | Master catalog of registered and recognized execution engines (superpowers, claude_code, codex, antigravity, custom, native). |
+| **[9. Runtime Engine Resolver](engine_resolver.js)** | Authoritative runtime module validating configured engines, missing file fallbacks, and error gates. |
+| **[10. Runtime Resolver Audit](audit_runtime.js)** | Automated 11-point integration test suite verifying engine resolution and governance preservation. |

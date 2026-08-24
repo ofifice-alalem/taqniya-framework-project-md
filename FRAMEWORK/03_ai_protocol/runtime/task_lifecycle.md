@@ -35,15 +35,15 @@ This document defines the complete end-to-end execution lifecycle followed by th
    (Verify existing implementation, detect drift, check tests)
             │
             ▼
-    7. EXECUTION ENGINE HANDOFF
-    (Pass Resolved Context to configured Execution Engine)
-             │
-             ├─► Configured Engine (Superpowers / Claude Code / Antigravity / Custom)
-             │   (Plans, executes TDD/implementation, debugs loops)
-             │
-             └─► Fallback (Direct structured Taqniya execution)
-             │
-             ▼
+     7. EXECUTION ENGINE HANDOFF
+     (Pass Resolved Governance Payload to configured Execution Engine)
+              │
+              ├─► Configured Engine (superpowers / claude_code / antigravity / codex / custom)
+              │   (Autonomous implementation, planning loops, coding, testing)
+              │
+              └─► Native Fallback (Built-in autonomous Taqniya execution lifecycle)
+              │
+              ▼
     8. TAQNIYA VERIFICATION GATEKEEPER
     (Task-relevant tests, static analysis, linting, boundaries)
              │
