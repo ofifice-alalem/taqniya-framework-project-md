@@ -133,7 +133,7 @@ const isAgnosticLifecycle = lifecycleText.includes('configured Execution Engine'
 assert(isAgnosticLifecycle, 'task_lifecycle.md Step 7 delegates generically to configured Execution Engine with zero conditional coupling');
 
 // ------------------------------------------------------------------------------
-// TEST 8: Terminology Cleanliness (Zero AI Host references in core runtime)
+// TEST 8: Environment-Agnostic Terminology (Zero host-specific runtime coupling)
 // ------------------------------------------------------------------------------
 const runtimeReadmePath = path.join(RUNTIME_DIR, 'README.md');
 const runtimeReadmeText = fs.readFileSync(runtimeReadmePath, 'utf8');
@@ -146,7 +146,7 @@ const isHostClean = !runtimeReadmeText.includes('AI Host') &&
                     !contextResText.includes('powered by Antigravity') &&
                     !bootstrapText.includes('executed by Antigravity') &&
                     !lifecycleText.includes('followed by Antigravity');
-assert(isHostClean, 'Core runtime files maintain pure duality (Taqniya vs Execution Engine) with zero operational Antigravity coupling');
+assert(isHostClean, 'Core runtime files maintain pure duality (Taqniya vs Execution Engine) with zero host-specific runtime coupling');
 
 // ------------------------------------------------------------------------------
 // TEST 9: Engine Swappability Governance Invariant (Deep Equality)

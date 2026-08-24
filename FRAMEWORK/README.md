@@ -6,7 +6,7 @@
 
 ## 1. Executive Overview
 
-The **Taqniya AI Development Framework** is an enterprise-grade, spec-driven software engineering framework designed for AI coding agents (such as Antigravity, Claude, and Gemini) and engineering teams. 
+The **Taqniya AI Development Framework** is an enterprise-grade, spec-driven software engineering framework designed for AI-driven software engineering and configurable execution engines.
 
 Taqniya Core is **100% technology-agnostic at the rule level**. It makes zero assumptions about your programming language, web framework, architectural style, database engine, or testing tools. Instead, technology-specific behavior is dynamically determined by a **User-Provided Stack Configuration (`PROJECT/MD/stack.yaml`)** and optional modular **Technology Profiles** (`06_stack_profiles/`).
 
@@ -207,4 +207,4 @@ When executing any task, AI agents and developers MUST evaluate instructions aga
    - `phases/` (Functional implementation phases)
 2. Populate `stack.yaml`, choose your capability policy (`frontend_capabilities.yaml`), and select your execution engine (`execution_engine.yaml`).
 3. Follow the 8-step initialization routine in [`04_workflows/project_initialization.md`](04_workflows/project_initialization.md).
-4. Point your AI IDE (Antigravity / Cursor / Claude) rules to this framework root.
+4. Configure your workspace instructions to load Taqniya (see [`04_workflows/activations/antigravity.md`](04_workflows/activations/antigravity.md)).
