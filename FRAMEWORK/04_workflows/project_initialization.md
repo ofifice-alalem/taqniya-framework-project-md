@@ -47,6 +47,7 @@ STEP 8: Verification & Phase Execution (Validate DoD & start Phase deliverables)
 - Verify that required metadata (project name, type) is present.
 - Ensure values are single, unambiguous technology choices (e.g. `backend.name: "Laravel 11"`, NOT `backend.name: "Laravel 11 / Node.js Express"`).
 - **Validate Communication Architecture:** Confirm that `architecture.communication.mode` is explicitly declared (`direct`, `api_first`, or `hybrid`). If omitted, prompt the developer to choose the communication mode before proceeding.
+- **Scoped Write Authority Invariant:** The AI Agent is strictly permitted to write to `PROJECT/MD/stack.yaml` **ONLY** to populate the missing `architecture.communication` section based on explicit developer choice. The AI is strictly forbidden from mutating, replacing, or rewriting any other declared technologies (Backend, Frontend, Database, etc.).
 - Apply the **"No Technology = No Assumption"** rule: do not invent defaults for omitted dimensions; prompt for clarification only if an omitted dimension is strictly required for the immediate task.
 
 ### Step 3: Resolve Technology Profiles

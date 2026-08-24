@@ -17,14 +17,15 @@ architecture:
     mode: "api_first" # direct | api_first | hybrid
     direct:
       enabled: false
-      consumers: []
+      style: "None"
     api:
       enabled: true
-      type: "rest"
+      style: "rest"
       documentation: "OpenAPI 3.1 / Swagger"
-      consumers:
-        - "web"
-        - "mobile"
+    consumers:
+      - "web"
+      - "mobile"
+      - "partner_api"
 
 frontend:
   name: "React"
