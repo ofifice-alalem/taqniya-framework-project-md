@@ -91,4 +91,5 @@ When contributing a new profile, structure it with single-responsibility markdow
 | **`frontend/`** | **[`vue/`](frontend/vue/README.md)** | Vue 3.x SPA (Composition API) | Active & Verified |
 | **`frontend/`** | **[`blade/`](frontend/blade/README.md)** | Laravel Blade / Livewire 3 / Alpine | Active & Verified |
 | **`backend/`** | **[`laravel/`](backend/laravel/README.md)** | PHP 8.2+ / Laravel 11.x | Active & Verified |
+| **`backend/`** | **[`nestjs/`](backend/nestjs/README.md)** | Node.js 20+ / NestJS 10.x | Active & Verified |
 | *Other Categories* | *Modular extensions* | *Multi-stack* | *Added on-demand* |
